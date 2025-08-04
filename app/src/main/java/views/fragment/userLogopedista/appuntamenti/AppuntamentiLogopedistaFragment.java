@@ -271,13 +271,12 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigazioneFragment
     private void setUpAdapters() {
 
         appuntamentiVisualizzazione = new ArrayList<>();
-
         Logopedista logopedista = mLogopedistaViewModel.getLogopedistaLiveData().getValue();
         List<Paziente> listaPazienti = logopedista.getPazienti() != null ? logopedista.getPazienti() : new ArrayList<>();
 
         for (Appuntamento appuntamento : mLogopedistaViewModel.getAppuntamentiLiveData().getValue()) {
             for (Paziente paziente : listaPazienti) {
-                if (appuntamento.getRefIdPaziente().equals(paziente.getIdProfilo())) {
+                if (appuntamento.getReferenceIdPaziente().equals(paziente.getIdProfilo())) {
                     AppuntamentiCustom appuntamentiCustom = new AppuntamentiCustom(appuntamento.getIdAppuntamento(),paziente.getNome(), paziente.getCognome(), appuntamento.getLuogo(), appuntamento.getData(), appuntamento.getOra());
                     appuntamentiVisualizzazione.add(appuntamentiCustom);
                 }
@@ -341,13 +340,13 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigazioneFragment
     }
 
     private void handleTextViewSelection(TextView selectedTextView) {
-        selectedTextView.setBackground(getContext().getDrawable(R.drawable.rectangle_rounded_border_selector_bkg));
+        selectedTextView.setBackground(getContext().getDrawable(R.drawable.rettangolo_grigio_bordo_blu));
         for (int i = 0; i < gridLayoutOrarioAppuntamento.getChildCount(); i++) {
             View child = gridLayoutOrarioAppuntamento.getChildAt(i);
             if (child instanceof TextView) {
                 TextView textView = (TextView) child;
                 if (textView != selectedTextView) {
-                    textView.setBackground(getContext().getDrawable(R.drawable.rectangle_rounded_border_bkg));
+                    textView.setBackground(getContext().getDrawable(R.drawable.rettangolo_bordo_grigio));
                 }
             }
         }

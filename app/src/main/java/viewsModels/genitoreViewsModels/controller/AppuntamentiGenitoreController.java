@@ -33,7 +33,7 @@ public class AppuntamentiGenitoreController {
 
             Log.e("AppuntamentoLogopedistaFragment.retrieveAppuntamentiGenitore", "paziente"+paziente.toString());
 
-            appuntamentoDAO.get(CostantiDBAppuntamento.REF_ID_PAZIENTE, paziente.getIdProfilo()).thenAccept(appuntamenti -> {
+            appuntamentoDAO.get(CostantiDBAppuntamento.REFERENCE_ID_PAZIENTE, paziente.getIdProfilo()).thenAccept(appuntamenti -> {
 
                 for (Appuntamento appuntamento : appuntamenti) {
                     result.add(appuntamento);

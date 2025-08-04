@@ -56,7 +56,7 @@ public class InitialLogopedista {
         CompletableFuture<List<Appuntamento>> future = new CompletableFuture<>();
 
         AppuntamentoDAO appuntamentoDAO = new AppuntamentoDAO();
-        appuntamentoDAO.get(CostantiDBAppuntamento.REF_ID_LOGOPEDISTA, idLogopedista).thenAccept(future::complete);
+        appuntamentoDAO.get(CostantiDBAppuntamento.REFERENCE_ID_LOGOPEDISTA, idLogopedista).thenAccept(future::complete);
 
         return future;
     }
