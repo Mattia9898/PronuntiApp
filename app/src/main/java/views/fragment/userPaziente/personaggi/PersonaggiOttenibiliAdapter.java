@@ -55,8 +55,8 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
         String idPersonaggio = personaggio.getIdPersonaggio();
         String urlPersonaggio = personaggio.getTexturePersonaggio();
         String nomePersonaggio = personaggio.getNomePersonaggio();
-        int costoSbloccoPersonaggio =personaggio.getCostoSblocco();
-        int costoPersonaggio = personaggio.getCostoSblocco();
+        int costoSbloccoPersonaggio =personaggio.getCostoSbloccoPersonaggio();
+        int costoPersonaggio = personaggio.getCostoSbloccoPersonaggio();
 
         holder.textViewNomePersonaggio.setText(nomePersonaggio);
         Glide.with(context).asBitmap().apply(new RequestOptions().override(150, 150)).load(urlPersonaggio).into(holder.imageViewPersonaggio);
