@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, for the Android Design guidelines. -->
+    <dimen name="headerTextSize">45sp</dimen>
+    <dimen name="hintDimension">12sp</dimen>
+    <dimen name="subHeaderTextSize">20sp</dimen>
+    <dimen name="personaggioWidthDim">100dp</dimen>
+    <dimen name="personaggioHeighthDim">100dp</dimen>
+    <dimen name="size_text_esercizio">40sp</dimen>
+    <dimen name="size_text_title_esercizio">25sp</dimen>
+    <dimen name="size_text_sub_subtitle_reg">16sp</dimen>
+    <dimen name="size_text_info_paziente">16sp</dimen>
+    <dimen name="size_text_orario_appuntamento">21sp</dimen>
+    <dimen name="size_text_giorno_appuntamento">17sp</dimen>
+    <dimen name="nav_bar_height">65dp</dimen>
+    <dimen name="size_text_data_terapia">25sp</dimen>
+    <dimen name="size_text_info_scenario">14sp</dimen>
+</resources>

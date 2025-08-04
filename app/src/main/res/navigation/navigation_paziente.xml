@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/scenariFragment"
+    >
+
+    <fragment
+        android:id="@+id/scenariFragment"
+        android:name="views.fragment.userPaziente.giochi.scenari.ScenarioGenericoFragment"
+        tools:layout="@layout/fragment_scenario_generico">
+        <action
+            android:id="@+id/action_scenarioFragment_to_esercizioSequenzaParole"
+            app:destination="@id/esercizioSequenzaParole"
+            app:popUpTo="@id/scenariFragment"
+            />
+        <action
+            android:id="@+id/action_scenarioFragment_to_esercizioCoppiaImmagini2"
+            app:destination="@id/esercizioCoppiaImmagini"
+            app:popUpTo="@id/scenariFragment" />
+        <action
+            android:id="@+id/action_scenarioFragment_to_esercizioDenominazioneImmagineFragment2"
+            app:destination="@id/esercizioDenominazioneImmagineFragment"
+            app:popUpTo="@id/scenariFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/esercizioCoppiaImmagini"
+        android:name="views.fragment.userPaziente.giochi.esercizi.EsercizioCoppiaImmaginiFragment"
+        android:label="@string/gioco"
+        tools:layout="@layout/fragment_esercizi_coppia_immagini">
+        <action
+            android:id="@+id/action_esercizioCoppiaImmagini_to_scenarioFragment"
+            app:destination="@id/scenariFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/esercizioSequenzaParole"
+        android:name="views.fragment.userPaziente.giochi.esercizi.EsercizioSequenzaParoleFragment"
+        android:label="@string/gioco"
+        tools:layout="@layout/fragment_esercizio_sequenza_parole">
+        <action
+            android:id="@+id/action_esercizioSequenzaParole_to_scenarioFragment"
+            app:destination="@id/scenariFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/esercizioDenominazioneImmagineFragment"
+        android:name="views.fragment.userPaziente.giochi.esercizi.EsercizioSceltaImmaginiFragment"
+        android:label="@string/gioco"
+        tools:layout="@layout/fragment_esercizio_scelta_immagini">
+        <action
+            android:id="@+id/action_esercizioDenominazioneImmagineFragment_to_scenarioFragment"
+            app:destination="@id/scenariFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/personaggiFragment"
+        android:name="views.fragment.userPaziente.personaggi.PersonaggiFragment"
+        android:label="@string/personaggi"
+        tools:layout="@layout/fragment_personaggi" />
+
+    <fragment
+        android:id="@+id/classificaFragment"
+        android:name="views.fragment.userPaziente.classifica.ClassificaFragment"
+        android:label="@string/classifica"
+        tools:layout="@layout/fragment_classifica" />
+
+    <fragment
+        android:id="@+id/scenarioFragment3"
+        android:name="views.fragment.userPaziente.giochi.scenari.ScenarioFragment"
+        android:label="fragment_scenario"
+        tools:layout="@layout/fragment_scenario" />
+
+</navigation>

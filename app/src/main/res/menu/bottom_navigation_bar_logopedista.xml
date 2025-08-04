@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pazientiFragment"
+        android:title="Pazienti"
+        android:icon="@drawable/icona_pazienti"/>
+
+    <item
+        android:id="@+id/appuntamentiLogopedistaFragment2"
+        android:title="Appuntamenti"
+        android:icon="@drawable/icona_calendario"/>
+
+    <item
+        android:id="@+id/profiloLogopedistaFragment"
+        android:title="Profilo"
+        android:icon="@drawable/icona_profilo"/>
+
+</menu>

@@ -1,0 +1,5 @@
+<ImageView android:id="@+id/imageViewCoins"
+    android:src="@drawable/icona_coins"
+    style="@style/CoinsIconStyle"
+    android:layout_marginRight="3dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

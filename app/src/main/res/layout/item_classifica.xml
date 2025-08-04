@@ -1,0 +1,122 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageViewCorona"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/corona_oro"
+        android:elevation="1dp"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutClassificaItem"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="5dp"
+        android:layout_marginTop="-10dp"
+        android:rotation="-45"
+        android:layout_marginStart="57dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutClassificaItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="2dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="2dp"
+        >
+        <LinearLayout
+            android:id="@+id/linearLayoutPosizione"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rettangolo_blu"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp"
+            >
+
+            <TextView
+                android:id="@+id/textViewPosizione"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="99"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAppearance="@style/styleTextPersonaggi"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutClassificaPaziente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:background="@drawable/rettangolo_bianco_bordo_grigio"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="5dp">
+
+            <ImageView
+                android:id="@+id/imageViewPaziente"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_background_bianco"
+                android:clipToOutline="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/profilo_default"
+                />
+
+            <TextView
+                android:id="@+id/textViewUsernamePaziente"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ellipsize="marquee"
+                android:layout_gravity="center_vertical"
+                android:text="Franco Rossi"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:textAppearance="@style/styleTextPersonaggi"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="end"
+                >
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icona_punti_esperienza"
+                    />
+                <TextView
+                    android:id="@+id/textViewPunteggio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:textStyle="italic"
+                    android:text="30000"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textSize="8sp"
+                    android:textAppearance="@style/styleTextPersonaggi"
+                    android:paddingRight="2dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

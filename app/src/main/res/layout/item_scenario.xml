@@ -1,0 +1,92 @@
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardViewScenario"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cardBackgroundColor="@color/colorPrimary"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="10dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayoutModificaDataScenario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackground"
+            >
+
+            <TextView
+                android:id="@+id/textViewTitleScenario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/scenarioDel"
+                android:textColor="@color/black"
+                android:textSize="@dimen/subHeaderTextSize"
+                android:gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <ImageView
+                android:id="@+id/imageViewModificaDataScenario"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icona_edit"
+                android:layout_gravity="end"
+                android:layout_marginEnd="24dp"
+                />
+
+            <TextView
+                android:id="@+id/textViewGiornoScenario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/headerTextSize"
+                android:text="28 Marzo 2025"
+                android:layout_marginLeft="20dp"
+                />
+
+
+                <ImageView
+                    android:id="@+id/imageViewArrowDown"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icona_freccia_giu_bianca"
+                    android:layout_gravity="end"
+                    />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEsercizi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutTitleScenario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/primaryColorSoftScuro"
+            tools:listitem="@layout/item_esercizio" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

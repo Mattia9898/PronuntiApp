@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_logopedista"
+    app:startDestination="@id/pazientiFragment">
+
+    <fragment
+        android:id="@+id/pazientiFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.PazienteFragment"
+        android:label="@string/iTuoiPazienti"
+        tools:layout="@layout/fragment_pazienti">
+        <action
+            android:id="@+id/action_pazientiFragment_to_registrazionePazienteGenitoreFragment"
+            app:destination="@id/registrazionePazienteGenitoreFragment"
+            app:popUpTo="@id/pazientiFragment" />
+        <action
+            android:id="@+id/action_pazientiFragment_to_schedaPazienteFragment"
+            app:destination="@id/schedaPazienteFragment"
+            app:popUpTo="@id/pazientiFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/appuntamentiLogopedistaFragment2"
+        android:name="views.fragment.userLogopedista.appuntamenti.AppuntamentiLogopedistaFragment"
+        android:label="@string/i_tuoi_appuntamenti"
+        tools:layout="@layout/fragment_appuntamenti_logopedista" />
+    <fragment
+        android:id="@+id/profiloLogopedistaFragment"
+        android:name="views.fragment.profilo.ProfiloLogopedistaFragment"
+        android:label="@string/tuoProfilo"
+        tools:layout="@layout/fragment_profilo_logopedista" />
+    <fragment
+        android:id="@+id/registrazionePazienteGenitoreFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.RegistrazionePazienteGenitoreFragment"
+        android:label="@string/registrazionePaziente"
+        tools:layout="@layout/fragment_registrazione_paziente_genitore">
+        <action
+            android:id="@+id/action_registrazionePazienteGenitoreFragment_to_pazientiFragment"
+            app:destination="@id/pazientiFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/schedaPazienteFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.SchedaPazienteFragment"
+        android:label="schedaPazienteFragment" >
+        <action
+            android:id="@+id/action_schedaPazienteFragment_to_creazioneTerapiaFragment"
+            app:destination="@id/creazioneTerapieFragment"
+            app:popUpTo="@id/schedaPazienteFragment" />
+        <action
+            android:id="@+id/action_schedaPazienteFragment_to_risultatoEsercizioSequenzaParoleLogopedistaFragment"
+            app:destination="@id/risultatoEsercizioSequenzaParoleLogopedistaFragment"
+            app:popUpTo="@id/schedaPazienteFragment" />
+        <action
+            android:id="@+id/action_schedaPazienteFragment_to_risultatoEsercizioDenominazioneImmagineLogopedistaFragment"
+            app:destination="@id/risultatoEsercizioDenominazioneImmagineLogopedistaFragment"
+            app:popUpTo="@id/schedaPazienteFragment" />
+        <action
+            android:id="@+id/action_schedaPazienteFragment_to_risultatoEsercizioCoppiaImmaginiLogopedistaFragment"
+            app:destination="@id/risultatoEsercizioCoppiaImmaginiLogopedistaFragment"
+            app:popUpTo="@id/schedaPazienteFragment" />
+        <action
+            android:id="@+id/action_schedaPazienteFragment_to_creazioneScenarioFragment"
+            app:destination="@id/creazioneScenarioFragment"
+            app:popUpTo="@id/schedaPazienteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/creazioneTerapieFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.terapia.CreazioneTerapiaFragment"
+        android:label="fragment_creazione_terapia"
+        tools:layout="@layout/fragment_creazione_terapia" >
+        <action
+            android:id="@+id/action_creazioneTerapiaFragment_to_schedaPazienteFragment"
+            app:destination="@id/schedaPazienteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/risultatoEsercizioCoppiaImmaginiLogopedistaFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.monitoraggio.RisultatiEserciziCoppiaImmaginiLogopedistaFragment"
+        android:label="RisultatoEsercizioCoppiaImmaginiLogopedistaFragment" />
+    <fragment
+        android:id="@+id/risultatoEsercizioDenominazioneImmagineLogopedistaFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.monitoraggio.RisultatiEserciziDenominazioneImmaginiLogopedistaFragment"
+        android:label="RisultatoEsercizioDenominazioneImmagineLogopedistaFragment" />
+    <fragment
+        android:id="@+id/risultatoEsercizioSequenzaParoleLogopedistaFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.monitoraggio.RisultatiEserciziSequenzaParoleLogopedistaFragment"
+        android:label="RisultatoEsercizioSequenzaParoleLogopedistaFragment" />
+    <fragment
+        android:id="@+id/creazioneScenarioFragment"
+        android:name="views.fragment.userLogopedista.elencoPazienti.terapia.CreazioneScenarioFragment"
+        android:label="CreazioneScenarioFragment" >
+        <action
+            android:id="@+id/action_creazioneScenarioFragment_to_schedaPazienteFragment"
+            app:destination="@id/schedaPazienteFragment" />
+    </fragment>
+
+</navigation>

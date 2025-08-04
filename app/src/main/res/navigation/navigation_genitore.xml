@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_genitore"
+    app:startDestination="@id/terapieFragment">
+
+    <fragment
+        android:id="@+id/appuntamentiGenitoreFragment2"
+        android:name="views.fragment.userGenitore.appuntamenti.AppuntamentiGenitoreFragment"
+        android:label="@string/i_tuoi_appuntamenti"
+        tools:layout="@layout/fragment_appuntamenti_genitore" />
+
+    <fragment
+        android:id="@+id/profiloGenitoreFragment"
+        android:name="views.fragment.profilo.ProfiloGenitoreFragment"
+        android:label="@string/tuoProfilo"
+        tools:layout="@layout/fragment_profilo_genitore" />
+
+    <fragment
+        android:id="@+id/risultatoEsercizioSequenzaParoleFragment"
+        android:name="views.fragment.userGenitore.monitoraggio.RisultatiEserciziSequenzaParoleGenitoreFragment"
+        android:label="RisultatoEsercizioSequenzaParoleFragment"
+        tools:layout="@layout/fragment_risultati_esercizi_sequenza_parole"/>
+
+    <fragment
+        android:id="@+id/risultatoEsercizioDenominazioneImmagineFragment"
+        android:name="views.fragment.userGenitore.monitoraggio.RisultatiEserciziDenominazioneImmaginiGenitoreFragment"
+        android:label="RisultatoEsercizioDenominazioneImmagineFragment"
+        tools:layout="@layout/fragment_risultati_esercizi_denominazione_immagini"/>
+
+    <fragment
+        android:id="@+id/risultatoEsercizioCoppiaImmaginiFragment"
+        android:name="views.fragment.userGenitore.monitoraggio.RisultatiEserciziCoppiaImmaginiGenitoreFragment"
+        android:label="RisultatoEsercizioCoppiaImmaginiFragment"
+        tools:layout="@layout/fragment_risultati_esercizi_coppia_immagini"/>
+
+    <fragment
+        android:id="@+id/terapieFragment"
+        android:name="views.fragment.userGenitore.monitoraggio.TerapieGenitoreFragment"
+        android:label="TerapieFragment"
+        tools:layout="@layout/fragment_terapie">
+        <action
+            android:id="@+id/action_terapieFragment_to_risultatoEsercizioCoppiaImmaginiFragment"
+            app:destination="@id/risultatoEsercizioCoppiaImmaginiFragment"
+            app:popUpTo="@id/terapieFragment" />
+        <action
+            android:id="@+id/action_terapieFragment_to_risultatoEsercizioSequenzaParoleFragment"
+            app:destination="@id/risultatoEsercizioSequenzaParoleFragment"
+            app:popUpTo="@id/terapieFragment" />
+        <action
+            android:id="@+id/action_terapieFragment_to_risultatoEsercizioDenominazioneImmagineFragment"
+            app:destination="@id/risultatoEsercizioDenominazioneImmagineFragment"
+            app:popUpTo="@id/terapieFragment" />
+    </fragment>
+
+</navigation>

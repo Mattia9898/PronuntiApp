@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutDataNascitaProfiloPaziente"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextDataNascitaProfiloPaziente"
+            style="@style/TextInputEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/birth_date_hint"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/imageButtonDataNascitaProfiloPaziente"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/icona_datapicker"
+        android:layout_marginStart="-40dp"
+        android:layout_marginTop="21dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@id/textInputLayoutDataNascitaProfiloPaziente"
+        app:layout_constraintTop_toTopOf="@id/textInputLayoutDataNascitaProfiloPaziente"
+        android:layout_gravity="end" />
+
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="6"
+        android:padding="16dp"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="true"
+        android:useDefaultMargins="true"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutDataNascitaProfiloPaziente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/ore9"
+            android:text="09:00"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore9_30"
+            android:text="09:30"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore10"
+            android:text="10:00"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore10_30"
+            android:text="10:30"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore11"
+            android:text="11:00"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore11_30"
+            android:text="11:30"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore12"
+            android:text="12:00"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore12_30"
+            android:text="12:30"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore13"
+            android:text="13:00"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore13_30"
+            android:text="13:30"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore14"
+            android:text="14:00"
+            style="@style/styleTextViewTime"
+            />
+
+        <TextView
+            android:id="@+id/ore14_30"
+            android:text="14:30"
+            style="@style/styleTextViewTime"
+            />
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

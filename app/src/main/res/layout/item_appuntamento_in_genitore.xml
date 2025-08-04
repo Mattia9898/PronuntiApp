@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardViewAppuntamentoGenitore"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/colorPrimary"
+    android:padding="16dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="40dp"
+        >
+
+        <TextView
+            android:id="@+id/textViewGiornoAppuntamentoGenitore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/headerTextSize"
+            android:text="28"
+            android:layout_marginEnd="10dp"
+            />
+
+        <TextView
+            android:id="@+id/textViewMeseAppuntamentoGenitore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/meseAnnoAppuntamento"
+            android:textSize="@dimen/subHeaderTextSize"
+            android:text="Maggio 2025"
+            android:textAllCaps="true"
+            />
+
+        <TextView
+            android:id="@+id/textViewLuogoAppuntamentoGenitore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:text="Via del Cicerone, 70121 Bari"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/textViewOraAppuntamentoGenitore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:text="17:00"
+            android:textSize="@dimen/size_text_orario_appuntamento"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_gravity="top"
+            android:gravity="start"
+            />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

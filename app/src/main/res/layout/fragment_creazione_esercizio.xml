@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp"
+        >
+
+        <!-- Titolo Esercizio -->
+        <LinearLayout
+            android:id="@+id/linearLayoutTitleEsercizio"
+            android:paddingVertical="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:orientation="horizontal"
+            android:background="?attr/selectableItemBackground"
+            android:paddingHorizontal="10dp"
+            >
+            <TextView
+                android:id="@+id/textViewTitleEsercizio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/esercizio"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                />
+            <ImageView
+                android:id="@+id/imageViewArrowDown"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icona_freccia_giu_nera"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
+
+        <!-- Per aggiungere un esercizio -->
+        <LinearLayout
+            android:id="@+id/linearLayoutAggiungiEsercizio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Per scegliere la tipologia di esercizio -->
+            <LinearLayout
+                android:id="@+id/linearLayoutTipoEsercizio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/subHeaderTextSize"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="@string/tipologiaDiEsercizio"
+                    android:layout_marginVertical="10dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <Button
+                        android:id="@+id/buttonEsercizioDenominazioneImmagine"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/denominazione_immagine"
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        />
+
+                    <Button
+                        android:id="@+id/buttonEsercizioSequenzaParole"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/sequenza_parole"
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        />
+
+                    <Button
+                        android:id="@+id/buttonEsercizioCoppiaImmagini"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/coppiaImmagini"
+                        android:textSize="12sp"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Per scegliere template o creare un nuovo esercizio -->
+            <LinearLayout
+                android:id="@+id/linearLayoutSceltaTemplateEsercizio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                >
+                <Button
+                    android:id="@+id/buttonTemplateEsercizio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/usa_un_template"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    />
+                <Button
+                    android:id="@+id/buttonCreaEsercizio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/crealo_dall_inizio"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+
+            <!-- Template -->
+            <LinearLayout
+                android:id="@+id/linearLayoutTemplateEsercizio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Template esercizio denominazione immagine -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewTemplateEsercizioDenominazioneImmagine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardCornerRadius="8dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        >
+                        <!-- Template denominazione immagine -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/denominazione_immagine"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/quali_parole_il_paziente_dovrebbe_indovinare"
+                            android:textSize="18sp"
+                            />
+
+                        <!-- Parola da indovinare -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp"
+                            android:paddingHorizontal="20dp"
+                            >
+                            <ImageButton
+                                android:id="@+id/buttonTemplateDenominazioneImmagineBack"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center_vertical"
+                                android:background="?attr/selectableItemBackground"
+                                android:src="@drawable/icona_freccia_back"
+                                android:layout_weight="1"
+                                android:scaleType="fitStart"
+                                />
+                            <TextView
+                                android:id="@+id/textViewParoleTemplateDenominazioneImmagine"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:text="@string/gatto"
+                                android:textSize="18sp"
+                                />
+                            <ImageButton
+                                android:id="@+id/buttonTemplateDenominazioneImmagineNext"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center_vertical"
+                                android:background="?attr/selectableItemBackground"
+                                android:src="@drawable/icona_freccia_back"
+                                android:rotation="180"
+                                android:layout_weight="1"
+                                android:scaleType="fitStart"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Template esercizio sequenza parole -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewTemplateEsercizioSequenzaParole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardCornerRadius="8dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        >
+
+                        <!-- Template sequenza parole -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/sequenza_parole"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/quali_sono_le_parole_che_il_paziente_dovrebbe_ripetere"
+                            android:textSize="18sp"
+                            />
+
+                        <!-- parola da indovinare -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp"
+                            android:paddingHorizontal="20dp"
+                            >
+                            <ImageButton
+                                android:id="@+id/buttonTemplateSequenzaParoleBack"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center_vertical"
+                                android:background="?attr/selectableItemBackground"
+                                android:src="@drawable/icona_freccia_back"
+                                android:layout_weight="1"
+                                android:scaleType="fitStart"
+                                />
+
+                            <!-- Template sequenza parole -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/textViewParoleTemplateSequenzaParole1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:text="@string/gatto"
+                                    android:textSize="18sp"
+                                    />
+                                <TextView
+                                    android:id="@+id/textViewParoleTemplateSequenzaParole2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:text="@string/cane"
+                                    android:textSize="18sp"
+                                    />
+                                <TextView
+                                    android:id="@+id/textViewParoleTemplateSequenzaParole3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:text="@string/carota"
+                                    android:textSize="18sp"
+                                    />
+                            </LinearLayout>
+                            <ImageButton
+                                android:id="@+id/buttonTemplateSequenzaParoleNext"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center_vertical"
+                                android:background="?attr/selectableItemBackground"
+                                android:src="@drawable/icona_freccia_back"
+                                android:rotation="180"
+                                android:layout_weight="1"
+                                android:scaleType="fitStart"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--Template esercizio coppia immagini -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewTemplateEsercizioCoppiaImmagini"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardCornerRadius="8dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        >
+
+                        <!-- Template coppia immagini -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/coppiaImmagini"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/quale_immagine_il_paziente_dovrebbe_associare_all_audio"
+                            android:textSize="18sp"
+                            />
+
+                        <!-- parola che dovrebbe indovinare -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp"
+                            android:paddingHorizontal="20dp"
+                            >
+                            <ImageButton
+                                android:id="@+id/buttonTemplateCoppiaImmagineBack"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center_vertical"
+                                android:background="?attr/selectableItemBackground"
+                                android:src="@drawable/icona_freccia_back"
+                                android:layout_weight="1"
+                                android:scaleType="fitStart"
+                                />
+                            <ImageView
+                                android:id="@+id/templateCoppiaImmagine"
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:src="@drawable/icona_freccia_giu_bianca"
+                                />
+                            <ImageButton
+                                android:id="@+id/buttonTemplateCoppiaImmagineNext"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|center_vertical"
+                                android:background="?attr/selectableItemBackground"
+                                android:src="@drawable/icona_freccia_back"
+                                android:rotation="180"
+                                android:layout_weight="1"
+                                android:scaleType="fitStart"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Creazione esercizio -->
+            <LinearLayout
+                android:id="@+id/linearLayoutCreazioneEsercizio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+
+                <!-- Esercizio denominazione immagine -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewCreazioneEsercizioDenominazioneImmagine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardCornerRadius="8dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        >
+
+                        <!-- Esercizio denominazione immagine -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/denominazione_immagine"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="10dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="10dp"
+                                android:text="@string/immagine_da_indovinare"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/buttonOpenFilePickerImmagineEsercizioDenominazione"
+                                android:layout_width="150dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:src="@drawable/icona_seleziona_immagine" />
+                        </LinearLayout>
+
+
+                        <!-- Audio esercizio denominazione-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginVertical="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registra_audio_di_aiuto"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="16sp"
+                                android:layout_marginHorizontal="10dp"
+                                />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageButton
+                                    android:id="@+id/buttonAudioDenominazione"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:text="@string/filePicker"
+                                    android:background="@drawable/circle_background_blu"
+                                    android:clipToOutline="true"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icona_microfono_circle"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="20dp"
+                                    android:padding="10dp"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    />
+
+                                <View
+                                    android:id="@+id/viewAnimationAudioDenominazione"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/ovale_rosso"
+                                    app:layout_constraintTop_toTopOf="@+id/buttonAudioDenominazione"
+                                    app:layout_constraintBottom_toBottomOf="@+id/buttonAudioDenominazione"
+                                    app:layout_constraintEnd_toEndOf="@+id/buttonAudioDenominazione"
+                                    app:layout_constraintStart_toStartOf="@+id/buttonAudioDenominazione"
+                                    />
+
+                                <View
+                                    android:id="@+id/viewStopAudioDenominazione"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    app:layout_constraintTop_toTopOf="@+id/buttonAudioDenominazione"
+                                    app:layout_constraintBottom_toBottomOf="@+id/buttonAudioDenominazione"
+                                    app:layout_constraintEnd_toEndOf="@+id/buttonAudioDenominazione"
+                                    app:layout_constraintStart_toStartOf="@+id/buttonAudioDenominazione"
+                                    />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+                        <!-- Risposta esercizio denominazione -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="style/TextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputEditTextRispostaEsercizioDenominaizone"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/risposta"
+                                android:inputType="text" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- ricompensa esercizio -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp">
+
+                            <!-- TextInputLayout e TextInputEditText per ricompensa per risposta corretta -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayoutStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/textInputEditTextRicompensaCorrettoDenominazione"
+                                    style="@style/TextInputEditTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ricompensa_corretto"
+                                    android:inputType="number" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- TextInputLayout e TextInputEditText per ricompensa per risposta errata -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayoutStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/textInputEditTextRicompensaErratoDenominazione"
+                                    style="@style/TextInputEditTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ricompensa_errato"
+                                    android:inputType="number"
+                                    />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/buttonConfermaEsercizioDenominazione"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/confirm"
+                            />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- esercizio sequenza parole -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewCreazioneEsercizioSequenzaParole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardCornerRadius="8dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        >
+                        <!-- esercizio sequenza parole -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/sequenza_parole"
+                            android:textStyle="bold"
+                            android:textSize="20sp" />
+
+                        <!-- audio esercizio sequenza parole-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginVertical="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registra_audio_da_ripetere"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="16sp"
+                                android:layout_marginHorizontal="10dp"
+                                />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageButton
+                                    android:id="@+id/buttonAudioSequenzaParole"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:text="@string/filePicker"
+                                    android:background="@drawable/circle_background_blu"
+                                    android:clipToOutline="true"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icona_microfono_circle"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="20dp"
+                                    android:padding="10dp"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    />
+
+                                <View
+                                    android:id="@+id/viewAnimationAudioSequenzaParole"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/ovale_rosso"
+                                    app:layout_constraintTop_toTopOf="@+id/buttonAudioSequenzaParole"
+                                    app:layout_constraintBottom_toBottomOf="@+id/buttonAudioSequenzaParole"
+                                    app:layout_constraintEnd_toEndOf="@+id/buttonAudioSequenzaParole"
+                                    app:layout_constraintStart_toStartOf="@+id/buttonAudioSequenzaParole"
+                                    />
+
+                                <View
+                                    android:id="@+id/viewStopAudioSequenzaParole"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    app:layout_constraintTop_toTopOf="@+id/buttonAudioSequenzaParole"
+                                    app:layout_constraintBottom_toBottomOf="@+id/buttonAudioSequenzaParole"
+                                    app:layout_constraintEnd_toEndOf="@+id/buttonAudioSequenzaParole"
+                                    app:layout_constraintStart_toStartOf="@+id/buttonAudioSequenzaParole"
+                                    />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+                        <!-- TextInputLayout e TextInputEditText per parola 1 -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputEditTextParola1"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/_1_parola_da_indovinare"
+                                android:inputType="text" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- TextInputLayout e TextInputEditText per parola 2 -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputEditTextParola2"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/_2_parola_da_indovinare"
+                                android:inputType="text" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- TextInputLayout e TextInputEditText per parola 3 -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputEditTextParola3"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/_3_parola_da_indovinare"
+                                android:inputType="text" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- ricompensa esercizio -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp">
+
+                            <!-- TextInputLayout e TextInputEditText per ricompensa per risposta corretta -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayoutStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/textInputEditTextRicompensaCorrettoSequenzaParole"
+                                    style="@style/TextInputEditTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ricompensa_corretto"
+                                    android:inputType="number" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- TextInputLayout e TextInputEditText per ricompensa per risposta errata -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayoutStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/textInputEditTextRicompensaErratoSequenzaParole"
+                                    style="@style/TextInputEditTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ricompensa_errato"
+                                    android:inputType="number" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/buttonConfermaEsercizioSequenzaParole"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/confirm"
+                            />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- esercizio coppia immagini -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewCreazioneEsercizioCoppiaImmagini"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardCornerRadius="8dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        >
+
+                        <!-- esercizio coppia immagini -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/coppiaImmagini"
+                            android:textStyle="bold"
+                            android:textSize="20sp" />
+
+                        <!-- audio esercizio coppia immagini-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginVertical="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registra_audio_immagine"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="16sp"
+                                android:layout_marginHorizontal="10dp"
+                                />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageButton
+                                    android:id="@+id/buttonAudioCoppia"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:text="@string/filePicker"
+                                    android:background="@drawable/circle_background_blu"
+                                    android:clipToOutline="true"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icona_microfono_circle"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="20dp"
+                                    android:padding="10dp"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    />
+
+                                <View
+                                    android:id="@+id/viewAnimationAudioCoppia"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/ovale_rosso"
+                                    app:layout_constraintTop_toTopOf="@+id/buttonAudioCoppia"
+                                    app:layout_constraintBottom_toBottomOf="@+id/buttonAudioCoppia"
+                                    app:layout_constraintEnd_toEndOf="@+id/buttonAudioCoppia"
+                                    app:layout_constraintStart_toStartOf="@+id/buttonAudioCoppia"
+                                    />
+
+                                <View
+                                    android:id="@+id/viewStopAudioCoppia"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    app:layout_constraintTop_toTopOf="@+id/buttonAudioCoppia"
+                                    app:layout_constraintBottom_toBottomOf="@+id/buttonAudioCoppia"
+                                    app:layout_constraintEnd_toEndOf="@+id/buttonAudioCoppia"
+                                    app:layout_constraintStart_toStartOf="@+id/buttonAudioCoppia"
+                                    />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+                        <!-- immagine esercizio coppia corretta-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="10dp"
+                                android:text="@string/immagine_corretta"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/buttonOpenFilePickerImmagineCoppiaCorretta"
+                                android:layout_width="150dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/icona_seleziona_immagine" />
+                        </LinearLayout>
+
+                        <!-- immagine esercizio coppia errata-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="10dp"
+                                android:text="@string/immagine_errata"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/buttonOpenFilePickerImmagineCoppiaErrata"
+                                android:layout_width="150dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/icona_seleziona_immagine" />
+                        </LinearLayout>
+
+                        <!-- ricompensa esercizio -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp">
+
+                            <!-- TextInputLayout e TextInputEditText per ricompensa per risposta corretta -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayoutStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/textInputEditTextRicompensaCorrettoCoppiaImmagine"
+                                    style="@style/TextInputEditTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ricompensa_corretto"
+                                    android:inputType="number" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- TextInputLayout e TextInputEditText per ricompensa per risposta errata -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayoutStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/textInputEditTextRicompensaErratoCoppiaImmagine"
+                                    style="@style/TextInputEditTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ricompensa_errato"
+                                    android:inputType="number" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/buttonConfermaEsercizioCoppiaImmagini"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/confirm"
+                            />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

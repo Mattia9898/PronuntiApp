@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5D90EA</color>
+    <color name="colorPrimaryDark">#b3ccf8</color>
+    <color name="colorAccent">#5D90EA</color>
+    <color name="buttonMicBackground">#F1F1F1</color>
+
+    <!--colors for modern ui-->
+    <color name="white">#fff</color>
+    <color name="hintTextColor">#353535</color>
+    <color name="backgroundSelector">#AEE8E8E8</color>
+    <color name="backgroundWhite">#AEE8E8E8</color>
+    <color name="black">#232323</color>
+    <color name="red">#C51A1A</color>
+    <color name="purple_200">#A643B6</color>
+    <color name="purple_700">#620071</color>
+    <color name="teal_200">#58B6A4</color>
+    <color name="teal_700">#00886D</color>
+    <color name="primaryTextColor">#00a5ff</color>
+    <color name="loginBkColor">#f0f0f0</color>
+    <color name="hintTextColorEnabled">#000000</color> <!-- Colore quando abilitato -->
+    <color name="hintTextColorDisabled">#A9A9A9</color> <!-- Colore quando disabilitato -->
+    <color name="meseAnnoAppuntamento">#DFDFDF</color>
+    <color name="backgroundSceltaPaziente">#F1F1F1</color>
+    <color name="nuovoAppuntamento">#5C5D90EA</color>
+    <color name="coinsBackground">#22000000</color>
+    <color name="animationMic">#8FDF1919</color>
+    <color name="corretto">#1FB121</color>
+    <color name="sbagliato">#FF1313</color>
+    <color name="yellowTheme">#FDCA70</color>
+    <color name="primaryColorShadow">#B25D90EA</color>
+    <color name="primaryColorSoft">#afbbdb</color>
+    <color name="primaryColorSoftScuro">#739FEC</color>
+    <color name="navBarPaziente">#497ACF</color>
+    <color name="backgroundClassificaSelector">#466FB8</color>
+    <color name="backgroundButtonSelezionaPersonaggio">#C58312</color>
+    <color name="backgroundButtonSelezionatoPersonaggio">#F4C87B</color>
+</resources>

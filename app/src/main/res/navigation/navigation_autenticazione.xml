@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_autenticazione"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="views.fragment.autenticazione.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_avvioRapidoFragment"
+            app:destination="@id/avvioRapidoFragment"
+            app:popUpTo="@id/loginFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrazioneFragment"
+            app:destination="@id/registrazioneFragment"
+            app:popUpTo="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrazioneFragment"
+        android:name="views.fragment.autenticazione.RegistrazioneFragment"
+        android:label="@string/registrazione"
+        tools:layout="@layout/fragment_registrazione">
+        <action
+            android:id="@+id/action_registrazioneFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/avvioRapidoFragment"
+        android:name="views.fragment.autenticazione.AutenticazioneRapidaFragment"
+        android:label="@string/avvioRapido"
+        tools:layout="@layout/fragment_autenticazione_rapida" />
+
+</navigation>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/scenarioFragment"
+        android:title="Giochi"
+        android:icon="@drawable/icona_game" />
+
+    <item
+        android:id="@+id/classificaFragment"
+        android:title="Classifica"
+        android:icon="@drawable/icona_classifica"/>
+
+    <item
+        android:id="@+id/personaggiFragment"
+        android:title="Personaggi"
+        android:icon="@drawable/icona_personaggi_sbloccati"/>
+
+    <item
+        android:id="@+id/calendarPaziente"
+        android:title="Visite"
+        android:icon="@drawable/icona_calendario"/>
+
+    <item
+        android:id="@+id/profiloPaziente"
+        android:title="Profilo"
+        android:icon="@drawable/icona_profilo"/>
+
+</menu>

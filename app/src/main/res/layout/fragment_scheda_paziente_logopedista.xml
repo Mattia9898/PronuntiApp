@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="views.fragment.userLogopedista.elencoPazienti.monitoraggio.TerapieLogopedistaFragment"
+    android:layout_marginBottom="@dimen/nav_bar_height"
+    android:background="@color/backgroundWhite"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollViewTerapieLogopedista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttonAddTerapia"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@id/toolBar"
+                style="@style/styleToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundWhite"
+                />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerViewTerapie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/buttonAddTerapia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textAllCaps="true"
+        android:text="@string/addTerapia"
+        android:layout_alignParentBottom="true"
+        android:textSize="18sp"
+        />
+
+</RelativeLayout>

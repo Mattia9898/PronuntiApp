@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:state_pressed="false"
+        android:state_focused="false">
+        <shape
+            android:shape="rectangle">
+            <solid
+                android:color="@color/backgroundButtonSelezionaPersonaggio" />
+            <padding
+                android:top="10dp"
+                android:bottom="10dp"
+                android:left="10dp"
+                android:right="10dp" />
+            <corners
+                android:radius="8dp" />
+        </shape>
+    </item>
+
+    <item
+        android:state_pressed="true">
+        <shape
+            android:shape="rectangle">
+            <solid
+                android:color="@color/backgroundButtonSelezionatoPersonaggio" />
+            <padding
+                android:top="10dp"
+                android:bottom="10dp"
+                android:left="10dp"
+                android:right="10dp" />
+            <corners
+                android:radius="8dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#C1F4C87B" />
+            <elevation
+                android:elevation="4dp" />
+        </shape>
+    </item>
+
+    <item
+        android:state_focused="true">
+        <shape
+            android:shape="rectangle">
+            <solid
+                android:color="@color/backgroundButtonSelezionatoPersonaggio" />
+            <padding
+                android:top="10dp"
+                android:bottom="10dp"
+                android:left="10dp"
+                android:right="10dp" />
+            <corners
+                android:radius="8dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#C1F4C87B" />
+            <elevation
+                android:elevation="4dp" />
+        </shape>
+    </item>
+
+</selector>

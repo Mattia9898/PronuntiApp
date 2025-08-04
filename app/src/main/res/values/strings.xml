@@ -1,0 +1,253 @@
+<resources>
+
+    <string name="app_name">PronuntiApp</string>
+    <string name="first_name_hint">Nome</string>
+    <string name="last_name_hint">Cognome</string>
+    <string name="email_hint">Email</string>
+    <string name="username_hint">Username</string>
+    <string name="phone_hint">Cellulare</string>
+    <string name="address_hint">Indirizzo</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Conferma Password</string>
+    <string name="register">Sign Up</string>
+    <string name="not_register">Sei un Logopedista e non \nhai un account? <b>Registrati</b></string>
+    <string name="already_registered">Hai già un account? <b>Login</b></string>
+    <string name="login">Sign in</string>
+    <string name="accesso_rapido">Accesso rapido</string>
+    <string name="subtitle_registration">Benvenuto Dottore!\nInserisca i suoi dati per iniziare a usare l'app</string>
+    <string name="subtitle_registration_patient_parent">Salve Dottore!\nInserisca qui i dati del suo nuovo paziente</string>
+    <string name="modify_profile">Modifica profilo</string>
+    <string name="confirm_modify_profile"> Conferma modifica profilo</string>
+    <string name="birth_date_hint">Data di nascita</string>
+    <string name="male">M</string>
+    <string name="female">F</string>
+    <string name="age">Età</string>
+    <string name="information_patient">Informazioni paziente</string>
+    <string name="information_parent">Informazioni genitore</string>
+    <string-array name="sesso_array">
+        <item>@string/male</item>
+        <item>@string/female</item>
+    </string-array>
+    <string name="gender_hint">Sesso</string>
+    <string name="patient">Paziente</string>
+    <string name="parent">Genitore</string>
+    <string name="logopedist">Logopedista</string>
+    <string name="child_data">Dati bambino</string>
+    <string name="actualSelectedCharacter"><b>SELEZIONATO</b></string>
+    <string name="notSelectedCharacter">SELEZIONA</string>
+    <string name="startDate">Inizio data terapia</string>
+    <string name="endDate">Fine data terapia</string>
+    <string name="saveTherapy">Salva terapia</string>
+    <string name="id">Id</string>
+    <string name="next">Avanti</string>
+    <string name="errorConnectionDescription">Connessione internet non disponibile. Controlla la connessione, non puoi\n usare l'app senza di essa</string>
+    <string name="errorConnectionTitle">Errore connessione</string>
+    <string name="restartApp" >Ricarica l app</string>
+    <string name="errorPermissionTitle">Permesso negato</string>
+    <string name="errorPermissionOption1">Richiedili nuovamente</string>
+    <string name="errorPermissionOption2">Non voglio darli</string>
+    <string name="confirm">Conferma</string>
+    <string name="confermato">Confermato</string>
+    <string name="cancel">Cancella</string>
+    <string name="annulla">Annulla</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="formDiLogin">FORM DI LOGIN</string>
+    <string name="aggiungiPaziente">AGGIUNGI PAZIENTE</string>
+    <string name="rapidAccess">Accesso Rapido</string>
+    <string name="notRegistered">Non Registrato?</string>
+    <string name="infoTitle">Attenzione</string>
+    <string name="startRecording">Avvia registrazione</string>
+    <string name="stopRecording">Stoppa registrazione</string>
+    <string name="CheckAnswer">Controlla</string>
+    <string name="StartAnswer">Inizia risposta</string>
+    <string name="StopAnswer">Stoppa risposta</string>
+    <string name="getHelp">Clicca qui per aiuto!</string>
+    <string name="aiutiUtilizzati">Aiuti utilizzati: </string>
+    <string name="rispostaData">Risposta data</string>
+    <string name="showHelp">Clicca per aiuto!</string>
+    <string name="checkAnswer">Controlla</string>
+    <string name="micDenominazioneImmagine">Clicca per rispondere!</string>
+    <string name="corretto">Corretto!</string>
+    <string name="complimentiTerminatoScenario">Congratulazioni!\nHai finito tutti i giochi in questa data!</string>"
+    <string name="sbagliato">Sbagliato!</string>
+    <string name="aidRemaining">Aiuti rimasti</string>
+    <string name="noAidRemaining">Nessun aiuto rimasto!</string>
+    <string name="recordBeforeCheck">Registra prima della risposta!</string>
+    <string name="ascoltaPrima">Prima ascolta l audio, dopo rispondi!</string>
+    <string name="noWordsRecognized">Nessuna parola riconosciuta!</string>
+    <string name="overwriteAudio">Sovrascrivere audio?</string>
+    <string name="overwriteAudioDescription">Sei sicuro di voler sovrascrivere l audio?</string>
+    <string name="startedRecording">Registrazione avviata</string>
+    <string name="stopedRecording">Registrazione stoppata</string>
+    <string name="suggestionSequenzaParole">Riproduci l audio col bottone in basso a sinistra, dopo registra la stessa frase! </string>
+    <string name="suggestEsercizioCoppiaImmagini">Aziona l audio prima di rispondere!</string>
+    <string name="suggestEsercizioDenominazione">Clicca sul microfono e pronuncia l\'elemento nell\'immagine!</string>
+    <string name="titleEsercizioCoppiaImmagini">Quale immagine hai sentito?</string>
+    <string name="titleEsercizioSequenzaParole">Cosa sta dicendo l\'audio?\nProva a ripetere!</string>
+    <string name="titleEsercizioDenominazioneImmagine">Cosa c\'è nell\'immagine?</string>
+    <string name="lastTherapy">Questa è l\'ultima terapia, puoi solo vedere le seguenti terapie</string>
+    <string name="firstTherapy">Questa è la prima terapia, puoi solo vedere le precedenti terapie</string>
+    <string name="subTitleLogin">Bentornato!\nInserisci le credenziali per accedere all\'app</string>
+    <string name="date">Data</string>
+    <string name="place">Luogo</string>
+    <string name="insertPaziente" >Inserisci paziente</string>
+    <string name="insertDate">La data d\'inizio deve essere uguale o precedente alla data di fine</string>
+    <string name="navScenariNoticeBackward">Sembra che non ci siano altri esercizi in questa terapia, prova a vedere quelle successive.</string>
+    <string name="navScenariNoticeForward">Sembra che non ci siano altri esercizi in questa terapia, prova a vedere quelle precedenti</string>
+    <string name="ok">OK</string>
+    <string name="checkDate">Non è possibile accedere alla terapia e ai relativi scenari in queste date, in quanto è già prevista un\'altra terapia per il paziente nel periodo selezionato</string>
+
+    <string name="gatto">Gatto</string>
+    <string name="cane">Cane</string>
+    <string name="carota">Carota</string>
+
+    <string-array name="character_names">
+        <item>Girl</item>
+        <item>Boy</item>
+        <item>Girl Drawing</item>
+        <item>Thoughtful Boy</item>
+        <item>Soldier Boy</item>
+        <item>Boy with Backpack</item>
+        <item>Batman</item>
+        <item>Boy Knight</item>
+        <item>Dog</item>
+        <item>Blue Dragon</item>
+        <item>Female Dragon</item>
+        <item>Elephant</item>
+        <item>Cat</item>
+        <item>Kitten</item>
+        <item>Girl Knight</item>
+        <item>Lion</item>
+        <item>Mini Captain America</item>
+        <item>Cow</item>
+        <item>Sheep</item>
+        <item>Spiderman</item>
+        <item>Wonder Woman</item>
+    </string-array>
+
+    <string-array name="character_costs">
+        <item>50</item>   <!-- Girl -->
+        <item>60</item>   <!-- Boy -->
+        <item>75</item>   <!-- Girl Drawing -->
+        <item>70</item>   <!-- Thoughtful Boy -->
+        <item>80</item>   <!-- Soldier Boy -->
+        <item>90</item>   <!-- Boy with Backpack -->
+        <item>120</item>  <!-- Batman -->
+        <item>100</item>  <!-- Boy Knight -->
+        <item>40</item>   <!-- Dog -->
+        <item>110</item>  <!-- Blue Dragon -->
+        <item>130</item>  <!-- Female Dragon -->
+        <item>85</item>   <!-- Elephant -->
+        <item>45</item>   <!-- Cat -->
+        <item>30</item>   <!-- Kitten -->
+        <item>105</item>  <!-- Girl Knight -->
+        <item>95</item>   <!-- Lion -->
+        <item>150</item>  <!-- Mini Captain America -->
+        <item>55</item>   <!-- Cow -->
+        <item>65</item>   <!-- Sheep -->
+        <item>140</item>  <!-- Spiderman -->
+        <item>145</item>  <!-- Wonder Woman -->
+    </string-array>
+
+    <string name="erroreLoginCredenziali">Credenziali mancanti o incorrette</string>
+    <string name="tastoRiprova">Riprova</string>
+    <string name="erroreRegistrazioneLogopedistaCampiIncompleti">Campi mancanti o incompleti</string>
+    <string name="erroreRegistrazioneLogopedistaPasswordDifformi">Password e Conferma Password non corrispondono</string>
+    <string name="erroreRegistrazioneLogopedistaAutenticazione">Errore nel database; probabile e-mail già in uso (Logopedista)</string>
+    <string name="erroreRegistrazionePazienteCampiMancanti">Campi mancanti o incompleti (Bambino)</string>
+    <string name="erroreRegistrazionePazientePasswordDifformi">Password e Conferma Password non corrispondono (Bambino)</string>
+    <string name="erroreRegistrazionePazienteEtaNonValida">Età non valida</string>
+    <string name="erroreRegistrazionePazienteDataNonValida">Data non valida</string>
+    <string name="erroreRegistrazionePazienteSessoNonValido">Valore sesso non valido</string>
+    <string name="erroreRegistrazioneGenitoreCampiMancanti">Campi mancanti o incompleti (Genitore)</string>
+    <string name="erroreRegistrazioneGenitorePasswordDifformi">Password e Conferma Password non corrispondono (Genitore)</string>
+    <string name="erroreRegistrazionePazienteAutenticazione">Errore nel database; probabile e-mail già in uso (Bambino)</string>
+    <string name="erroreRegistrazioneGenitoreAutenticazione">Errore nel database; probabile e-mail già in uso (Genitore)</string>
+    <string name="erroreCreazioneTerapiaCampiIncompleti">Campi mancanti o incompleti</string>
+    <string name="erroreCreazioneTerapiaDataNonValida">Data non valida</string>
+    <string name="erroreCreazioneTerapiaOrdineDateNonValido">Ordine data non valida</string>
+    <string name="addPatient">Paziente +</string>
+    <string name="addTerapia">Terapia +</string>
+    <string name="sex">Sesso</string>
+    <string name="test">Test</string>
+    <string name="surname">Cognome</string>
+    <string name="name">Nome</string>
+    <string name="nameSurname">Nome e Cognome</string>
+    <string name="i_tuoi_appuntamenti">I tuoi appuntamenti</string>
+    <string name="ricerca_appuntamento">Ricerca appuntamenti...</string>
+    <string name="nuovo_appuntamento">Nuovo appuntamento +</string>
+    <string name="nuovo_appuntamento_titolo">Nuovi appuntamenti</string>
+    <string name="rimuovi_appuntamento">Rimuovi</string>
+    <string name="closeApp">Premi indietro di nuovo per uscire</string>
+    <string name="registraPaziente">Registra paziente</string>
+    <string name="avvioRapido">Accesso rapido</string>
+    <string name="registrazione">Registrazione</string>
+    <string name="registrazionePaziente">Registrazione paziente e genitore</string>
+    <string name="iTuoiPazienti">I tuoi pazienti</string>
+    <string name="tuoProfilo">Il tuo profilo</string>
+    <string name="classifica">Ranking</string>
+    <string name="giochiBambini">Giochi del bambino</string>
+    <string name="monitoraggio">Terapie del bambino</string>
+    <string name="gioco">Gioco</string>
+    <string name="personaggi">Personaggi</string>
+    <string name="logoutTitle">Logout?</string>
+    <string name="logoutRichiesta">Sei sicuro di voler eseguire il logout da PronuntiApp? In tal caso, dovrai effettuare nuovamente l\'accesso quando utilizzerai l'app</string>
+    <string name="permissionDeniedDescription">Per la funzionalità di questa app è necessario utilizzare il microfono. Per favore, concedi il permesso se vuoi poter giocare</string>
+    <string name="permissionDeniedInstructions">Questa funzionalità richiede le autorizzazioni per utilizzare il microfono. Se non vedi il messaggio per concedere i permessi, devi autorizzarli dalle impostazioni di sistema relative all\'app</string>
+    <string name="infoOk">Ok</string>
+    <string name="nessunGiocoDisponibile">Nessun gioco\n disponibile</string>
+    <string name="tipologiaDiEsercizio">Che tipo di esercizio vuoi inserire?</string>
+    <string name="inputErratoAggiungiAppuntamento">Probabilmente hai inserito dati errati o incompleti. Assicurati di aver inserito correttamente il formato data (aaaa-mm-gg) e seleziona un paziente nel sistema</string>
+    <string name="search_hint">Ricerca pazienti...</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="personaggi_sbloccati">Personaggi sbloccati</string>
+    <string name="personaggi_acquistabili">Personaggi acquistabili</string>
+    <string name="valutaInsufficiente">Non hai abbastanza soldi per sbloccare questo personaggio!</string>
+    <string name="acquistoPersonaggioTitle">Acquisto personaggio</string>
+    <string name="acquistoPersonaggioDescription">Sei sicuro di voler acquistare e sbloccare questo personaggio??</string>
+    <string name="risultatoEsercizio">Risultato esercizio</string>
+    <string name="terapia">Terapia</string>
+    <string name="scenarioDel">Scenario del:</string>
+    <string name="creaTerapia">Nuova terapia</string>
+    <string name="immagine_da_indovinare">Immagine da indovinare:</string>
+    <string name="registra_audio_di_aiuto">Registra audio di aiuto</string>
+    <string name="filePicker">File Picker</string>
+    <string name="risposta">Risposta</string>
+    <string name="title">Titolo</string>
+    <string name="descrizionePopUp">Descrizione PopUp</string>
+    <string name="ricompensa_corretto">Ricompensa corretta</string>
+    <string name="ricompensa_errato">Ricompensa errata</string>
+    <string name="denominazione_immagine">Scelta immagini</string>
+    <string name="sequenza_parole">Sequenza parole</string>
+    <string name="coppiaImmagini">Coppia immagini</string>
+    <string name="registra_audio_da_ripetere">Registra audio da ripetere</string>
+    <string name="_1_parola_da_indovinare">1° parola da indovinare</string>
+    <string name="_2_parola_da_indovinare">2° parola da indovinare</string>
+    <string name="_3_parola_da_indovinare">3° parola da indovinare</string>
+    <string name="registra_audio_immagine">Registra audio da associare all immagine </string>
+    <string name="immagine_corretta">Immagine corretta</string>
+    <string name="immagine_errata">Immagine sbagliata</string>
+    <string name="esercizio">Esercizio</string>
+    <string name="usa_un_template">Usa un template</string>
+    <string name="crealo_dall_inizio">Crealo dall inizio</string>
+    <string name="quali_parole_il_paziente_dovrebbe_indovinare">Quali parole il paziente dovrebbe indovinare?</string>
+    <string name="quali_sono_le_parole_che_il_paziente_dovrebbe_ripetere">Quali parole il paziente dovrebbe ripetere?</string>
+    <string name="quale_immagine_il_paziente_dovrebbe_associare_all_audio">Quale immagine il paziente dovrebbe associare a questo audio?</string>
+    <string name="scenario_di_gioco">Scenario di gioco</string>
+    <string name="data_assegnazione">Data assegnazione</string>
+    <string name="ricompensa_finale">Ricompensa finale</string>
+    <string name="scegli_sfondo_scenario">Scegli sfondo scenario</string>
+    <string name="immagine_tappa_1">Immagine stage 1</string>
+    <string name="immagine_tappa_2">Immagine stage 2</string>
+    <string name="immagine_tappa_3">Immagine stage 3</string>
+    <string name="add_scenario">Scenario +</string>
+    <string name="nuovoScenario">Nuovo scenario</string>
+    <string name="salva_scenario">Salva scenario</string>
+    <string name="costruzione_scenario">Creazione scenario</string>
+    <string name="compilaPrimaTutto">Riempi i campi prima di confermare!</string>
+    <string name="iniziataIl">Iniziata il</string>
+    <string name="terminaIl">Termina il</string>
+
+</resources>

@@ -1,0 +1,29 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid
+                android:color="#97000000" />
+        </shape>
+    </item>
+
+    <item>
+        <bitmap
+            android:src="@drawable/background_raggi_gialli"
+            android:alpha="0.5" /> <!-- 50% di 255 (alpha va da 0 a 255) -->
+    </item>
+
+    <item>
+        <bitmap
+            android:src="@drawable/background_monete"
+            android:alpha="0.3" /> <!-- 50% di 255 (alpha va da 0 a 255) -->
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid
+                android:color="@color/coinsBackground" />
+        </shape>
+    </item>
+
+</layer-list>

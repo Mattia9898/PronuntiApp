@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#1B1B1B"
+                android:endColor="#BEF3F3F3"
+                android:angle="135" />
+        </shape>
+    </item>
+
+    <item>
+        <bitmap
+            android:src="@drawable/background_raggi_gialli"
+            android:alpha="0.5" /> <!-- 50% di 255 (alpha va da 0 a 255) -->
+    </item>
+
+    <item>
+        <bitmap
+            android:src="@drawable/background_personaggi"
+            android:alpha="0.3" /> <!-- 50% di 255 (alpha va da 0 a 255) -->
+    </item>
+
+</layer-list>

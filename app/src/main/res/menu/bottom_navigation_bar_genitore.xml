@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/terapieFragment"
+        android:title="Monitoraggio"
+        android:icon="@drawable/icona_monitoraggio" />
+
+    <item
+        android:id="@+id/appuntamentiGenitoreFragment2"
+        android:title="Visite"
+        android:icon="@drawable/icona_calendario" />
+
+    <item
+        android:id="@+id/profiloGenitoreFragment"
+        android:title="Profilo"
+        android:icon="@drawable/icona_profilo" />
+
+</menu>

@@ -1,0 +1,146 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewPazienteInAppuntamentiLogopedista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/llPazienteInAppuntamentiLogopedistaPrincipale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:weightSum="5"
+            android:padding="40dp"
+            android:elevation="2dp"
+            >
+
+            <TextView
+                android:id="@+id/textViewNomePaziente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:textSize="@dimen/size_text_info_paziente"
+                android:text="Franco"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/textViewCognomePaziente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:textSize="@dimen/size_text_info_paziente"
+                android:text="Rossi"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_weight="2"
+                />
+
+            <TextView
+                android:id="@+id/textViewDataNascitaPaziente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/size_text_giorno_appuntamento"
+                android:text="18 maggio 2025"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:paddingHorizontal="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/textViewOrarioAppuntamentoLogopedista"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="5dp"
+                android:textSize="@dimen/size_text_orario_appuntamento"
+                android:text="10:00"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="start"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/llPazienteInAppuntamentiLogopedistaInfoAggiuntive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rettangolo_grigio_bordo_nero"
+        android:weightSum="5"
+        android:padding="40dp"
+        android:elevation="2dp"        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/textViewNotePaziente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/place"
+                android:textSize="17dp"
+                android:paddingHorizontal="8dp"
+                />
+
+            <TextView
+                android:id="@+id/textViewLuogoAppuntamentoLogopedista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Via del Cicerone, 70121 Bari"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="8dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonRimuoviAppuntamentoLogopedista"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/rimuovi_appuntamento"
+        android:textColor="@color/black"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:paddingHorizontal="25dp"
+        android:layout_marginVertical="5dp"
+        android:clickable="true"
+        />
+
+</LinearLayout>

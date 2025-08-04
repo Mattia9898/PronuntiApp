@@ -1,0 +1,16 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="views.activity.AutenticazioneActivity"
+    >
+    <fragment
+        android:id="@+id/fragmentContainerAutenticazione"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/navigation_autenticazione"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
