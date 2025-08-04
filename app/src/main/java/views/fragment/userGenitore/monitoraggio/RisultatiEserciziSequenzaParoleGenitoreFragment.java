@@ -83,7 +83,7 @@ public class RisultatiEserciziSequenzaParoleGenitoreFragment extends AbstractNav
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_risultato_es_sequenza_parole, container, false);
+        View view = inflater.inflate(R.layout.fragment_risultati_esercizi_sequenza_parole, container, false);
 
         setToolBar(view, getString(R.string.risultatoEsercizio));
 
@@ -111,7 +111,7 @@ public class RisultatiEserciziSequenzaParoleGenitoreFragment extends AbstractNav
         pauseButtonRisposta = view.findViewById(R.id.imageButtonPausaAudioRegistrato);
         pauseButtonRisposta.setVisibility(View.GONE);
 
-        mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewModel.class);
+        mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
         return view;
     }
@@ -124,7 +124,7 @@ public class RisultatiEserciziSequenzaParoleGenitoreFragment extends AbstractNav
         this.mEsercizioSequenzaParole = getEsercizioSequenzaParoleFromViewModel(indiceEsercizio,indiceScenario,indiceTerapia);
 
         this.audioRecorder = initAudioRecorder();
-        this.audioPlayerLink = new AudioPlayerLink(mEsercizioSequenzaParole.getAudioEsercizio());
+        this.audioPlayerLink = new AudioPlayerLink(mEsercizioSequenzaParole.getAudioEsercizioSequenzaParole());
         this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
 
         if(isNonSvolto()) {

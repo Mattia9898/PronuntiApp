@@ -576,7 +576,7 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
 
         TemplateEsercizioSequenzaParole template = listaTemplateSequenzaParole.get(indexTemplateSequenzaParole);
 
-        String audioEsercizio = template.getAudioEsercizio();
+        String audioEsercizio = template.getAudioEsercizioSequenzaParole();
         String parola1 = template.getParolaDaIndovinare1();
         String parola2 = template.getParolaDaIndovinare2();
         String parola3 = template.getParolaDaIndovinare3();

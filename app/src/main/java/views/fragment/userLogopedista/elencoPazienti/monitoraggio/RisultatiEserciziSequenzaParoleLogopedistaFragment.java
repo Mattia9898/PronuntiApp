@@ -129,7 +129,7 @@ public class RisultatiEserciziSequenzaParoleLogopedistaFragment extends Abstract
         this.mEsercizioSequenzaParole = getmEsercizioSequenzaParoleFromViewModel();
 
         this.audioRecorder = initAudioRecorder();
-        this.audioPlayerLink = new AudioPlayerLink(mEsercizioSequenzaParole.getAudioEsercizio());
+        this.audioPlayerLink = new AudioPlayerLink(mEsercizioSequenzaParole.getAudioEsercizioSequenzaParole());
 
         this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
 

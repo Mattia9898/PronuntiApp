@@ -77,7 +77,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
                         TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, snapshot.getKey());
                         resultList.add(templateEsercizioDenominazioneImmagini);
                     }
-                    else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_1)) {
+                    else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1)) {
                         TemplateEsercizioSequenzaParole templateEsercizioSequenzaParole = new TemplateEsercizioSequenzaParole(fromDatabaseMap, snapshot.getKey());
                         resultList.add(templateEsercizioSequenzaParole);
                     }
@@ -121,7 +121,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
                     TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, snapshot.getKey());
                     resultList.add(templateEsercizioDenominazioneImmagini);
                 }
-                else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_1)) {
+                else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1)) {
                     TemplateEsercizioSequenzaParole templateEsercizioSequenzaParole = new TemplateEsercizioSequenzaParole(fromDatabaseMap, snapshot.getKey());
                     resultList.add(templateEsercizioSequenzaParole);
                 }
@@ -156,7 +156,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
             if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO_DENOMINAZIONE_IMMAGINI)) {
                 resultEsercizio = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, dataSnapshot.getKey());
             }
-            else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_1)) {
+            else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1)) {
                 resultEsercizio = new TemplateEsercizioSequenzaParole(fromDatabaseMap, dataSnapshot.getKey());
             }
             else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA)) {

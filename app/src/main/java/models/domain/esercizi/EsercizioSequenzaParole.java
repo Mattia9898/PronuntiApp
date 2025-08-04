@@ -21,7 +21,7 @@ public class EsercizioSequenzaParole extends TemplateEsercizioSequenzaParole imp
         this.idEsercizio = fromDatabaseKey;
         this.ricompensaRispostaCorretta = esercizioSequenzaParole.getRicompensaCorretto();
         this.ricompensaRispostaErrata = esercizioSequenzaParole.getRicompensaErrato();
-        this.audioEsercizio = esercizioSequenzaParole.getAudioEsercizio();
+        this.audioEsercizioSequenzaParole = esercizioSequenzaParole.getAudioEsercizioSequenzaParole();
         this.parolaDaIndovinare1 = esercizioSequenzaParole.getParolaDaIndovinare1();
         this.parolaDaIndovinare2 = esercizioSequenzaParole.getParolaDaIndovinare2();
         this.parolaDaIndovinare3 = esercizioSequenzaParole.getParolaDaIndovinare3();
@@ -63,7 +63,7 @@ public class EsercizioSequenzaParole extends TemplateEsercizioSequenzaParole imp
                 "idEsercizio='" + idEsercizio + '\'' +
                 ", ricompensaCorretto=" + ricompensaRispostaCorretta +
                 ", ricompensaErrato=" + ricompensaRispostaErrata +
-                ", audioEsercizio='" + audioEsercizio + '\'' +
+                ", audioEsercizio='" + audioEsercizioSequenzaParole + '\'' +
                 ", parola1='" + parolaDaIndovinare1 + '\'' +
                 ", parola2='" + parolaDaIndovinare2 + '\'' +
                 ", parola3='" + parolaDaIndovinare3 + '\'' +

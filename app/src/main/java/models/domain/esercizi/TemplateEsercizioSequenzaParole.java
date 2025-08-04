@@ -1,14 +1,17 @@
 package models.domain.esercizi;
 
+
+import models.database.costantiDB.CostantiDBTemplateEsercizioSequenzaParole;
+
 import android.util.Log;
 
 import java.util.Map;
 
-import models.database.costantiDB.CostantiDBTemplateEsercizioSequenzaParole;
 
 public class TemplateEsercizioSequenzaParole extends AbstractEsercizio implements Esercizio {
 
-    protected String audioEsercizio;
+
+    protected String audioEsercizioSequenzaParole;
 
     protected String parolaDaIndovinare1;
 
@@ -16,38 +19,36 @@ public class TemplateEsercizioSequenzaParole extends AbstractEsercizio implement
 
     protected String parolaDaIndovinare3;
 
-    public TemplateEsercizioSequenzaParole() {}
-
-    public TemplateEsercizioSequenzaParole(String idEsercizio, int ricompensaCorretto, int ricompensaErrato, String audioEsercizio, String parola1, String parola2, String parola3) {
-        super(idEsercizio, ricompensaCorretto, ricompensaErrato);
-        this.audioEsercizio = audioEsercizio;
-        this.parolaDaIndovinare1 = parola1;
-        this.parolaDaIndovinare2 = parola2;
-        this.parolaDaIndovinare3 = parola3;
-    }
-
-    public TemplateEsercizioSequenzaParole(int ricompensaCorretto, int ricompensaErrato, String audioEsercizio, String parola1, String parola2, String parola3) {
-        super(ricompensaCorretto, ricompensaErrato);
-        this.audioEsercizio = audioEsercizio;
-        this.parolaDaIndovinare1 = parola1;
-        this.parolaDaIndovinare2 = parola2;
-        this.parolaDaIndovinare3 = parola3;
-    }
 
     public TemplateEsercizioSequenzaParole(Map<String, Object> fromDatabaseMap, String fromDatabaseKey) {
-        TemplateEsercizioSequenzaParole t = this.fromMap(fromDatabaseMap);
+        TemplateEsercizioSequenzaParole templateEsercizioSequenzaParole = this.fromMap(fromDatabaseMap);
         this.idEsercizio = fromDatabaseKey;
-        this.ricompensaRispostaCorretta = t.getRicompensaCorretto();
-        this.ricompensaRispostaErrata = t.getRicompensaErrato();
-        this.audioEsercizio = t.getAudioEsercizio();
-        this.parolaDaIndovinare1 = t.getParolaDaIndovinare1();
-        this.parolaDaIndovinare2 = t.getParolaDaIndovinare2();
-        this.parolaDaIndovinare3 = t.getParolaDaIndovinare3();
+        this.ricompensaRispostaCorretta = templateEsercizioSequenzaParole.getRicompensaCorretto();
+        this.ricompensaRispostaErrata = templateEsercizioSequenzaParole.getRicompensaErrato();
+        this.audioEsercizioSequenzaParole = templateEsercizioSequenzaParole.getAudioEsercizioSequenzaParole();
+        this.parolaDaIndovinare1 = templateEsercizioSequenzaParole.getParolaDaIndovinare1();
+        this.parolaDaIndovinare2 = templateEsercizioSequenzaParole.getParolaDaIndovinare2();
+        this.parolaDaIndovinare3 = templateEsercizioSequenzaParole.getParolaDaIndovinare3();
     }
 
-    public String getAudioEsercizio() {
-        return audioEsercizio;
+    public TemplateEsercizioSequenzaParole(int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String audioEsercizioSequenzaParole, String parolaDaIndovinare1, String parolaDaIndovinare2, String parolaDaIndovinare3) {
+        super(ricompensaRispostaCorretta, ricompensaRispostaErrata);
+        this.audioEsercizioSequenzaParole = audioEsercizioSequenzaParole;
+        this.parolaDaIndovinare1 = parolaDaIndovinare1;
+        this.parolaDaIndovinare2 = parolaDaIndovinare2;
+        this.parolaDaIndovinare3 = parolaDaIndovinare3;
     }
+
+    public TemplateEsercizioSequenzaParole(String idEsercizio, int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String audioEsercizioSequenzaParole, String parolaDaIndovinare1, String parolaDaIndovinare2, String parolaDaIndovinare3) {
+        super(idEsercizio, ricompensaRispostaCorretta, ricompensaRispostaErrata);
+        this.audioEsercizioSequenzaParole = audioEsercizioSequenzaParole;
+        this.parolaDaIndovinare1 = parolaDaIndovinare1;
+        this.parolaDaIndovinare2 = parolaDaIndovinare2;
+        this.parolaDaIndovinare3 = parolaDaIndovinare3;
+    }
+
+    public TemplateEsercizioSequenzaParole() {}
+
 
     public String getParolaDaIndovinare1() {
         return parolaDaIndovinare1;
@@ -61,26 +62,31 @@ public class TemplateEsercizioSequenzaParole extends AbstractEsercizio implement
         return parolaDaIndovinare3;
     }
 
+    public String getAudioEsercizioSequenzaParole() {
+        return audioEsercizioSequenzaParole;
+    }
+
+
     @Override
     public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-        entityMap.put(CostantiDBTemplateEsercizioSequenzaParole.AUDIO_ESERCIZIO, this.audioEsercizio);
-        entityMap.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_1, this.parolaDaIndovinare1);
-        entityMap.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_2, this.parolaDaIndovinare2);
-        entityMap.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_3, this.parolaDaIndovinare3);
-        return entityMap;
+        Map<String, Object> map = super.toMap();
+        map.put(CostantiDBTemplateEsercizioSequenzaParole.AUDIO_ESERCIZIO_SEQUENZA_PAROLE, this.audioEsercizioSequenzaParole);
+        map.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1, this.parolaDaIndovinare1);
+        map.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_2, this.parolaDaIndovinare2);
+        map.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_3, this.parolaDaIndovinare3);
+        return map;
     }
 
     @Override
     public TemplateEsercizioSequenzaParole fromMap(Map<String, Object> fromDatabaseMap) {
         Log.d("TemplateEsercizioSequenzaParole.fromMap()", fromDatabaseMap.toString());
         return new TemplateEsercizioSequenzaParole(
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.RICOMPENSA_CORRETTO)),
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.RICOMPENSA_ERRATO)),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.AUDIO_ESERCIZIO),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_1),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_2),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_3)
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.RICOMPENSA_RISPOSTA_CORRETTA)),
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.RICOMPENSA_RISPOSTA_ERRATA)),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.AUDIO_ESERCIZIO_SEQUENZA_PAROLE),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_2),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_3)
         );
     }
 
@@ -90,7 +96,7 @@ public class TemplateEsercizioSequenzaParole extends AbstractEsercizio implement
                 "idEsercizio='" + idEsercizio + '\'' +
                 ", ricompensaCorretto=" + ricompensaRispostaCorretta +
                 ", ricompensaErrato=" + ricompensaRispostaErrata +
-                ", audioEsercizio='" + audioEsercizio + '\'' +
+                ", audioEsercizio='" + audioEsercizioSequenzaParole + '\'' +
                 ", parola1='" + parolaDaIndovinare1 + '\'' +
                 ", parola2='" + parolaDaIndovinare2 + '\'' +
                 ", parola3='" + parolaDaIndovinare3 + '\'' +

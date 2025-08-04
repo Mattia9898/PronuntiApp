@@ -47,6 +47,7 @@ import views.dialog.RichiestaConfermaDialog;
 import views.fragment.userPaziente.giochi.FineScenarioEsercizioView;
 
 public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEsercizioFragment {
+
     private FineScenarioEsercizioView fineScenarioEsercizioView;
     private ConstraintLayout constraintLayoutEsercizioSequenzaParole;
     private SeekBar seekBarEsercizioSequenzaParole;
@@ -110,7 +111,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
 
 
             this.audioRecorder = initAudioRecorder();
-            this.audioPlayerLink = new AudioPlayerLink(mEsercizioSequenzaParole.getAudioEsercizio());
+            this.audioPlayerLink = new AudioPlayerLink(mEsercizioSequenzaParole.getAudioEsercizioSequenzaParole());
             this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
 
             imageButtonPlay.setOnClickListener(v -> avviaRiproduzioneAudio());
