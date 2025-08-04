@@ -1,17 +1,19 @@
 package models.domain.profili;
 
+
+import java.util.HashMap;
+import java.util.Map;
+import java.time.LocalTime;
+import java.time.LocalDate;
+
+import models.domain.DataPersistenza;
+import models.database.costantiDB.CostantiDBAppuntamento;
+
 import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
-
-import models.database.costantiDB.CostantiDBAppuntamento;
-import models.domain.DataPersistenza;
 
 public class Appuntamento implements DataPersistenza<Appuntamento> {
 
@@ -84,31 +86,9 @@ public class Appuntamento implements DataPersistenza<Appuntamento> {
         this.idAppuntamento = idAppuntamento;
     }
 
-    public void setRefIdLogopedista(String refIdLogopedista) {
-        this.refIdLogopedista = refIdLogopedista;
-    }
-
-    public void setRefIdPaziente(String refIdPaziente) {
-        this.refIdPaziente = refIdPaziente;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public void setOra(LocalTime ora) {
-        this.ora = ora;
-    }
-
-    public void setLuogo(String luogo) {
-        this.luogo = luogo;
-    }
-
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> entityMap = new HashMap<>();
-
-        //entityMap.put(CostantiDBAppuntamento.ID_APPUNTAMENTO, this.idAppuntamento);
         entityMap.put(CostantiDBAppuntamento.REF_ID_LOGOPEDISTA, this.refIdLogopedista);
         entityMap.put(CostantiDBAppuntamento.REF_ID_PAZIENTE, this.refIdPaziente);
         entityMap.put(CostantiDBAppuntamento.DATA, this.data.toString());
