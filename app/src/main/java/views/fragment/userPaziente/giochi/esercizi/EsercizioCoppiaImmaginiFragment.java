@@ -147,15 +147,15 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
             this.mController.setEsercizioCoppiaImmagini(mEsercizioCoppiaImmagini);
 
 
-            this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizio());
+            this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
             this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
 
             if (correctImageView == 1) {
-                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineEsercizioCorretta()).into(imageButtonImmagine1);
-                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineEsercizioErrata()).into(imageButtonImmagine2);
+                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineCorrettaEsercizioCoppiaImmagini()).into(imageButtonImmagine1);
+                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineErrataEsercizioCoppiaImmagini()).into(imageButtonImmagine2);
             } else {
-                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineEsercizioCorretta()).into(imageButtonImmagine2);
-                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineEsercizioErrata()).into(imageButtonImmagine1);
+                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineCorrettaEsercizioCoppiaImmagini()).into(imageButtonImmagine2);
+                Picasso.get().load(mEsercizioCoppiaImmagini.getImmagineErrataEsercizioCoppiaImmagini()).into(imageButtonImmagine1);
             }
 
             playButton.setOnClickListener(v -> avviaRiproduzioneAudio());

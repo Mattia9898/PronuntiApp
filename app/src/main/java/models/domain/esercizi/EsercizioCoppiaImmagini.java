@@ -23,9 +23,9 @@ public class EsercizioCoppiaImmagini extends TemplateEsercizioCoppiaImmagini imp
         this.idEsercizio = fromDatabaseKey;
         this.ricompensaRispostaCorretta = esercizioCoppiaImmagini.getRicompensaCorretto();
         this.ricompensaRispostaErrata = esercizioCoppiaImmagini.getRicompensaErrato();
-        this.audioEsercizio = esercizioCoppiaImmagini.getAudioEsercizio();
-        this.immagineEsercizioCorretta = esercizioCoppiaImmagini.getImmagineEsercizioCorretta();
-        this.immagineEsercizioErrata = esercizioCoppiaImmagini.getImmagineEsercizioErrata();
+        this.audioEsercizioCoppiaImmagini = esercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini();
+        this.immagineCorrettaEsercizioCoppiaImmagini = esercizioCoppiaImmagini.getImmagineCorrettaEsercizioCoppiaImmagini();
+        this.immagineErrataEsercizioCoppiaImmagini = esercizioCoppiaImmagini.getImmagineErrataEsercizioCoppiaImmagini();
         this.referenceIdTemplateEsercizio = esercizioCoppiaImmagini.getRefIdTemplateEsercizio();
         this.risultatoEsercizioCoppiaImmagini = esercizioCoppiaImmagini.getRisultatoEsercizio();
     }
@@ -76,9 +76,9 @@ public class EsercizioCoppiaImmagini extends TemplateEsercizioCoppiaImmagini imp
                 "idEsercizio='" + idEsercizio + '\'' +
                 ", ricompensaCorretto=" + ricompensaRispostaCorretta +
                 ", ricompensaErrato=" + ricompensaRispostaErrata +
-                ", audioEsercizio='" + audioEsercizio + '\'' +
-                ", immagineEsercizioCorretta='" + immagineEsercizioCorretta + '\'' +
-                ", immagineEsercizioErrata='" + immagineEsercizioErrata + '\'' +
+                ", audioEsercizio='" + audioEsercizioCoppiaImmagini + '\'' +
+                ", immagineEsercizioCorretta='" + immagineCorrettaEsercizioCoppiaImmagini + '\'' +
+                ", immagineEsercizioErrata='" + immagineErrataEsercizioCoppiaImmagini + '\'' +
                 ", refIdTemplateEsercizio='" + referenceIdTemplateEsercizio + '\'' +
                 ", risultatoEsercizio=" + risultatoEsercizioCoppiaImmagini +
                 '}';

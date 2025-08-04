@@ -117,7 +117,7 @@ public class RisultatiEserciziCoppiaImmaginiLogopedistaFragment extends Abstract
         this.mEsercizioCoppiaImmagini = getEsercizioCoppiaImmaginiFromViewModel();
 
         this.audioRecorder = initAudioRecorder();
-        this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizio());
+        this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
         this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
 
         if(isNonSvolto()){

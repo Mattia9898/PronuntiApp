@@ -599,9 +599,9 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
         TemplateEsercizioCoppiaImmagini template = listaTemplateCoppiaImmagini.get(indexTemplateCoppiaImmagini);
 
         String idEsercizio = template.getIdEsercizio();
-        String audioEsercizio =  template.getAudioEsercizio();
-        String immagineCorretta = template.getImmagineEsercizioCorretta();
-        String immagineErrata = template.getImmagineEsercizioErrata();
+        String audioEsercizio =  template.getAudioEsercizioCoppiaImmagini();
+        String immagineCorretta = template.getImmagineCorrettaEsercizioCoppiaImmagini();
+        String immagineErrata = template.getImmagineErrataEsercizioCoppiaImmagini();
 
         int ricompensaCorretto = template.getRicompensaCorretto();
         int ricompensaErrato = template.getRicompensaErrato();

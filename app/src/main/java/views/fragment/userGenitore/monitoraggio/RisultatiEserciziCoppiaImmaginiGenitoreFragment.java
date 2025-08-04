@@ -75,7 +75,7 @@ public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNav
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_risultato_es_coppia_immagini, container, false);
+        View view = inflater.inflate(R.layout.fragment_risultati_esercizi_coppia_immagini, container, false);
 
         setToolBar(view, getString(R.string.risultatoEsercizio));
 
@@ -111,7 +111,7 @@ public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNav
 
         this.mEsercizioCoppiaImmagini = getEsercizioCoppiaImmaginiFromViewModel(indiceEsercizio,indiceScenario,indiceTerapia);
         this.audioRecorder = initAudioRecorder();
-        this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizio());
+        this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
         this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
 
         if(isNonSvolto()){

@@ -14,73 +14,52 @@ import android.util.Log;
 public class TemplateEsercizioCoppiaImmagini extends AbstractEsercizio implements Esercizio {
 
 
-    protected String audioEsercizio;
+    protected String immagineErrataEsercizioCoppiaImmagini;
 
-    protected String immagineEsercizioCorretta;
+    protected String immagineCorrettaEsercizioCoppiaImmagini;
 
-    protected String immagineEsercizioErrata;
+    protected String audioEsercizioCoppiaImmagini;
 
+
+    public TemplateEsercizioCoppiaImmagini(Map<String, Object> fromDatabaseMap, String fromDatabaseKey) {
+        TemplateEsercizioCoppiaImmagini templateEsercizioCoppiaImmagini = this.fromMap(fromDatabaseMap);
+        this.idEsercizio = fromDatabaseKey;
+        this.ricompensaRispostaCorretta = templateEsercizioCoppiaImmagini.getRicompensaCorretto();
+        this.ricompensaRispostaErrata = templateEsercizioCoppiaImmagini.getRicompensaErrato();
+        this.audioEsercizioCoppiaImmagini = templateEsercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini();
+        this.immagineCorrettaEsercizioCoppiaImmagini = templateEsercizioCoppiaImmagini.getImmagineCorrettaEsercizioCoppiaImmagini();
+        this.immagineErrataEsercizioCoppiaImmagini = templateEsercizioCoppiaImmagini.getImmagineErrataEsercizioCoppiaImmagini();
+    }
+
+    public TemplateEsercizioCoppiaImmagini(int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String audioEsercizioCoppiaImmagini, String immagineCorrettaEsercizioCoppiaImmagini, String immagineErrataEsercizioCoppiaImmagini) {
+        super(ricompensaRispostaCorretta, ricompensaRispostaErrata);
+        this.audioEsercizioCoppiaImmagini = audioEsercizioCoppiaImmagini;
+        this.immagineCorrettaEsercizioCoppiaImmagini = immagineCorrettaEsercizioCoppiaImmagini;
+        this.immagineErrataEsercizioCoppiaImmagini = immagineErrataEsercizioCoppiaImmagini;
+    }
+
+    public TemplateEsercizioCoppiaImmagini(String idEsercizio, int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String audioEsercizioCoppiaImmagini, String immagineCorrettaEsercizioCoppiaImmagini, String immagineErrataEsercizioCoppiaImmagini) {
+        super(idEsercizio, ricompensaRispostaCorretta, ricompensaRispostaErrata);
+        this.audioEsercizioCoppiaImmagini = audioEsercizioCoppiaImmagini;
+        this.immagineCorrettaEsercizioCoppiaImmagini = immagineCorrettaEsercizioCoppiaImmagini;
+        this.immagineErrataEsercizioCoppiaImmagini = immagineErrataEsercizioCoppiaImmagini;
+    }
 
     public TemplateEsercizioCoppiaImmagini() {}
 
-    public TemplateEsercizioCoppiaImmagini(String idEsercizio, int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String audioEsercizio, String immagineEsercizioCorretta, String immagineEsercizioErrata) {
-        super(idEsercizio, ricompensaRispostaCorretta, ricompensaRispostaErrata);
-        this.audioEsercizio = audioEsercizio;
-        this.immagineEsercizioCorretta = immagineEsercizioCorretta;
-        this.immagineEsercizioErrata = immagineEsercizioErrata;
+
+    public String getImmagineErrataEsercizioCoppiaImmagini() {
+        return immagineErrataEsercizioCoppiaImmagini;
     }
 
-    public TemplateEsercizioCoppiaImmagini(int ricompensaCorretto, int ricompensaErrato, String audioEsercizio, String immagineEsercizioCorretta, String immagineEsercizioErrata) {
-        super(ricompensaCorretto, ricompensaErrato);
-        this.audioEsercizio = audioEsercizio;
-        this.immagineEsercizioCorretta = immagineEsercizioCorretta;
-        this.immagineEsercizioErrata = immagineEsercizioErrata;
+    public String getImmagineCorrettaEsercizioCoppiaImmagini() {
+        return immagineCorrettaEsercizioCoppiaImmagini;
     }
 
-    public TemplateEsercizioCoppiaImmagini(Map<String, Object> fromDatabaseMap, String fromDatabaseKey) {
-        TemplateEsercizioCoppiaImmagini t = this.fromMap(fromDatabaseMap);
-
-        this.idEsercizio = fromDatabaseKey;
-        this.ricompensaRispostaCorretta = t.getRicompensaCorretto();
-        this.ricompensaRispostaErrata = t.getRicompensaErrato();
-        this.audioEsercizio = t.getAudioEsercizio();
-        this.immagineEsercizioCorretta = t.getImmagineEsercizioCorretta();
-        this.immagineEsercizioErrata = t.getImmagineEsercizioErrata();
+    public String getAudioEsercizioCoppiaImmagini() {
+        return audioEsercizioCoppiaImmagini;
     }
 
-    public String getAudioEsercizio() {
-        return audioEsercizio;
-    }
-
-    public String getImmagineEsercizioCorretta() {
-        return immagineEsercizioCorretta;
-    }
-
-    public String getImmagineEsercizioErrata() {
-        return immagineEsercizioErrata;
-    }
-
-
-    @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.AUDIO_ESERCIZIO, this.audioEsercizio);
-        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA, this.immagineEsercizioCorretta);
-        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_ERRATA, this.immagineEsercizioErrata);
-        return entityMap;
-    }
-
-    @Override
-    public TemplateEsercizioCoppiaImmagini fromMap(Map<String, Object> fromDatabaseMap) {
-        Log.d("TemplateEsercizioCoppiaImmagini.fromMap()", fromDatabaseMap.toString());
-        return new TemplateEsercizioCoppiaImmagini(
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.RICOMPENSA_CORRETTO)),
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.RICOMPENSA_ERRATO)),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.AUDIO_ESERCIZIO),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_ERRATA)
-        );
-    }
 
     @Override
     public String toString() {
@@ -88,10 +67,32 @@ public class TemplateEsercizioCoppiaImmagini extends AbstractEsercizio implement
                 "idEsercizio='" + idEsercizio + '\'' +
                 ", ricompensaCorretto=" + ricompensaRispostaCorretta +
                 ", ricompensaErrato=" + ricompensaRispostaErrata +
-                ", audioEsercizio='" + audioEsercizio + '\'' +
-                ", immagineEsercizioCorretta='" + immagineEsercizioCorretta + '\'' +
-                ", immagineEsercizioErrata='" + immagineEsercizioErrata + '\'' +
+                ", audioEsercizio='" + audioEsercizioCoppiaImmagini + '\'' +
+                ", immagineEsercizioCorretta='" + immagineCorrettaEsercizioCoppiaImmagini + '\'' +
+                ", immagineEsercizioErrata='" + immagineErrataEsercizioCoppiaImmagini + '\'' +
                 '}';
     }
+
+    @Override
+    public TemplateEsercizioCoppiaImmagini fromMap(Map<String, Object> fromDatabaseMap) {
+        Log.d("TemplateEsercizioCoppiaImmagini.fromMap()", fromDatabaseMap.toString());
+        return new TemplateEsercizioCoppiaImmagini(
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.RICOMPENSA_RISPOSTA_CORRETTA)),
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.RICOMPENSA_RISPOSTA_ERRATA)),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.AUDIO_ESERCIZIO_COPPIA_IMMAGINI),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_ERRATA)
+        );
+    }
+
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> entityMap = super.toMap();
+        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.AUDIO_ESERCIZIO_COPPIA_IMMAGINI, this.audioEsercizioCoppiaImmagini);
+        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA, this.immagineCorrettaEsercizioCoppiaImmagini);
+        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_ERRATA, this.immagineErrataEsercizioCoppiaImmagini);
+        return entityMap;
+    }
+
 
 }
