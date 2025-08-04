@@ -1,10 +1,12 @@
 package models.domain.esercizi;
 
+
+import models.database.costantiDB.CostantiDBTemplateEsercizioDenominazioneImmagini;
+
 import android.util.Log;
 
 import java.util.Map;
 
-import models.database.costantiDB.CostantiDBTemplateEsercizioDenominazioneImmagini;
 
 public class TemplateEsercizioDenominazioneImmagini extends AbstractEsercizio implements Esercizio {
 
@@ -51,18 +53,6 @@ public class TemplateEsercizioDenominazioneImmagini extends AbstractEsercizio im
 
     public String getAudioAiuto() {
         return audioAiuto;
-    }
-
-    public void setImmagineEsercizio(String immagineEsercizio) {
-        this.immagineEsercizio = immagineEsercizio;
-    }
-
-    public void setParolaEsercizio(String parolaEsercizio) {
-        this.parolaEsercizio = parolaEsercizio;
-    }
-
-    public void setAudioAiuto(String audioAiuto) {
-        this.audioAiuto = audioAiuto;
     }
 
     @Override
