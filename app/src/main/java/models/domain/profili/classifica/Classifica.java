@@ -1,42 +1,40 @@
 package models.domain.profili.classifica;
 
-import android.util.Log;
 
-import java.util.HashMap;
+import models.domain.DataPersistenza;
+import models.database.costantiDB.CostantiDBClassifica;
+
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.HashMap;
 
-import models.database.costantiDB.CostantiDBClassifica;
-import models.domain.DataPersistenza;
+import android.util.Log;
+
 
 public class Classifica implements DataPersistenza<Classifica> {
 
-    private TreeMap<String, Integer> classifica;
+    private TreeMap<String, Integer> classificaTreeMap;
 
-    public Classifica(TreeMap<String, Integer> classifica) {
-        this.classifica = classifica;
+
+    public TreeMap<String, Integer> getClassificaTreeMap() {
+        return classificaTreeMap;
     }
 
     public Classifica(Map<String, Object> fromDatabaseMap, String fromDatabaseKey) {
-        Classifica c = this.fromMap(fromDatabaseMap);
-
-        this.classifica = c.getClassifica();
+        Classifica classifica = this.fromMap(fromDatabaseMap);
+        this.classificaTreeMap = classifica.getClassificaTreeMap();
     }
 
-    public TreeMap<String, Integer> getClassifica() {
-        return classifica;
+    public Classifica(TreeMap<String, Integer> classificaTreeMap) {
+        this.classificaTreeMap = classificaTreeMap;
     }
 
-    public void setClassifica(TreeMap<String, Integer> classifica) {
-        this.classifica = classifica;
-    }
 
     @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = new HashMap<>();
-
-        entityMap.put(CostantiDBClassifica.CLASSIFICA, this.classifica);
-        return entityMap;
+    public String toString() {
+        return "Classifica{" +
+                "classifica=" + classificaTreeMap +
+                '}';
     }
 
     @Override
@@ -48,10 +46,11 @@ public class Classifica implements DataPersistenza<Classifica> {
     }
 
     @Override
-    public String toString() {
-        return "Classifica{" +
-                "classifica=" + classifica +
-                '}';
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put(CostantiDBClassifica.CLASSIFICA, this.classificaTreeMap);
+        return map;
     }
+
 
 }
