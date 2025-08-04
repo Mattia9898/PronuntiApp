@@ -91,13 +91,13 @@ public class EsercizioSequenzaParole extends TemplateEsercizioSequenzaParole imp
 
     @Override
     public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-        entityMap.put(CostantiDBEsercizioSequenzaParole.REFERENCE_ID_TEMPLATE_ESERCIZIO, this.referenceIdTemplateEsercizio);
+        Map<String, Object> map = super.toMap();
+        map.put(CostantiDBEsercizioSequenzaParole.REFERENCE_ID_TEMPLATE_ESERCIZIO, this.referenceIdTemplateEsercizio);
 
         if (this.risultatoEsercizioSequenzaParole != null) {
-            entityMap.put(CostantiDBAbstractEsercizio.RISULTATO_ESERCIZIO, this.risultatoEsercizioSequenzaParole.toMap());
+            map.put(CostantiDBAbstractEsercizio.RISULTATO_ESERCIZIO, this.risultatoEsercizioSequenzaParole.toMap());
         }
-        return entityMap;
+        return map;
     }
 
 

@@ -10,71 +10,53 @@ import java.util.Map;
 
 public class TemplateEsercizioDenominazioneImmagini extends AbstractEsercizio implements Esercizio {
 
-    protected String immagineEsercizio;
-
-    protected String parolaEsercizio;
 
     protected String audioAiuto;
 
-    public TemplateEsercizioDenominazioneImmagini() {}
+    protected String parolaEsercizioDenominazioneImmagini;
 
-    public TemplateEsercizioDenominazioneImmagini(String idEsercizio, int ricompensaCorretto, int ricompensaErrato, String immagineEsercizio, String parolaEsercizio, String audioAiuto) {
-        super(idEsercizio, ricompensaCorretto, ricompensaErrato);
-        this.immagineEsercizio = immagineEsercizio;
-        this.parolaEsercizio = parolaEsercizio;
-        this.audioAiuto = audioAiuto;
-    }
+    protected String immagineEsercizioDenominazioneImmagini;
 
-    public TemplateEsercizioDenominazioneImmagini(int ricompensaCorretto, int ricompensaErrato, String immagineEsercizio, String parolaEsercizio, String audioAiuto) {
-        super(ricompensaCorretto, ricompensaErrato);
-        this.immagineEsercizio = immagineEsercizio;
-        this.parolaEsercizio = parolaEsercizio;
-        this.audioAiuto = audioAiuto;
-    }
 
     public TemplateEsercizioDenominazioneImmagini(Map<String, Object> fromDatabaseMap, String fromDatabaseKey) {
-        TemplateEsercizioDenominazioneImmagini t = this.fromMap(fromDatabaseMap);
-
+        TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini = this.fromMap(fromDatabaseMap);
         this.idEsercizio = fromDatabaseKey;
-        this.ricompensaRispostaCorretta = t.getRicompensaCorretto();
-        this.ricompensaRispostaErrata = t.getRicompensaErrato();
-        this.immagineEsercizio = t.getImmagineEsercizio();
-        this.parolaEsercizio = t.getParolaEsercizio();
-        this.audioAiuto = t.getAudioAiuto();
+        this.ricompensaRispostaCorretta = templateEsercizioDenominazioneImmagini.getRicompensaCorretto();
+        this.ricompensaRispostaErrata = templateEsercizioDenominazioneImmagini.getRicompensaErrato();
+        this.immagineEsercizioDenominazioneImmagini = templateEsercizioDenominazioneImmagini.getImmagineEsercizioDenominazioneImmagini();
+        this.parolaEsercizioDenominazioneImmagini = templateEsercizioDenominazioneImmagini.getParolaEsercizioDenominazioneImmagini();
+        this.audioAiuto = templateEsercizioDenominazioneImmagini.getAudioAiuto();
     }
 
-    public String getImmagineEsercizio() {
-        return immagineEsercizio;
+    public TemplateEsercizioDenominazioneImmagini(int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String immagineEsercizioDenominazioneImmagini, String parolaEsercizioDenominazioneImmagini, String audioAiuto) {
+        super(ricompensaRispostaCorretta, ricompensaRispostaErrata);
+        this.immagineEsercizioDenominazioneImmagini = immagineEsercizioDenominazioneImmagini;
+        this.parolaEsercizioDenominazioneImmagini = parolaEsercizioDenominazioneImmagini;
+        this.audioAiuto = audioAiuto;
     }
 
-    public String getParolaEsercizio() {
-        return parolaEsercizio;
+    public TemplateEsercizioDenominazioneImmagini(String idEsercizio, int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String immagineEsercizioDenominazioneImmagini, String parolaEsercizioDenominazioneImmagini, String audioAiuto) {
+        super(idEsercizio, ricompensaRispostaCorretta, ricompensaRispostaErrata);
+        this.immagineEsercizioDenominazioneImmagini = immagineEsercizioDenominazioneImmagini;
+        this.parolaEsercizioDenominazioneImmagini = parolaEsercizioDenominazioneImmagini;
+        this.audioAiuto = audioAiuto;
     }
+
+    public TemplateEsercizioDenominazioneImmagini() {}
+
 
     public String getAudioAiuto() {
         return audioAiuto;
     }
 
-    @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-        entityMap.put(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO, this.immagineEsercizio);
-        entityMap.put(CostantiDBTemplateEsercizioDenominazioneImmagini.PAROLA_ESERCIZIO, this.parolaEsercizio);
-        entityMap.put(CostantiDBTemplateEsercizioDenominazioneImmagini.AUDIO_AIUTO, this.audioAiuto);
-        return entityMap;
+    public String getParolaEsercizioDenominazioneImmagini() {
+        return parolaEsercizioDenominazioneImmagini;
     }
 
-    @Override
-    public TemplateEsercizioDenominazioneImmagini fromMap(Map<String, Object> fromDatabaseMap) {
-        Log.d("TemplateEsercizioDenominazioneImmagine.fromMap()", fromDatabaseMap.toString());
-        return new TemplateEsercizioDenominazioneImmagini(
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.RICOMPENSA_CORRETTO)),
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.RICOMPENSA_ERRATO)),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.PAROLA_ESERCIZIO),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.AUDIO_AIUTO)
-        );
+    public String getImmagineEsercizioDenominazioneImmagini() {
+        return immagineEsercizioDenominazioneImmagini;
     }
+
 
     @Override
     public String toString() {
@@ -82,11 +64,33 @@ public class TemplateEsercizioDenominazioneImmagini extends AbstractEsercizio im
                 "idEsercizio='" + idEsercizio + '\'' +
                 ", ricompensaCorretto=" + ricompensaRispostaCorretta +
                 ", ricompensaErrato=" + ricompensaRispostaErrata +
-                ", immagineEsercizio='" + immagineEsercizio + '\'' +
-                ", parolaEsercizio='" + parolaEsercizio + '\'' +
+                ", immagineEsercizio='" + immagineEsercizioDenominazioneImmagini + '\'' +
+                ", parolaEsercizio='" + parolaEsercizioDenominazioneImmagini + '\'' +
                 ", audioAiuto='" + audioAiuto + '\'' +
                 '}';
     }
+
+    @Override
+    public TemplateEsercizioDenominazioneImmagini fromMap(Map<String, Object> fromDatabaseMap) {
+        Log.d("TemplateEsercizioDenominazioneImmagine.fromMap()", fromDatabaseMap.toString());
+        return new TemplateEsercizioDenominazioneImmagini(
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.RICOMPENSA_RISPOSTA_CORRETTA)),
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.RICOMPENSA_RISPOSTA_ERRATA)),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO_DENOMINAZIONE_IMMAGINI),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.PAROLA_ESERCIZIO_DENOMINAZIONE_IMMAGINI),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioDenominazioneImmagini.AUDIO_AIUTO)
+        );
+    }
+
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = super.toMap();
+        map.put(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO_DENOMINAZIONE_IMMAGINI, this.immagineEsercizioDenominazioneImmagini);
+        map.put(CostantiDBTemplateEsercizioDenominazioneImmagini.PAROLA_ESERCIZIO_DENOMINAZIONE_IMMAGINI, this.parolaEsercizioDenominazioneImmagini);
+        map.put(CostantiDBTemplateEsercizioDenominazioneImmagini.AUDIO_AIUTO, this.audioAiuto);
+        return map;
+    }
+
 
 }
 

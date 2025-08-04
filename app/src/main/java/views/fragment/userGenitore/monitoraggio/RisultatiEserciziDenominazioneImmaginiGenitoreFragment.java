@@ -71,7 +71,7 @@ public class RisultatiEserciziDenominazioneImmaginiGenitoreFragment extends Abst
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_risultato_es_denominazione_immagine, container, false);
+        View view = inflater.inflate(R.layout.fragment_risultati_esercizi_denominazione_immagini, container, false);
 
         setToolBar(view, getString(R.string.risultatoEsercizio));
 
@@ -110,7 +110,7 @@ public class RisultatiEserciziDenominazioneImmaginiGenitoreFragment extends Abst
 
         this.mEsercizioDenominazioneImmagine = getEsercizioDenominazioneFromViewModel(indiceEsercizio, indiceScenario, indiceTerapia);
 
-        Picasso.get().load(mEsercizioDenominazioneImmagine.getImmagineEsercizio()).into(immagineEsercizioDenominazioneImageView);
+        Picasso.get().load(mEsercizioDenominazioneImmagine.getImmagineEsercizioDenominazioneImmagini()).into(immagineEsercizioDenominazioneImageView);
 
         if (isNonSvolto()) {
             imageViewCheck.setVisibility(View.GONE);

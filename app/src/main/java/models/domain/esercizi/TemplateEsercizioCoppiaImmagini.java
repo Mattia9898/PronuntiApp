@@ -87,11 +87,11 @@ public class TemplateEsercizioCoppiaImmagini extends AbstractEsercizio implement
 
     @Override
     public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.AUDIO_ESERCIZIO_COPPIA_IMMAGINI, this.audioEsercizioCoppiaImmagini);
-        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA, this.immagineCorrettaEsercizioCoppiaImmagini);
-        entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_ERRATA, this.immagineErrataEsercizioCoppiaImmagini);
-        return entityMap;
+        Map<String, Object> map = super.toMap();
+        map.put(CostantiDBTemplateEsercizioCoppiaImmagini.AUDIO_ESERCIZIO_COPPIA_IMMAGINI, this.audioEsercizioCoppiaImmagini);
+        map.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA, this.immagineCorrettaEsercizioCoppiaImmagini);
+        map.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_ERRATA, this.immagineErrataEsercizioCoppiaImmagini);
+        return map;
     }
 
 

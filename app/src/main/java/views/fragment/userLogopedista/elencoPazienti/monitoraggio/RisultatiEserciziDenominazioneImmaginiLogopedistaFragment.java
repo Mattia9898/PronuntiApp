@@ -111,7 +111,7 @@ public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends A
         super.onViewCreated(view, savedInstanceState);
 
         this.mEsercizioDenominazioneImmagine = getmEsercizioDenominazioneImmagineFromViewModel();
-        Picasso.get().load(mEsercizioDenominazioneImmagine.getImmagineEsercizio()).into(immagineEsercizioDenominazioneImageView);
+        Picasso.get().load(mEsercizioDenominazioneImmagine.getImmagineEsercizioDenominazioneImmagini()).into(immagineEsercizioDenominazioneImageView);
 
         if (isNonSvolto()) {
             imageViewCheck.setVisibility(View.GONE);

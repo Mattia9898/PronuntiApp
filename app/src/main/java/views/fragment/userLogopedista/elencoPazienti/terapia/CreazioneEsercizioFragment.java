@@ -559,8 +559,8 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
         TemplateEsercizioDenominazioneImmagini template = listaTemplateDenominazioneImmagine.get(indexTemplateDenominazioneImmagine);
 
         String idEsercizio = template.getIdEsercizio();
-        String immagineEsercizio = template.getImmagineEsercizio();
-        String parolaEsercizio = template.getParolaEsercizio();
+        String immagineEsercizio = template.getImmagineEsercizioDenominazioneImmagini();
+        String parolaEsercizio = template.getParolaEsercizioDenominazioneImmagini();
         String audioAiuto = template.getAudioAiuto();
 
         int ricompensaCorretto = template.getRicompensaCorretto();

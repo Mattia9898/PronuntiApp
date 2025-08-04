@@ -22,8 +22,8 @@ public class EsercizioDenominazioneImmagini extends TemplateEsercizioDenominazio
         this.idEsercizio = fromDatabaseKey;
         this.ricompensaRispostaCorretta = esercizioDenominazioneImmagini.getRicompensaCorretto();
         this.ricompensaRispostaErrata = esercizioDenominazioneImmagini.getRicompensaErrato();
-        this.immagineEsercizio = esercizioDenominazioneImmagini.getImmagineEsercizio();
-        this.parolaEsercizio = esercizioDenominazioneImmagini.getParolaEsercizio();
+        this.immagineEsercizioDenominazioneImmagini = esercizioDenominazioneImmagini.getImmagineEsercizioDenominazioneImmagini();
+        this.parolaEsercizioDenominazioneImmagini = esercizioDenominazioneImmagini.getParolaEsercizioDenominazioneImmagini();
         this.audioAiuto = esercizioDenominazioneImmagini.getAudioAiuto();
         this.referenceIdTemplateEsercizio = esercizioDenominazioneImmagini.getReferenceIdTemplateEsercizio();
         this.risultatoEsercizioDenominazioneImmagini = esercizioDenominazioneImmagini.getRisultatoEsercizio();
@@ -64,8 +64,8 @@ public class EsercizioDenominazioneImmagini extends TemplateEsercizioDenominazio
                 "idEsercizio='" + idEsercizio + '\'' +
                 ", ricompensaCorretto=" + ricompensaRispostaCorretta +
                 ", ricompensaErrato=" + ricompensaRispostaErrata +
-                ", immagineEsercizio='" + immagineEsercizio + '\'' +
-                ", parolaEsercizio='" + parolaEsercizio + '\'' +
+                ", immagineEsercizio='" + immagineEsercizioDenominazioneImmagini + '\'' +
+                ", parolaEsercizio='" + parolaEsercizioDenominazioneImmagini + '\'' +
                 ", audioAiuto='" + audioAiuto + '\'' +
                 ", refIdTemplateEsercizio='" + referenceIdTemplateEsercizio + '\'' +
                 ", risultatoEsercizio=" + risultatoEsercizioDenominazioneImmagini +

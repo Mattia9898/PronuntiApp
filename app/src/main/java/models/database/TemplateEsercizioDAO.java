@@ -73,7 +73,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Map<String, Object> fromDatabaseMap = (Map<String, Object>) snapshot.getValue();
 
-                    if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO)) {
+                    if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO_DENOMINAZIONE_IMMAGINI)) {
                         TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, snapshot.getKey());
                         resultList.add(templateEsercizioDenominazioneImmagini);
                     }
@@ -117,7 +117,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
             for (DataSnapshot snapshot : taskDataSnapshot.getResult().getChildren()) {
                 Map<String, Object> fromDatabaseMap = (Map<String, Object>) snapshot.getValue();
 
-                if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO)) {
+                if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO_DENOMINAZIONE_IMMAGINI)) {
                     TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, snapshot.getKey());
                     resultList.add(templateEsercizioDenominazioneImmagini);
                 }
@@ -153,7 +153,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
             DataSnapshot dataSnapshot = taskDataSnapshot.getResult();
             Map<String, Object> fromDatabaseMap = (Map<String, Object>) dataSnapshot.getValue();
 
-            if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO)) {
+            if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO_DENOMINAZIONE_IMMAGINI)) {
                 resultEsercizio = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, dataSnapshot.getKey());
             }
             else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_1)) {

@@ -16,10 +16,6 @@ public class SceltaImmaginiController{
 
     private EsercizioDenominazioneImmagini mEsercizioDenominazioneImmagini;
 
-    public EsercizioDenominazioneImmagini getEsercizioDenominazioneImmagine() {
-        return mEsercizioDenominazioneImmagini;
-    }
-
     public void setEsercizioDenominazioneImmagini(EsercizioDenominazioneImmagini esercizioDenominazioneImmagine) {
         this.mEsercizioDenominazioneImmagini = esercizioDenominazioneImmagine;
     }
@@ -34,17 +30,13 @@ public class SceltaImmaginiController{
         else {
             boolean check = true;
             for (String parola : paroleRegistrate) {
-                if (!(parola.toLowerCase().equals(mEsercizioDenominazioneImmagini.getParolaEsercizio().toLowerCase()))) {
+                if (!(parola.toLowerCase().equals(mEsercizioDenominazioneImmagini.getParolaEsercizioDenominazioneImmagini().toLowerCase()))) {
                     check = false;
                 }
 
             }
             return check;
         }
-    }
-
-    public File convertiAudio(File audioRegistrato, File outputFile) {
-        return AudioConverter.convertiAudio(audioRegistrato, outputFile);
     }
 
 }

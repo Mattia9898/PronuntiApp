@@ -75,7 +75,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_esercizio_denominazione_immagine, container, false);
+        View view = inflater.inflate(R.layout.fragment_esercizio_scelta_immagini, container, false);
 
         this.mPazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
         this.mSceltaImmaginiController = mPazienteViewsModels.getSceltaImmaginiController();
@@ -117,7 +117,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
 
 
             this.audioRecorder = initAudioRecorder();
-            Picasso.get().load(mEsercizioDenominazioneImmagini.getImmagineEsercizio()).into(immagineEsercizioDenominazioneImageView);
+            Picasso.get().load(mEsercizioDenominazioneImmagini.getImmagineEsercizioDenominazioneImmagini()).into(immagineEsercizioDenominazioneImageView);
 
 
             buttonAvviaRegistrazione.setOnClickListener(v -> avviaPrimaRegistrazione());
