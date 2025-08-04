@@ -1,12 +1,14 @@
 package models.domain.profili.personaggio;
 
+
+import models.domain.DataPersistenza;
+import models.database.costantiDB.CostantiDBPersonaggio;
+
 import android.util.Log;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 
-import models.database.costantiDB.CostantiDBPersonaggio;
-import models.domain.DataPersistenza;
 
 public class Personaggio implements DataPersistenza<Personaggio> {
 
@@ -56,27 +58,9 @@ public class Personaggio implements DataPersistenza<Personaggio> {
         return texturePersonaggio;
     }
 
-    public void setIdPersonaggio(String idPersonaggio) {
-        this.idPersonaggio = idPersonaggio;
-    }
-
-    public void setNomePersonaggio(String nomePersonaggio) {
-        this.nomePersonaggio = nomePersonaggio;
-    }
-
-    public void setCostoSblocco(int costoSblocco) {
-        this.costoSblocco = costoSblocco;
-    }
-
-    public void setTexturePersonaggio(String texturePersonaggio) {
-        this.texturePersonaggio = texturePersonaggio;
-    }
-
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> entityMap = new HashMap<>();
-
-        //entityMap.put(CostantiDBPersonaggio.ID_PERSONAGGIO, this.idPersonaggio);
         entityMap.put(CostantiDBPersonaggio.NOME_PERSONAGGIO, this.nomePersonaggio);
         entityMap.put(CostantiDBPersonaggio.COSTO_SBLOCCO, this.costoSblocco);
         entityMap.put(CostantiDBPersonaggio.TEXTURE_PERSONAGGIO, this.texturePersonaggio);
