@@ -1,15 +1,18 @@
 package models.domain.esercizi;
 
+
+import models.domain.esercizi.risultati.RisultatoEsercizioSequenzaParole;
+import models.database.costantiDB.CostantiDBTemplateEsercizioCoppiaImmagini;
+import models.database.costantiDB.CostantiDBRisultato;
+
+import java.util.Map;
+import java.io.File;
+
 import android.util.Log;
 
-import java.io.File;
-import java.util.Map;
-
-import models.database.costantiDB.CostantiDBRisultato;
-import models.database.costantiDB.CostantiDBTemplateEsercizioCoppiaImmagini;
-import models.domain.esercizi.risultati.RisultatoEsercizioSequenzaParole;
 
 public class TemplateEsercizioCoppiaImmagini extends AbstractEsercizio implements Esercizio {
+
 
     protected String audioEsercizio;
 
@@ -17,10 +20,11 @@ public class TemplateEsercizioCoppiaImmagini extends AbstractEsercizio implement
 
     protected String immagineEsercizioErrata;
 
+
     public TemplateEsercizioCoppiaImmagini() {}
 
-    public TemplateEsercizioCoppiaImmagini(String idEsercizio, int ricompensaCorretto, int ricompensaErrato, String audioEsercizio, String immagineEsercizioCorretta, String immagineEsercizioErrata) {
-        super(idEsercizio, ricompensaCorretto, ricompensaErrato);
+    public TemplateEsercizioCoppiaImmagini(String idEsercizio, int ricompensaRispostaCorretta, int ricompensaRispostaErrata, String audioEsercizio, String immagineEsercizioCorretta, String immagineEsercizioErrata) {
+        super(idEsercizio, ricompensaRispostaCorretta, ricompensaRispostaErrata);
         this.audioEsercizio = audioEsercizio;
         this.immagineEsercizioCorretta = immagineEsercizioCorretta;
         this.immagineEsercizioErrata = immagineEsercizioErrata;
@@ -56,23 +60,10 @@ public class TemplateEsercizioCoppiaImmagini extends AbstractEsercizio implement
         return immagineEsercizioErrata;
     }
 
-    public void setAudioEsercizio(String audioEsercizio) {
-        this.audioEsercizio = audioEsercizio;
-    }
-
-    public void setImmagineEsercizioCorretta(String immagineEsercizioCorretta) {
-        this.immagineEsercizioCorretta = immagineEsercizioCorretta;
-    }
-
-    public void setImmagineEsercizioErrata(String immagineEsercizioErrata) {
-        this.immagineEsercizioErrata = immagineEsercizioErrata;
-    }
 
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> entityMap = super.toMap();
-
-        //entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.ID_TEMPLATE_ESERCIZIO, this.idEsercizio);
         entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.AUDIO_ESERCIZIO, this.audioEsercizio);
         entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA, this.immagineEsercizioCorretta);
         entityMap.put(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_ERRATA, this.immagineEsercizioErrata);
