@@ -35,17 +35,8 @@ public abstract class AbstractEsercizio implements Esercizio {
         return ricompensaRispostaCorretta;
     }
 
-    public void setRicompensaCorretto(int ricompensaRispostaCorretta) {
-        this.ricompensaRispostaCorretta = ricompensaRispostaCorretta;
-    }
-
-
     public int getRicompensaErrato() {
         return ricompensaRispostaErrata;
-    }
-
-    public void setRicompensaErrato(int ricompensaRispostaErrata) {
-        this.ricompensaRispostaErrata = ricompensaRispostaErrata;
     }
 
 
@@ -60,10 +51,10 @@ public abstract class AbstractEsercizio implements Esercizio {
 
     @Override
     public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = new HashMap<>();
-        entityMap.put(CostantiDBAbstractEsercizio.RICOMPENSA_RISPOSTA_CORRETTA, this.ricompensaRispostaCorretta);
-        entityMap.put(CostantiDBAbstractEsercizio.RICOMPENSA_RISPOSTA_ERRATA, this.ricompensaRispostaErrata);
-        return entityMap;
+        Map<String, Object> map = new HashMap<>();
+        map.put(CostantiDBAbstractEsercizio.RICOMPENSA_RISPOSTA_CORRETTA, this.ricompensaRispostaCorretta);
+        map.put(CostantiDBAbstractEsercizio.RICOMPENSA_RISPOSTA_ERRATA, this.ricompensaRispostaErrata);
+        return map;
     }
 
 }
