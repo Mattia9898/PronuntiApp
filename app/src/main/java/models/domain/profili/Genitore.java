@@ -1,51 +1,60 @@
 package models.domain.profili;
 
-import android.util.Log;
-
-import java.util.Map;
 
 import models.database.costantiDB.CostantiDBGenitore;
 
+import java.util.Map;
+
+import android.util.Log;
+
+
 public class Genitore extends AbstractProfilo {
 
-    private String telefono;
+    private String numeroCellulare;
 
-    public Genitore(String idProfilo, String nome, String cognome, String username, String email, String password, String telefono) {
-        super(idProfilo, nome, cognome, username, email, password);
-        this.telefono = telefono;
-    }
-
-    public Genitore(String nome, String cognome, String username, String email, String password, String telefono) {
-        super(nome, cognome, username, email, password);
-        this.telefono = telefono;
-    }
 
     public Genitore(Map<String,Object> fromDatabaseMap, String fromDatabaseKey) {
-        Genitore g = this.fromMap(fromDatabaseMap);
-
+        Genitore genitore = this.fromMap(fromDatabaseMap);
         this.idProfilo = fromDatabaseKey;
-        this.nome = g.getNome();
-        this.cognome = g.getCognome();
-        this.username = g.getUsername();
-        this.email = g.getEmail();
-        this.password = g.getPassword();
-        this.telefono = g.getTelefono();
+        this.nome = genitore.getNome();
+        this.cognome = genitore.getCognome();
+        this.username = genitore.getUsername();
+        this.email = genitore.getEmail();
+        this.password = genitore.getPassword();
+        this.numeroCellulare = genitore.getnumeroCellulare();
     }
 
-    public String getTelefono() {
-        return telefono;
+    public Genitore(String nome, String cognome, String username, String email, String password, String numeroCellulare) {
+        super(nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public Genitore(String idProfilo, String nome, String cognome, String username, String email, String password, String numeroCellulare) {
+        super(idProfilo, nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
     }
+
+
+    public String getnumeroCellulare() {
+        return numeroCellulare;
+    }
+
+    public void setnumeroCellulare(String numeroCellulare) {
+        this.numeroCellulare = numeroCellulare;
+    }
+
 
     @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-
-        entityMap.put(CostantiDBGenitore.TELEFONO, this.telefono);
-        return entityMap;
+    public String toString() {
+        return "Genitore{" +
+                "idProfilo='" + idProfilo + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", telefono='" + numeroCellulare + '\'' +
+                '}';
     }
 
     @Override
@@ -57,21 +66,16 @@ public class Genitore extends AbstractProfilo {
                 (String) fromDatabaseMap.get(CostantiDBGenitore.USERNAME),
                 (String) fromDatabaseMap.get(CostantiDBGenitore.EMAIL),
                 (String) fromDatabaseMap.get(CostantiDBGenitore.PASSWORD),
-                (String) fromDatabaseMap.get(CostantiDBGenitore.TELEFONO)
+                (String) fromDatabaseMap.get(CostantiDBGenitore.NUMERO_CELLULARE)
         );
     }
 
     @Override
-    public String toString() {
-        return "Genitore{" +
-                "idProfilo='" + idProfilo + '\'' +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = super.toMap();
+        map.put(CostantiDBGenitore.NUMERO_CELLULARE, this.numeroCellulare);
+        return map;
     }
+
 
 }

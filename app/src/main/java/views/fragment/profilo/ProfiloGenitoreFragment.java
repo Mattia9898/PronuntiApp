@@ -21,6 +21,7 @@ import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
 public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
+
     private TextInputEditText textInputEditTextTelefono;
 
     private GenitoreViewsModels mGenitoreViewModel;
@@ -63,7 +64,7 @@ public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
         textInputEditTextEmail.setText(genitore.getEmail());
         textInputEditTextEmail.setEnabled(false);
         textViewUsernameProfilo.setText(genitore.getUsername());
-        textInputEditTextTelefono.setText(genitore.getTelefono());
+        textInputEditTextTelefono.setText(genitore.getnumeroCellulare());
         textInputEditTextTelefono.setEnabled(false);
     }
 
@@ -90,7 +91,7 @@ public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
             @Override
             public void afterTextChanged(Editable s) {
                 String telefono = s.toString();
-                mGenitoreViewModel.getGenitoreLiveData().getValue().setTelefono(telefono);
+                mGenitoreViewModel.getGenitoreLiveData().getValue().setnumeroCellulare(telefono);
             }
         });
     }

@@ -12,7 +12,7 @@ public final class CostantiDBGenitore {
 
     public static final String PASSWORD = "password";
 
-    public static final String TELEFONO = "telefono";
+    public static final String NUMERO_CELLULARE = "numeroCellulare";
 
 }
 
