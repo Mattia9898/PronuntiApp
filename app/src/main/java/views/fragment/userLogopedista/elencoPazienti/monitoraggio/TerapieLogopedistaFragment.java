@@ -64,7 +64,7 @@ public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
 
         Logopedista logopedista = mLogopedistaViewModel.getLogopedistaLiveData().getValue();
 
-        for (Paziente paziente: logopedista.getPazienti()) {
+        for (Paziente paziente: logopedista.getListaPazienti()) {
             if (paziente.getIdProfilo().equals(idPaziente)){
                 paziente.getTerapie().sort(Comparator.comparing(Terapia::getDataInizio));
                 int indiceTerapia = paziente.getTerapie().size() - 1;
@@ -89,7 +89,7 @@ public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
             MonitoraggioLogopedistaFragment monitoraggioLogopedistaFragment = new MonitoraggioLogopedistaFragment();
             monitoraggioLogopedistaFragment.setArguments(bundle);
 
-            getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewMonitoraggio, monitoraggioLogopedistaFragment).replace(R.id.fragmentContainerViewNavTerapie, NavigazioneTerapieLogopedistaFragment).commit();
+            getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewMonitoraggio, monitoraggioLogopedistaFragment).replace(R.id.fragmentContainerViewNavTerapie, navigazioneTerapieLogopedistaFragment).commit();
         }
     }
 

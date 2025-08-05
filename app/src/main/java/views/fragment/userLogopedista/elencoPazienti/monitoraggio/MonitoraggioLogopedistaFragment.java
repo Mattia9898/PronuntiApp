@@ -139,7 +139,7 @@ public class MonitoraggioLogopedistaFragment extends AbstractNavigazioneFragment
 
         List<ScenarioGioco> listaScenari = new ArrayList<>();
 
-        for (Paziente paziente: mLogopedistaViewModel.getLogopedistaLiveData().getValue().getPazienti()) {
+        for (Paziente paziente: mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
             if (paziente.getIdProfilo().equals(idPaziente)) {
                 listaScenari.addAll(paziente.getTerapie().get(indiceTerapia).getScenariGioco());
                 break;
@@ -149,15 +149,15 @@ public class MonitoraggioLogopedistaFragment extends AbstractNavigazioneFragment
     }
 
     private void setTextViewDataInizioTerapia() {
-        if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getPazienti().get(indicePaziente).getTerapie() != null) {
-            textViewDataInizioTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataInizio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie() != null) {
+            textViewDataInizioTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataInizio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
 
     }
 
     private void setTextViewDataFineTerapia(){
-        if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getPazienti().get(indicePaziente).getTerapie() != null) {
-            textViewDataFineTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataFine().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie() != null) {
+            textViewDataFineTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataFine().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
     }
 

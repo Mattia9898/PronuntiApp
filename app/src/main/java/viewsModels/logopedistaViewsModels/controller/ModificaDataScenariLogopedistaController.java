@@ -19,11 +19,11 @@ public class ModificaDataScenariLogopedistaController implements ModificaDataSce
     @Override
     public void modificaDataScenari(LocalDate date, int indiceTerapia, int position, String idPaziente, int indicePaziente) {
 
-        for (Paziente paziente: mLogopedistaViewsModels.getLogopedistaLiveData().getValue().getPazienti()) {
+        for (Paziente paziente: mLogopedistaViewsModels.getLogopedistaLiveData().getValue().getListaPazienti()) {
 
             if(paziente.getIdProfilo().equals(idPaziente)){
 
-                mLogopedistaViewsModels.getLogopedistaLiveData().getValue().getPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getScenariGioco().get(position).setDataInizio(date);
+                mLogopedistaViewsModels.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getScenariGioco().get(position).setDataInizio(date);
                 mLogopedistaViewsModels.aggiornaLogopedistaRemoto();
 
                 break;

@@ -210,7 +210,7 @@ public class RisultatiEserciziCoppiaImmaginiLogopedistaFragment extends Abstract
 
     private EsercizioCoppiaImmagini getEsercizioCoppiaImmaginiFromViewModel(){
 
-        for (Paziente pazienti : mLogopedistaViewModel.getLogopedistaLiveData().getValue().getPazienti()) {
+        for (Paziente pazienti : mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
             if(pazienti.getIdProfilo().equals(idPaziente)){
                 return (EsercizioCoppiaImmagini) pazienti.getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getEsercizi().get(indiceEsercizio);
             }

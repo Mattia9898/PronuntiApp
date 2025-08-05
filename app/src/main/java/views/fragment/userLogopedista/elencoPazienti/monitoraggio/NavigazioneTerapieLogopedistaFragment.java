@@ -49,7 +49,7 @@ public class NavigazioneTerapieLogopedistaFragment extends AbstractNavigazioneFr
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.fragment_nav_terapie, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigazione_terapie, container, false);
 
         imageButtonProssimaTerapia = view.findViewById(R.id.buttonAvantiTerapia);
         imageButtonTerapiaPrecedente = view.findViewById(R.id.buttonIndietroTerapia);

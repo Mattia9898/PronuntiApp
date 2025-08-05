@@ -16,7 +16,7 @@ public final class CostantiDBLogopedista {
 
     public static final String PASSWORD = "password";
 
-    public static final String TELEFONO = "telefono";
+    public static final String NUMERO_CELLULARE = "numeroCellulare";
 
     public static final String INDIRIZZO = "indirizzo";
 

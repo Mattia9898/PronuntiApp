@@ -18,114 +18,137 @@ import android.util.Log;
 
 public class Logopedista extends AbstractProfilo {
 
-    private String telefono;
+
+    private String numeroCellulare;
 
     private String indirizzo;
 
     private Classifica classificaPazienti;
 
-    private List<Paziente> pazienti;
+    private List<Paziente> listaPazienti;
 
-    public Logopedista(String idProfilo, String nome, String cognome, String username, String email, String password, String telefono, String indirizzo, Classifica classificaPazienti, List<Paziente> pazienti) {
-        super(idProfilo, nome, cognome, username, email, password);
-        this.telefono = telefono;
-        this.indirizzo = indirizzo;
-        this.classificaPazienti = classificaPazienti;
-        this.pazienti = pazienti;
-    }
-
-    public Logopedista(String idProfilo, String nome, String cognome, String username, String email, String password, String telefono, String indirizzo, Classifica classificaPazienti) {
-        super(idProfilo, nome, cognome, username, email, password);
-        this.telefono = telefono;
-        this.indirizzo = indirizzo;
-        this.classificaPazienti = classificaPazienti;
-    }
-
-    public Logopedista(String idProfilo, String nome, String cognome, String username, String email, String password, String telefono, String indirizzo) {
-        super(idProfilo, nome, cognome, username, email, password);
-        this.telefono = telefono;
-        this.indirizzo = indirizzo;
-    }
-
-    public Logopedista(String nome, String cognome, String username, String email, String password, String telefono, String indirizzo, Classifica classificaPazienti, List<Paziente> pazienti) {
-        super(nome, cognome, username, email, password);
-        this.telefono = telefono;
-        this.indirizzo = indirizzo;
-        this.classificaPazienti = classificaPazienti;
-        this.pazienti = pazienti;
-    }
-
-    public Logopedista(String nome, String cognome, String username, String email, String password, String telefono, String indirizzo, Classifica classificaPazienti) {
-        super(nome, cognome, username, email, password);
-        this.telefono = telefono;
-        this.indirizzo = indirizzo;
-        this.classificaPazienti = classificaPazienti;
-    }
-
-    public Logopedista(String nome, String cognome, String username, String email, String password, String telefono, String indirizzo) {
-        super(nome, cognome, username, email, password);
-        this.telefono = telefono;
-        this.indirizzo = indirizzo;
-    }
 
     public Logopedista(Map<String, Object> fromDatabaseMap, String fromDatabaseKey) {
-        Logopedista l = this.fromMap(fromDatabaseMap);
-
+        Logopedista logopedista = this.fromMap(fromDatabaseMap);
         this.idProfilo = fromDatabaseKey;
-        this.nome = l.getNome();
-        this.cognome = l.getCognome();
-        this.username = l.getUsername();
-        this.email = l.getEmail();
-        this.password = l.getPassword();
-        this.telefono = l.getTelefono();
-        this.indirizzo = l.getIndirizzo();
-        this.classificaPazienti = l.getClassificaPazienti();
-        this.pazienti = l.getPazienti();
+        this.nome = logopedista.getNome();
+        this.cognome = logopedista.getCognome();
+        this.username = logopedista.getUsername();
+        this.email = logopedista.getEmail();
+        this.password = logopedista.getPassword();
+        this.numeroCellulare = logopedista.getNumeroCellulare();
+        this.indirizzo = logopedista.getIndirizzo();
+        this.classificaPazienti = logopedista.getClassificaPazienti();
+        this.listaPazienti = logopedista.getListaPazienti();
     }
 
-    public String getTelefono() {
-        return telefono;
+    public Logopedista(String idProfilo, String nome, String cognome, String username, String email, String password, String numeroCellulare, String indirizzo, Classifica classificaPazienti, List<Paziente> listaPazienti) {
+        super(idProfilo, nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
+        this.indirizzo = indirizzo;
+        this.classificaPazienti = classificaPazienti;
+        this.listaPazienti = listaPazienti;
     }
+
+    public Logopedista(String idProfilo, String nome, String cognome, String username, String email, String password, String numeroCellulare, String indirizzo) {
+        super(idProfilo, nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
+        this.indirizzo = indirizzo;
+    }
+
+    public Logopedista(String nome, String cognome, String username, String email, String password, String numeroCellulare, String indirizzo) {
+        super(nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
+        this.indirizzo = indirizzo;
+    }
+
+    public Logopedista(String nome, String cognome, String username, String email, String password, String numeroCellulare, String indirizzo, Classifica classificaPazienti, List<Paziente> listaPazienti) {
+        super(nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
+        this.indirizzo = indirizzo;
+        this.classificaPazienti = classificaPazienti;
+        this.listaPazienti = listaPazienti;
+    }
+
+    public Logopedista(String nome, String cognome, String username, String email, String password, String numeroCellulare, String indirizzo, Classifica classificaPazienti) {
+        super(nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
+        this.indirizzo = indirizzo;
+        this.classificaPazienti = classificaPazienti;
+    }
+
+    public Logopedista(String idProfilo, String nome, String cognome, String username, String email, String password, String numeroCellulare, String indirizzo, Classifica classificaPazienti) {
+        super(idProfilo, nome, cognome, username, email, password);
+        this.numeroCellulare = numeroCellulare;
+        this.indirizzo = indirizzo;
+        this.classificaPazienti = classificaPazienti;
+    }
+
+
+    public String getNumeroCellulare() {
+        return numeroCellulare;
+    }
+
+    public void setNumeroCellulare(String telefono) {
+        this.numeroCellulare = telefono;
+    }
+
 
     public String getIndirizzo() {
         return indirizzo;
-    }
-
-    public Classifica getClassificaPazienti() {
-        return classificaPazienti;
-    }
-
-    public List<Paziente> getPazienti() {
-        return pazienti;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
 
+
+    public Classifica getClassificaPazienti() {
+        return classificaPazienti;
+    }
+
     public void setClassificaPazienti(Classifica classificaPazienti) {
         this.classificaPazienti = classificaPazienti;
     }
 
+    public List<Paziente> getListaPazienti() {
+        return listaPazienti;
+    }
+
+
+    public void aggiornaClassificaPazienti() {
+        TreeMap<String, Integer> classificaTreeMap = new TreeMap<>();
+
+        for (Paziente paziente : this.listaPazienti) {
+            classificaTreeMap.put(paziente.getUsername(), paziente.getPunteggioTot());
+        }
+
+        Classifica classifica = new Classifica(classificaTreeMap);
+        this.setClassificaPazienti(classifica);
+    }
+
+    public void addPaziente(Paziente paziente) {
+        if (this.listaPazienti == null) {
+            this.listaPazienti = new ArrayList<>();
+        }
+        this.listaPazienti.add(paziente);
+    }
+
+
     @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-
-        entityMap.put(CostantiDBLogopedista.TELEFONO, this.telefono);
-        entityMap.put(CostantiDBLogopedista.INDIRIZZO, this.indirizzo);
-
-        if (this.classificaPazienti != null) {
-            entityMap.put(CostantiDBLogopedista.CLASSIFICA_PAZIENTI, this.classificaPazienti.toMap());
-        }
-
-        if (this.pazienti != null) {
-            entityMap.put(CostantiDBLogopedista.LISTA_PAZIENTI, this.pazienti.stream().collect(Collectors.toMap(Paziente::getIdProfilo, Paziente::toMap)));
-        }
-        return entityMap;
+    public String toString() {
+        return "Logopedista{" +
+                "idProfilo='" + idProfilo + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", telefono='" + numeroCellulare + '\'' +
+                ", indirizzo='" + indirizzo + '\'' +
+                ", classificaPazienti=" + classificaPazienti +
+                ", pazienti=" + listaPazienti +
+                '}';
     }
 
     @Override
@@ -147,7 +170,7 @@ public class Logopedista extends AbstractProfilo {
                 (String) fromDatabaseMap.get(CostantiDBLogopedista.USERNAME),
                 (String) fromDatabaseMap.get(CostantiDBLogopedista.EMAIL),
                 (String) fromDatabaseMap.get(CostantiDBLogopedista.PASSWORD),
-                (String) fromDatabaseMap.get(CostantiDBLogopedista.TELEFONO),
+                (String) fromDatabaseMap.get(CostantiDBLogopedista.NUMERO_CELLULARE),
                 (String) fromDatabaseMap.get(CostantiDBLogopedista.INDIRIZZO),
                 classifica,
                 listaPazienti
@@ -155,37 +178,22 @@ public class Logopedista extends AbstractProfilo {
     }
 
     @Override
-    public String toString() {
-        return "Logopedista{" +
-                "idProfilo='" + idProfilo + '\'' +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", indirizzo='" + indirizzo + '\'' +
-                ", classificaPazienti=" + classificaPazienti +
-                ", pazienti=" + pazienti +
-                '}';
-    }
+    public Map<String, Object> toMap() {
 
-    public void addPaziente(Paziente paziente) {
-        if (this.pazienti == null) {
-            this.pazienti = new ArrayList<>();
-        }
-        this.pazienti.add(paziente);
-    }
+        Map<String, Object> map = super.toMap();
+        map.put(CostantiDBLogopedista.NUMERO_CELLULARE, this.numeroCellulare);
+        map.put(CostantiDBLogopedista.INDIRIZZO, this.indirizzo);
 
-    public void aggiornaClassificaPazienti() {
-        TreeMap<String, Integer> classifica = new TreeMap<>();
-
-        for (Paziente paziente : this.pazienti) {
-            classifica.put(paziente.getUsername(), paziente.getPunteggioTot());
+        if (this.classificaPazienti != null) {
+            map.put(CostantiDBLogopedista.CLASSIFICA_PAZIENTI, this.classificaPazienti.toMap());
         }
 
-        Classifica c = new Classifica(classifica);
-        this.setClassificaPazienti(c);
+        if (this.listaPazienti != null) {
+            map.put(CostantiDBLogopedista.LISTA_PAZIENTI, this.listaPazienti.stream().collect(Collectors.toMap(Paziente::getIdProfilo, Paziente::toMap)));
+        }
+
+        return map;
     }
+
 
 }

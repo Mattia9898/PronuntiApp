@@ -89,7 +89,7 @@ public class SchedaPazienteFragment extends AbstractNavigazioneFragment {
         setToolBar(view, paziente1.getNome()+" "+paziente1.getCognome());
 
 
-        for (Paziente paziente: logopedista.getPazienti()) {
+        for (Paziente paziente: logopedista.getListaPazienti()) {
             if (paziente.getIdProfilo().equals(idPaziente)) {
                 if (paziente.getTerapie() != null) {
                     indiceTerapia = paziente.getTerapie().size() - 1;

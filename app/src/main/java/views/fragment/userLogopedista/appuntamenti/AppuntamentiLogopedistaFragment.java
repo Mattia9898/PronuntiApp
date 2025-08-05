@@ -272,7 +272,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigazioneFragment
 
         appuntamentiVisualizzazione = new ArrayList<>();
         Logopedista logopedista = mLogopedistaViewModel.getLogopedistaLiveData().getValue();
-        List<Paziente> listaPazienti = logopedista.getPazienti() != null ? logopedista.getPazienti() : new ArrayList<>();
+        List<Paziente> listaPazienti = logopedista.getListaPazienti() != null ? logopedista.getListaPazienti() : new ArrayList<>();
 
         for (Appuntamento appuntamento : mLogopedistaViewModel.getAppuntamentiLiveData().getValue()) {
             for (Paziente paziente : listaPazienti) {
@@ -292,7 +292,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigazioneFragment
     }
 
     private boolean checkInputAppuntamento() {
-        if (idPazienteSelezionato == null || idPazienteSelezionato.isEmpty() || editTextAppuntamentoPaziente.getText().toString().isEmpty() || !cercaPazienteInLista(editTextAppuntamentoPaziente.getText().toString(), mLogopedistaViewModel.getLogopedistaLiveData().getValue().getPazienti()) || orarioAppuntamento.isEmpty() || editTextDataAppuntemento.getText().toString().isEmpty()) {
+        if (idPazienteSelezionato == null || idPazienteSelezionato.isEmpty() || editTextAppuntamentoPaziente.getText().toString().isEmpty() || !cercaPazienteInLista(editTextAppuntamentoPaziente.getText().toString(), mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) || orarioAppuntamento.isEmpty() || editTextDataAppuntemento.getText().toString().isEmpty()) {
 
             showErrorInputDialog();
             cardViewAppuntamento.setVisibility(View.VISIBLE);

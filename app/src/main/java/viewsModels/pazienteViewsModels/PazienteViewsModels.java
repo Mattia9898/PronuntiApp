@@ -178,7 +178,7 @@ public class PazienteViewsModels extends ViewModel {
             LogopedistaDAO logopedistaDAO = new LogopedistaDAO();
             logopedistaDAO.update(logopedista);
 
-            List<EntryClassifica> classifica = ClassificaController.creazioneClassifica(logopedista.getPazienti(), getListaPersonaggiLiveData().getValue());
+            List<EntryClassifica> classifica = ClassificaController.creazioneClassifica(logopedista.getListaPazienti(), getListaPersonaggiLiveData().getValue());
             setClassifica(classifica);
         });
     }

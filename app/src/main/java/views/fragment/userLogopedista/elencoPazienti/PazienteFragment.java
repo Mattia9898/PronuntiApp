@@ -88,8 +88,8 @@ public class PazienteFragment extends AbstractNavigazioneFragment implements Nav
         mLogopedistaViewModel.getLogopedistaLiveData().observe(getViewLifecycleOwner(), logopedista -> {
 
             List<Paziente> pazienti = new ArrayList<>();
-            if(logopedista.getPazienti() != null) {
-                pazienti = logopedista.getPazienti();
+            if(logopedista.getListaPazienti() != null) {
+                pazienti = logopedista.getListaPazienti();
             }
             Log.d("PazientiFragment.loadData()", "pazienti: " + ((pazienti == null) ? "null" : pazienti.toString()));
 

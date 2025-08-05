@@ -61,7 +61,7 @@ public class InitialPaziente {
 
         PazienteDAO pazienteDAO = new PazienteDAO();
         pazienteDAO.getLogopedistaByIdPaziente(idPaziente).thenAccept(logopedista -> {
-            List<EntryClassifica> classifica = ClassificaController.creazioneClassifica(logopedista.getPazienti(), personaggi);
+            List<EntryClassifica> classifica = ClassificaController.creazioneClassifica(logopedista.getListaPazienti(), personaggi);
             future.complete(classifica);
         });
 

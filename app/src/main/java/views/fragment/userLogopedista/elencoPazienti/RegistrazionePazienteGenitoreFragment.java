@@ -30,6 +30,8 @@ import models.domain.profili.Logopedista;
 
 import models.domain.profili.Paziente;
 
+import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.verificaRegistrazione;
+
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
 import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;

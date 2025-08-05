@@ -65,7 +65,7 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
         textInputEditTextEmail.setText(logopedista.getEmail());
         textInputEditTextEmail.setEnabled(false);
         textViewUsernameProfilo.setText(logopedista.getUsername());
-        textInputEditTextTelefono.setText(logopedista.getTelefono());
+        textInputEditTextTelefono.setText(logopedista.getNumeroCellulare());
         textInputEditTextTelefono.setEnabled(false);
         textInputEditTextIndirizzo.setText(logopedista.getIndirizzo());
         textInputEditTextIndirizzo.setEnabled(false);
@@ -105,8 +105,8 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                String telefono = s.toString();
-                mLogopedistaViewModel.getLogopedistaLiveData().getValue().setTelefono(telefono);
+                String cellulare = s.toString();
+                mLogopedistaViewModel.getLogopedistaLiveData().getValue().setNumeroCellulare(cellulare);
             }
         });
     }

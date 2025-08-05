@@ -101,7 +101,7 @@ public class LogopedistaViewsModels extends ViewModel {
 
     public Paziente getPazienteById(String id){
 
-        List<Paziente> pazienti = mLogopedista.getValue().getPazienti();
+        List<Paziente> pazienti = mLogopedista.getValue().getListaPazienti();
         Paziente pazienteTrovato = null;
 
         for (Paziente paziente: pazienti){
@@ -115,7 +115,7 @@ public class LogopedistaViewsModels extends ViewModel {
 
     public void addTerapiaInPaziente(Terapia terapia, String idPaziente){
 
-        List<Paziente> pazienti = mLogopedista.getValue().getPazienti();
+        List<Paziente> pazienti = mLogopedista.getValue().getListaPazienti();
 
         for (Paziente paziente: pazienti){
             if(paziente.getIdProfilo().equals(idPaziente)){
