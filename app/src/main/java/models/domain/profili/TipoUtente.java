@@ -1,8 +1,10 @@
 package models.domain.profili;
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
+
+import android.util.Log;
+
 
 public enum TipoUtente {
 
@@ -19,14 +21,6 @@ public enum TipoUtente {
     TipoUtente(int codiceTipoUtente, String stringaTipoUtente) {
         this.codiceTipoUtente = codiceTipoUtente;
         this.stringaTipoUtente = stringaTipoUtente;
-    }
-
-    public int getCodiceTipoUtente() {
-        return codiceTipoUtente;
-    }
-
-    public String getStringaTipoUtente() {
-        return stringaTipoUtente;
     }
 
     @NonNull
