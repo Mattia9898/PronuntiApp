@@ -93,10 +93,10 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
             Terapia terapia  = terapie.get(terapiaIndex);
             scenarioGioco = terapia.getScenariGioco().get(scenarioIndex);
 
-            String immagineSfondo = scenarioGioco.getImmagineSfondo();
-            String immagineTappa1 = scenarioGioco.getImmagineTappa1();
-            String immagineTappa2 = scenarioGioco.getImmagineTappa2();
-            String immagineTappa3 = scenarioGioco.getImmagineTappa3();
+            String immagineSfondo = scenarioGioco.getSfondoImmagine();
+            String immagineTappa1 = scenarioGioco.getImmagine1();
+            String immagineTappa2 = scenarioGioco.getImmagine2();
+            String immagineTappa3 = scenarioGioco.getImmagine3();
             Glide.with(this).load(immagineSfondo).centerCrop().into(new CustomTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {

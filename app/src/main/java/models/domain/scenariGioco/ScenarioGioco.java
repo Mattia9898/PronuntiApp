@@ -64,10 +64,10 @@ public class ScenarioGioco extends TemplateScenarioGioco {
         ScenarioGioco s = this.fromMap(fromDatabaseMap);
 
         this.idScenarioGioco = fromDatabaseKey;
-        this.immagineSfondo = s.getImmagineSfondo();
-        this.immagineTappa1 = s.getImmagineTappa1();
-        this.immagineTappa2 = s.getImmagineTappa2();
-        this.immagineTappa3 = s.getImmagineTappa3();
+        this.sfondoImmagine = s.getSfondoImmagine();
+        this.immagine1 = s.getImmagine1();
+        this.immagine2 = s.getImmagine2();
+        this.immagine3 = s.getImmagine3();
         this.dataInizio = s.getDataInizio();
         this.ricompensaFinale = s.getRicompensaFinale();
         this.esercizi = s.getEsercizi();
@@ -164,10 +164,10 @@ public class ScenarioGioco extends TemplateScenarioGioco {
     public String toString() {
         return "ScenarioGioco{" +
                 "idScenarioGioco='" + idScenarioGioco + '\'' +
-                ", immagineSfondo='" + immagineSfondo + '\'' +
-                ", immagineTappa1='" + immagineTappa1 + '\'' +
-                ", immagineTappa2='" + immagineTappa2 + '\'' +
-                ", immagineTappa3='" + immagineTappa3 + '\'' +
+                ", immagineSfondo='" + sfondoImmagine + '\'' +
+                ", immagineTappa1='" + immagine1 + '\'' +
+                ", immagineTappa2='" + immagine2 + '\'' +
+                ", immagineTappa3='" + immagine3 + '\'' +
                 ", dataInizio=" + dataInizio +
                 ", ricompensaFinale=" + ricompensaFinale +
                 ", esercizi=" + esercizi +

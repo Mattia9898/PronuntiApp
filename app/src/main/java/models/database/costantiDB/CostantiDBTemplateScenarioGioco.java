@@ -2,12 +2,12 @@ package models.database.costantiDB;
 
 public final class CostantiDBTemplateScenarioGioco {
 
-    public static final String IMMAGINE_TAPPA_1 = "immagineTappa1";
+    public static final String IMMAGINE_1 = "immagine1";
 
-    public static final String IMMAGINE_TAPPA_2 = "immagineTappa2";
+    public static final String IMMAGINE_2 = "immagine2";
 
-    public static final String IMMAGINE_TAPPA_3 = "immagineTappa3";
+    public static final String IMMAGINE_3 = "immagine3";
 
-    public static final String IMMAGINE_SFONDO = "immagineSfondo";
+    public static final String SFONDO_IMMAGINE = "sfondoImmagine";
 
 }

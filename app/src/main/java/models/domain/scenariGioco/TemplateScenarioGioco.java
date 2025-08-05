@@ -25,10 +25,10 @@ public class TemplateScenarioGioco extends AbstractScenarioGioco {
         TemplateScenarioGioco t = this.fromMap(fromDatabaseMap);
 
         this.idTemplateScenarioGioco = fromDatabaseKey;
-        this.immagineSfondo = t.getImmagineSfondo();
-        this.immagineTappa1 = t.getImmagineTappa1();
-        this.immagineTappa2 = t.getImmagineTappa2();
-        this.immagineTappa3 = t.getImmagineTappa3();
+        this.sfondoImmagine = t.getSfondoImmagine();
+        this.immagine1 = t.getImmagine1();
+        this.immagine2 = t.getImmagine2();
+        this.immagine3 = t.getImmagine3();
     }
 
     public final String getIdTemplateScenarioGioco() {
@@ -51,10 +51,10 @@ public class TemplateScenarioGioco extends AbstractScenarioGioco {
     public TemplateScenarioGioco fromMap(Map<String, Object> fromDatabaseMap) {
         Log.d("TemplateScenarioGioco.fromMap()", fromDatabaseMap.toString());
         return new TemplateScenarioGioco(
-                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.IMMAGINE_SFONDO),
-                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.IMMAGINE_TAPPA_1),
-                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.IMMAGINE_TAPPA_2),
-                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.IMMAGINE_TAPPA_3)
+                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.SFONDO_IMMAGINE),
+                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.IMMAGINE_1),
+                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.IMMAGINE_2),
+                (String) fromDatabaseMap.get(CostantiDBTemplateScenarioGioco.IMMAGINE_3)
         );
     }
 
@@ -62,10 +62,10 @@ public class TemplateScenarioGioco extends AbstractScenarioGioco {
     public String toString() {
         return "TemplateScenarioGioco{" +
                 "idTemplateScenarioGioco='" + idTemplateScenarioGioco + '\'' +
-                ", immagineSfondo='" + immagineSfondo + '\'' +
-                ", immagineTappa1='" + immagineTappa1 + '\'' +
-                ", immagineTappa2='" + immagineTappa2 + '\'' +
-                ", immagineTappa3='" + immagineTappa3 + '\'' +
+                ", immagineSfondo='" + sfondoImmagine + '\'' +
+                ", immagineTappa1='" + immagine1 + '\'' +
+                ", immagineTappa2='" + immagine2 + '\'' +
+                ", immagineTappa3='" + immagine3 + '\'' +
                 '}';
     }
 

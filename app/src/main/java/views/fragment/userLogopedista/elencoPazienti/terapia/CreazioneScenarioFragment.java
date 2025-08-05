@@ -313,10 +313,10 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
         EsercizioRealizzabile es3 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio3)).getEsercizio();
 
         if(sceltaScenari) {
-            imgPos1Uri = templateScenari.get(currentIndexTemplateScenari).getImmagineTappa1();
-            imgPos2Uri = templateScenari.get(currentIndexTemplateScenari).getImmagineTappa2();
-            imgPos3Uri = templateScenari.get(currentIndexTemplateScenari).getImmagineTappa3();
-            imgBackgroundUri = templateScenari.get(currentIndexTemplateScenari).getImmagineSfondo();
+            imgPos1Uri = templateScenari.get(currentIndexTemplateScenari).getImmagine1();
+            imgPos2Uri = templateScenari.get(currentIndexTemplateScenari).getImmagine2();
+            imgPos3Uri = templateScenari.get(currentIndexTemplateScenari).getImmagine3();
+            imgBackgroundUri = templateScenari.get(currentIndexTemplateScenari).getSfondoImmagine();
         }
 
         if(dataScenario.getText().toString().isEmpty() || ricompensaFinale.getText().toString().isEmpty() || imgPos1Uri==null
@@ -387,10 +387,10 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
 
     private void modificaCostruzioneScenarioConTemplate(){
 
-        String img1 = templateScenari.get(currentIndexTemplateScenari).getImmagineTappa1();
-        String img2 = templateScenari.get(currentIndexTemplateScenari).getImmagineTappa2();
-        String img3 = templateScenari.get(currentIndexTemplateScenari).getImmagineTappa3();
-        String imgSfondo = templateScenari.get(currentIndexTemplateScenari).getImmagineSfondo();
+        String img1 = templateScenari.get(currentIndexTemplateScenari).getImmagine1();
+        String img2 = templateScenari.get(currentIndexTemplateScenari).getImmagine2();
+        String img3 = templateScenari.get(currentIndexTemplateScenari).getImmagine3();
+        String imgSfondo = templateScenari.get(currentIndexTemplateScenari).getSfondoImmagine();
 
         Glide.with(getContext()).load(img1).into(imgPos1);
         Glide.with(getContext()).load(img2).into(imgPos2);
