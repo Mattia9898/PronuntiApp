@@ -1,17 +1,20 @@
 package models.domain.profili;
 
-import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import models.database.costantiDB.CostantiDBGenitore;
-import models.database.costantiDB.CostantiDBLogopedista;
 import models.domain.profili.classifica.Classifica;
+import models.database.costantiDB.CostantiDBLogopedista;
+import models.database.costantiDB.CostantiDBGenitore;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.TreeMap;
+import java.util.Map;
+
+import android.util.Log;
+
 
 public class Logopedista extends AbstractProfilo {
 
@@ -106,10 +109,6 @@ public class Logopedista extends AbstractProfilo {
 
     public void setClassificaPazienti(Classifica classificaPazienti) {
         this.classificaPazienti = classificaPazienti;
-    }
-
-    public void setPazienti(List<Paziente> pazienti) {
-        this.pazienti = pazienti;
     }
 
     @Override
