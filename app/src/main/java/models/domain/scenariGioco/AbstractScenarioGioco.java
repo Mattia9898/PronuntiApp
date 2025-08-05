@@ -1,10 +1,12 @@
 package models.domain.scenariGioco;
 
-import java.util.HashMap;
-import java.util.Map;
 
-import models.database.costantiDB.CostantiDBTemplateScenarioGioco;
 import models.domain.DataPersistenza;
+import models.database.costantiDB.CostantiDBTemplateScenarioGioco;
+
+import java.util.Map;
+import java.util.HashMap;
+
 
 public abstract class AbstractScenarioGioco implements DataPersistenza<AbstractScenarioGioco> {
 
@@ -41,21 +43,6 @@ public abstract class AbstractScenarioGioco implements DataPersistenza<AbstractS
         return immagineTappa3;
     }
 
-    public void setImmagineSfondo(String immagineSfondo) {
-        this.immagineSfondo = immagineSfondo;
-    }
-
-    public void setImmagineTappa1(String immagineTappa1) {
-        this.immagineTappa1 = immagineTappa1;
-    }
-
-    public void setImmagineTappa2(String immagineTappa2) {
-        this.immagineTappa2 = immagineTappa2;
-    }
-
-    public void setImmagineTappa3(String immagineTappa3) {
-        this.immagineTappa3 = immagineTappa3;
-    }
 
     @Override
     public Map<String, Object> toMap() {
@@ -67,5 +54,6 @@ public abstract class AbstractScenarioGioco implements DataPersistenza<AbstractS
         entityMap.put(CostantiDBTemplateScenarioGioco.IMMAGINE_TAPPA_3, this.immagineTappa3);
         return entityMap;
     }
+
 
 }
