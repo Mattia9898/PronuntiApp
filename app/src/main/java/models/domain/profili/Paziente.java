@@ -27,167 +27,197 @@ public class Paziente extends AbstractProfilo {
 
     private int valuta;
 
-    private int punteggioTot;
+    private int punteggioTotale;
 
     private Map<String, Integer> personaggiSbloccati;
 
     private Genitore genitore;
 
-    private List<Terapia> terapie;
+    private List<Terapia> listaTerapie;
 
-    public Paziente(String idProfilo, String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTot, Map<String, Integer> personaggiSbloccati, Genitore genitore, List<Terapia> terapie) {
-        super(idProfilo, nome, cognome, username, email, password);
-        this.eta = eta;
-        this.dataNascita = dataNascita;
-        this.sesso = sesso;
-        this.valuta = valuta;
-        this.punteggioTot = punteggioTot;
-        this.personaggiSbloccati = personaggiSbloccati;
-        this.genitore = genitore;
-        this.terapie = terapie;
-    }
-
-    public Paziente(String idProfilo, String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTot, Map<String, Integer> personaggiSbloccati, Genitore genitore) {
-        super(idProfilo, nome, cognome, username, email, password);
-        this.eta = eta;
-        this.dataNascita = dataNascita;
-        this.sesso = sesso;
-        this.valuta = valuta;
-        this.punteggioTot = punteggioTot;
-        this.personaggiSbloccati = personaggiSbloccati;
-        this.genitore = genitore;
-    }
-
-    public Paziente(String idProfilo, String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTot, Map<String, Integer> personaggiSbloccati) {
-        super(idProfilo, nome, cognome, username, email, password);
-        this.eta = eta;
-        this.dataNascita = dataNascita;
-        this.sesso = sesso;
-        this.valuta = valuta;
-        this.punteggioTot = punteggioTot;
-        this.personaggiSbloccati = personaggiSbloccati;
-    }
-
-    public Paziente(String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTot, Map<String, Integer> personaggiSbloccati, Genitore genitore, List<Terapia> terapie) {
-        super(nome, cognome, username, email, password);
-        this.eta = eta;
-        this.dataNascita = dataNascita;
-        this.sesso = sesso;
-        this.valuta = valuta;
-        this.punteggioTot = punteggioTot;
-        this.personaggiSbloccati = personaggiSbloccati;
-        this.genitore = genitore;
-        this.terapie = terapie;
-    }
-
-    public Paziente(String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTot, Map<String, Integer> personaggiSbloccati, Genitore genitore) {
-        super(nome, cognome, username, email, password);
-        this.eta = eta;
-        this.dataNascita = dataNascita;
-        this.sesso = sesso;
-        this.valuta = valuta;
-        this.punteggioTot = punteggioTot;
-        this.personaggiSbloccati = personaggiSbloccati;
-        this.genitore = genitore;
-    }
-
-    public Paziente(String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTot, Map<String, Integer> personaggiSbloccati) {
-        super(nome, cognome, username, email, password);
-        this.eta = eta;
-        this.dataNascita = dataNascita;
-        this.sesso = sesso;
-        this.valuta = valuta;
-        this.punteggioTot = punteggioTot;
-        this.personaggiSbloccati = personaggiSbloccati;
-    }
 
     public Paziente(Map<String,Object> fromDatabaseMap, String fromDatabaseKey){
-        Paziente p = this.fromMap(fromDatabaseMap);
-
+        Paziente paziente = this.fromMap(fromDatabaseMap);
         this.idProfilo = fromDatabaseKey;
-        this.nome = p.getNome();
-        this.cognome = p.getCognome();
-        this.username = p.getUsername();
-        this.email = p.getEmail();
-        this.password = p.getPassword();
-        this.eta = p.getEta();
-        this.dataNascita = p.getDataNascita();
-        this.sesso = p.getSesso();
-        this.valuta = p.getValuta();
-        this.punteggioTot = p.getPunteggioTot();
-        this.personaggiSbloccati = p.getPersonaggiSbloccati();
-        this.genitore = p.getGenitore();
-        this.terapie = p.getTerapie();
+        this.nome = paziente.getNome();
+        this.cognome = paziente.getCognome();
+        this.username = paziente.getUsername();
+        this.email = paziente.getEmail();
+        this.password = paziente.getPassword();
+        this.eta = paziente.getEta();
+        this.dataNascita = paziente.getDataNascita();
+        this.sesso = paziente.getSesso();
+        this.valuta = paziente.getValuta();
+        this.punteggioTotale = paziente.getPunteggioTot();
+        this.personaggiSbloccati = paziente.getPersonaggiSbloccati();
+        this.genitore = paziente.getGenitore();
+        this.listaTerapie = paziente.getTerapie();
     }
+
+    public Paziente(String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTotale, Map<String, Integer> personaggiSbloccati) {
+        super(nome, cognome, username, email, password);
+        this.eta = eta;
+        this.dataNascita = dataNascita;
+        this.sesso = sesso;
+        this.valuta = valuta;
+        this.punteggioTotale = punteggioTotale;
+        this.personaggiSbloccati = personaggiSbloccati;
+    }
+
+    public Paziente(String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTotale, Map<String, Integer> personaggiSbloccati, Genitore genitore, List<Terapia> listaTerapie) {
+        super(nome, cognome, username, email, password);
+        this.eta = eta;
+        this.dataNascita = dataNascita;
+        this.sesso = sesso;
+        this.valuta = valuta;
+        this.punteggioTotale = punteggioTotale;
+        this.personaggiSbloccati = personaggiSbloccati;
+        this.genitore = genitore;
+        this.listaTerapie = listaTerapie;
+    }
+
+    public Paziente(String idProfilo, String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTotale, Map<String, Integer> personaggiSbloccati, Genitore genitore, List<Terapia> listaTerapie) {
+        super(idProfilo, nome, cognome, username, email, password);
+        this.eta = eta;
+        this.dataNascita = dataNascita;
+        this.sesso = sesso;
+        this.valuta = valuta;
+        this.punteggioTotale = punteggioTotale;
+        this.personaggiSbloccati = personaggiSbloccati;
+        this.genitore = genitore;
+        this.listaTerapie = listaTerapie;
+    }
+
+    public Paziente(String idProfilo, String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTotale, Map<String, Integer> personaggiSbloccati) {
+        super(idProfilo, nome, cognome, username, email, password);
+        this.eta = eta;
+        this.dataNascita = dataNascita;
+        this.sesso = sesso;
+        this.valuta = valuta;
+        this.punteggioTotale = punteggioTotale;
+        this.personaggiSbloccati = personaggiSbloccati;
+    }
+
+    public Paziente(String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTotale, Map<String, Integer> personaggiSbloccati, Genitore genitore) {
+        super(nome, cognome, username, email, password);
+        this.eta = eta;
+        this.dataNascita = dataNascita;
+        this.sesso = sesso;
+        this.valuta = valuta;
+        this.punteggioTotale = punteggioTotale;
+        this.personaggiSbloccati = personaggiSbloccati;
+        this.genitore = genitore;
+    }
+
+
+
+    public Paziente(String idProfilo, String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, int valuta, int punteggioTotale, Map<String, Integer> personaggiSbloccati, Genitore genitore) {
+        super(idProfilo, nome, cognome, username, email, password);
+        this.eta = eta;
+        this.dataNascita = dataNascita;
+        this.sesso = sesso;
+        this.valuta = valuta;
+        this.punteggioTotale = punteggioTotale;
+        this.personaggiSbloccati = personaggiSbloccati;
+        this.genitore = genitore;
+    }
+
 
     public int getEta() {
         return eta;
     }
 
+
     public LocalDate getDataNascita() {
         return dataNascita;
     }
+
 
     public char getSesso() {
         return sesso;
     }
 
+
     public int getValuta() {
         return valuta;
     }
 
+
     public int getPunteggioTot() {
-        return punteggioTot;
+        return punteggioTotale;
     }
+
 
     public Map<String, Integer> getPersonaggiSbloccati() {
         return personaggiSbloccati;
     }
 
-    public Genitore getGenitore() {
-        return genitore;
-    }
-
-    public List<Terapia> getTerapie() {
-        return terapie;
-    }
-
-
     public void setPersonaggiSbloccati(Map<String, Integer> personaggiSbloccati) {
         this.personaggiSbloccati = personaggiSbloccati;
+    }
+
+
+    public Genitore getGenitore() {
+        return genitore;
     }
 
     public void setGenitore(Genitore genitore) {
         this.genitore = genitore;
     }
 
+
+    public List<Terapia> getTerapie() {
+        return listaTerapie;
+    }
+
+
     @Override
     public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
+        Map<String, Object> map = super.toMap();
 
-        entityMap.put(CostantiDBPaziente.ETA, this.eta);
-        entityMap.put(CostantiDBPaziente.DATA_NASCITA, this.dataNascita.toString());
-        entityMap.put(CostantiDBPaziente.SESSO, Character.toString(this.sesso));
-        entityMap.put(CostantiDBPaziente.VALUTA, this.valuta);
-        entityMap.put(CostantiDBPaziente.PUNTEGGIO_TOTALE, this.punteggioTot);
-        entityMap.put(CostantiDBPaziente.PERSONAGGI_SBLOCCATI, this.personaggiSbloccati);
+        map.put(CostantiDBPaziente.ETA, this.eta);
+        map.put(CostantiDBPaziente.DATA_NASCITA, this.dataNascita.toString());
+        map.put(CostantiDBPaziente.SESSO, Character.toString(this.sesso));
+        map.put(CostantiDBPaziente.VALUTA, this.valuta);
+        map.put(CostantiDBPaziente.PUNTEGGIO_TOTALE, this.punteggioTotale);
+        map.put(CostantiDBPaziente.PERSONAGGI_SBLOCCATI, this.personaggiSbloccati);
 
         if (this.genitore != null) {
             Map<String, Object> genitoreMap = new HashMap<>();
             genitoreMap.put(this.genitore.getIdProfilo(), this.genitore.toMap());
-            entityMap.put(CostantiDBPaziente.GENITORE, genitoreMap);
+            map.put(CostantiDBPaziente.GENITORE, genitoreMap);
         }
 
-        if (this.terapie != null) {
-            entityMap.put(CostantiDBPaziente.LISTA_TERAPIE, this.terapie.stream().map(Terapia::toMap).collect(Collectors.toList()));
+        if (this.listaTerapie != null) {
+            map.put(CostantiDBPaziente.LISTA_TERAPIE, this.listaTerapie.stream().map(Terapia::toMap).collect(Collectors.toList()));
         }
-        return entityMap;
+        return map;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Paziente{" +
+                "idProfilo='" + idProfilo + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", eta=" + eta +
+                ", dataNascita=" + dataNascita +
+                ", sesso=" + sesso +
+                ", valuta=" + valuta +
+                ", punteggioTot=" + punteggioTotale +
+                ", personaggiSbloccati=" + personaggiSbloccati +
+                ", genitore=" + genitore +
+                ", terapie=" + listaTerapie +
+                '}';
     }
 
     @Override
     public Paziente fromMap(Map<String, Object> fromDatabaseMap) {
         Log.d("Paziente.fromMap()", fromDatabaseMap.toString());
-
         Genitore genitore = (fromDatabaseMap.get(CostantiDBPaziente.GENITORE)) != null ?
                 ((Map<String, Map<String, Object>>) fromDatabaseMap.get(CostantiDBPaziente.GENITORE))
                         .entrySet().stream().map(entry -> new Genitore(entry.getValue(), entry.getKey())).collect(Collectors.toList()).get(0)
@@ -206,47 +236,34 @@ public class Paziente extends AbstractProfilo {
                 Math.toIntExact((long) fromDatabaseMap.get(CostantiDBPaziente.PUNTEGGIO_TOTALE)),
                 (Map<String, Integer>) fromDatabaseMap.get(CostantiDBPaziente.PERSONAGGI_SBLOCCATI),
                 genitore,
-                (fromDatabaseMap.get(CostantiDBPaziente.LISTA_TERAPIE)) != null ? ((List<Map<String, Object>>) fromDatabaseMap.get(CostantiDBPaziente.LISTA_TERAPIE)).stream().map(obj -> new Terapia(obj, null)).collect(Collectors.toList()) : null
+                (fromDatabaseMap.get(CostantiDBPaziente.LISTA_TERAPIE)) != null ?
+                        ((List<Map<String, Object>>) fromDatabaseMap.get(CostantiDBPaziente.LISTA_TERAPIE)).stream().
+                                map(obj -> new Terapia(obj, null)).collect(Collectors.toList()) : null
         );
     }
 
-    @Override
-    public String toString() {
-        return "Paziente{" +
-                "idProfilo='" + idProfilo + '\'' +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", eta=" + eta +
-                ", dataNascita=" + dataNascita +
-                ", sesso=" + sesso +
-                ", valuta=" + valuta +
-                ", punteggioTot=" + punteggioTot +
-                ", personaggiSbloccati=" + personaggiSbloccati +
-                ", genitore=" + genitore +
-                ", terapie=" + terapie +
-                '}';
+
+    public void incrementaPunteggioTotale(int punteggioOttenuto) {
+        this.punteggioTotale += punteggioOttenuto;
     }
 
-    public void incrementaValuta(int valutaGuadagnata) {
-        this.valuta += valutaGuadagnata;
+    public void addTerapia(Terapia terapia) {
+        if (this.listaTerapie == null) {
+            this.listaTerapie = new ArrayList<>();
+        }
+        this.listaTerapie.add(terapia);
+    }
+
+    public void incrementaValuta(int valutaOttenuta) {
+        this.valuta += valutaOttenuta;
     }
 
     public void decrementaValuta(int valutaSpesa) {
         this.valuta -= valutaSpesa;
     }
 
-    public void incrementaPunteggioTot(int punteggioGuadagnato) {
-        this.punteggioTot += punteggioGuadagnato;
-    }
 
-    public void addTerapia(Terapia terapia) {
-        if (this.terapie == null) {
-            this.terapie = new ArrayList<>();
-        }
-        this.terapie.add(terapia);
-    }
+
+
 
 }

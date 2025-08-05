@@ -238,7 +238,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
         if (mController.verificaSceltaImmagine(immagineScelta, correctImageView)) {
             esito = true;
             mPazienteViewModel.getPazienteLiveData().getValue().incrementaValuta(mEsercizioCoppiaImmagini.getRicompensaCorretto());
-            mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTot(mEsercizioCoppiaImmagini.getRicompensaCorretto());
+            mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioCoppiaImmagini.getRicompensaCorretto());
             setEsitoEsercizio(esito);
 
             if(checkFineScenario(scenarioGioco)){
@@ -253,7 +253,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
         } else {
             esito = false;
             mPazienteViewModel.getPazienteLiveData().getValue().incrementaValuta(mEsercizioCoppiaImmagini.getRicompensaErrato());
-            mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTot(mEsercizioCoppiaImmagini.getRicompensaErrato());
+            mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioCoppiaImmagini.getRicompensaErrato());
             setEsitoEsercizio(esito);
 
             if(checkFineScenario(scenarioGioco)){
@@ -276,7 +276,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
     private void  addRicompensaScenario(){
         int ricompensaFinale = scenarioGioco.getRicompensaFinale();
         mPazienteViewModel.getPazienteLiveData().getValue().incrementaValuta(ricompensaFinale);
-        mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTot(ricompensaFinale);
+        mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTotale(ricompensaFinale);
         mPazienteViewModel.aggiornaPazienteRemoto();
     }
 

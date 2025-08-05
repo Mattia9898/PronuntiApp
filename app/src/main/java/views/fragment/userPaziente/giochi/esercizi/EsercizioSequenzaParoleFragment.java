@@ -202,7 +202,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
             if (mSequenzaParoleController.verificaAudio(audioRecorder.getAudioFile(), getContext())) {
                 esito = true;
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioSequenzaParole.getRicompensaCorretto());
-                mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTot(mEsercizioSequenzaParole.getRicompensaCorretto());
+                mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioSequenzaParole.getRicompensaCorretto());
                 setEsitoEsercizio(esito, link);
                 if (checkFineScenario(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
@@ -213,7 +213,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
             } else {
                 esito = false;
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioSequenzaParole.getRicompensaErrato());
-                mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTot(mEsercizioSequenzaParole.getRicompensaErrato());
+                mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioSequenzaParole.getRicompensaErrato());
                 setEsitoEsercizio(esito, link);
                 if (checkFineScenario(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
@@ -238,7 +238,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
     private void  addRicompensaScenario(){
         int ricompensaFinale = scenarioGioco.getRicompensaFinale();
         mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(ricompensaFinale);
-        mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTot(ricompensaFinale);
+        mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(ricompensaFinale);
         mPazienteViewsModels.aggiornaPazienteRemoto();
     }
 
