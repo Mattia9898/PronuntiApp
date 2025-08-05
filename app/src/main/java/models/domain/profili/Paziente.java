@@ -1,19 +1,21 @@
 package models.domain.profili;
 
-import android.os.Build;
+
+import models.domain.terapie.Terapia;
+import models.database.costantiDB.CostantiDBPaziente;
+
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 import android.util.Log;
+
+import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import models.database.costantiDB.CostantiDBPaziente;
-import models.domain.terapie.Terapia;
 
 public class Paziente extends AbstractProfilo {
 
@@ -150,25 +152,6 @@ public class Paziente extends AbstractProfilo {
         return terapie;
     }
 
-    public void setEta(int eta) {
-        this.eta = eta;
-    }
-
-    public void setDataNascita(LocalDate dataNascita) {
-        this.dataNascita = dataNascita;
-    }
-
-    public void setSesso(char sesso) {
-        this.sesso = sesso;
-    }
-
-    public void setValuta(int valuta) {
-        this.valuta = valuta;
-    }
-
-    public void setPunteggioTot(int punteggioTot) {
-        this.punteggioTot = punteggioTot;
-    }
 
     public void setPersonaggiSbloccati(Map<String, Integer> personaggiSbloccati) {
         this.personaggiSbloccati = personaggiSbloccati;
@@ -176,10 +159,6 @@ public class Paziente extends AbstractProfilo {
 
     public void setGenitore(Genitore genitore) {
         this.genitore = genitore;
-    }
-
-    public void setTerapie(List<Terapia> terapie) {
-        this.terapie = terapie;
     }
 
     @Override
