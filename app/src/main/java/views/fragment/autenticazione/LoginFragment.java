@@ -85,7 +85,7 @@ public class LoginFragment extends AbstractNavigazioneFragment {
                 futureProfilo.thenAccept(profilo -> {
                     Log.d("LoginFragment.loginActivityProfilo()", "Profilo: " + profilo.toString());
 
-                    getActivity().runOnUiThread(() -> ((AbstractAppActivity) getActivity()).navigaConProfilo(profilo, getActivity()));
+                    getActivity().runOnUiThread(() -> ((AbstractAppActivity) getActivity()).navigationWithProfile(profilo, getActivity()));
                 });
             }
         });

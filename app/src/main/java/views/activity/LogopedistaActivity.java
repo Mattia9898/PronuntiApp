@@ -38,18 +38,18 @@ public class LogopedistaActivity extends AbstractAppActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(getColor(R.color.backgroundWhite));
-
         setContentView(R.layout.activity_logopedista);
 
-        //Setup Navigazione
-        navcontroller = Navigation.findNavController(this, R.id.fragmentContainerLogopedista);
+        //setup di navigazione
+        navigationController = Navigation.findNavController(this, R.id.fragmentContainerLogopedista);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
 
-        NavigationUI.setupWithNavController(bottomNavigationView, navcontroller);
+        NavigationUI.setupWithNavController(bottomNavigationView, navigationController);
         setOnBackPressedCallback(R.id.pazientiFragment);
 
         //Setup Dati

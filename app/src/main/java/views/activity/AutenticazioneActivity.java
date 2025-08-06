@@ -27,7 +27,7 @@ public class AutenticazioneActivity extends AbstractAppActivity {
 
         this.mLoginViewModel = new ViewModelProvider(this).get(LoginViewsModels.class);
 
-        navcontroller = Navigation.findNavController(this, R.id.fragmentContainerAutenticazione);
+        navigationController = Navigation.findNavController(this, R.id.fragmentContainerAutenticazione);
         setOnBackPressedCallback(R.id.loginFragment);
 
     }

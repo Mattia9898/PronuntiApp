@@ -55,11 +55,10 @@ public class AutenticazioneRapidaFragment extends AbstractNavigazioneFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_autenticazione_rapida, container, false);
-
         this.mLoginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewsModels.class);
-
-        this.frameLayout = view.findViewById(R.id.frameLayout);
+        this.frameLayout = view.findViewById(R.id.layoutAvvioRapido);
 
         return view;
     }
@@ -100,7 +99,7 @@ public class AutenticazioneRapidaFragment extends AbstractNavigazioneFragment {
                 futureProfilo.thenAccept(profilo -> {
                     Log.d("AvvioRapidoFragment.loginActivityProfilo()", "Profilo: " + profilo.toString());
 
-                    getActivity().runOnUiThread(() -> ((AbstractAppActivity) getActivity()).navigaConProfilo(profilo, getActivity()));
+                    getActivity().runOnUiThread(() -> ((AbstractAppActivity) getActivity()).navigationWithProfile(profilo, getActivity()));
                 });
             }
         });
@@ -109,7 +108,7 @@ public class AutenticazioneRapidaFragment extends AbstractNavigazioneFragment {
     private void avviaSchermataCaricamento() {
         frameLayout.removeAllViews();
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, new CaricamentoFragment())
+                .replace(R.id.layoutAvvioRapido, new CaricamentoFragment())
                 .commit();
     }
 

@@ -53,7 +53,7 @@ public class EntryActivity extends AbstractAppActivity {
             futureProfilo.thenAccept(profilo -> {
                 Log.d("LoginFragment.loginActivityProfilo()", "Profilo: " + profilo.toString());
 
-                this.runOnUiThread(() -> navigaConProfilo(profilo, this));
+                this.runOnUiThread(() -> navigationWithProfile(profilo, this));
             });
         });
     }

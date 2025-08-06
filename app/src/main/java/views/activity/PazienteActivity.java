@@ -56,15 +56,14 @@ public class PazienteActivity extends AbstractAppActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paziente);
-
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        //getWindow().setNavigationBarColor(getColor(R.color.navBarPaziente));
 
-        //Setup Navigazione
-        navcontroller = Navigation.findNavController(this, R.id.fragmentContainerPaziente);
+        //setup di navigazione
+        navigationController = Navigation.findNavController(this, R.id.fragmentContainerPaziente);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_UNLABELED);
@@ -73,7 +72,7 @@ public class PazienteActivity extends AbstractAppActivity {
         navBarPersonaggi = findViewById(R.id.bottom_nav_personaggi);
         navBarClassifica = findViewById(R.id.bottom_nav_classifica);
 
-        //primo fragment
+        //first fragment
         highlightNavBarButton(R.id.scenariFragment);
 
         //onclick navBar custom
@@ -90,7 +89,6 @@ public class PazienteActivity extends AbstractAppActivity {
             resetNavBarButtons(R.id.classificaFragment);
         });
 
-        //NavigationUI.setupWithNavController(bottomNavigationView, navcontroller);
         setOnBackPressedCallback(R.id.scenariFragment);
 
         //Setup Dati
@@ -104,31 +102,31 @@ public class PazienteActivity extends AbstractAppActivity {
 
     private void resetNavBarButtons(int id){
         if(id == R.id.scenariFragment){
-            selectorNavBarButton(navBarGiochi, R.drawable.ic_game);
+            selectorNavBarButton(navBarGiochi, R.drawable.icona_game);
             navBarClassifica.setScaleX(1f);
             navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.ic_classifica_color));
+            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
             navBarPersonaggi.setScaleX(1f);
             navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.ic_characters));
+            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
         }
         else if(id == R.id.personaggiFragment){
-            selectorNavBarButton(navBarPersonaggi, R.drawable.ic_characters);
+            selectorNavBarButton(navBarPersonaggi, R.drawable.icona_personaggi_sbloccati);
             navBarClassifica.setScaleX(1f);
             navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.ic_classifica_color));
+            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
             navBarGiochi.setScaleX(1f);
             navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.ic_game));
+            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
         }
         else if(id == R.id.classificaFragment){
-            selectorNavBarButton(navBarClassifica, R.drawable.ic_classifica_color);
+            selectorNavBarButton(navBarClassifica, R.drawable.icona_classifica_colori);
             navBarGiochi.setScaleX(1f);
             navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.ic_game));
+            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
             navBarPersonaggi.setScaleX(1f);
             navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.ic_characters));
+            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
         }
     }
 
@@ -156,14 +154,14 @@ public class PazienteActivity extends AbstractAppActivity {
             @Override
             public void handleOnBackPressed() {
                 highlightNavBarButton(id);
-                if (navcontroller.getCurrentDestination().getId() == id && doubleBackToExit) {
+                if (navigationController.getCurrentDestination().getId() == id && doubleBackToExit) {
                     finishAffinity();
-                } else if (navcontroller.getCurrentDestination().getId() == id) {
+                } else if (navigationController.getCurrentDestination().getId() == id) {
                     doubleBackToExit = true;
                     Toast.makeText(getApplicationContext(),getString(R.string.closeApp) , Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    navcontroller.navigate(id);
+                    navigationController.navigate(id);
                 }
             }
         });
@@ -172,31 +170,31 @@ public class PazienteActivity extends AbstractAppActivity {
     private void highlightNavBarButton(int id){
         Log.d("PazienteActivity.highlightNavBarButton()", "id: " + id);
         if (id == R.id.scenariFragment) {
-            selectorNavBarButton(navBarGiochi, R.drawable.ic_game);
+            selectorNavBarButton(navBarGiochi, R.drawable.icona_game);
             navBarClassifica.setScaleX(1f);
             navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.ic_classifica_color));
+            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
             navBarPersonaggi.setScaleX(1f);
             navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.ic_characters));
+            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
         }
         else if (id == R.id.personaggiFragment) {
-            selectorNavBarButton(navBarPersonaggi, R.drawable.ic_characters);
+            selectorNavBarButton(navBarPersonaggi, R.drawable.icona_personaggi_sbloccati);
             navBarClassifica.setScaleX(1f);
             navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.ic_classifica_color));
+            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
             navBarGiochi.setScaleX(1f);
             navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.ic_game));
+            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
         }
         else if (id == R.id.classificaFragment) {
-            selectorNavBarButton(navBarClassifica, R.drawable.ic_classifica_color);
+            selectorNavBarButton(navBarClassifica, R.drawable.icona_classifica_colori);
             navBarGiochi.setScaleX(1f);
             navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.ic_game));
+            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
             navBarPersonaggi.setScaleX(1f);
             navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.ic_characters));
+            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
         }
     }
 }

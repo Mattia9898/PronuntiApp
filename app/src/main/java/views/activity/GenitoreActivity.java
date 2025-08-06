@@ -29,6 +29,7 @@ import models.domain.profili.Paziente;
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
 public class GenitoreActivity extends AbstractAppActivity {
+
     private GenitoreViewsModels mGenitoreViewModel;
 
     @Override
@@ -38,13 +39,13 @@ public class GenitoreActivity extends AbstractAppActivity {
 
         setContentView(R.layout.activity_genitore);
 
-        //Setup Navigazione
-        navcontroller = Navigation.findNavController(this, R.id.fragmentContainerGenitore);
+        //setup di navigazione
+        navigationController = Navigation.findNavController(this, R.id.fragmentContainerGenitore);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
 
-        NavigationUI.setupWithNavController(bottomNavigationView, navcontroller);
+        NavigationUI.setupWithNavController(bottomNavigationView, navigationController);
         setOnBackPressedCallback(R.id.terapieFragment);
 
         //Setup Dati
