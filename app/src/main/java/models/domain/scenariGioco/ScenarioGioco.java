@@ -1,20 +1,22 @@
 package models.domain.scenariGioco;
 
-import android.util.Log;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import models.database.costantiDB.CostantiDBEsercizioDenominazioneImmagini;
-import models.database.costantiDB.CostantiDBEsercizioSequenzaParole;
-import models.database.costantiDB.CostantiDBScenarioGioco;
-import models.database.costantiDB.CostantiDBTemplateEsercizioCoppiaImmagini;
-import models.domain.esercizi.EsercizioCoppiaImmagini;
 import models.domain.esercizi.EsercizioDenominazioneImmagini;
+import models.domain.esercizi.EsercizioCoppiaImmagini;
 import models.domain.esercizi.EsercizioRealizzabile;
 import models.domain.esercizi.EsercizioSequenzaParole;
+import models.database.costantiDB.CostantiDBEsercizioSequenzaParole;
+import models.database.costantiDB.CostantiDBEsercizioDenominazioneImmagini;
+import models.database.costantiDB.CostantiDBScenarioGioco;
+import models.database.costantiDB.CostantiDBTemplateEsercizioCoppiaImmagini;
+
+import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Map;
+import java.time.LocalDate;
+
+import android.util.Log;
+
 
 public class ScenarioGioco extends TemplateScenarioGioco {
 
@@ -74,10 +76,6 @@ public class ScenarioGioco extends TemplateScenarioGioco {
         this.refIdTemplateScenarioGioco = s.getRefIdTemplateScenarioGioco();
     }
 
-    public String getIdScenarioGioco() {
-        return idScenarioGioco;
-    }
-
     public LocalDate getDataInizio() {
         return dataInizio;
     }
@@ -94,31 +92,18 @@ public class ScenarioGioco extends TemplateScenarioGioco {
         return refIdTemplateScenarioGioco;
     }
 
-    public void setIdScenarioGioco(String idScenarioGioco) {
-        this.idScenarioGioco = idScenarioGioco;
-    }
 
     public void setDataInizio(LocalDate dataInizio) {
         this.dataInizio = dataInizio;
-    }
-
-    public void setRicompensaFinale(int ricompensaFinale) {
-        this.ricompensaFinale = ricompensaFinale;
     }
 
     public void setEsercizi(List<EsercizioRealizzabile> esercizi) {
         this.esercizi = esercizi;
     }
 
-    public void setRefIdTemplateScenarioGioco(String refIdTemplateScenarioGioco) {
-        this.refIdTemplateScenarioGioco = refIdTemplateScenarioGioco;
-    }
-
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> entityMap = super.toMap();
-
-        //entityMap.put(CostantiDBScenarioGioco.ID_SCENARIOGIOCO, this.idScenarioGioco);
         entityMap.put(CostantiDBScenarioGioco.DATA_INIZIO, this.dataInizio.toString());
         entityMap.put(CostantiDBScenarioGioco.RICOMPENSA_FINALE, this.ricompensaFinale);
 
