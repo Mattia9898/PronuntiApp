@@ -1,27 +1,26 @@
 package models.utils.audioPlayer;
 
-import android.media.MediaPlayer;
-import android.util.Log;
 
 import java.io.IOException;
 
+import android.util.Log;
+import android.media.MediaPlayer;
+
+
 public class AudioPlayerLink extends AbstractAudioPlayer {
 
-    private String linkAudio;
+    private String audioPlayerLink;
 
-    public AudioPlayerLink(String linkAudio) {
+
+    public AudioPlayerLink(String audioPlayerLink) {
         this.mediaPlayer = new MediaPlayer();
-        this.linkAudio = linkAudio;
-    }
-
-    public String getLinkAudio() {
-        return linkAudio;
+        this.audioPlayerLink = audioPlayerLink;
     }
 
     public void playAudio() {
         try {
             mediaPlayer.reset();
-            mediaPlayer.setDataSource(linkAudio);
+            mediaPlayer.setDataSource(audioPlayerLink);
             mediaPlayer.prepare();
             mediaPlayer.start();
         } catch (IOException e) {
