@@ -12,11 +12,6 @@ public class AudioPlayerLink extends AbstractAudioPlayer {
     private String audioPlayerLink;
 
 
-    public AudioPlayerLink(String audioPlayerLink) {
-        this.mediaPlayer = new MediaPlayer();
-        this.audioPlayerLink = audioPlayerLink;
-    }
-
     public void playAudio() {
         try {
             mediaPlayer.reset();
@@ -27,5 +22,11 @@ public class AudioPlayerLink extends AbstractAudioPlayer {
             Log.e("AudioPlayerLink.playAudio()", "Errore nel setting Datasource o prepare() dell'audio");
         }
     }
+
+    public AudioPlayerLink(String audioPlayerLink) {
+        this.mediaPlayer = new MediaPlayer();
+        this.audioPlayerLink = audioPlayerLink;
+    }
+
 
 }

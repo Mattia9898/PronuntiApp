@@ -1,23 +1,23 @@
 package models.utils.audioPlayer;
 
-import android.content.Context;
+
 import android.media.MediaPlayer;
+import android.content.Context;
+
 
 public class AudioPlayerRaw extends AbstractAudioPlayer {
 
-    private int rawAudio;
+    private int audioPlayerRaw;
 
-    public AudioPlayerRaw(Context context, int rawAudio) {
-        this.mediaPlayer = MediaPlayer.create(context, rawAudio);
-        this.rawAudio = rawAudio;
-    }
-
-    public int getRawAudio() {
-        return rawAudio;
-    }
 
     public void playAudio() {
         mediaPlayer.start();
     }
+
+    public AudioPlayerRaw(Context context, int audioPlayerRaw) {
+        this.mediaPlayer = MediaPlayer.create(context, audioPlayerRaw);
+        this.audioPlayerRaw = audioPlayerRaw;
+    }
+
 
 }
