@@ -1,21 +1,18 @@
 package models.domain.scenariGioco;
 
-import android.util.Log;
+
+import models.database.costantiDB.CostantiDBTemplateScenarioGioco;
 
 import java.util.Map;
 
-import models.database.costantiDB.CostantiDBTemplateScenarioGioco;
+import android.util.Log;
+
 
 public class TemplateScenarioGioco extends AbstractScenarioGioco {
 
     private String idTemplateScenarioGioco;
 
     public TemplateScenarioGioco() {}
-
-    public TemplateScenarioGioco(String idTemplateScenarioGioco, String immagineSfondo, String immagineTappa1, String immagineTappa2, String immagineTappa3) {
-        super(immagineSfondo, immagineTappa1, immagineTappa2, immagineTappa3);
-        this.idTemplateScenarioGioco = idTemplateScenarioGioco;
-    }
 
     public TemplateScenarioGioco(String immagineSfondo, String immagineTappa1, String immagineTappa2, String immagineTappa3) {
         super(immagineSfondo, immagineTappa1, immagineTappa2, immagineTappa3);
@@ -35,15 +32,10 @@ public class TemplateScenarioGioco extends AbstractScenarioGioco {
         return idTemplateScenarioGioco;
     }
 
-    public void setIdTemplateScenarioGioco(String idTemplateScenarioGioco) {
-        this.idTemplateScenarioGioco = idTemplateScenarioGioco;
-    }
 
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> entityMap = super.toMap();
-
-        //entityMap.put(CostantiDBTemplateScenarioGioco.ID_TEMPLATE_SCENARIOGIOCO, this.idTemplateScenarioGioco);
         return entityMap;
     }
 
