@@ -204,7 +204,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
             boolean esito;
             Bundle bundle = new Bundle();
             bundle.putInt("indiceScenarioGioco",indiceScenario);
-            if (mSceltaImmaginiController.verificaAudio(audioRecorder.getAudioFile(), getContext())) {
+            if (mSceltaImmaginiController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
                 esito = true;
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioDenominazioneImmagini.getRicompensaCorretto());
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioDenominazioneImmagini.getRicompensaCorretto());
@@ -255,7 +255,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
         CompletableFuture<String> future = new CompletableFuture<>();
 
         File fileConvertito = new File(getContext().getFilesDir(), "tempAudioConvertitoDenominazione.mp3");
-        AudioConverter.convertiAudio(audioRecorder.getAudioFile(), fileConvertito);
+        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), fileConvertito);
         ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
         AtomicReference<String> audioRegistrato = new AtomicReference<>();
         String directoryCorrente = ComandiFirebaseStorage.AUDIO_REGISTRATI_DENOMINAZIONE_IMMAGINE;

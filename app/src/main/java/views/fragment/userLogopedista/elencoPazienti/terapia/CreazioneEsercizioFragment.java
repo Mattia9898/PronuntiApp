@@ -653,7 +653,7 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
         Toast.makeText(getContext(), getContext().getString(R.string.stopedRecording), Toast.LENGTH_SHORT).show();
 
         File fileConvertito = new File(getContext().getFilesDir(), "tempAudioConvertito.mp3");
-        AudioConverter.convertiAudio(audioRecorder.getAudioFile(), fileConvertito);
+        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), fileConvertito);
         ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
         AtomicReference<String> audioRegistrato = new AtomicReference<>();
         String directoryCorrente = "";

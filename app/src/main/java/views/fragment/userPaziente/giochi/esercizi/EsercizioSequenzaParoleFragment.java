@@ -199,7 +199,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
             boolean esito;
             Bundle bundle = new Bundle();
             bundle.putInt("indiceScenarioGioco",indiceScenario);
-            if (mSequenzaParoleController.verificaAudio(audioRecorder.getAudioFile(), getContext())) {
+            if (mSequenzaParoleController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
                 esito = true;
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioSequenzaParole.getRicompensaCorretto());
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioSequenzaParole.getRicompensaCorretto());
@@ -252,7 +252,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
         CompletableFuture<String> future = new CompletableFuture<>();
 
         File fileConvertito = new File(getContext().getFilesDir(), "tempAudioConvertito.mp3");
-        AudioConverter.convertiAudio(audioRecorder.getAudioFile(), fileConvertito);
+        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), fileConvertito);
         ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
         AtomicReference<String> audioRegistrato = new AtomicReference<>();
         String directoryCorrente = ComandiFirebaseStorage.AUDIO_REGISTRATI_SEQUENZA_PAROLE;
