@@ -1,10 +1,17 @@
 package models.utils.audioPlayer;
 
+
 import android.media.MediaPlayer;
+
 
 public abstract class AbstractAudioPlayer {
 
     protected MediaPlayer mediaPlayer;
+
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
 
     public void stopAudio() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
@@ -12,15 +19,5 @@ public abstract class AbstractAudioPlayer {
         }
     }
 
-    public void releaseMediaPlayer() {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
-    }
-
-    public MediaPlayer getMediaPlayer() {
-        return mediaPlayer;
-    }
 
 }
