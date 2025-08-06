@@ -17,115 +17,86 @@ public class Terapia implements DataPersistenza<Terapia> {
 
     private String idTerapia;
 
-    private LocalDate dataInizio;
+    private List<ScenarioGioco> listScenarioGioco;
 
-    private LocalDate dataFine;
+    private LocalDate dataInizioTerapia;
 
-    private List<ScenarioGioco> scenariGioco;
+    private LocalDate dataFineTerapia;
 
-    public Terapia(String idTerapia, LocalDate dataInizio, LocalDate dataFine, List<ScenarioGioco> scenariGioco) {
-        this.idTerapia = idTerapia;
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
-        this.scenariGioco = scenariGioco;
-    }
-
-    public Terapia(String idTerapia, LocalDate dataInizio, LocalDate dataFine) {
-        this.idTerapia = idTerapia;
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
-    }
-
-    public Terapia(LocalDate dataInizio, LocalDate dataFine, List<ScenarioGioco> scenariGioco) {
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
-        this.scenariGioco = scenariGioco;
-    }
-
-    public Terapia(LocalDate dataInizio, LocalDate dataFine) {
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
-        scenariGioco = new ArrayList<>();
-    }
 
     public Terapia(Map<String,Object> fromDatabaseMap, String fromDatabaseKey){
-        Terapia t = this.fromMap(fromDatabaseMap);
-
+        Terapia terapia = this.fromMap(fromDatabaseMap);
         this.idTerapia = fromDatabaseKey;
-        this.dataInizio = t.getDataInizio();
-        this.dataFine = t.getDataFine();
-        this.scenariGioco = t.getScenariGioco();
+        this.dataInizioTerapia = terapia.getDataInizioTerapia();
+        this.dataFineTerapia = terapia.getDataFineTerapia();
+        this.listScenarioGioco = terapia.getListScenariGioco();
     }
 
-    public String getIdTerapia() {
-        return idTerapia;
+    public Terapia(LocalDate dataInizioTerapia, LocalDate dataFineTerapia) {
+        this.dataInizioTerapia = dataInizioTerapia;
+        this.dataFineTerapia = dataFineTerapia;
+        listScenarioGioco = new ArrayList<>();
     }
 
-    public LocalDate getDataInizio() {
-        return dataInizio;
+    public Terapia(LocalDate dataInizioTerapia, LocalDate dataFineTerapia, List<ScenarioGioco> listScenarioGioco) {
+        this.dataInizioTerapia = dataInizioTerapia;
+        this.dataFineTerapia = dataFineTerapia;
+        this.listScenarioGioco = listScenarioGioco;
     }
 
-    public LocalDate getDataFine() {
-        return dataFine;
+
+    public List<ScenarioGioco> getListScenariGioco() {
+        return listScenarioGioco;
     }
 
-    public List<ScenarioGioco> getScenariGioco() {
-        return scenariGioco;
+    public LocalDate getDataInizioTerapia() {
+        return dataInizioTerapia;
     }
 
-    public void setIdTerapia(String idTerapia) {
-        this.idTerapia = idTerapia;
+    public LocalDate getDataFineTerapia() {
+        return dataFineTerapia;
     }
 
-    public void setDataInizio(LocalDate dataInizio) {
-        this.dataInizio = dataInizio;
-    }
 
-    public void setDataFine(LocalDate dataFine) {
-        this.dataFine = dataFine;
-    }
-
-    public void setScenariGioco(List<ScenarioGioco> scenariGioco) {
-        this.scenariGioco = scenariGioco;
-    }
-
-    @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = new HashMap<>();
-
-        //entityMap.put(CostantiDBTerapia.ID_TERAPIA, this.idTerapia);
-        entityMap.put(CostantiDBTerapia.DATA_INIZIO, this.dataInizio.toString());
-        entityMap.put(CostantiDBTerapia.DATA_FINE, this.dataFine.toString());
-
-        if (this.scenariGioco != null) {
-            entityMap.put(CostantiDBTerapia.LISTA_SCENARIGIOCO, this.scenariGioco.stream().map(ScenarioGioco::toMap).collect(Collectors.toList()));
-        }
-        return entityMap;
-    }
-
-    @Override
-    public Terapia fromMap(Map<String, Object> fromDatabaseMap) {
-        Log.d("Terapia.fromMap()", fromDatabaseMap.toString());
-        return new Terapia(
-                LocalDate.parse((String) fromDatabaseMap.get(CostantiDBTerapia.DATA_INIZIO)),
-                LocalDate.parse((String) fromDatabaseMap.get(CostantiDBTerapia.DATA_FINE)),
-                (fromDatabaseMap.get(CostantiDBTerapia.LISTA_SCENARIGIOCO)) != null ? ((List<Map<String, Object>>) fromDatabaseMap.get(CostantiDBTerapia.LISTA_SCENARIGIOCO)).stream().map(obj -> new ScenarioGioco(obj, null)).collect(Collectors.toList()) : null
-        );
-    }
-
-    public void addScenario(ScenarioGioco scenarioGioco){
-        this.scenariGioco.add(scenarioGioco);
+    public void addListScenarioGioco(ScenarioGioco listScenarioGioco){
+        this.listScenarioGioco.add(listScenarioGioco);
     }
 
     @Override
     public String toString() {
         return "Terapia{" +
                 "idTerapia='" + idTerapia + '\'' +
-                ", dataInizio=" + dataInizio +
-                ", dataFine=" + dataFine +
-                ", scenariGioco=" + scenariGioco +
+                ", dataInizio=" + dataInizioTerapia +
+                ", dataFine=" + dataFineTerapia +
+                ", scenariGioco=" + listScenarioGioco +
                 '}';
     }
+
+    @Override
+    public Terapia fromMap(Map<String, Object> fromDatabaseMap) {
+        Log.d("Terapia.fromMap()", fromDatabaseMap.toString());
+        return new Terapia(
+                LocalDate.parse((String) fromDatabaseMap.get(CostantiDBTerapia.DATA_INIZIO_TERAPIA)),
+                LocalDate.parse((String) fromDatabaseMap.get(CostantiDBTerapia.DATA_FINE_TERAPIA)),
+                (fromDatabaseMap.get(CostantiDBTerapia.LIST_SCENARI_GIOCO)) != null ?
+                        ((List<Map<String, Object>>) fromDatabaseMap.get(CostantiDBTerapia.LIST_SCENARI_GIOCO)).
+                                stream().map(obj -> new ScenarioGioco(obj, null)).
+                                collect(Collectors.toList()) : null
+        );
+    }
+
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put(CostantiDBTerapia.DATA_INIZIO_TERAPIA, this.dataInizioTerapia.toString());
+        map.put(CostantiDBTerapia.DATA_FINE_TERAPIA, this.dataFineTerapia.toString());
+
+        if (this.listScenarioGioco != null) {
+            map.put(CostantiDBTerapia.LIST_SCENARI_GIOCO, this.listScenarioGioco.stream().map(ScenarioGioco::toMap).collect(Collectors.toList()));
+        }
+        return map;
+    }
+
 
 }
 

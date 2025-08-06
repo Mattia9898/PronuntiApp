@@ -207,7 +207,7 @@ public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNav
     private EsercizioCoppiaImmagini getEsercizioCoppiaImmaginiFromViewModel(int indiceEsercizio, int indiceScenario, int indiceTerapia){
         Log.d("RisultatoDenominazione", ":"+ indiceEsercizio);
 
-        return (EsercizioCoppiaImmagini) mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
+        return (EsercizioCoppiaImmagini) mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getListScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
     }
 
 

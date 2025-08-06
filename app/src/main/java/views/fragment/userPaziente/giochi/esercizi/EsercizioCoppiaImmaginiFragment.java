@@ -140,7 +140,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
         indiceTerapia = bundle.getInt("indiceTerapia");
         mPazienteViewModel.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
             List<Terapia> terapie = paziente.getTerapie();
-            scenarioGioco = terapie.get(indiceTerapia).getScenariGioco().get(bundle.getInt("indiceScenarioCorrente"));
+            scenarioGioco = terapie.get(indiceTerapia).getListScenariGioco().get(bundle.getInt("indiceScenarioCorrente"));
             mEsercizioCoppiaImmagini = (EsercizioCoppiaImmagini) scenarioGioco.getlistEsercizioRealizzabile().get(bundle.getInt("indiceEsercizio"));
 
 

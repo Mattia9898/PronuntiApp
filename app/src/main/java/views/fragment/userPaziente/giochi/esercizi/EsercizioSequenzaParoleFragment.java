@@ -105,7 +105,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
         indiceTerapia = bundle.getInt("indiceTerapia");
         mPazienteViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
             List<Terapia> terapie = paziente.getTerapie();
-            scenarioGioco = terapie.get(indiceTerapia).getScenariGioco().get(bundle.getInt("indiceScenarioCorrente"));
+            scenarioGioco = terapie.get(indiceTerapia).getListScenariGioco().get(bundle.getInt("indiceScenarioCorrente"));
             mEsercizioSequenzaParole = (EsercizioSequenzaParole) scenarioGioco.getlistEsercizioRealizzabile().get(bundle.getInt("indiceEsercizio"));
             this.mSequenzaParoleController.setEsercizioSequenzaParole(mEsercizioSequenzaParole);
 

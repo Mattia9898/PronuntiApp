@@ -193,8 +193,8 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
                 Paziente paziente = mLogopedistaViewModel.getPazienteById(idPaziente);
 
                 Log.d("CreazioneScenarioFragment", "onCreateView: "+paziente.getTerapie().get(indiceTerapia));
-                dataInizioTerapia = paziente.getTerapie().get(indiceTerapia).getDataInizio();
-                dataFineTerapia = paziente.getTerapie().get(indiceTerapia).getDataFine();
+                dataInizioTerapia = paziente.getTerapie().get(indiceTerapia).getDataInizioTerapia();
+                dataFineTerapia = paziente.getTerapie().get(indiceTerapia).getDataFineTerapia();
             }else {
                 dataInizioTerapia = LocalDate.parse(bundle.getString("dataInizio"));
                 dataFineTerapia = LocalDate.parse(bundle.getString("dataFine"));
@@ -337,7 +337,7 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
 
             if(mCallback == null){
                 Paziente paziente = mLogopedistaViewModel.getPazienteById(idPaziente);
-                paziente.getTerapie().get(indiceTerapia).addScenario(scenario);
+                paziente.getTerapie().get(indiceTerapia).addListScenarioGioco(scenario);
                 mLogopedistaViewModel.aggiornaLogopedistaRemoto();
 
                 navigateTo(R.id.action_creazioneScenarioFragment_to_schedaPazienteFragment,bundle);

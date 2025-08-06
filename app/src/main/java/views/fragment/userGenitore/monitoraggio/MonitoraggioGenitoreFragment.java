@@ -108,21 +108,21 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment im
     private List<ScenarioGioco> monitoraggioTerapie(){
         if(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie() != null) {
             Terapia terapiaScelta = mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia);
-            return new ArrayList<>(terapiaScelta.getScenariGioco());
+            return new ArrayList<>(terapiaScelta.getListScenariGioco());
         }
         return new ArrayList<>();
     }
 
     private void setTextViewDataInizioTerapia() {
         if (mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie() != null) {
-            textViewDataInizioTerapia.setText(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getDataInizio().toString());
+            textViewDataInizioTerapia.setText(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getDataInizioTerapia().toString());
         }
 
     }
 
     private void setTextViewDataFineTerapia(){
         if (mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie() != null) {
-            textViewDataFineTerapia.setText(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getDataFine().toString());
+            textViewDataFineTerapia.setText(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getDataFineTerapia().toString());
         }
     }
 }

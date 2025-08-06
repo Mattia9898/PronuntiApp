@@ -147,8 +147,8 @@ public class CreazioneTerapiaFragment extends AbstractNavigazioneFragment implem
         LocalDate dataFineNuovaTerapia = LocalDate.parse(dataFine.getText().toString());
         if(terapiePaziente !=null) {
             for (Terapia terapiaPaziente : terapiePaziente) {
-                LocalDate dataInizioTerapiaEsistente = terapiaPaziente.getDataInizio();
-                LocalDate dataFineTerapiaEsistente = terapiaPaziente.getDataFine();
+                LocalDate dataInizioTerapiaEsistente = terapiaPaziente.getDataInizioTerapia();
+                LocalDate dataFineTerapiaEsistente = terapiaPaziente.getDataFineTerapia();
                 if ((dataInizioNuovaTerapia.isEqual(dataInizioTerapiaEsistente) || dataInizioNuovaTerapia.isBefore(dataInizioTerapiaEsistente)) || (dataFineNuovaTerapia.isEqual(dataFineTerapiaEsistente) || dataFineNuovaTerapia.isBefore(dataFineTerapiaEsistente))) {
                     return true;
                 }
@@ -171,7 +171,7 @@ public class CreazioneTerapiaFragment extends AbstractNavigazioneFragment implem
     @Override
     public void saveScenario(ScenarioGioco scenarioGioco) {
         Log.d("Terapia","terapia in saveScenario: " + terapia.toString());
-        terapia.addScenario(scenarioGioco);
+        terapia.addListScenarioGioco(scenarioGioco);
         buttonAddScenario.setVisibility(View.VISIBLE);
         buttonSalvataggioTerapia.setVisibility(View.VISIBLE);
 

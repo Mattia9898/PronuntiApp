@@ -23,7 +23,7 @@ public class ModificaDataScenariLogopedistaController implements ModificaDataSce
 
             if(paziente.getIdProfilo().equals(idPaziente)){
 
-                mLogopedistaViewsModels.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getScenariGioco().get(position).setDataInizioScenarioGioco(date);
+                mLogopedistaViewsModels.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getListScenariGioco().get(position).setDataInizioScenarioGioco(date);
                 mLogopedistaViewsModels.aggiornaLogopedistaRemoto();
 
                 break;

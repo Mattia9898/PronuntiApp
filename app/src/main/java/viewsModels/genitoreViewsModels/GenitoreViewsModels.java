@@ -90,18 +90,17 @@ public class GenitoreViewsModels extends ViewModel {
         return mPaziente.getValue().getTerapie().get(indiceTerapia);
     }
 
-	/* metodo per il count delle terapie con una data successiva a quella attuale. Dopodichè sottraggo quel numero
-	   al numero di elementi nella lista di terapie totali - 1.
-	   Così facendo ottengo l'indice dell'ultima terapia che però non ha data successiva a quella attuale.
-	   E' stato utilizzato "isAfter()" perchè con "isBefore()" non contava la terapia con data inizio oggi */
-
+	/* metodo per il count delle terapie con data successiva a quella attuale. In seguito sottraggo -1 quel numero
+	   al numero di elementi nella lista di terapie totali.
+	   In questo modo ottengo l'indice dell'ultima terapia che, però, non ha data successiva a quella attuale.
+	   Ho utilizzato "isAfter()" in quanto con "isBefore()" non contava la terapia con data inizio oggi */
     public int getIndiceUltimaTerapia() {
 
         if (mPaziente.getValue() != null) {
             if (mPaziente.getValue().getTerapie() != null) {
-                mPaziente.getValue().getTerapie().sort(Comparator.comparing(Terapia::getDataInizio));
+                mPaziente.getValue().getTerapie().sort(Comparator.comparing(Terapia::getDataInizioTerapia));
                 return mPaziente.getValue().getTerapie().size()
-                        - ((int) mPaziente.getValue().getTerapie().stream().filter(terapia -> terapia.getDataInizio().isAfter(LocalDate.now())).count()) -1;
+                        - ((int) mPaziente.getValue().getTerapie().stream().filter(terapia -> terapia.getDataInizioTerapia().isAfter(LocalDate.now())).count()) -1;
             }
         }
 

@@ -111,7 +111,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
         indiceTerapia = bundle.getInt("indiceTerapia");
         mPazienteViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
             List<Terapia> terapie = paziente.getTerapie();
-            scenarioGioco = terapie.get(indiceTerapia).getScenariGioco().get(indiceScenario);
+            scenarioGioco = terapie.get(indiceTerapia).getListScenariGioco().get(indiceScenario);
             mEsercizioDenominazioneImmagini = (EsercizioDenominazioneImmagini) scenarioGioco.getlistEsercizioRealizzabile().get(bundle.getInt("indiceEsercizio"));
 
             this.mSceltaImmaginiController.setEsercizioDenominazioneImmagini(mEsercizioDenominazioneImmagini);

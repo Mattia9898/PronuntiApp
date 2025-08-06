@@ -91,7 +91,7 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
 
             List<Terapia> terapie = paziente.getTerapie();
             Terapia terapia  = terapie.get(terapiaIndex);
-            scenarioGioco = terapia.getScenariGioco().get(scenarioIndex);
+            scenarioGioco = terapia.getListScenariGioco().get(scenarioIndex);
 
             String immagineSfondo = scenarioGioco.getSfondoImmagine();
             String immagineTappa1 = scenarioGioco.getImmagine1();

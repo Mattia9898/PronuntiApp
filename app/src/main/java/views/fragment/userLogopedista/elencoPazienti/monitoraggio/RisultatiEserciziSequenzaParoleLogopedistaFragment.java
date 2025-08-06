@@ -244,7 +244,7 @@ public class RisultatiEserciziSequenzaParoleLogopedistaFragment extends Abstract
 
         for (Paziente pazienti : mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
             if(pazienti.getIdProfilo().equals(idPaziente)){
-                return (EsercizioSequenzaParole) pazienti.getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
+                return (EsercizioSequenzaParole) pazienti.getTerapie().get(indiceTerapia).getListScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
             }
         }
         return new EsercizioSequenzaParole(0,0,"","","","");

@@ -66,7 +66,7 @@ public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
 
         for (Paziente paziente: logopedista.getListaPazienti()) {
             if (paziente.getIdProfilo().equals(idPaziente)){
-                paziente.getTerapie().sort(Comparator.comparing(Terapia::getDataInizio));
+                paziente.getTerapie().sort(Comparator.comparing(Terapia::getDataInizioTerapia));
                 int indiceTerapia = paziente.getTerapie().size() - 1;
                 if(indiceTerapia != -1) {
                     cambiaFragmentMonitoraggioLogopedista(indiceTerapia);

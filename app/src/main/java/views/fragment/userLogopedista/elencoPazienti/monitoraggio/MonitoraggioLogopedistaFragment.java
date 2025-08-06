@@ -141,7 +141,7 @@ public class MonitoraggioLogopedistaFragment extends AbstractNavigazioneFragment
 
         for (Paziente paziente: mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
             if (paziente.getIdProfilo().equals(idPaziente)) {
-                listaScenari.addAll(paziente.getTerapie().get(indiceTerapia).getScenariGioco());
+                listaScenari.addAll(paziente.getTerapie().get(indiceTerapia).getListScenariGioco());
                 break;
             }
         }
@@ -150,14 +150,14 @@ public class MonitoraggioLogopedistaFragment extends AbstractNavigazioneFragment
 
     private void setTextViewDataInizioTerapia() {
         if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie() != null) {
-            textViewDataInizioTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataInizio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            textViewDataInizioTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataInizioTerapia().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
 
     }
 
     private void setTextViewDataFineTerapia(){
         if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie() != null) {
-            textViewDataFineTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataFine().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            textViewDataFineTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataFineTerapia().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
     }
 

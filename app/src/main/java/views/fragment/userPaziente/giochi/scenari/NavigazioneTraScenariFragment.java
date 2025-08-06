@@ -58,7 +58,7 @@ public class NavigazioneTraScenariFragment extends AbstractNavigazioneFragment {
 
                 List<Terapia> terapie = paziente.getTerapie();
                 terapia = terapie.get(terapiaIndex);
-                textViewDataScenario.setText(terapia.getScenariGioco().get(scenariIndexListmPazienteViewModel.get(currentScenarioIndex)).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                textViewDataScenario.setText(terapia.getListScenariGioco().get(scenariIndexListmPazienteViewModel.get(currentScenarioIndex)).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 buttonIndietroScenario.setOnClickListener(v -> navigaScenarioPrecedente(scenariIndexListmPazienteViewModel));
                 buttonAvantiScenario.setOnClickListener(v -> navigaScenarioSuccessivo(scenariIndexListmPazienteViewModel));
             }else{
@@ -75,7 +75,7 @@ public class NavigazioneTraScenariFragment extends AbstractNavigazioneFragment {
             currentScenarioIndex +=1;
             bundle.putInt("indiceScenarioCorrente", listaIndici.get(currentScenarioIndex));
             bundle.putInt("indiceTerapia",terapiaIndex);
-            textViewDataScenario.setText(terapia.getScenariGioco().get(listaIndici.get(currentScenarioIndex)).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            textViewDataScenario.setText(terapia.getListScenariGioco().get(listaIndici.get(currentScenarioIndex)).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             scenarioFragment.setArguments(bundle);
             getParentFragmentManager().beginTransaction().replace(R.id.fragment_scenari_singolo, scenarioFragment).commit();
         }else{
@@ -85,13 +85,13 @@ public class NavigazioneTraScenariFragment extends AbstractNavigazioneFragment {
 
     private void navigaScenarioPrecedente(List<Integer> listaIndici) {
         if(currentScenarioIndex-1>=0) {
-            textViewDataScenario.setText(terapia.getScenariGioco().get(currentScenarioIndex).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            textViewDataScenario.setText(terapia.getListScenariGioco().get(currentScenarioIndex).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             Bundle bundle = new Bundle();
             ScenarioFragment scenarioFragment = new ScenarioFragment();
             currentScenarioIndex-=1;
             bundle.putInt("indiceScenarioCorrente", listaIndici.get(currentScenarioIndex));
             bundle.putInt("indiceTerapia",terapiaIndex);
-            textViewDataScenario.setText(terapia.getScenariGioco().get(listaIndici.get(currentScenarioIndex)).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            textViewDataScenario.setText(terapia.getListScenariGioco().get(listaIndici.get(currentScenarioIndex)).getDataInizioScenarioGioco().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             Log.d("NavindiceScenarioCorrente","NavindiceScenarioCorrente "+listaIndici.get(currentScenarioIndex));
             scenarioFragment.setArguments(bundle);
             getParentFragmentManager().beginTransaction().replace(R.id.fragment_scenari_singolo, scenarioFragment).commit();
