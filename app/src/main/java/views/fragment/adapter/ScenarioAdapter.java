@@ -68,34 +68,35 @@ public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.Scenar
     public void onBindViewHolder(@NonNull ScenarioViewHolder holder, int position) {
         ScenarioGioco scenario = listaScenari.get(position);
 
-        holder.textViewGiornoScenario.setText(DateTimeFormatter.ofPattern("dd").format(scenario.getDataInizio()));
-        holder.textViewMeseAnnoScenario.setText(DateTimeFormatter.ofPattern("MMMM yyyy").format(scenario.getDataInizio()));
-        holder.linearLayoutTitleScenario.setOnClickListener(v -> toggleVisibility(holder));
+        holder.textViewGiornoScenario.setText(DateTimeFormatter.ofPattern("dd").format(scenario.getDataInizioScenarioGioco()));
+        holder.textViewMeseAnnoScenario.setText(DateTimeFormatter.ofPattern("MMMM yyyy").format(scenario.getDataInizioScenarioGioco()));
+        holder.linearLayoutScenarioDel.setOnClickListener(v -> toggleVisibility(holder));
 
-        if(scenario.getDataInizio().isBefore(LocalDate.now())) {
+        if(scenario.getDataInizioScenarioGioco().isBefore(LocalDate.now())) {
             holder.cardView.setCardBackgroundColor(holder.itemView.getContext().getColor(R.color.hintTextColorDisabled));
             holder.imageViewModificaDataScenario.setVisibility(View.INVISIBLE);
-            Log.d("ScenarioAdapter",""+scenario.getDataInizio().toString());
+            Log.d("ScenarioAdapter",""+scenario.getDataInizioScenarioGioco().toString());
         }
 
         else {
             holder.cardView.setCardBackgroundColor(holder.itemView.getContext().getColor(R.color.colorPrimary));
             holder.imageViewModificaDataScenario.setVisibility(View.VISIBLE);
-            //puoi modificare data scenario
+
+            //è concesso modificare la data dello scenario
             holder.linearLayoutModificaDataScenario.setOnClickListener(v -> {
                 LocalDate now = LocalDate.now();
                 DatePickerDialog datePickerDialog = new DatePickerDialog(holder.itemView.getContext(), (view, year, month, dayOfMonth) -> {
                     LocalDate date = LocalDate.parse(LocalDate.of(year, month+1, dayOfMonth).toString());
-                    scenario.setDataInizio(date);
-                    holder.textViewGiornoScenario.setText(DateTimeFormatter.ofPattern("dd").format(scenario.getDataInizio()));
-                    holder.textViewMeseAnnoScenario.setText(DateTimeFormatter.ofPattern("MMMM yyyy").format(scenario.getDataInizio()));
+                    scenario.setDataInizioScenarioGioco(date);
+                    holder.textViewGiornoScenario.setText(DateTimeFormatter.ofPattern("dd").format(scenario.getDataInizioScenarioGioco()));
+                    holder.textViewMeseAnnoScenario.setText(DateTimeFormatter.ofPattern("MMMM yyyy").format(scenario.getDataInizioScenarioGioco()));
 
                     Log.d("ScenarioAdapter",""+scenario.toString());
 
 
                     mController.modificaDataScenari(date,indiceTerapia,position,idPaziente,indicePaziente);
 
-                    scenario.setDataInizio(date);
+                    scenario.setDataInizioScenarioGioco(date);
                     notifyDataSetChanged();
                 }, now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
                 datePickerDialog.show();
@@ -103,7 +104,7 @@ public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.Scenar
         }
         RecyclerView recyclerViewEsercizi = holder.recyclerViewEsercizi;
         recyclerViewEsercizi.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
-        EsercizioAdapter esercizioAdapter = new EsercizioAdapter(scenario.getEsercizi(), navigation, idNavToEsercizioDenominazioneImmagine, idNavToEsercizioCoppiaImmagini, idNavToEsercizioSequenzaParole,indiceTerapia,position,idPaziente);
+        EsercizioAdapter esercizioAdapter = new EsercizioAdapter(scenario.getlistEsercizioRealizzabile(), navigation, idNavToEsercizioDenominazioneImmagine, idNavToEsercizioCoppiaImmagini, idNavToEsercizioSequenzaParole,indiceTerapia,position,idPaziente);
         recyclerViewEsercizi.setAdapter(esercizioAdapter);
 
     }
@@ -135,7 +136,7 @@ public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.Scenar
 
         private RecyclerView recyclerViewEsercizi;
 
-        private LinearLayout linearLayoutTitleScenario;
+        private LinearLayout linearLayoutScenarioDel;
 
         private LinearLayout linearLayoutModificaDataScenario;
 
@@ -147,10 +148,10 @@ public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.Scenar
             cardView = itemView.findViewById(R.id.cardViewScenario);
             textViewGiornoScenario = itemView.findViewById(R.id.textViewGiornoScenario);
             textViewMeseAnnoScenario = itemView.findViewById(R.id.textViewMeseAnnoScenario);
-            linearLayoutTitleScenario = itemView.findViewById(R.id.linearLayoutTitleScenario);
+            linearLayoutScenarioDel = itemView.findViewById(R.id.linearLayoutScenarioDel);
             linearLayoutModificaDataScenario = itemView.findViewById(R.id.linearLayoutModificaDataScenario);
             imageViewArrowDown = itemView.findViewById(R.id.imageViewArrowDown);
-            imageViewArrowDown.setImageResource(R.drawable.ic_arrow_down_white);
+            imageViewArrowDown.setImageResource(R.drawable.icona_freccia_giu_bianca);
             imageViewModificaDataScenario = itemView.findViewById(R.id.imageViewModificaDataScenario);
             recyclerViewEsercizi = itemView.findViewById(R.id.recyclerViewEsercizi);
             recyclerViewEsercizi.setVisibility(View.GONE);

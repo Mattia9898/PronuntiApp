@@ -161,7 +161,7 @@ public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends A
 
         for (Paziente pazienti : mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
             if(pazienti.getIdProfilo().equals(idPaziente)){
-                return (EsercizioDenominazioneImmagini) pazienti.getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getEsercizi().get(indiceEsercizio);
+                return (EsercizioDenominazioneImmagini) pazienti.getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
             }
         }
         return new EsercizioDenominazioneImmagini(0,0,"","","");

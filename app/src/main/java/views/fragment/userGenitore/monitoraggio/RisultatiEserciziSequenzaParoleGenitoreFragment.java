@@ -235,7 +235,7 @@ public class RisultatiEserciziSequenzaParoleGenitoreFragment extends AbstractNav
     }
 
     private EsercizioSequenzaParole getEsercizioSequenzaParoleFromViewModel(int indiceEsercizio, int indiceScenario, int indiceTerapia){
-        return (EsercizioSequenzaParole) mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getEsercizi().get(indiceEsercizio);
+        return (EsercizioSequenzaParole) mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
     }
 
     @Override

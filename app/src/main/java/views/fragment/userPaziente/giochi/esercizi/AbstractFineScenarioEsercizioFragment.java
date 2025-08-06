@@ -11,7 +11,7 @@ public class AbstractFineScenarioEsercizioFragment extends AbstractNavigazioneFr
 
     protected boolean checkFineScenario(ScenarioGioco scenarioGioco) {
 
-        for(EsercizioRealizzabile s : scenarioGioco.getEsercizi()) {
+        for(EsercizioRealizzabile s : scenarioGioco.getlistEsercizioRealizzabile()) {
             if(s.getRisultatoEsercizio()== null)
                 return false;
         }

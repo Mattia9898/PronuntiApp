@@ -156,7 +156,7 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
 
     private void showFineScenario(){
         fineScenarioEsercizioView.setVisibility(View.VISIBLE);
-        Log.d("FineScenario", "fine scenario" + scenarioGioco.getEsercizi().toString());
+        Log.d("FineScenario", "fine scenario" + scenarioGioco.getlistEsercizioRealizzabile().toString());
         int ricompensaFinale = scenarioGioco.getRicompensaFinale();
         fineScenarioEsercizioView.showFineScenario(ricompensaFinale, posizioneGioco1ImageView, posizioneGioco2ImageView, posizioneGioco3ImageView);
     }
@@ -169,7 +169,7 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
     }
 
     private boolean isCompletato(int index){
-        if(scenarioGioco.getEsercizi().get(index).getRisultatoEsercizio()!=null){
+        if(scenarioGioco.getlistEsercizioRealizzabile().get(index).getRisultatoEsercizio()!=null){
             Log.d("Esercizio", index + " completato");
             return true;
         }else{
@@ -305,7 +305,7 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
                         break;
 
                     case MotionEvent.ACTION_UP:
-                        List<EsercizioRealizzabile> esercizioRealizzabileList = scenarioGioco.getEsercizi();
+                        List<EsercizioRealizzabile> esercizioRealizzabileList = scenarioGioco.getlistEsercizioRealizzabile();
                         if (isPersonaggioInAreaPrimoEsercizio() && !isCompletato(0)) {
                             verificaEssercizio(esercizioRealizzabileList.get(0),0 );
                         } else if (isPersonaggioInAreaSecondaEsercizio() && !isCompletato(1)) {

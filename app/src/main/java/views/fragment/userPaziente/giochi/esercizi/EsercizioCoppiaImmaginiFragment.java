@@ -141,7 +141,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
         mPazienteViewModel.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
             List<Terapia> terapie = paziente.getTerapie();
             scenarioGioco = terapie.get(indiceTerapia).getScenariGioco().get(bundle.getInt("indiceScenarioCorrente"));
-            mEsercizioCoppiaImmagini = (EsercizioCoppiaImmagini) scenarioGioco.getEsercizi().get(bundle.getInt("indiceEsercizio"));
+            mEsercizioCoppiaImmagini = (EsercizioCoppiaImmagini) scenarioGioco.getlistEsercizioRealizzabile().get(bundle.getInt("indiceEsercizio"));
 
 
             this.mController.setEsercizioCoppiaImmagini(mEsercizioCoppiaImmagini);

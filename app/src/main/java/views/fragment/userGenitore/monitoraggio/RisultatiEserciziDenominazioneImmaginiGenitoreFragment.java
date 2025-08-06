@@ -156,8 +156,8 @@ public class RisultatiEserciziDenominazioneImmaginiGenitoreFragment extends Abst
     }
     private EsercizioDenominazioneImmagini getEsercizioDenominazioneFromViewModel(int indiceEsercizio, int indiceScenario, int indiceTerapia){
         Log.d("RisultatoDenominazione", ":"+ indiceEsercizio);
-        Log.d("RisultatoSequenzaParole", ":"+  mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getEsercizi().get(indiceEsercizio).toString());
-        return (EsercizioDenominazioneImmagini) mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getEsercizi().get(indiceEsercizio);
+        Log.d("RisultatoSequenzaParole", ":"+  mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio).toString());
+        return (EsercizioDenominazioneImmagini) mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
     }
 
     @Override
