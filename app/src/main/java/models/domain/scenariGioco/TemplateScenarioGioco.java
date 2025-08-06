@@ -12,11 +12,6 @@ public class TemplateScenarioGioco extends AbstractScenarioGioco {
 
     private String idTemplateScenarioGioco;
 
-    public TemplateScenarioGioco() {}
-
-    public TemplateScenarioGioco(String immagineSfondo, String immagineTappa1, String immagineTappa2, String immagineTappa3) {
-        super(immagineSfondo, immagineTappa1, immagineTappa2, immagineTappa3);
-    }
 
     public TemplateScenarioGioco(Map<String,Object> fromDatabaseMap, String fromDatabaseKey){
         TemplateScenarioGioco t = this.fromMap(fromDatabaseMap);
@@ -28,15 +23,27 @@ public class TemplateScenarioGioco extends AbstractScenarioGioco {
         this.immagine3 = t.getImmagine3();
     }
 
+    public TemplateScenarioGioco(String immagineSfondo, String immagineTappa1, String immagineTappa2, String immagineTappa3) {
+        super(immagineSfondo, immagineTappa1, immagineTappa2, immagineTappa3);
+    }
+
+    public TemplateScenarioGioco() {}
+
+
     public final String getIdTemplateScenarioGioco() {
         return idTemplateScenarioGioco;
     }
 
 
     @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> entityMap = super.toMap();
-        return entityMap;
+    public String toString() {
+        return "TemplateScenarioGioco{" +
+                "idTemplateScenarioGioco='" + idTemplateScenarioGioco + '\'' +
+                ", immagineSfondo='" + sfondoImmagine + '\'' +
+                ", immagineTappa1='" + immagine1 + '\'' +
+                ", immagineTappa2='" + immagine2 + '\'' +
+                ", immagineTappa3='" + immagine3 + '\'' +
+                '}';
     }
 
     @Override
@@ -51,14 +58,10 @@ public class TemplateScenarioGioco extends AbstractScenarioGioco {
     }
 
     @Override
-    public String toString() {
-        return "TemplateScenarioGioco{" +
-                "idTemplateScenarioGioco='" + idTemplateScenarioGioco + '\'' +
-                ", immagineSfondo='" + sfondoImmagine + '\'' +
-                ", immagineTappa1='" + immagine1 + '\'' +
-                ", immagineTappa2='" + immagine2 + '\'' +
-                ", immagineTappa3='" + immagine3 + '\'' +
-                '}';
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = super.toMap();
+        return map;
     }
+
 
 }
