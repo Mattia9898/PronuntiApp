@@ -1,58 +1,47 @@
 package views.activity;
 
-import android.graphics.Bitmap;
-
-import android.graphics.BitmapFactory;
-
-import android.graphics.Canvas;
-
-import android.graphics.Color;
-
-import android.graphics.Matrix;
-
-import android.graphics.PorterDuff;
-
-import android.os.Bundle;
-
-import android.util.Log;
-
-import android.view.View;
-
-import android.widget.ImageButton;
-
-import android.widget.Toast;
-
-import androidx.activity.OnBackPressedCallback;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import androidx.navigation.Navigation;
-
-import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.profili.Paziente;
-
-import models.domain.profili.personaggio.Personaggio;
+import java.util.List;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-
 import viewsModels.pazienteViewsModels.controller.PersonaggiController;
+
+import models.domain.profili.Paziente;
+import models.domain.profili.personaggio.Personaggio;
 
 import views.fragment.userPaziente.classifica.EntryClassifica;
 
+import com.google.android.material.navigation.NavigationBarView;
+
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.activity.OnBackPressedCallback;
+
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.PorterDuff;
+import android.graphics.Canvas;
+import android.util.Log;
+import android.view.View;
+import android.os.Bundle;
+import android.widget.Toast;
+import android.widget.ImageButton;
+
+
 public class PazienteActivity extends AbstractAppActivity {
 
-    private PazienteViewsModels mPazienteViewModel;
+    private PazienteViewsModels pazienteViewsModels;
 
-    private ImageButton navBarGiochi;
+    private ImageButton navigationBarGames;
 
-    private ImageButton navBarPersonaggi;
+    private ImageButton navigationBarCharacters;
 
-    private ImageButton navBarClassifica;
+    private ImageButton navigationBarRanking;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,92 +57,135 @@ public class PazienteActivity extends AbstractAppActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_UNLABELED);
 
-        navBarGiochi = findViewById(R.id.bottom_nav_giochi);
-        navBarPersonaggi = findViewById(R.id.bottom_nav_personaggi);
-        navBarClassifica = findViewById(R.id.bottom_nav_classifica);
+        navigationBarGames = findViewById(R.id.bottomNavigationBarGames);
+        navigationBarCharacters = findViewById(R.id.bottomNavigationBarCharacters);
+        navigationBarRanking = findViewById(R.id.bottomNavigationBarRanking);
 
         //first fragment
-        highlightNavBarButton(R.id.scenariFragment);
+        highlightsNavigationBarButton(R.id.fragmentScenarioGenerico);
 
-        //onclick navBar custom
-        navBarGiochi.setOnClickListener(v -> {
-            Navigation.findNavController(this, R.id.fragmentContainerPaziente).navigate(R.id.scenariFragment);
-            resetNavBarButtons(R.id.scenariFragment);
+        //on-click custom navigation bar
+        navigationBarGames.setOnClickListener(v -> {
+            Navigation.findNavController(this, R.id.fragmentContainerPaziente).navigate(R.id.fragmentScenarioGenerico);
+            resetNavigationBarButton(R.id.fragmentScenarioGenerico);
         });
-        navBarPersonaggi.setOnClickListener(v -> {
+        navigationBarCharacters.setOnClickListener(v -> {
             Navigation.findNavController(this, R.id.fragmentContainerPaziente).navigate(R.id.personaggiFragment);
-            resetNavBarButtons(R.id.personaggiFragment);
+            resetNavigationBarButton(R.id.personaggiFragment);
         });
-        navBarClassifica.setOnClickListener(v -> {
+        navigationBarRanking.setOnClickListener(v -> {
             Navigation.findNavController(this, R.id.fragmentContainerPaziente).navigate(R.id.classificaFragment);
-            resetNavBarButtons(R.id.classificaFragment);
+            resetNavigationBarButton(R.id.classificaFragment);
         });
 
-        setOnBackPressedCallback(R.id.scenariFragment);
+        setOnBackPressedCallback(R.id.fragmentScenarioGenerico);
 
-        //Setup Dati
-        this.mPazienteViewModel = new ViewModelProvider(this).get(PazienteViewsModels.class);
-        this.mPazienteViewModel.setPaziente((Paziente) getIntent().getSerializableExtra("mPaziente"));
-        this.mPazienteViewModel.setPersonaggi((List<Personaggio>) getIntent().getSerializableExtra("mPersonaggi"));
-        this.mPazienteViewModel.setClassifica((List<EntryClassifica>) getIntent().getSerializableExtra("mClassifica"));
-        this.mPazienteViewModel.setTexturePersonaggioSelezionato(PersonaggiController.getTexturePersonaggioSelezionato(mPazienteViewModel.getListaPersonaggiLiveData().getValue(), mPazienteViewModel.getPazienteLiveData().getValue().getPersonaggiSbloccati()));
+        //setup dei dati
+        this.pazienteViewsModels = new ViewModelProvider(this).get(PazienteViewsModels.class);
+
+        this.pazienteViewsModels.setPaziente((Paziente) getIntent().getSerializableExtra("mPaziente"));
+        this.pazienteViewsModels.setPersonaggi((List<Personaggio>) getIntent().getSerializableExtra("mPersonaggi"));
+        this.pazienteViewsModels.setClassifica((List<EntryClassifica>) getIntent().getSerializableExtra("mClassifica"));
+        this.pazienteViewsModels.setTexturePersonaggioSelezionato(PersonaggiController.getTexturePersonaggioSelezionato(pazienteViewsModels.getListaPersonaggiLiveData().getValue(), pazienteViewsModels.getPazienteLiveData().getValue().getPersonaggiSbloccati()));
     }
 
 
-    private void resetNavBarButtons(int id){
-        if(id == R.id.scenariFragment){
-            selectorNavBarButton(navBarGiochi, R.drawable.icona_game);
-            navBarClassifica.setScaleX(1f);
-            navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
-            navBarPersonaggi.setScaleX(1f);
-            navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
-        }
-        else if(id == R.id.personaggiFragment){
-            selectorNavBarButton(navBarPersonaggi, R.drawable.icona_personaggi_sbloccati);
-            navBarClassifica.setScaleX(1f);
-            navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
-            navBarGiochi.setScaleX(1f);
-            navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
-        }
-        else if(id == R.id.classificaFragment){
-            selectorNavBarButton(navBarClassifica, R.drawable.icona_classifica_colori);
-            navBarGiochi.setScaleX(1f);
-            navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
-            navBarPersonaggi.setScaleX(1f);
-            navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
-        }
-    }
+    private void selectorNavigationBarButton(ImageButton navigationBarButton, int drawableId){
 
-    private void selectorNavBarButton(ImageButton navBarButton, int drawableId){
-        navBarButton.setScaleX(1.2f);
-        navBarButton.setScaleY(1.2f);
-        int strokeWidth = 25;
-        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), drawableId);
-        Bitmap newStrokedBitmap = Bitmap.createBitmap(originalBitmap.getWidth() + 2 * strokeWidth, originalBitmap.getHeight() + 2 * strokeWidth, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(newStrokedBitmap);
-        float scaleX = (float) newStrokedBitmap.getWidth() / originalBitmap.getWidth();
-        float scaleY = (float) newStrokedBitmap.getHeight() / originalBitmap.getHeight();
+        navigationBarButton.setScaleX(1.2f);
+        navigationBarButton.setScaleY(1.2f);
+
+        int strokeWidthAttribute = 25;
+
+        Bitmap initialBitmap = BitmapFactory.decodeResource(getResources(), drawableId);
+        Bitmap newBitmap = Bitmap.createBitmap(initialBitmap.getWidth() + 2 * strokeWidthAttribute, initialBitmap.getHeight() + 2 * strokeWidthAttribute, Bitmap.Config.ARGB_8888);
+
+        float scaleX = (float) newBitmap.getWidth() / initialBitmap.getWidth();
+        float scaleY = (float) newBitmap.getHeight() / initialBitmap.getHeight();
+
         Matrix matrix = new Matrix();
         matrix.setScale(scaleX, scaleY);
-        canvas.drawBitmap(originalBitmap, matrix, null);
+
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawBitmap(initialBitmap, matrix, null);
         canvas.drawColor(getColor(R.color.backgroundWhite), PorterDuff.Mode.SRC_ATOP);
-        canvas.drawBitmap(originalBitmap, strokeWidth, strokeWidth, null);
-        navBarButton.setImageBitmap(newStrokedBitmap);
+        canvas.drawBitmap(initialBitmap, strokeWidthAttribute, strokeWidthAttribute, null);
+
+        navigationBarButton.setImageBitmap(newBitmap);
+    }
+
+    private void highlightsNavigationBarButton(int id){
+
+        Log.d("PazienteActivity.highlightNavBarButton()", "id: " + id);
+
+        if (id == R.id.fragmentScenarioGenerico) {
+            selectorNavigationBarButton(navigationBarGames, R.drawable.icona_game);
+            navigationBarRanking.setScaleX(1f);
+            navigationBarRanking.setScaleY(1f);
+            navigationBarRanking.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
+            navigationBarCharacters.setScaleX(1f);
+            navigationBarCharacters.setScaleY(1f);
+            navigationBarCharacters.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
+        }
+        else if (id == R.id.personaggiFragment) {
+            selectorNavigationBarButton(navigationBarCharacters, R.drawable.icona_personaggi_sbloccati);
+            navigationBarRanking.setScaleX(1f);
+            navigationBarRanking.setScaleY(1f);
+            navigationBarRanking.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
+            navigationBarGames.setScaleX(1f);
+            navigationBarGames.setScaleY(1f);
+            navigationBarGames.setImageDrawable(getDrawable(R.drawable.icona_game));
+        }
+        else if (id == R.id.classificaFragment) {
+            selectorNavigationBarButton(navigationBarRanking, R.drawable.icona_classifica_colori);
+            navigationBarGames.setScaleX(1f);
+            navigationBarGames.setScaleY(1f);
+            navigationBarGames.setImageDrawable(getDrawable(R.drawable.icona_game));
+            navigationBarCharacters.setScaleX(1f);
+            navigationBarCharacters.setScaleY(1f);
+            navigationBarCharacters.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
+        }
+    }
+
+    private void resetNavigationBarButton(int id){
+        if(id == R.id.fragmentScenarioGenerico){
+            selectorNavigationBarButton(navigationBarGames, R.drawable.icona_game);
+            navigationBarRanking.setScaleX(1f);
+            navigationBarRanking.setScaleY(1f);
+            navigationBarRanking.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
+            navigationBarCharacters.setScaleX(1f);
+            navigationBarCharacters.setScaleY(1f);
+            navigationBarCharacters.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
+        }
+        else if(id == R.id.personaggiFragment){
+            selectorNavigationBarButton(navigationBarCharacters, R.drawable.icona_personaggi_sbloccati);
+            navigationBarRanking.setScaleX(1f);
+            navigationBarRanking.setScaleY(1f);
+            navigationBarRanking.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
+            navigationBarGames.setScaleX(1f);
+            navigationBarGames.setScaleY(1f);
+            navigationBarGames.setImageDrawable(getDrawable(R.drawable.icona_game));
+        }
+        else if(id == R.id.classificaFragment){
+            selectorNavigationBarButton(navigationBarRanking, R.drawable.icona_classifica_colori);
+            navigationBarGames.setScaleX(1f);
+            navigationBarGames.setScaleY(1f);
+            navigationBarGames.setImageDrawable(getDrawable(R.drawable.icona_game));
+            navigationBarCharacters.setScaleX(1f);
+            navigationBarCharacters.setScaleY(1f);
+            navigationBarCharacters.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
+        }
     }
 
 
     protected void setOnBackPressedCallback(int id) {
+
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
-            private boolean doubleBackToExit= false;
+            private boolean doubleBackToExit = false;
+
             @Override
             public void handleOnBackPressed() {
-                highlightNavBarButton(id);
+                highlightsNavigationBarButton(id);
                 if (navigationController.getCurrentDestination().getId() == id && doubleBackToExit) {
                     finishAffinity();
                 } else if (navigationController.getCurrentDestination().getId() == id) {
@@ -167,34 +199,5 @@ public class PazienteActivity extends AbstractAppActivity {
         });
     }
 
-    private void highlightNavBarButton(int id){
-        Log.d("PazienteActivity.highlightNavBarButton()", "id: " + id);
-        if (id == R.id.scenariFragment) {
-            selectorNavBarButton(navBarGiochi, R.drawable.icona_game);
-            navBarClassifica.setScaleX(1f);
-            navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
-            navBarPersonaggi.setScaleX(1f);
-            navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
-        }
-        else if (id == R.id.personaggiFragment) {
-            selectorNavBarButton(navBarPersonaggi, R.drawable.icona_personaggi_sbloccati);
-            navBarClassifica.setScaleX(1f);
-            navBarClassifica.setScaleY(1f);
-            navBarClassifica.setImageDrawable(getDrawable(R.drawable.icona_classifica_colori));
-            navBarGiochi.setScaleX(1f);
-            navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
-        }
-        else if (id == R.id.classificaFragment) {
-            selectorNavBarButton(navBarClassifica, R.drawable.icona_classifica_colori);
-            navBarGiochi.setScaleX(1f);
-            navBarGiochi.setScaleY(1f);
-            navBarGiochi.setImageDrawable(getDrawable(R.drawable.icona_game));
-            navBarPersonaggi.setScaleX(1f);
-            navBarPersonaggi.setScaleY(1f);
-            navBarPersonaggi.setImageDrawable(getDrawable(R.drawable.icona_personaggi_sbloccati));
-        }
-    }
+
 }

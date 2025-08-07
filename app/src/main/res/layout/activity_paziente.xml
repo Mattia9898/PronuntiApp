@@ -37,22 +37,25 @@
             android:weightSum="3"
             android:gravity="center"
             >
+
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/bottom_nav_giochi"
+                android:id="@+id/bottomNavigationBarGames"
                 android:src="@drawable/icona_game"
                 style="@style/styleNavBarPazienteButton"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:tooltipText="@string/gioco"
                 />
+
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/bottom_nav_classifica"
+                android:id="@+id/bottomNavigationBarRanking"
                 android:src="@drawable/icona_classifica_colori"
                 style="@style/styleNavBarPazienteButton"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:tooltipText="@string/classifica"
                 />
+
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/bottom_nav_personaggi"
+                android:id="@+id/bottomNavigationBarCharacters"
                 android:src="@drawable/icona_personaggi_sbloccati"
                 style="@style/styleNavBarPazienteButton"
                 android:background="?attr/selectableItemBackgroundBorderless"
