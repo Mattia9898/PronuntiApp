@@ -1,20 +1,23 @@
 package views.activity;
 
-import android.graphics.Color;
+import it.uniba.dib.pronuntiapp.R;
 
-import android.os.Bundle;
+import viewsModels.autenticazioneViewsModels.LoginViewsModels;
+
+import android.graphics.Color;
 
 import androidx.lifecycle.ViewModelProvider;
 
 import androidx.navigation.Navigation;
 
-import it.uniba.dib.pronuntiapp.R;
 
-import viewsModels.autenticazioneViewsModels.LoginViewsModels;
+import android.os.Bundle;
+
 
 public class AutenticazioneActivity extends AbstractAppActivity {
 
-    private LoginViewsModels mLoginViewModel;
+    private LoginViewsModels mLoginViewsModels;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,9 @@ public class AutenticazioneActivity extends AbstractAppActivity {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(getColor(R.color.backgroundWhite));
 
-
         setContentView(R.layout.activity_autenticazione);
 
-        this.mLoginViewModel = new ViewModelProvider(this).get(LoginViewsModels.class);
+        this.mLoginViewsModels = new ViewModelProvider(this).get(LoginViewsModels.class);
 
         navigationController = Navigation.findNavController(this, R.id.fragmentContainerAutenticazione);
         setOnBackPressedCallback(R.id.loginFragment);
