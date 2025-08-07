@@ -33,7 +33,6 @@ public class GenitoreActivity extends AbstractAppActivity {
 
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(getColor(R.color.backgroundWhite));
-
         setContentView(R.layout.activity_genitore);
 
         //setup di navigazione
@@ -45,7 +44,7 @@ public class GenitoreActivity extends AbstractAppActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navigationController);
         setOnBackPressedCallback(R.id.terapieFragment);
 
-        //Setup Dati
+        //setup dei dati
         this.genitoreViewsModels = new ViewModelProvider(this).get(GenitoreViewsModels.class);
 
         this.genitoreViewsModels.setGenitore((Genitore) getIntent().getSerializableExtra("mGenitore"));

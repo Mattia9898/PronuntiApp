@@ -1,39 +1,33 @@
 package views.activity;
 
-import android.graphics.Color;
-
-import android.graphics.drawable.ColorDrawable;
-
-import android.os.Bundle;
-
-import androidx.appcompat.app.ActionBar;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import androidx.navigation.Navigation;
-
-import androidx.navigation.ui.AppBarConfiguration;
-
-import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.esercizi.Esercizio;
-
-import models.domain.profili.Appuntamento;
-
-import models.domain.profili.Logopedista;
-
-import models.domain.scenariGioco.TemplateScenarioGioco;
-
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
+import android.os.Bundle;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
+
+import models.domain.scenariGioco.TemplateScenarioGioco;
+import models.domain.profili.Logopedista;
+import models.domain.profili.Appuntamento;
+import models.domain.esercizi.Esercizio;
+
+import java.util.List;
+
+import com.google.android.material.navigation.NavigationBarView;
+
+import androidx.lifecycle.ViewModelProvider;
+import androidx.appcompat.app.ActionBar;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.navigation.Navigation;
+
+
 public class LogopedistaActivity extends AbstractAppActivity {
-    private LogopedistaViewsModels mLogopedistaViewModel;
+
+    private LogopedistaViewsModels logopedistaViewsModels;
 
 
     @Override
@@ -52,12 +46,13 @@ public class LogopedistaActivity extends AbstractAppActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navigationController);
         setOnBackPressedCallback(R.id.pazientiFragment);
 
-        //Setup Dati
-        this.mLogopedistaViewModel = new ViewModelProvider(this).get(LogopedistaViewsModels.class);
-        this.mLogopedistaViewModel.setLogopedista((Logopedista) getIntent().getSerializableExtra("mLogopedista"));
-        this.mLogopedistaViewModel.setAppuntamenti((List<Appuntamento>) getIntent().getSerializableExtra("mAppuntamenti"));
-        this.mLogopedistaViewModel.setTemplateScenariGioco((List<TemplateScenarioGioco>) getIntent().getSerializableExtra("mTemplateScenariGioco"));
-        this.mLogopedistaViewModel.setTemplateEsercizi((List<Esercizio>) getIntent().getSerializableExtra("mTemplateEsercizi"));
+        //setup dei dati
+        this.logopedistaViewsModels = new ViewModelProvider(this).get(LogopedistaViewsModels.class);
+
+        this.logopedistaViewsModels.setLogopedista((Logopedista) getIntent().getSerializableExtra("mLogopedista"));
+        this.logopedistaViewsModels.setAppuntamenti((List<Appuntamento>) getIntent().getSerializableExtra("mAppuntamenti"));
+        this.logopedistaViewsModels.setTemplateScenariGioco((List<TemplateScenarioGioco>) getIntent().getSerializableExtra("mTemplateScenariGioco"));
+        this.logopedistaViewsModels.setTemplateEsercizi((List<Esercizio>) getIntent().getSerializableExtra("mTemplateEsercizi"));
     }
 
 }

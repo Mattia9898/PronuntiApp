@@ -20,11 +20,10 @@
         android:weightSum="8"
         android:paddingTop="15dp"
         >
-
         <Button
             android:id="@+id/addPaziente"
             android:layout_height="match_parent"
-            android:text="@string/aggiungiPaziente"
+            android:text="@string/addPatient"
             app:layout_constraintEnd_toStartOf="@+id/searchViewListaPazienti"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -77,9 +76,8 @@
                 android:padding="16dp"
                 android:textSize="@dimen/size_text_info_paziente"
                 android:text="@string/nameSurname"
-                android:gravity="center|left"
                 android:fontFamily="sans-serif-black"
-                android:layout_weight="0"
+                android:layout_weight="3"
                 />
 
             <TextView
@@ -89,10 +87,9 @@
                 android:padding="16dp"
                 android:textSize="@dimen/size_text_info_paziente"
                 android:text="@string/birth_date_hint"
-                android:gravity="center"
-                android:layout_marginLeft="35dp"
+                android:gravity="end"
                 android:fontFamily="sans-serif-black"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 />
 
             <TextView
@@ -107,6 +104,7 @@
                 android:layout_weight="1"
                 />
         </LinearLayout>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
