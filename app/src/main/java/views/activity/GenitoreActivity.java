@@ -1,39 +1,36 @@
 package views.activity;
 
-import android.graphics.Color;
-
-import android.graphics.drawable.ColorDrawable;
-
-import android.os.Bundle;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import androidx.navigation.Navigation;
-
-import androidx.navigation.ui.AppBarConfiguration;
-
-import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.profili.Appuntamento;
-
-import models.domain.profili.Genitore;
-
-import models.domain.profili.Paziente;
+import java.util.List;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
+import models.domain.profili.Genitore;
+import models.domain.profili.Paziente;
+import models.domain.profili.Appuntamento;
+
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.navigation.Navigation;
+import androidx.lifecycle.ViewModelProvider;
+
+import android.os.Bundle;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+
+import com.google.android.material.navigation.NavigationBarView;
+
+
 public class GenitoreActivity extends AbstractAppActivity {
 
-    private GenitoreViewsModels mGenitoreViewModel;
+    private GenitoreViewsModels genitoreViewsModels;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(getColor(R.color.backgroundWhite));
 
@@ -49,10 +46,11 @@ public class GenitoreActivity extends AbstractAppActivity {
         setOnBackPressedCallback(R.id.terapieFragment);
 
         //Setup Dati
-        this.mGenitoreViewModel = new ViewModelProvider(this).get(GenitoreViewsModels.class);
-        this.mGenitoreViewModel.setGenitore((Genitore) getIntent().getSerializableExtra("mGenitore"));
-        this.mGenitoreViewModel.setPaziente((Paziente) getIntent().getSerializableExtra("mPaziente"));
-        this.mGenitoreViewModel.setAppuntamenti((List<Appuntamento>) getIntent().getSerializableExtra("mAppuntamenti"));
+        this.genitoreViewsModels = new ViewModelProvider(this).get(GenitoreViewsModels.class);
+
+        this.genitoreViewsModels.setGenitore((Genitore) getIntent().getSerializableExtra("mGenitore"));
+        this.genitoreViewsModels.setPaziente((Paziente) getIntent().getSerializableExtra("mPaziente"));
+        this.genitoreViewsModels.setAppuntamenti((List<Appuntamento>) getIntent().getSerializableExtra("mAppuntamenti"));
     }
 
 }
