@@ -16,7 +16,7 @@ import android.os.Bundle;
 
 public class AutenticazioneActivity extends AbstractAppActivity {
 
-    private LoginViewsModels mLoginViewsModels;
+    private LoginViewsModels loginViewsModels;
 
 
     @Override
@@ -27,7 +27,7 @@ public class AutenticazioneActivity extends AbstractAppActivity {
 
         setContentView(R.layout.activity_autenticazione);
 
-        this.mLoginViewsModels = new ViewModelProvider(this).get(LoginViewsModels.class);
+        this.loginViewsModels = new ViewModelProvider(this).get(LoginViewsModels.class);
 
         navigationController = Navigation.findNavController(this, R.id.fragmentContainerAutenticazione);
         setOnBackPressedCallback(R.id.loginFragment);
