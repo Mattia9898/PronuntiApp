@@ -108,7 +108,7 @@ public class CreazioneTerapiaFragment extends AbstractNavigazioneFragment implem
     }
     private void showErrorDialog(int messaggio){
         InfoDialog infoDialog = new InfoDialog(getContext(), getString(messaggio), getString(R.string.tastoRiprova));
-        infoDialog.setOnConfermaButtonClickListener(null);
+        infoDialog.setOnConfirmButtonClickListener(null);
         infoDialog.show();
     }
     private void addScenario(){

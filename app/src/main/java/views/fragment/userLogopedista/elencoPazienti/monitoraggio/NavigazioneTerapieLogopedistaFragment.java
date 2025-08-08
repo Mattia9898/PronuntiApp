@@ -124,7 +124,7 @@ public class NavigazioneTerapieLogopedistaFragment extends AbstractNavigazioneFr
 
         InfoDialog infoDialog = new InfoDialog(getContext(), messaggioErrore, getString(R.string.tastoRiprova));
         infoDialog.show();
-        infoDialog.setOnConfermaButtonClickListener(null);
+        infoDialog.setOnConfirmButtonClickListener(null);
     }
 
 

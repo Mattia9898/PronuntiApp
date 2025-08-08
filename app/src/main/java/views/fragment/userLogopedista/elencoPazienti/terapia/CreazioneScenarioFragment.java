@@ -301,7 +301,7 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
 
     private void showErrorDialog(){
         InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.compilaPrimaTutto), getString(R.string.tastoRiprova));
-        infoDialog.setOnConfermaButtonClickListener(null);
+        infoDialog.setOnConfirmButtonClickListener(null);
         infoDialog.show();
     }
 

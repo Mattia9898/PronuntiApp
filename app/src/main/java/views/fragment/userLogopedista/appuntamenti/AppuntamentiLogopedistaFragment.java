@@ -355,7 +355,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigazioneFragment
 
     private void showErrorInputDialog(){
         InfoDialog inputErratoDialog = new InfoDialog(getContext(),getString(R.string.inputErratoAggiungiAppuntamento) , getString(R.string.infoOk));
-        inputErratoDialog.setOnConfermaButtonClickListener(null);
+        inputErratoDialog.setOnConfirmButtonClickListener(null);
         inputErratoDialog.show();
     }
 

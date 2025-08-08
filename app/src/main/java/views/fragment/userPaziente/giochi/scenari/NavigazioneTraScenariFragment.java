@@ -22,6 +22,7 @@ import views.dialog.InfoDialog;
 import views.fragment.AbstractNavigazioneFragment;
 
 public class NavigazioneTraScenariFragment extends AbstractNavigazioneFragment {
+
     private TextView textViewDataScenario;
     private ImageButton buttonIndietroScenario;
     private ImageButton buttonAvantiScenario;
@@ -103,12 +104,12 @@ public class NavigazioneTraScenariFragment extends AbstractNavigazioneFragment {
     private void showInfoDialog(boolean error){
         if(error){
             InfoDialog infoDialog = new InfoDialog(requireActivity(),getString(R.string.navScenariNoticeForward),getString(R.string.ok));
-            infoDialog.setOnConfermaButtonClickListener(() -> {});
+            infoDialog.setOnConfirmButtonClickListener(() -> {});
             setDialogUI(infoDialog);
             infoDialog.show();
         }else{
             InfoDialog infoDialog = new InfoDialog(requireActivity(),getString(R.string.navScenariNoticeBackward),getString(R.string.ok));
-            infoDialog.setOnConfermaButtonClickListener(() -> {});
+            infoDialog.setOnConfirmButtonClickListener(() -> {});
             setDialogUI(infoDialog);
             infoDialog.show();
         }

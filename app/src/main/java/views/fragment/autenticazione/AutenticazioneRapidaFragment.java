@@ -89,7 +89,7 @@ public class AutenticazioneRapidaFragment extends AbstractNavigazioneFragment {
             if (!isLoginCorrect) {
                 InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.erroreLoginCredenziali), getString(R.string.tastoRiprova));
                 infoDialog.show();
-                infoDialog.setOnConfermaButtonClickListener(null);
+                infoDialog.setOnConfirmButtonClickListener(null);
             }
             else {
                 AutenticazioneSharedPreferences autenticazioneSharedPreferences = new AutenticazioneSharedPreferences(requireActivity());

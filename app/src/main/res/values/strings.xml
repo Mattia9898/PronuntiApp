@@ -42,7 +42,7 @@
     <string name="next">Avanti</string>
     <string name="errorConnectionDescription">Connessione internet non disponibile. Controlla la connessione, non puoi\n usare l'app senza di essa</string>
     <string name="errorConnectionTitle">Errore connessione</string>
-    <string name="restartApp" >Ricarica l app</string>
+    <string name="restartApp" >Ricarica l\'app</string>
     <string name="errorPermissionTitle">Permesso negato</string>
     <string name="errorPermissionOption1">Richiedili nuovamente</string>
     <string name="errorPermissionOption2">Non voglio darli</string>

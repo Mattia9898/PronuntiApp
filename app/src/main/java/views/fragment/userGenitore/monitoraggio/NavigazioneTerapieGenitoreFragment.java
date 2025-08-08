@@ -36,14 +36,13 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
     private ImageButton imageButtonProssimaTerapia;
     private ImageButton imageButtonTerapiaPrecedente;
     private GenitoreViewsModels mGenitoreViewModel;
-    private LinearLayout linearLayout;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_nav_terapie, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigazione_terapie, container, false);
 
         imageButtonProssimaTerapia = view.findViewById(R.id.buttonAvantiTerapia);
         imageButtonTerapiaPrecedente = view.findViewById(R.id.buttonIndietroTerapia);
@@ -112,7 +111,7 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
 
         InfoDialog infoDialog = new InfoDialog(getContext(), messaggioErrore, getString(R.string.tastoRiprova));
         infoDialog.show();
-        infoDialog.setOnConfermaButtonClickListener(null);
+        infoDialog.setOnConfirmButtonClickListener(null);
     }
 
 

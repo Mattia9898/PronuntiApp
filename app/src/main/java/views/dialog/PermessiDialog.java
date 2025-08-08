@@ -1,17 +1,21 @@
 package views.dialog;
 
-import android.content.Context;
 
 import it.uniba.dib.pronuntiapp.R;
 
+import android.content.Context;
+
+
 public class PermessiDialog extends PopUpDialog {
 
-    public PermessiDialog(Context context, String descrizione) {
+    public PermessiDialog(Context context, String description) {
+
         super(context);
         setTitle(context.getString(R.string.errorPermissionTitle));
-        setDescription(descrizione);
+        setDescription(description);
         setConfirmButton(context.getString(R.string.errorPermissionOption1));
         setCancelButton(context.getString(R.string.errorPermissionOption2));
+
     }
 
 }

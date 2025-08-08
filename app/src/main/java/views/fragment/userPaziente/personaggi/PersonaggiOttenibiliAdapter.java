@@ -68,7 +68,7 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
     private void acquistoPersonaggio(int costoSbloccoPersonaggio, Personaggio personaggio, String idPersonaggio) {
         if (mController.isValutaSufficiente(costoSbloccoPersonaggio)) {
 
-            setRichiestaAcquisto().setOnConfermaButtonClickListener(() -> {
+            setRichiestaAcquisto().setOnConfirmButtonClickListener(() -> {
                 mController.updateSelezionePersonaggio(idPersonaggio);
                 mController.updateValutaPaziente(costoSbloccoPersonaggio);
 
@@ -83,13 +83,13 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
 
     private void showInfoDialog(){
         InfoDialog infoDialog = new InfoDialog(context,context.getString(R.string.valutaInsufficiente), context.getString(R.string.infoOk));
-        infoDialog.setOnConfermaButtonClickListener(() -> {});
+        infoDialog.setOnConfirmButtonClickListener(() -> {});
         infoDialog.show();
     }
 
     private RichiestaConfermaDialog setRichiestaAcquisto() {
         RichiestaConfermaDialog richiestaAcquisto = new RichiestaConfermaDialog(context, context.getString(R.string.acquistoPersonaggioTitle), context.getString(R.string.acquistoPersonaggioDescription));
-        richiestaAcquisto.setOnAnnullaButtonClickListener(() -> {});
+        richiestaAcquisto.setOnCancelButtonClickListener(() -> {});
         richiestaAcquisto.show();
 
         return richiestaAcquisto;

@@ -1,50 +1,86 @@
 package views.dialog;
 
-import android.content.Context;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.widget.Button;
-
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-
-import androidx.appcompat.app.AlertDialog;
 
 import it.uniba.dib.pronuntiapp.R;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+
+import android.widget.TextView;
+import android.widget.Button;
+import android.content.Context;
+import android.view.View;
+import android.view.LayoutInflater;
+
+
 public abstract class PopUpDialog extends AlertDialog.Builder {
+
+    private TextView titlePopUp;
+
+    private TextView descriptionPopUp;
+
+    private Button confirmButton;
+
+    private Button cancelButton;
 
     protected Context context;
 
     protected AlertDialog alertDialog;
 
-    private TextView textViewTitoloPopUp;
-
-    private TextView textViewDescrizione;
-
-    private Button buttonConferma;
-
-    private Button buttonAnnulla;
-
     private static final int LAYOUT_ID = R.layout.pop_up_dialog;
+
 
     public PopUpDialog(@NonNull Context context) {
         super(context, R.style.CustomDialogTheme);
         this.context = context;
 
-        // Inizializzazione della vista del dialogo
+        //Inizializzazione della view del dialog
         View view = LayoutInflater.from(context).inflate(LAYOUT_ID, null);
         setView(view);
 
-        // Riferimenti agli elementi di layout
-        textViewTitoloPopUp = view.findViewById(R.id.textViewTitoloPopUp);
-        textViewDescrizione = view.findViewById(R.id.textViewDescrizionePopUp);
-        buttonConferma = view.findViewById(R.id.buttonConfermaPopUp);
-        buttonAnnulla = view.findViewById(R.id.buttonAnnullaPopUp);
+        // Riferimenti agli elementi di layout del file pop_up_dialog.xml
+        titlePopUp = view.findViewById(R.id.textViewTitoloPopUp);
+        descriptionPopUp = view.findViewById(R.id.textViewDescrizionePopUp);
+        confirmButton = view.findViewById(R.id.buttonConfermaPopUp);
+        cancelButton = view.findViewById(R.id.buttonAnnullaPopUp);
+    }
+
+
+    protected void setTitle(String TitlePopUp) {
+        titlePopUp.setText(TitlePopUp);
+    }
+
+    protected void setDescription(String DescriptionPopUp) {
+        descriptionPopUp.setText(DescriptionPopUp);
+    }
+
+    protected void setConfirmButton(String ConfirmButton) {
+        confirmButton.setVisibility(View.VISIBLE);
+        confirmButton.setText(ConfirmButton);
+    }
+
+    protected void setCancelButton(String CancelButton) {
+        cancelButton.setVisibility(View.VISIBLE);
+        cancelButton.setText(CancelButton);
+    }
+
+
+    public void setOnConfirmButtonClickListener(OnConfirmButtonClickListener onConfirmButtonClickListener) {
+        confirmButton.setOnClickListener(v -> {
+            if (onConfirmButtonClickListener != null) {
+                onConfirmButtonClickListener.onConfirmButtonClicked();
+            }
+            alertDialog.dismiss();
+        });
+    }
+
+    public void setOnCancelButtonClickListener(OnCancelButtonClickListener onCancelButtonClickListener) {
+        cancelButton.setOnClickListener(v -> {
+            if (onCancelButtonClickListener != null) {
+                onCancelButtonClickListener.onCancelButtonClicked();
+            }
+            alertDialog.dismiss();
+        });
     }
 
 
@@ -65,49 +101,13 @@ public abstract class PopUpDialog extends AlertDialog.Builder {
     }
 
 
-    protected void setTitle(String title) {
-        textViewTitoloPopUp.setText(title);
+    public interface OnConfirmButtonClickListener {
+        void onConfirmButtonClicked();
     }
 
-    protected void setDescription(String description) {
-        textViewDescrizione.setText(description);
+    public interface OnCancelButtonClickListener {
+        void onCancelButtonClicked();
     }
 
-    protected void setConfirmButton(String confirmButton) {
-        buttonConferma.setVisibility(View.VISIBLE);
-        buttonConferma.setText(confirmButton);
-    }
-
-    protected void setCancelButton(String cancelButton) {
-        buttonAnnulla.setVisibility(View.VISIBLE);
-        buttonAnnulla.setText(cancelButton);
-    }
-
-    public void setOnConfermaButtonClickListener(OnConfermaButtonClickListener listener) {
-        buttonConferma.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onConfermaButtonClicked();
-            }
-            alertDialog.dismiss();
-        });
-    }
-
-    public void setOnAnnullaButtonClickListener(OnAnnullaButtonClickListener listener) {
-        buttonAnnulla.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onAnnullaButtonClicked();
-            }
-            alertDialog.dismiss();
-        });
-    }
-
-
-    public interface OnConfermaButtonClickListener {
-        void onConfermaButtonClicked();
-    }
-
-    public interface OnAnnullaButtonClickListener {
-        void onAnnullaButtonClicked();
-    }
 
 }

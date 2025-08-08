@@ -45,8 +45,8 @@ public class LogoutFragment extends Fragment {
 
     private void richiestaLogout() {
         RichiestaConfermaDialog dialog = new RichiestaConfermaDialog(getContext(),getString(R.string.logoutTitle), getString(R.string.logoutRichiesta));
-        dialog.setOnConfermaButtonClickListener(this::eseguiLogout);
-        dialog.setOnAnnullaButtonClickListener(() -> {});
+        dialog.setOnConfirmButtonClickListener(this::eseguiLogout);
+        dialog.setOnCancelButtonClickListener(() -> {});
         dialog.show();
     }
 

@@ -711,15 +711,15 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
                 } else {
                     InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.permissionDeniedInstructions), getString(R.string.infoOk));
                     infoDialog.show();
-                    infoDialog.setOnConfermaButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
+                    infoDialog.setOnConfirmButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
                 }
             });
 
     private void setPermissionDialog() {
         PermessiDialog permessiDialog = new PermessiDialog(getContext(), getString(R.string.permissionDeniedDescription));
         permessiDialog.show();
-        permessiDialog.setOnConfermaButtonClickListener(() -> requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO));
-        permessiDialog.setOnAnnullaButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
+        permessiDialog.setOnConfirmButtonClickListener(() -> requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO));
+        permessiDialog.setOnCancelButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
     }
 
     private AudioRecorder initAudioRecorder() {
@@ -777,7 +777,7 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
 
     private void showErrorDialog(){
         InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.compilaPrimaTutto), getString(R.string.tastoRiprova));
-        infoDialog.setOnConfermaButtonClickListener(null);
+        infoDialog.setOnConfirmButtonClickListener(null);
         infoDialog.show();
     }
 

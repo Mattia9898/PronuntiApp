@@ -71,7 +71,7 @@ public abstract class AbstractAppActivity extends AppCompatActivity {
                 Log.d("AbstractAppActivity.BroadcastReceiver()", "Connessione assente");
 
                 MissedConnectionDialog missedConnectionDialog = new MissedConnectionDialog(getThisContext());
-                missedConnectionDialog.setOnConfermaButtonClickListener(() -> restartApplication());
+                missedConnectionDialog.setOnConfirmButtonClickListener(() -> restartApplication());
                 runOnUiThread(missedConnectionDialog::show);
             }
         }

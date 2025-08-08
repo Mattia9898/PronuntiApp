@@ -269,8 +269,8 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
 
     private void sovrascriviAudio() {
         RichiestaConfermaDialog richiestaConfermaDialog = new RichiestaConfermaDialog(getContext(), getContext().getString(R.string.overwriteAudio), getContext().getString(R.string.overwriteAudioDescription));
-        richiestaConfermaDialog.setOnConfermaButtonClickListener(this::avviaRegistrazione);
-        richiestaConfermaDialog.setOnAnnullaButtonClickListener(() -> {});
+        richiestaConfermaDialog.setOnConfirmButtonClickListener(this::avviaRegistrazione);
+        richiestaConfermaDialog.setOnCancelButtonClickListener(() -> {});
         richiestaConfermaDialog.show();
     }
 
@@ -395,15 +395,15 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
                 } else {
                     InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.permissionDeniedInstructions), getString(R.string.infoOk));
                     infoDialog.show();
-                    infoDialog.setOnConfermaButtonClickListener(() -> navigateTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
+                    infoDialog.setOnConfirmButtonClickListener(() -> navigateTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
                 }
             });
 
     private void setPermissionDialog() {
         PermessiDialog permessiDialog = new PermessiDialog(getContext(), getString(R.string.permissionDeniedDescription));
         permessiDialog.show();
-        permessiDialog.setOnConfermaButtonClickListener(() -> requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO));
-        permessiDialog.setOnAnnullaButtonClickListener(() -> navigateTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
+        permessiDialog.setOnConfirmButtonClickListener(() -> requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO));
+        permessiDialog.setOnCancelButtonClickListener(() -> navigateTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
     }
 
 }
