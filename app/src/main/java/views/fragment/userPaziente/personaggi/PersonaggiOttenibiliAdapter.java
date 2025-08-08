@@ -23,7 +23,7 @@ import it.uniba.dib.pronuntiapp.R;
 import models.domain.profili.personaggio.Personaggio;
 import viewsModels.pazienteViewsModels.controller.PersonaggiController;
 import views.dialog.InfoDialog;
-import views.dialog.RichiestaConfermaDialog;
+import views.dialog.RequestConfirmDialog;
 
 public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<PersonaggiOttenibiliAdapter.ViewHolder> {
 
@@ -87,8 +87,8 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
         infoDialog.show();
     }
 
-    private RichiestaConfermaDialog setRichiestaAcquisto() {
-        RichiestaConfermaDialog richiestaAcquisto = new RichiestaConfermaDialog(context, context.getString(R.string.acquistoPersonaggioTitle), context.getString(R.string.acquistoPersonaggioDescription));
+    private RequestConfirmDialog setRichiestaAcquisto() {
+        RequestConfirmDialog richiestaAcquisto = new RequestConfirmDialog(context, context.getString(R.string.acquistoPersonaggioTitle), context.getString(R.string.acquistoPersonaggioDescription));
         richiestaAcquisto.setOnCancelButtonClickListener(() -> {});
         richiestaAcquisto.show();
 

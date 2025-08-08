@@ -42,7 +42,7 @@ import models.utils.audioPlayer.AudioPlayerLink;
 import models.utils.audioRecorder.AudioRecorder;
 import views.dialog.InfoDialog;
 import views.dialog.PermessiDialog;
-import views.dialog.RichiestaConfermaDialog;
+import views.dialog.RequestConfirmDialog;
 import views.fragment.userPaziente.giochi.FineScenarioEsercizioView;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import viewsModels.pazienteViewsModels.controller.SceltaImmaginiController;
@@ -271,7 +271,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
     }
 
     private void sovrascriviAudio(){
-        RichiestaConfermaDialog richiestaConfermaDialog = new RichiestaConfermaDialog(getContext(), getContext().getString(R.string.overwriteAudio), getContext().getString(R.string.overwriteAudioDescription));
+        RequestConfirmDialog richiestaConfermaDialog = new RequestConfirmDialog(getContext(), getContext().getString(R.string.overwriteAudio), getContext().getString(R.string.overwriteAudioDescription));
         richiestaConfermaDialog.setOnConfirmButtonClickListener(this::avviaRegistrazione);
         richiestaConfermaDialog.setOnCancelButtonClickListener(() -> {});
         richiestaConfermaDialog.show();

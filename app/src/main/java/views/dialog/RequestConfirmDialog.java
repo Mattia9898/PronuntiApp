@@ -1,21 +1,26 @@
 package views.dialog;
 
-import android.content.Context;
-
-import androidx.appcompat.app.AlertDialog;
 
 import it.uniba.dib.pronuntiapp.R;
 
-public class RichiestaConfermaDialog extends PopUpDialog {
+import androidx.appcompat.app.AlertDialog;
 
-    public RichiestaConfermaDialog(Context context, String titolo, String descrizione) {
+import android.content.Context;
+
+
+public class RequestConfirmDialog extends PopUpDialog {
+
+    public RequestConfirmDialog(Context context, String title, String description) {
+
         super(context);
-        setTitle(titolo);
-        setDescription(descrizione);
+        setTitle(title);
+        setDescription(description);
         setConfirmButton(context.getString(R.string.confirm));
         setCancelButton(context.getString(R.string.cancel));
+
         alertDialog = create();
         alertDialog.setCanceledOnTouchOutside(false);
+
     }
 
     @Override

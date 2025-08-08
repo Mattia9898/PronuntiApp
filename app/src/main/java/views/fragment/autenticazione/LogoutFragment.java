@@ -20,7 +20,7 @@ import models.autenticazione.AutenticazioneSharedPreferences;
 
 import views.activity.AutenticazioneActivity;
 
-import views.dialog.RichiestaConfermaDialog;
+import views.dialog.RequestConfirmDialog;
 
 public class LogoutFragment extends Fragment {
 
@@ -44,7 +44,7 @@ public class LogoutFragment extends Fragment {
     }
 
     private void richiestaLogout() {
-        RichiestaConfermaDialog dialog = new RichiestaConfermaDialog(getContext(),getString(R.string.logoutTitle), getString(R.string.logoutRichiesta));
+        RequestConfirmDialog dialog = new RequestConfirmDialog(getContext(),getString(R.string.logoutTitle), getString(R.string.logoutRichiesta));
         dialog.setOnConfirmButtonClickListener(this::eseguiLogout);
         dialog.setOnCancelButtonClickListener(() -> {});
         dialog.show();
