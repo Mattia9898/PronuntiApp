@@ -65,22 +65,22 @@ public abstract class PopUpDialog extends AlertDialog.Builder {
     }
 
 
-    protected void setTitolo(String titolo) {
-        textViewTitoloPopUp.setText(titolo);
+    protected void setTitle(String title) {
+        textViewTitoloPopUp.setText(title);
     }
 
-    protected void setDescrizione(String descrizione) {
-        textViewDescrizione.setText(descrizione);
+    protected void setDescription(String description) {
+        textViewDescrizione.setText(description);
     }
 
-    protected void setConfermaButtonText(String text) {
+    protected void setConfirmButton(String confirmButton) {
         buttonConferma.setVisibility(View.VISIBLE);
-        buttonConferma.setText(text);
+        buttonConferma.setText(confirmButton);
     }
 
-    protected void setAnnullaButtonText(String text) {
+    protected void setCancelButton(String cancelButton) {
         buttonAnnulla.setVisibility(View.VISIBLE);
-        buttonAnnulla.setText(text);
+        buttonAnnulla.setText(cancelButton);
     }
 
     public void setOnConfermaButtonClickListener(OnConfermaButtonClickListener listener) {

@@ -10,9 +10,9 @@ public class MissedConnectionDialog extends PopUpDialog {
 
     public MissedConnectionDialog(Context context) {
         super(context);
-        setTitolo(context.getString(R.string.errorConnectionTitle));
-        setDescrizione(context.getString(R.string.errorConnectionDescription));
-        setConfermaButtonText(context.getString(R.string.restartApp));
+        setTitle(context.getString(R.string.errorConnectionTitle));
+        setDescription(context.getString(R.string.errorConnectionDescription));
+        setConfirmButton(context.getString(R.string.restartApp));
         alertDialog = create();
         alertDialog.setCanceledOnTouchOutside(false);
     }

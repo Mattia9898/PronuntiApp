@@ -10,10 +10,10 @@ public class RichiestaConfermaDialog extends PopUpDialog {
 
     public RichiestaConfermaDialog(Context context, String titolo, String descrizione) {
         super(context);
-        setTitolo(titolo);
-        setDescrizione(descrizione);
-        setConfermaButtonText(context.getString(R.string.confirm));
-        setAnnullaButtonText(context.getString(R.string.cancel));
+        setTitle(titolo);
+        setDescription(descrizione);
+        setConfirmButton(context.getString(R.string.confirm));
+        setCancelButton(context.getString(R.string.cancel));
         alertDialog = create();
         alertDialog.setCanceledOnTouchOutside(false);
     }

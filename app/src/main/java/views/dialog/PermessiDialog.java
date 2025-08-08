@@ -8,10 +8,10 @@ public class PermessiDialog extends PopUpDialog {
 
     public PermessiDialog(Context context, String descrizione) {
         super(context);
-        setTitolo(context.getString(R.string.errorPermissionTitle));
-        setDescrizione(descrizione);
-        setConfermaButtonText(context.getString(R.string.errorPermissionOption1));
-        setAnnullaButtonText(context.getString(R.string.errorPermissionOption2));
+        setTitle(context.getString(R.string.errorPermissionTitle));
+        setDescription(descrizione);
+        setConfirmButton(context.getString(R.string.errorPermissionOption1));
+        setCancelButton(context.getString(R.string.errorPermissionOption2));
     }
 
 }
