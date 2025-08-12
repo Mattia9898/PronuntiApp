@@ -1,4 +1,5 @@
-<androidx.cardview.widget.CardView android:id="@+id/cardViewScenario"
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardViewScenario"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,6 +11,7 @@
     app:cardElevation="8dp"
     xmlns:tools="http://schemas.android.com/tools"
     >
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +19,7 @@
         android:paddingTop="5dp"
         >
         <LinearLayout
-            android:id="@+id/linearLayoutModificaDataScenario"
+            android:id="@+id/linearLayoutEditDataScenario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +45,7 @@
                 />
 
             <ImageView
-                android:id="@+id/imageViewModificaDataScenario"
+                android:id="@+id/editDataScenario"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icona_edit"
@@ -57,7 +59,7 @@
             android:id="@+id/linearLayoutScenarioDel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutModificaDataScenario"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutEditDataScenario"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +69,7 @@
             >
 
             <TextView
-                android:id="@+id/textViewGiornoScenario"
+                android:id="@+id/dayScenario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -83,7 +85,7 @@
                 android:layout_gravity="center"
                 >
                 <TextView
-                    android:id="@+id/textViewMeseAnnoScenario"
+                    android:id="@+id/monthYearScenario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -94,7 +96,7 @@
                     android:layout_weight="2"
                     />
                 <ImageView
-                    android:id="@+id/imageViewArrowDown"
+                    android:id="@+id/arrowDown"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/icona_freccia_giu_bianca"
@@ -105,7 +107,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewEsercizi"
+            android:id="@+id/recyclerViewExercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutScenarioDel"
