@@ -1,67 +1,46 @@
 package views.fragment.adapter;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import it.uniba.dib.pronuntiapp.R;
 
 import java.util.List;
 
-import it.uniba.dib.pronuntiapp.R;
-import models.domain.esercizi.EsercizioCoppiaImmagini;
-import models.domain.esercizi.EsercizioDenominazioneImmagini;
-import models.domain.esercizi.EsercizioRealizzabile;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+
 import models.domain.esercizi.EsercizioSequenzaParole;
+import models.domain.esercizi.EsercizioDenominazioneImmagini;
+import models.domain.esercizi.EsercizioCoppiaImmagini;
+import models.domain.esercizi.EsercizioRealizzabile;
+
+import android.util.Log;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.RelativeLayout;
+import android.widget.ImageView;
+
 
 public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.EsercizioViewHolder> {
 
-    private List<EsercizioRealizzabile> listaEsercizi;
+    private List<EsercizioRealizzabile> listEsercizioRealizzabile;
+
+    private int idNavigationToEsercizioCoppiaImmagini;
+
+    private int idNavigationToEsercizioSequenzaParole;
+
+    private int idNavigationToEsercizioDenominazioneImmagine;
+
+    private int therapy;
+
+    private int scenario;
 
     private Navigation navigation;
 
-    private int idNavToEsercizioDenominazioneImmagine;
-
-    private int idNavToEsercizioCoppiaImmagini;
-
-    private int idNavToEsercizioSequenzaParole;
-
-    private int indiceTerapia;
-
-    private int indiceScenario;
-
     private String idPaziente = String.valueOf(0);
 
-    public EsercizioAdapter(List<EsercizioRealizzabile> listaEsercizi, Navigation navigation, int idNavToEsercizioDenominazioneImmagine, int idNavToEsercizioCoppiaImmagini, int idNavToEsercizioSequenzaParole, int indiceTerapia, int indiceScenario) {
-        this.listaEsercizi = listaEsercizi;
-        this.navigation = navigation;
-        this.idNavToEsercizioDenominazioneImmagine = idNavToEsercizioDenominazioneImmagine;
-        this.idNavToEsercizioCoppiaImmagini = idNavToEsercizioCoppiaImmagini;
-        this.idNavToEsercizioSequenzaParole = idNavToEsercizioSequenzaParole;
-        Log.d("EsercizioAdapterCostruttore","Ex"+idNavToEsercizioDenominazioneImmagine);
-
-        this.indiceScenario = indiceScenario;
-        this.indiceTerapia = indiceTerapia;
-    }
-
-    public EsercizioAdapter(List<EsercizioRealizzabile> listaEsercizi, Navigation navigation, int idNavToEsercizioDenominazioneImmagine, int idNavToEsercizioCoppiaImmagini, int idNavToEsercizioSequenzaParole, int indiceTerapia, int indiceScenario, String idPaziente) {
-        this.listaEsercizi = listaEsercizi;
-        this.navigation = navigation;
-        this.idNavToEsercizioDenominazioneImmagine = idNavToEsercizioDenominazioneImmagine;
-        this.idNavToEsercizioCoppiaImmagini = idNavToEsercizioCoppiaImmagini;
-        this.idNavToEsercizioSequenzaParole = idNavToEsercizioSequenzaParole;
-        Log.d("EsercizioAdapterCostruttore","Ex"+idNavToEsercizioDenominazioneImmagine);
-
-        this.idPaziente = idPaziente;
-        this.indiceScenario = indiceScenario;
-        this.indiceTerapia = indiceTerapia;
-    }
 
     @NonNull
     @Override
@@ -72,95 +51,123 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.Eser
 
     @Override
     public void onBindViewHolder(@NonNull EsercizioViewHolder holder, int position) {
-        EsercizioRealizzabile esercizio = listaEsercizi.get(position);
 
+        EsercizioRealizzabile esercizioRealizzabile = listEsercizioRealizzabile.get(position);
         // Imposta il numero dell'esercizio
-        holder.textViewNumeroEsercizio.setText(position+1 +"Â°");
+        holder.indiceExercise.setText(position+1 +"Â°");
 
-        if(esercizio instanceof EsercizioDenominazioneImmagini) {
-            holder.textViewTipoEsercizio.setText("Denominazione immagine");
+        if(esercizioRealizzabile instanceof EsercizioDenominazioneImmagini) {
+            holder.tipoExercise.setText("Denominazione immagine");
         }
-        else if(esercizio instanceof EsercizioCoppiaImmagini) {
-            holder.textViewTipoEsercizio.setText("Coppia immagini");
+        else if(esercizioRealizzabile instanceof EsercizioCoppiaImmagini) {
+            holder.tipoExercise.setText("Coppia immagini");
         }
-        else if(esercizio instanceof EsercizioSequenzaParole) {
-            holder.textViewTipoEsercizio.setText("Sequenza parole");
+        else if(esercizioRealizzabile instanceof EsercizioSequenzaParole) {
+            holder.tipoExercise.setText("Sequenza parole");
         }
 
-        // Gestisci le icone di stato in base allo stato dell'esercizio
-        if (esercizio.getRisultatoEsercizio()==null) {
-            holder.imageViewCheckEsercizio.setVisibility(View.GONE);
-            holder.imageViewWrongEsercizio.setVisibility(View.GONE);
-            holder.imageViewNonEseguito.setVisibility(View.VISIBLE);
-            holder.imageViewSeeMoreEsercizio.setVisibility(View.VISIBLE);
+        // Gestione delle icone in base allo stato dell'esercizio
+        if (esercizioRealizzabile.getRisultatoEsercizio()==null) {
+            holder.checkExercise.setVisibility(View.GONE);
+            holder.wrongExercise.setVisibility(View.GONE);
+            holder.notExecutedExercise.setVisibility(View.VISIBLE);
+            holder.iconGoToExercise.setVisibility(View.VISIBLE);
+
             //non svolto mostra solo l'esercizio
-            setUpOnClickCardView(holder, esercizio, position);
+            onClickCardView(holder, esercizioRealizzabile, position);
 
-        } else if (esercizio.getRisultatoEsercizio().isEsitoCorretto()) {
-            holder.imageViewCheckEsercizio.setVisibility(View.VISIBLE);
-            holder.imageViewWrongEsercizio.setVisibility(View.GONE);
-            holder.imageViewNonEseguito.setVisibility(View.GONE);
-            setUpOnClickCardView(holder, esercizio, position);
+        } else if (esercizioRealizzabile.getRisultatoEsercizio().isEsitoCorretto()) {
+            holder.checkExercise.setVisibility(View.VISIBLE);
+            holder.wrongExercise.setVisibility(View.GONE);
+            holder.notExecutedExercise.setVisibility(View.GONE);
+            onClickCardView(holder, esercizioRealizzabile, position);
 
         } else {
-            holder.imageViewCheckEsercizio.setVisibility(View.GONE);
-            holder.imageViewWrongEsercizio.setVisibility(View.VISIBLE);
-            holder.imageViewNonEseguito.setVisibility(View.GONE);
-            setUpOnClickCardView(holder, esercizio, position);
+            holder.checkExercise.setVisibility(View.GONE);
+            holder.wrongExercise.setVisibility(View.VISIBLE);
+            holder.notExecutedExercise.setVisibility(View.GONE);
+            onClickCardView(holder, esercizioRealizzabile, position);
         }
-
 
     }
 
-    private void setUpOnClickCardView(EsercizioViewHolder holder, EsercizioRealizzabile esercizio, int position) {
+
+    public EsercizioAdapter(List<EsercizioRealizzabile> listaEsercizioRealizzabile, Navigation navigation,
+                            int idNavigationToEsercizioDenominazioneImmagine, int idNavigationToEsercizioCoppiaImmagini,
+                            int idNavigationToEsercizioSequenzaParole, int therapy, int scenario, String idPaziente) {
+
+        this.listEsercizioRealizzabile = listaEsercizioRealizzabile;
+        this.navigation = navigation;
+        this.idNavigationToEsercizioDenominazioneImmagine = idNavigationToEsercizioDenominazioneImmagine;
+        this.idNavigationToEsercizioCoppiaImmagini = idNavigationToEsercizioCoppiaImmagini;
+        this.idNavigationToEsercizioSequenzaParole = idNavigationToEsercizioSequenzaParole;
+        Log.d("EsercizioAdapterCostruttore","Ex"+idNavigationToEsercizioDenominazioneImmagine);
+        this.idPaziente = idPaziente;
+        this.scenario = scenario;
+        this.therapy = therapy;
+    }
+
+
+    private void onClickCardView(EsercizioViewHolder holder, EsercizioRealizzabile esercizioRealizzabile, int position) {
+
         holder.itemView.setOnClickListener(v->{
-            if(esercizio instanceof EsercizioDenominazioneImmagini) {
-                Log.d("EsercizioAdapter",""+idNavToEsercizioDenominazioneImmagine);
-                navigateToEsercizio(idNavToEsercizioDenominazioneImmagine,position);
+            if(esercizioRealizzabile instanceof EsercizioDenominazioneImmagini) {
+                Log.d("EsercizioAdapter",""+idNavigationToEsercizioDenominazioneImmagine);
+                navigateTo(idNavigationToEsercizioDenominazioneImmagine, position);
             }
-            else if(esercizio instanceof EsercizioCoppiaImmagini) {
-                navigateToEsercizio(idNavToEsercizioCoppiaImmagini,position);
+            else if(esercizioRealizzabile instanceof EsercizioCoppiaImmagini) {
+                navigateTo(idNavigationToEsercizioCoppiaImmagini, position);
             }
-            else if(esercizio instanceof EsercizioSequenzaParole) {
-                navigateToEsercizio(idNavToEsercizioSequenzaParole,position);
+            else if(esercizioRealizzabile instanceof EsercizioSequenzaParole) {
+                navigateTo(idNavigationToEsercizioSequenzaParole, position);
             }
         });
     }
 
-    private void navigateToEsercizio(int id, int posizioneInLista) {
+
+    @Override
+    public int getItemCount() {
+        return listEsercizioRealizzabile.size();
+    }
+
+    private void navigateTo(int id, int esercizio) {
+
         Bundle bundle = new Bundle();
-        bundle.putInt("indiceEsercizio",posizioneInLista);
-        bundle.putInt("indiceTerapia",indiceTerapia);
-        bundle.putInt("indiceScenario",indiceScenario);
-        bundle.putString("idPaziente",idPaziente);
+
+        bundle.putInt("esercizio", esercizio);
+        bundle.putInt("terapia", therapy);
+        bundle.putInt("scenario", scenario);
+        bundle.putString("idPaziente", idPaziente);
         Log.d("EsercizioAdapter", "onBindViewHolder bundle: "+bundle);
         navigation.navigationId(id, bundle);
     }
 
-    @Override
-    public int getItemCount() {
-        return listaEsercizi.size();
-    }
 
     public class EsercizioViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewNumeroEsercizio;
-        private TextView textViewTipoEsercizio;
-        private ImageView imageViewCheckEsercizio;
-        private ImageView imageViewWrongEsercizio;
-        private ImageView imageViewNonEseguito;
-        private ImageView imageViewSeeMoreEsercizio;
-        private RelativeLayout relativeLayoutEsercizio;
+        private TextView indiceExercise;
+
+        private TextView tipoExercise;
+
+        private ImageView checkExercise;
+
+        private ImageView wrongExercise;
+
+        private ImageView notExecutedExercise;
+
+        private ImageView iconGoToExercise;
+
+        private RelativeLayout relativeLayoutExercise;
 
         public EsercizioViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewNumeroEsercizio = itemView.findViewById(R.id.textViewNumeroEsercizio);
-            textViewTipoEsercizio = itemView.findViewById(R.id.textViewTipoEsercizio);
-            imageViewCheckEsercizio = itemView.findViewById(R.id.imageViewCheckEsercizio);
-            imageViewWrongEsercizio = itemView.findViewById(R.id.imageViewWrongEsercizio);
-            imageViewNonEseguito = itemView.findViewById(R.id.imageViewNonEseguito);
-            imageViewSeeMoreEsercizio = itemView.findViewById(R.id.imageViewSeeMoreEsercizio);
-            relativeLayoutEsercizio = itemView.findViewById(R.id.relativeLayoutEsercizio);
+            indiceExercise = itemView.findViewById(R.id.indiceExercise);
+            tipoExercise = itemView.findViewById(R.id.tipoExercise);
+            checkExercise = itemView.findViewById(R.id.checkExercise);
+            wrongExercise = itemView.findViewById(R.id.wrongExercise);
+            notExecutedExercise = itemView.findViewById(R.id.notExecutedExercise);
+            iconGoToExercise = itemView.findViewById(R.id.iconGoToExercise);
+            relativeLayoutExercise = itemView.findViewById(R.id.relativeLayoutExercise);
         }
     }
 

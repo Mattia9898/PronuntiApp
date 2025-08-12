@@ -1,10 +1,11 @@
 <RelativeLayout
-    android:id="@+id/relativeLayoutEsercizio"
+    android:id="@+id/relativeLayoutExercise"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/primaryColorSoftScuro"
     >
+
     <LinearLayout
         android:id="@+id/linearLayoutEsercizio"
         android:layout_width="wrap_content"
@@ -13,8 +14,9 @@
         android:paddingVertical="10dp"
         android:weightSum="10"
         >
+
         <TextView
-            android:id="@+id/textViewNumeroEsercizio"
+            android:id="@+id/indiceExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1°"
@@ -23,8 +25,9 @@
             android:textStyle="bold"
             android:textSize="@dimen/subHeaderTextSize"
             />
+
         <TextView
-            android:id="@+id/textViewTipoEsercizio"
+            android:id="@+id/tipoExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/denominazione_immagine"
@@ -34,22 +37,25 @@
             android:textSize="@dimen/size_text_info_scenario"
             android:layout_marginEnd="10dp"
             />
+
         <ImageView
-            android:id="@+id/imageViewCheckEsercizio"
+            android:id="@+id/checkExercise"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/icona_check"
             android:layout_gravity="center"
             />
+
         <ImageView
-            android:id="@+id/imageViewWrongEsercizio"
+            android:id="@+id/wrongExercise"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/icona_sbagliato"
             android:layout_gravity="center"
             />
+
         <ImageView
-            android:id="@+id/imageViewNonEseguito"
+            android:id="@+id/notExecutedExercise"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/icona_non_eseguito"
@@ -65,7 +71,7 @@
         android:paddingEnd="20dp"
         >
         <ImageView
-            android:id="@+id/imageViewSeeMoreEsercizio"
+            android:id="@+id/iconGoToExercise"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/icona_goto"
