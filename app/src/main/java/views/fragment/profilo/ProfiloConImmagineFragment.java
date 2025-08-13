@@ -15,6 +15,7 @@ import it.uniba.dib.pronuntiapp.R;
 
 
 public abstract class ProfiloConImmagineFragment extends AsbtractProfiloFragment {
+
     protected ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     protected Button buttonModificaProfilo;
     protected ImageView imageViewProfile;
@@ -34,7 +35,7 @@ public abstract class ProfiloConImmagineFragment extends AsbtractProfiloFragment
             }
         });
 
-        buttonModificaProfilo.setOnClickListener(v -> modificaProfilo());
+        buttonModificaProfilo.setOnClickListener(v -> editProfile());
     }
 
     protected void pickImage() {
@@ -44,13 +45,14 @@ public abstract class ProfiloConImmagineFragment extends AsbtractProfiloFragment
     }
 
     @Override
-    void confermaModificaProfilo() {
+    void confirmEditProfile() {
+
         setData();
 
         imageViewEditProfile.setVisibility(View.GONE);
 
         buttonModificaProfilo.setText(getString(R.string.modify_profile));
-        buttonModificaProfilo.setOnClickListener(v -> modificaProfilo());
+        buttonModificaProfilo.setOnClickListener(v -> editProfile());
     }
 
 }

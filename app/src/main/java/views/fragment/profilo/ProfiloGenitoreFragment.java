@@ -33,10 +33,10 @@ public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
 
         this.mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
-        textViewUsernameProfilo = view.findViewById(R.id.textViewUsernameProfiloGenitore);
-        textInputEditTextNome = view.findViewById(R.id.textInputEditTextNomeProfiloGenitore);
-        textInputEditTextCognome = view.findViewById(R.id.textInputEditTextCognomeProfiloGenitore);
-        textInputEditTextEmail = view.findViewById(R.id.textInputEditTextEmailProfiloGenitore);
+        usernameProfile = view.findViewById(R.id.textViewUsernameProfiloGenitore);
+        name = view.findViewById(R.id.textInputEditTextNomeProfiloGenitore);
+        surname = view.findViewById(R.id.textInputEditTextCognomeProfiloGenitore);
+        email = view.findViewById(R.id.textInputEditTextEmailProfiloGenitore);
         imageViewProfile = view.findViewById(R.id.imageViewProfile);
         imageViewEditProfile = view.findViewById(R.id.imageViewEditProfile);
         buttonModificaProfilo= view.findViewById(R.id.buttonModificaProfiloGenitore);
@@ -55,25 +55,26 @@ public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
 
     @Override
     void setData() {
+
         Genitore genitore = mGenitoreViewModel.getGenitoreLiveData().getValue();
 
-        textInputEditTextNome.setText(genitore.getNome());
-        textInputEditTextNome.setEnabled(false);
-        textInputEditTextCognome.setText(genitore.getCognome());
-        textInputEditTextCognome.setEnabled(false);
-        textInputEditTextEmail.setText(genitore.getEmail());
-        textInputEditTextEmail.setEnabled(false);
-        textViewUsernameProfilo.setText(genitore.getUsername());
+        name.setText(genitore.getNome());
+        name.setEnabled(false);
+        surname.setText(genitore.getCognome());
+        surname.setEnabled(false);
+        email.setText(genitore.getEmail());
+        email.setEnabled(false);
+        usernameProfile.setText(genitore.getUsername());
         textInputEditTextTelefono.setText(genitore.getnumeroCellulare());
         textInputEditTextTelefono.setEnabled(false);
     }
 
     @Override
-    void modificaProfilo() {
+    void editProfile() {
         textInputEditTextTelefono.setEnabled(true);
 
         buttonModificaProfilo.setText(getString(R.string.confirm_modify_profile));
-        buttonModificaProfilo.setOnClickListener(v->confermaModificaProfilo());
+        buttonModificaProfilo.setOnClickListener(v->confirmEditProfile());
 
         imageViewProfile.setOnClickListener(v->pickImage());
 
@@ -97,8 +98,8 @@ public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
     }
 
     @Override
-    void confermaModificaProfilo() {
-        super.confermaModificaProfilo();
+    void confirmEditProfile() {
+        super.confirmEditProfile();
 
         mGenitoreViewModel.aggiornaGenitoreRemoto();
         setData();

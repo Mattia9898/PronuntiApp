@@ -1,27 +1,32 @@
 package views.fragment.profilo;
 
-import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
-
-import com.google.android.material.textfield.TextInputEditText;
 
 import views.fragment.AbstractNavigazioneFragment;
 
+import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputEditText;
+
+import androidx.fragment.app.Fragment;
+
+
 public abstract class AsbtractProfiloFragment extends AbstractNavigazioneFragment {
 
-    protected TextView textViewUsernameProfilo;
+    protected TextView usernameProfile;
 
-    protected TextInputEditText textInputEditTextNome;
+    protected TextInputEditText name;
 
-    protected TextInputEditText textInputEditTextCognome;
+    protected TextInputEditText surname;
 
-    protected TextInputEditText textInputEditTextEmail;
+    protected TextInputEditText email;
 
 
-    abstract void modificaProfilo();
-    abstract void confermaModificaProfilo();
     abstract void setData();
+
+    abstract void editProfile();
+
+    abstract void confirmEditProfile();
+
 
 }
 

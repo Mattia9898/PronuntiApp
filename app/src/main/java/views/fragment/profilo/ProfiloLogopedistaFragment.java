@@ -24,6 +24,7 @@ import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
 
 public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
+
     private TextInputEditText textInputEditTextTelefono;
     private TextInputEditText textInputEditTextIndirizzo;
 
@@ -37,10 +38,10 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
 
         this.mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
 
-        textViewUsernameProfilo = view.findViewById(R.id.textViewUsernameProfiloLogopedista);
-        textInputEditTextNome = view.findViewById(R.id.textInputEditTextNomeProfiloLogopedista);
-        textInputEditTextCognome = view.findViewById(R.id.textInputEditTextCognomeProfiloLogopedista);
-        textInputEditTextEmail = view.findViewById(R.id.textInputEditTextEmailProfiloLogopedista);
+        usernameProfile = view.findViewById(R.id.textViewUsernameProfiloLogopedista);
+        name = view.findViewById(R.id.textInputEditTextNomeProfiloLogopedista);
+        surname = view.findViewById(R.id.textInputEditTextCognomeProfiloLogopedista);
+        email = view.findViewById(R.id.textInputEditTextEmailProfiloLogopedista);
         imageViewProfile = view.findViewById(R.id.imageViewProfile);
         imageViewEditProfile = view.findViewById(R.id.imageViewEditProfile);
         buttonModificaProfilo= view.findViewById(R.id.buttonModificaProfiloLogopedista);
@@ -58,13 +59,13 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
     public void setData(){
         Logopedista logopedista = mLogopedistaViewModel.getLogopedistaLiveData().getValue();
 
-        textInputEditTextNome.setText(logopedista.getNome());
-        textInputEditTextNome.setEnabled(false);
-        textInputEditTextCognome.setText(logopedista.getCognome());
-        textInputEditTextCognome.setEnabled(false);
-        textInputEditTextEmail.setText(logopedista.getEmail());
-        textInputEditTextEmail.setEnabled(false);
-        textViewUsernameProfilo.setText(logopedista.getUsername());
+        name.setText(logopedista.getNome());
+        name.setEnabled(false);
+        surname.setText(logopedista.getCognome());
+        surname.setEnabled(false);
+        email.setText(logopedista.getEmail());
+        email.setEnabled(false);
+        usernameProfile.setText(logopedista.getUsername());
         textInputEditTextTelefono.setText(logopedista.getNumeroCellulare());
         textInputEditTextTelefono.setEnabled(false);
         textInputEditTextIndirizzo.setText(logopedista.getIndirizzo());
@@ -72,19 +73,19 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
     }
 
     @Override
-    public void modificaProfilo() {
+    public void editProfile() {
         textInputEditTextTelefono.setEnabled(true);
         textInputEditTextIndirizzo.setEnabled(true);
 
         imageViewProfile.setOnClickListener(v -> pickImage());
 
         buttonModificaProfilo.setText(getString(R.string.confirm_modify_profile));
-        buttonModificaProfilo.setOnClickListener(v -> confermaModificaProfilo());
+        buttonModificaProfilo.setOnClickListener(v -> confirmEditProfile());
 
         imageViewEditProfile.setOnClickListener(v -> pickImage());
         imageViewEditProfile.setVisibility(View.VISIBLE);
 
-        textInputEditTextNome.requestFocus();
+        name.requestFocus();
 
         textInputEditTextIndirizzo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -112,8 +113,8 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
     }
 
     @Override
-    void confermaModificaProfilo() {
-        super.confermaModificaProfilo();
+    void confirmEditProfile() {
+        super.confirmEditProfile();
 
         mLogopedistaViewModel.aggiornaLogopedistaRemoto();
         setData();

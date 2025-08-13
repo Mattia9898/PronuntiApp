@@ -43,10 +43,10 @@ public class ProfiloPazienteFragment extends AsbtractProfiloFragment{
 
         this.mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
-        textViewUsernameProfilo = view.findViewById(R.id.textInputEditTextUsernameProfiloPaziente);
-        textInputEditTextNome = view.findViewById(R.id.textInputEditTextNomeProfiloPaziente);
-        textInputEditTextCognome = view.findViewById(R.id.textInputEditTextCognomeProfiloPaziente);
-        textInputEditTextEmail = view.findViewById(R.id.textInputEditTextEmailProfiloPaziente);
+        usernameProfile = view.findViewById(R.id.textInputEditTextUsernameProfiloPaziente);
+        name = view.findViewById(R.id.textInputEditTextNomeProfiloPaziente);
+        surname = view.findViewById(R.id.textInputEditTextCognomeProfiloPaziente);
+        email = view.findViewById(R.id.textInputEditTextEmailProfiloPaziente);
         textInputEditTextDataNascita = view.findViewById(R.id.textInputEditTextDataNascitaProfiloPaziente);
         spinnerSesso = view.findViewById(R.id.spinnerSessoProfiloPaziente);
         textViewDatiBambino = view.findViewById(R.id.textViewDatiBambino);
@@ -81,26 +81,26 @@ public class ProfiloPazienteFragment extends AsbtractProfiloFragment{
 
         Paziente paziente = mGenitoreViewModel.getPazienteLiveData().getValue();
 
-        textInputEditTextNome.setText(paziente.getNome());
-        textInputEditTextNome.setEnabled(false);
-        textInputEditTextCognome.setText(paziente.getCognome());
-        textInputEditTextCognome.setEnabled(false);
-        textViewUsernameProfilo.setText(paziente.getUsername());
+        name.setText(paziente.getNome());
+        name.setEnabled(false);
+        surname.setText(paziente.getCognome());
+        surname.setEnabled(false);
+        usernameProfile.setText(paziente.getUsername());
         textInputEditTextDataNascita.setText(paziente.getDataNascita().toString());
         textInputEditTextDataNascita.setEnabled(false);
-        textInputEditTextEmail.setText(paziente.getEmail());
-        textInputEditTextEmail.setEnabled(false);
+        email.setText(paziente.getEmail());
+        email.setEnabled(false);
         spinnerSesso.setText(Character.toString(paziente.getSesso()));
         spinnerSesso.setEnabled(false);
     }
 
     @Override
-    public void modificaProfilo(){
+    public void editProfile(){
 
     }
 
     @Override
-    public void confermaModificaProfilo(){
+    public void confirmEditProfile(){
         setData();
     }
 
