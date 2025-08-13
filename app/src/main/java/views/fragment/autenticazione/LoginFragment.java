@@ -1,54 +1,56 @@
 package views.fragment.autenticazione;
 
+
+import it.uniba.dib.pronuntiapp.R;
+
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+
+import models.domain.profili.Profilo;
+import models.autenticazione.AutenticazioneSharedPreferences;
+import views.activity.AbstractAppActivity;
+import viewsModels.autenticazioneViewsModels.LoginViewsModels;
+import views.fragment.AbstractNavigazioneFragment;
+import views.dialog.InfoDialog;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.concurrent.CompletableFuture;
 
-import it.uniba.dib.pronuntiapp.R;
-import models.autenticazione.AutenticazioneSharedPreferences;
-import models.domain.profili.Profilo;
-import views.fragment.AbstractNavigazioneFragment;
-import viewsModels.autenticazioneViewsModels.LoginViewsModels;
-import views.activity.AbstractAppActivity;
-import views.dialog.InfoDialog;
+import android.widget.Button;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.view.View;
+import android.util.Log;
+
+import com.google.android.material.textfield.TextInputEditText;
+
 
 public class LoginFragment extends AbstractNavigazioneFragment {
 
-    private TextInputEditText textInputEditTextEmail;
-
-    private TextInputEditText textInputEditTextPassword;
+    private LoginViewsModels loginViewsModels;
 
     private Button buttonLogin;
 
-    private Button buttonToRegister;
+    private Button buttonRegister;
 
-    private Button buttonAccessoRapido;
+    private Button buttonRapidAccess;
 
-    private LoginViewsModels mLoginViewsModels;
+    private TextInputEditText emailFragmentLogin;
 
-    public LoginFragment() {}
+    private TextInputEditText passwordFragmentLogin;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        this.mLoginViewsModels = new ViewModelProvider(requireActivity()).get(LoginViewsModels.class);
-
-        this.textInputEditTextEmail = view.findViewById(R.id.textInputEditTextEmailLogin);
-        this.textInputEditTextPassword = view.findViewById(R.id.textInputEditTextPasswordLogin);
-
+        this.loginViewsModels = new ViewModelProvider(requireActivity()).get(LoginViewsModels.class);
+        this.emailFragmentLogin = view.findViewById(R.id.emailFragmentLogin);
+        this.passwordFragmentLogin = view.findViewById(R.id.passwordFragmentLogin);
         this.buttonLogin = view.findViewById(R.id.buttonLogin);
-        this.buttonToRegister = view.findViewById(R.id.buttonToRegister);
-        this.buttonAccessoRapido = view.findViewById(R.id.buttonAccessoRapido);
+        this.buttonRegister = view.findViewById(R.id.buttonRegistration);
+        this.buttonRapidAccess = view.findViewById(R.id.buttonRapidAccess);
 
         return view;
     }
@@ -57,21 +59,21 @@ public class LoginFragment extends AbstractNavigazioneFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        buttonLogin.setOnClickListener(v -> eseguiLogin());
-        buttonAccessoRapido.setOnClickListener(v -> navigateTo(R.id.action_loginFragment_to_avvioRapidoFragment));
-        buttonToRegister.setOnClickListener(v -> navigateTo(R.id.action_loginFragment_to_registrazioneFragment));
+        buttonLogin.setOnClickListener(v -> executeLogin());
+        buttonRapidAccess.setOnClickListener(v -> navigateTo(R.id.action_loginFragment_to_avvioRapidoFragment));
+        buttonRegister.setOnClickListener(v -> navigateTo(R.id.action_loginFragment_to_registrazioneFragment));
     }
 
-    private void eseguiLogin() {
-        String email = textInputEditTextEmail.getText().toString();
-        String password = textInputEditTextPassword.getText().toString();
+    private void executeLogin() {
+        String email = emailFragmentLogin.getText().toString();
+        String password = passwordFragmentLogin.getText().toString();
 
-        loginActivityProfilo(email, password);
+        loginActivityProfile(email, password);
     }
 
-    private void loginActivityProfilo(String email, String password) {
-        CompletableFuture<Boolean> futureIsLoginCorrect = mLoginViewsModels.verificaLogin(email, password);
-        futureIsLoginCorrect.thenAccept(isLoginCorrect -> {
+    private void loginActivityProfile(String email, String password) {
+        CompletableFuture<Boolean> loginCompletableFuture = loginViewsModels.verificaLogin(email, password);
+        loginCompletableFuture.thenAccept(isLoginCorrect -> {
             if (!isLoginCorrect) {
                 InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.erroreLoginCredenziali), getString(R.string.tastoRiprova));
                 infoDialog.show();
@@ -81,8 +83,8 @@ public class LoginFragment extends AbstractNavigazioneFragment {
                 AutenticazioneSharedPreferences autenticazioneSharedPreferences = new AutenticazioneSharedPreferences(requireActivity());
                 autenticazioneSharedPreferences.salvaCredenziali(email, password);
 
-                CompletableFuture<Profilo> futureProfilo = mLoginViewsModels.login();
-                futureProfilo.thenAccept(profilo -> {
+                CompletableFuture<Profilo> profiloCompletableFuture = loginViewsModels.login();
+                profiloCompletableFuture.thenAccept(profilo -> {
                     Log.d("LoginFragment.loginActivityProfilo()", "Profilo: " + profilo.toString());
 
                     getActivity().runOnUiThread(() -> ((AbstractAppActivity) getActivity()).navigationWithProfile(profilo, getActivity()));
