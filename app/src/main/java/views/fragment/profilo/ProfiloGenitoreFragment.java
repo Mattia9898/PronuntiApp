@@ -7,20 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import it.uniba.dib.pronuntiapp.R;
 import models.domain.profili.Genitore;
-import models.domain.profili.Paziente;
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
-import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
-public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
+public class ProfiloGenitoreFragment extends ProfiloImageFragment {
 
     private TextInputEditText textInputEditTextTelefono;
 
@@ -39,7 +34,7 @@ public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
         email = view.findViewById(R.id.textInputEditTextEmailProfiloGenitore);
         imageViewProfile = view.findViewById(R.id.imageViewProfile);
         imageViewEditProfile = view.findViewById(R.id.imageViewEditProfile);
-        buttonModificaProfilo= view.findViewById(R.id.buttonModificaProfiloGenitore);
+        buttonEditProfile= view.findViewById(R.id.buttonModificaProfiloGenitore);
         setPickMedia();
 
         textInputEditTextTelefono = view.findViewById(R.id.textInputEditTextTelefonoProfiloGenitore);
@@ -73,8 +68,8 @@ public class ProfiloGenitoreFragment extends ProfiloConImmagineFragment{
     void editProfile() {
         textInputEditTextTelefono.setEnabled(true);
 
-        buttonModificaProfilo.setText(getString(R.string.confirm_modify_profile));
-        buttonModificaProfilo.setOnClickListener(v->confirmEditProfile());
+        buttonEditProfile.setText(getString(R.string.confirm_modify_profile));
+        buttonEditProfile.setOnClickListener(v->confirmEditProfile());
 
         imageViewProfile.setOnClickListener(v->pickImage());
 

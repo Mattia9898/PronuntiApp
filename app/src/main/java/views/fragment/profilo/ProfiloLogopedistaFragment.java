@@ -23,7 +23,7 @@ import models.domain.profili.Logopedista;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
 
-public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
+public class ProfiloLogopedistaFragment extends ProfiloImageFragment {
 
     private TextInputEditText textInputEditTextTelefono;
     private TextInputEditText textInputEditTextIndirizzo;
@@ -44,7 +44,7 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
         email = view.findViewById(R.id.textInputEditTextEmailProfiloLogopedista);
         imageViewProfile = view.findViewById(R.id.imageViewProfile);
         imageViewEditProfile = view.findViewById(R.id.imageViewEditProfile);
-        buttonModificaProfilo= view.findViewById(R.id.buttonModificaProfiloLogopedista);
+        buttonEditProfile= view.findViewById(R.id.buttonModificaProfiloLogopedista);
         setPickMedia();
 
         textInputEditTextTelefono = view.findViewById(R.id.textInputEditTextTelefonoProfiloLogopedista);
@@ -79,8 +79,8 @@ public class ProfiloLogopedistaFragment extends ProfiloConImmagineFragment {
 
         imageViewProfile.setOnClickListener(v -> pickImage());
 
-        buttonModificaProfilo.setText(getString(R.string.confirm_modify_profile));
-        buttonModificaProfilo.setOnClickListener(v -> confirmEditProfile());
+        buttonEditProfile.setText(getString(R.string.confirm_modify_profile));
+        buttonEditProfile.setOnClickListener(v -> confirmEditProfile());
 
         imageViewEditProfile.setOnClickListener(v -> pickImage());
         imageViewEditProfile.setVisibility(View.VISIBLE);
