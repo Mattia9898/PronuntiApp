@@ -87,7 +87,7 @@ public class AutenticazioneRapidaFragment extends AbstractNavigazioneFragment {
             }
             else {
                 AutenticazioneSharedPreferences autenticazioneSharedPreferences = new AutenticazioneSharedPreferences(requireActivity());
-                autenticazioneSharedPreferences.salvaCredenziali(email, password);
+                autenticazioneSharedPreferences.saveCredentials(email, password);
 
                 CompletableFuture<Profilo> profileCompletableFuture = loginViewsModels.login();
                 profileCompletableFuture.thenAccept(profilo -> {

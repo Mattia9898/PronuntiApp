@@ -28,14 +28,14 @@ public class AutenticazioneSharedPreferences {
         sharedPreferences = context.getSharedPreferences(USER_CREDENTIALS, Context.MODE_PRIVATE);
     }
 
-    public void salvaCredenziali(String email, String password) {
+    public void saveCredentials(String email, String password) {
         SharedPreferences.Editor SharedPreferences = sharedPreferences.edit();
         SharedPreferences.putString(EMAIL, email);
         SharedPreferences.putString(PASSWORD, password);
         SharedPreferences.apply();
     }
 
-    public void clearCredenziali() {
+    public void clearCredentials() {
         SharedPreferences.Editor SharedPreferences = sharedPreferences.edit();
         SharedPreferences.remove(EMAIL);
         SharedPreferences.remove(PASSWORD);

@@ -56,7 +56,7 @@ public class RegistrazioneViewsModels extends ViewModel {
         return logopedista;
     }
 
-    public int verificaCorrettezzaCampiLogopedista(String nomeLogopedista, String cognomeLogopedista,
+    public int checkRightFieldsLogopedista(String nomeLogopedista, String cognomeLogopedista,
                                                    String usernameLogopedista, String emailLogopedista,
                                                    String passwordLogopedista, String confermaPasswordLogopedista,
                                                    String telefono, String indirizzo) {
