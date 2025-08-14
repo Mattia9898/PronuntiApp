@@ -75,7 +75,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textViewUsernameProfiloLogopedista"
+                android:id="@+id/usernameProfileLogopedista"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -103,7 +103,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextNomeProfiloLogopedista"
+                            android:id="@+id/nameProfileLogopedista"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextCognomeProfiloLogopedista"
+                            android:id="@+id/surnameProfileLogopedista"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextEmailProfiloLogopedista"
+                            android:id="@+id/emailProfileLogopedista"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextTelefonoProfiloLogopedista"
+                            android:id="@+id/phoneProfileLogopedista"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextIndirizzoProfiloLogopedista"
+                            android:id="@+id/addressProfileLogopedista"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/buttonModificaProfiloLogopedista"
+        android:id="@+id/buttonEditProfileLogopedista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
