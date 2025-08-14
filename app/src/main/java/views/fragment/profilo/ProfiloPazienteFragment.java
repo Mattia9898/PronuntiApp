@@ -1,59 +1,63 @@
 package views.fragment.profilo;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import it.uniba.dib.pronuntiapp.R;
+
+import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+
+import viewsModels.genitoreViewsModels.GenitoreViewsModels;
+import models.domain.profili.Paziente;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import it.uniba.dib.pronuntiapp.R;
-import models.domain.profili.Paziente;
-import viewsModels.genitoreViewsModels.GenitoreViewsModels;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.EditText;
+
 
 public class ProfiloPazienteFragment extends AsbtractProfiloFragment{
 
-    private TextInputEditText textInputEditTextDataNascita;
+    private LinearLayout linearLayoutContainerPaziente;
 
-    private EditText spinnerSesso;
+    private TextInputEditText birthdate;
 
-    private TextView textViewDatiBambino;
+    private TextView dataPaziente;
 
-    private ImageView textViewArrowDown;
+    private LinearLayout dataPazienteClick;
 
-    private LinearLayout linearLayoutDatiBambinoClick;
+    private EditText spinnerSex;
 
-    private LinearLayout linearLayoutContainerBambino;
+    private ImageView arrowDown;
 
-    private GenitoreViewsModels mGenitoreViewModel;
+    private GenitoreViewsModels genitoreViewsModels;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.fragment_profilo_paziente, container, false);
+        View view = inflater.inflate(R.layout.fragment_profilo_paziente, container, false);
 
-        this.mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
-
-        usernameProfile = view.findViewById(R.id.textInputEditTextUsernameProfiloPaziente);
-        name = view.findViewById(R.id.textInputEditTextNomeProfiloPaziente);
-        surname = view.findViewById(R.id.textInputEditTextCognomeProfiloPaziente);
-        email = view.findViewById(R.id.textInputEditTextEmailProfiloPaziente);
-        textInputEditTextDataNascita = view.findViewById(R.id.textInputEditTextDataNascitaProfiloPaziente);
-        spinnerSesso = view.findViewById(R.id.spinnerSessoProfiloPaziente);
-        textViewDatiBambino = view.findViewById(R.id.textViewDatiBambino);
-        textViewArrowDown = view.findViewById(R.id.arrowImageView);
-        linearLayoutDatiBambinoClick = view.findViewById(R.id.llDatiPazientiClick);
-        linearLayoutDatiBambinoClick.setOnClickListener(v->onDatiBambiniClick());
-        linearLayoutContainerBambino = view.findViewById(R.id.linearLayoutProfiloPaziente);
+        this.genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
+        usernameProfile = view.findViewById(R.id.usernameProfilePaziente);
+        name = view.findViewById(R.id.nameProfilePaziente);
+        surname = view.findViewById(R.id.surnameProfilePaziente);
+        email = view.findViewById(R.id.emailProfilePaziente);
+        birthdate = view.findViewById(R.id.birthdateProfilePaziente);
+        spinnerSex = view.findViewById(R.id.spinnerSexProfilePaziente);
+        dataPaziente = view.findViewById(R.id.dataPaziente);
+        arrowDown = view.findViewById(R.id.arrowDown);
+        dataPazienteClick = view.findViewById(R.id.dataPazienteClick);
+        dataPazienteClick.setOnClickListener(v->onDataPazienteClick());
+        linearLayoutContainerPaziente = view.findViewById(R.id.linearLayoutContainerPaziente);
 
         setData();
 
@@ -66,33 +70,6 @@ public class ProfiloPazienteFragment extends AsbtractProfiloFragment{
         setData();
     }
 
-    private void onDatiBambiniClick() {
-        if (linearLayoutContainerBambino.getVisibility() == View.VISIBLE) {
-            linearLayoutContainerBambino.setVisibility(View.GONE);
-            textViewArrowDown.setRotation(0);
-        } else {
-            linearLayoutContainerBambino.setVisibility(View.VISIBLE);
-            textViewArrowDown.setRotation(180);
-        }
-    }
-
-    @Override
-    public void setData() {
-
-        Paziente paziente = mGenitoreViewModel.getPazienteLiveData().getValue();
-
-        name.setText(paziente.getNome());
-        name.setEnabled(false);
-        surname.setText(paziente.getCognome());
-        surname.setEnabled(false);
-        usernameProfile.setText(paziente.getUsername());
-        textInputEditTextDataNascita.setText(paziente.getDataNascita().toString());
-        textInputEditTextDataNascita.setEnabled(false);
-        email.setText(paziente.getEmail());
-        email.setEnabled(false);
-        spinnerSesso.setText(Character.toString(paziente.getSesso()));
-        spinnerSesso.setEnabled(false);
-    }
 
     @Override
     public void editProfile(){
@@ -103,6 +80,40 @@ public class ProfiloPazienteFragment extends AsbtractProfiloFragment{
     public void confirmEditProfile(){
         setData();
     }
+
+    private void onDataPazienteClick() {
+        if (linearLayoutContainerPaziente.getVisibility() == View.VISIBLE) {
+            linearLayoutContainerPaziente.setVisibility(View.GONE);
+            arrowDown.setRotation(0);
+        } else {
+            linearLayoutContainerPaziente.setVisibility(View.VISIBLE);
+            arrowDown.setRotation(180);
+        }
+    }
+
+    @Override
+    public void setData() {
+
+        Paziente paziente = genitoreViewsModels.getPazienteLiveData().getValue();
+
+        name.setText(paziente.getNome());
+        name.setEnabled(false);
+
+        surname.setText(paziente.getCognome());
+        surname.setEnabled(false);
+
+        usernameProfile.setText(paziente.getUsername());
+
+        birthdate.setText(paziente.getDataNascita().toString());
+        birthdate.setEnabled(false);
+
+        email.setText(paziente.getEmail());
+        email.setEnabled(false);
+
+        spinnerSex.setText(Character.toString(paziente.getSesso()));
+        spinnerSex.setEnabled(false);
+    }
+
 
 }
 
