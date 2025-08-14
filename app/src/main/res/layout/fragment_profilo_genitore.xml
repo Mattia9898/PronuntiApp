@@ -74,7 +74,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textViewUsernameProfiloGenitore"
+                android:id="@+id/usernameProfileGenitore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -102,7 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextNomeProfiloGenitore"
+                            android:id="@+id/nameProfileGenitore"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextCognomeProfiloGenitore"
+                            android:id="@+id/surnameProfileGenitore"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextEmailProfiloGenitore"
+                            android:id="@+id/emailProfileGenitore"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextTelefonoProfiloGenitore"
+                            android:id="@+id/phoneProfileGenitore"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/buttonModificaProfiloGenitore"
+        android:id="@+id/buttonEditProfileGenitore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"

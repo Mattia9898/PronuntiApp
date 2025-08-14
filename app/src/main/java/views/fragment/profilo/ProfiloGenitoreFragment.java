@@ -1,43 +1,48 @@
 package views.fragment.profilo;
 
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
+import it.uniba.dib.pronuntiapp.R;
+
+import viewsModels.genitoreViewsModels.GenitoreViewsModels;
+import models.domain.profili.Genitore;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Bundle;
+
 import com.google.android.material.textfield.TextInputEditText;
 
-import it.uniba.dib.pronuntiapp.R;
-import models.domain.profili.Genitore;
-import viewsModels.genitoreViewsModels.GenitoreViewsModels;
+import android.text.TextWatcher;
+import android.text.Editable;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.view.View;
+
 
 public class ProfiloGenitoreFragment extends ProfiloImageFragment {
 
-    private TextInputEditText textInputEditTextTelefono;
+    private TextInputEditText phone;
 
-    private GenitoreViewsModels mGenitoreViewModel;
+    private GenitoreViewsModels genitoreViewsModels;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_profilo_genitore, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_profilo_genitore, container, false);
         setToolBar(view, getString(R.string.tuoProfilo));
 
-        this.mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
+        this.genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
-        usernameProfile = view.findViewById(R.id.textViewUsernameProfiloGenitore);
-        name = view.findViewById(R.id.textInputEditTextNomeProfiloGenitore);
-        surname = view.findViewById(R.id.textInputEditTextCognomeProfiloGenitore);
-        email = view.findViewById(R.id.textInputEditTextEmailProfiloGenitore);
+        usernameProfile = view.findViewById(R.id.usernameProfileGenitore);
+        name = view.findViewById(R.id.nameProfileGenitore);
+        surname = view.findViewById(R.id.surnameProfileGenitore);
+        email = view.findViewById(R.id.emailProfileGenitore);
         imageViewProfile = view.findViewById(R.id.imageViewProfile);
         imageViewEditProfile = view.findViewById(R.id.imageViewEditProfile);
-        buttonEditProfile= view.findViewById(R.id.buttonModificaProfiloGenitore);
+        buttonEditProfile= view.findViewById(R.id.buttonEditProfileGenitore);
         setPickMedia();
-
-        textInputEditTextTelefono = view.findViewById(R.id.textInputEditTextTelefonoProfiloGenitore);
+        phone = view.findViewById(R.id.phoneProfileGenitore);
 
         return view;
     }
@@ -49,24 +54,9 @@ public class ProfiloGenitoreFragment extends ProfiloImageFragment {
     }
 
     @Override
-    void setData() {
-
-        Genitore genitore = mGenitoreViewModel.getGenitoreLiveData().getValue();
-
-        name.setText(genitore.getNome());
-        name.setEnabled(false);
-        surname.setText(genitore.getCognome());
-        surname.setEnabled(false);
-        email.setText(genitore.getEmail());
-        email.setEnabled(false);
-        usernameProfile.setText(genitore.getUsername());
-        textInputEditTextTelefono.setText(genitore.getnumeroCellulare());
-        textInputEditTextTelefono.setEnabled(false);
-    }
-
-    @Override
     void editProfile() {
-        textInputEditTextTelefono.setEnabled(true);
+
+        phone.setEnabled(true);
 
         buttonEditProfile.setText(getString(R.string.confirm_modify_profile));
         buttonEditProfile.setOnClickListener(v->confirmEditProfile());
@@ -76,28 +66,49 @@ public class ProfiloGenitoreFragment extends ProfiloImageFragment {
         imageViewEditProfile.setOnClickListener(v->pickImage());
         imageViewEditProfile.setVisibility(View.VISIBLE);
 
-        //focus automatico per far capire che si puÃ² modificare
-        textInputEditTextTelefono.requestFocus();
+        //focus automatico per far intendere che si puù modificare
+        phone.requestFocus();
 
-        textInputEditTextTelefono.addTextChangedListener(new TextWatcher() {
+        phone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                String telefono = s.toString();
-                mGenitoreViewModel.getGenitoreLiveData().getValue().setnumeroCellulare(telefono);
+                String phoneNumber = s.toString();
+                genitoreViewsModels.getGenitoreLiveData().getValue().setnumeroCellulare(phoneNumber);
             }
         });
     }
 
     @Override
     void confirmEditProfile() {
-        super.confirmEditProfile();
 
-        mGenitoreViewModel.aggiornaGenitoreRemoto();
+        super.confirmEditProfile();
+        genitoreViewsModels.aggiornaGenitoreRemoto();
         setData();
     }
+
+    @Override
+    void setData() {
+
+        Genitore genitore = genitoreViewsModels.getGenitoreLiveData().getValue();
+
+        name.setText(genitore.getNome());
+        name.setEnabled(false);
+
+        surname.setText(genitore.getCognome());
+        surname.setEnabled(false);
+
+        email.setText(genitore.getEmail());
+        email.setEnabled(false);
+
+        usernameProfile.setText(genitore.getUsername());
+
+        phone.setText(genitore.getnumeroCellulare());
+        phone.setEnabled(false);
+    }
+
 
 }
