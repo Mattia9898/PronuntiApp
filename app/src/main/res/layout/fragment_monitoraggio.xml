@@ -61,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             >
             <TextView
-                android:id="@+id/textViewDataInizioTerapia"
+                android:id="@+id/startTherapy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -74,7 +74,7 @@
                 android:layout_weight="1"
                 />
             <TextView
-                android:id="@+id/textViewDataFineTerapia"
+                android:id="@+id/endTherapy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"

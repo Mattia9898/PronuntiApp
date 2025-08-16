@@ -1,79 +1,68 @@
 package views.fragment.userGenitore.monitoraggio;
 
-import android.os.Bundle;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.scenariGioco.ScenarioGioco;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+
+import android.os.Bundle;
+
+import views.fragment.adapter.ScenarioAdapter;
+import views.fragment.adapter.Navigation;
+import views.fragment.AbstractNavigazioneFragment;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import models.domain.terapie.Terapia;
+import models.domain.scenariGioco.ScenarioGioco;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
-import views.fragment.AbstractNavigazioneFragment;
-
-import views.fragment.adapter.Navigation;
-
-import views.fragment.adapter.ScenarioAdapter;
+import android.view.LayoutInflater;
+import android.util.Log;
+import android.widget.TextView;
+import android.view.ViewGroup;
+import android.view.View;
 
 
 public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment implements Navigation {
 
+    private GenitoreViewsModels genitoreViewsModels;
+
+    private int therapy;
+
     private RecyclerView recyclerViewScenari;
 
-    private List<ScenarioGioco> listaScenari;
+    private List<ScenarioGioco> listScenarGioco;
 
-    private int indiceTerapia;
+    private TextView startTherapy;
 
-    private GenitoreViewsModels mGenitoreViewModel;
+    private TextView endTherapy;
 
-    private TextView textViewDataInizioTerapia;
-
-    private TextView textViewDataFineTerapia;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         super.onCreateView(inflater,container,savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_monitoraggio, container, false);
-
         savedInstanceState = getArguments();
 
         if (savedInstanceState != null && savedInstanceState.containsKey("indiceTerapiaScelta")) {
-            indiceTerapia = savedInstanceState.getInt("indiceTerapiaScelta");
+            therapy = savedInstanceState.getInt("indiceTerapiaScelta");
         } else {
-            indiceTerapia = 0;
+            therapy = 0;
         }
 
-        mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
+        genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
-
-        textViewDataInizioTerapia = view.findViewById(R.id.textViewDataInizioTerapia);
-        textViewDataFineTerapia= view.findViewById(R.id.textViewDataFineTerapia);
-
+        startTherapy = view.findViewById(R.id.startTherapy);
+        endTherapy= view.findViewById(R.id.endTherapy);
         recyclerViewScenari = view.findViewById(R.id.recyclerViewScenari);
         recyclerViewScenari.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -84,20 +73,44 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment im
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+        listScenarGioco = checkingTherapy();
 
-        listaScenari = monitoraggioTerapie();
-        setTextViewDataInizioTerapia();
-        setTextViewDataFineTerapia();
+        startDateTherapy();
+        endDateTherapy();
+
         Log.d("Monitoraggio genitore",""+ R.id.action_terapieFragment_to_risultatoEsercizioDenominazioneImmagineFragment);
 
-
-        ScenarioAdapter adapter = new ScenarioAdapter(listaScenari, this,
+        ScenarioAdapter scenarioAdapter = new ScenarioAdapter(listScenarGioco, this,
                                         R.id.action_terapieFragment_to_risultatoEsercizioDenominazioneImmagineFragment,
                                         R.id.action_terapieFragment_to_risultatoEsercizioCoppiaImmaginiFragment,
                                         R.id.action_terapieFragment_to_risultatoEsercizioSequenzaParoleFragment,
-                                        mGenitoreViewModel.getModificaDataScenariController(),
-                                        indiceTerapia,"",0);
-        recyclerViewScenari.setAdapter(adapter);
+                                        genitoreViewsModels.getModificaDataScenariController(),
+                                        therapy,"",0);
+
+        recyclerViewScenari.setAdapter(scenarioAdapter);
+    }
+
+    private void endDateTherapy(){
+        if (genitoreViewsModels.getPazienteLiveData().getValue().getTerapie() != null) {
+            endTherapy.setText(genitoreViewsModels.getPazienteLiveData().
+                    getValue().getTerapie().get(therapy).getDataFineTerapia().toString());
+        }
+    }
+
+    private void startDateTherapy() {
+        if (genitoreViewsModels.getPazienteLiveData().getValue().getTerapie() != null) {
+            startTherapy.setText(genitoreViewsModels.getPazienteLiveData().
+                    getValue().getTerapie().get(therapy).getDataInizioTerapia().toString());
+        }
+
+    }
+
+    private List<ScenarioGioco> checkingTherapy(){
+        if(genitoreViewsModels.getPazienteLiveData().getValue().getTerapie() != null) {
+            Terapia terapia = genitoreViewsModels.getPazienteLiveData().getValue().getTerapie().get(therapy);
+            return new ArrayList<>(terapia.getListScenariGioco());
+        }
+        return new ArrayList<>();
     }
 
     @Override
@@ -105,25 +118,5 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment im
         navigateTo(id, bundle);
     }
 
-    private List<ScenarioGioco> monitoraggioTerapie(){
-        if(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie() != null) {
-            Terapia terapiaScelta = mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia);
-            return new ArrayList<>(terapiaScelta.getListScenariGioco());
-        }
-        return new ArrayList<>();
-    }
-
-    private void setTextViewDataInizioTerapia() {
-        if (mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie() != null) {
-            textViewDataInizioTerapia.setText(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getDataInizioTerapia().toString());
-        }
-
-    }
-
-    private void setTextViewDataFineTerapia(){
-        if (mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie() != null) {
-            textViewDataFineTerapia.setText(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getDataFineTerapia().toString());
-        }
-    }
 }
 
