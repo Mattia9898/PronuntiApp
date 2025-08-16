@@ -1,62 +1,80 @@
 package views.fragment.userGenitore.monitoraggio;
 
-import android.os.Bundle;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.ImageButton;
-
-import android.widget.LinearLayout;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.terapie.Terapia;
+import androidx.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+
+import android.os.Bundle;
+
+import views.fragment.AbstractNavigazioneFragment;
+import views.dialog.InfoDialog;
+
+import android.view.ViewGroup;
+import android.view.View;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.util.Log;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
-import views.dialog.InfoDialog;
+import models.domain.terapie.Terapia;
 
-import views.fragment.AbstractNavigazioneFragment;
+import androidx.lifecycle.ViewModelProvider;
+
 
 public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragment {
 
-    private int indiceTerapia;
-    private ImageButton imageButtonProssimaTerapia;
-    private ImageButton imageButtonTerapiaPrecedente;
-    private GenitoreViewsModels mGenitoreViewModel;
+    private int therapy;
+
+    private ImageButton nextTherapy;
+
+    private ImageButton previousTherapy;
+
+    private GenitoreViewsModels genitoreViewsModels;
+
+
+    public void showDialogError(int typeError) {
+
+        String errorMessage = "";
+
+        switch (typeError) {
+            case 1:
+                errorMessage = getString(R.string.firstTherapy);
+                break;
+            case 2:
+                errorMessage = getString(R.string.lastTherapy);
+                break;
+        }
+
+        InfoDialog infoDialog = new InfoDialog(getContext(), errorMessage, getString(R.string.tastoRiprova));
+        infoDialog.show();
+        infoDialog.setOnConfirmButtonClickListener(null);
+    }
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_navigazione_terapie, container, false);
 
-        imageButtonProssimaTerapia = view.findViewById(R.id.buttonAvantiTerapia);
-        imageButtonTerapiaPrecedente = view.findViewById(R.id.buttonIndietroTerapia);
+        previousTherapy = view.findViewById(R.id.buttonPreviousTherapy);
+        nextTherapy = view.findViewById(R.id.buttonNextTherapy);
 
-        mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
+        genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
-        mGenitoreViewModel.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
-            if(mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie()!=null) {
-                this.indiceTerapia = mGenitoreViewModel.getIndiceUltimaTerapia();
+        genitoreViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
+            if(genitoreViewsModels.getPazienteLiveData().getValue().getTerapie()!=null) {
+                this.therapy = genitoreViewsModels.getIndiceUltimaTerapia();
             }else {
-                this.indiceTerapia = -1;
+                this.therapy = -1;
             }
         });
-
 
         return view;
     }
@@ -67,51 +85,38 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
 
         Bundle bundle = new Bundle();
 
-        imageButtonProssimaTerapia.setOnClickListener(v -> {
-            if (indiceTerapia != mGenitoreViewModel.getIndiceUltimaTerapia() && indiceTerapia != -1) {
-                indiceTerapia++;
-                Log.d("NavTerapieGenitore",""+indiceTerapia);
-                bundle.putInt("indiceTerapiaScelta",indiceTerapia);
-                MonitoraggioGenitoreFragment nuovoFragmentMonitoraggio = new MonitoraggioGenitoreFragment();
-                nuovoFragmentMonitoraggio.setArguments(bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewMonitoraggio,nuovoFragmentMonitoraggio).commit();
+        nextTherapy.setOnClickListener(v -> {
+            if (therapy != genitoreViewsModels.getIndiceUltimaTerapia() && therapy != -1) {
+
+                therapy++;
+                Log.d("NavTerapieGenitore",""+therapy);
+                bundle.putInt("indiceTerapiaScelta",therapy);
+
+                MonitoraggioGenitoreFragment newMonitoraggioGenitoreFragment = new MonitoraggioGenitoreFragment();
+                newMonitoraggioGenitoreFragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerViewMonitoraggio,newMonitoraggioGenitoreFragment).commit();
             }else{
-                creaDialogErroreCampi(1);
+                showDialogError(1);
             }
         });
 
-        imageButtonTerapiaPrecedente.setOnClickListener(v -> {
-            if (indiceTerapia != 0 && indiceTerapia != -1) {
-                indiceTerapia--;
-                Log.d("NavTerapieGenitore",""+indiceTerapia);
-                bundle.putInt("indiceTerapiaScelta",indiceTerapia);
-                MonitoraggioGenitoreFragment nuovoFragmentMonitoraggio = new MonitoraggioGenitoreFragment();
-                nuovoFragmentMonitoraggio.setArguments(bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewMonitoraggio,nuovoFragmentMonitoraggio).commit();
-            }else{
-                creaDialogErroreCampi(2);
-            }
+        previousTherapy.setOnClickListener(v -> {
+            if (therapy != 0 && therapy != -1) {
 
+                therapy--;
+                Log.d("NavTerapieGenitore",""+therapy);
+                bundle.putInt("indiceTerapiaScelta",therapy);
+
+                MonitoraggioGenitoreFragment newMonitoraggioGenitoreFragment = new MonitoraggioGenitoreFragment();
+                newMonitoraggioGenitoreFragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerViewMonitoraggio,newMonitoraggioGenitoreFragment).commit();
+            }else{
+                showDialogError(2);
+            }
         });
 
-    }
-
-    public void creaDialogErroreCampi(int tipoErrore) {
-
-        String messaggioErrore = "";
-
-        switch (tipoErrore) {
-            case 1:
-                messaggioErrore = getString(R.string.firstTherapy);
-                break;
-            case 2:
-                messaggioErrore = getString(R.string.lastTherapy);
-                break;
-        }
-
-        InfoDialog infoDialog = new InfoDialog(getContext(), messaggioErrore, getString(R.string.tastoRiprova));
-        infoDialog.show();
-        infoDialog.setOnConfirmButtonClickListener(null);
     }
 
 
