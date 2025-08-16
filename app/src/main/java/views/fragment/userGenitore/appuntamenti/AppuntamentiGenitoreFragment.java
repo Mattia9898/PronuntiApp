@@ -1,44 +1,39 @@
 package views.fragment.userGenitore.appuntamenti;
 
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
+import java.util.List;
+
 import models.domain.profili.Appuntamento;
-
-import viewsModels.genitoreViewsModels.controller.AppuntamentiGenitoreController;
-
-import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
 import views.fragment.AbstractNavigazioneFragment;
 
+import viewsModels.genitoreViewsModels.GenitoreViewsModels;
+import viewsModels.genitoreViewsModels.controller.AppuntamentiGenitoreController;
+
+import android.view.ViewGroup;
+import android.view.View;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 public class AppuntamentiGenitoreFragment extends AbstractNavigazioneFragment {
 
-    private RecyclerView recyclerViewAppuntamentiGenitore;
 
-    private AppuntamentiGenitoreAdapter appuntamentoAdapter;
+    private AppuntamentiGenitoreAdapter appuntamentiGenitoreAdapter;
 
-    private GenitoreViewsModels mGenitoreViewModel;
+    private AppuntamentiGenitoreController appuntamentiGenitoreController;
 
-    private AppuntamentiGenitoreController mController;
+    private GenitoreViewsModels genitoreViewsModels;
+
+    private RecyclerView appuntamentiGenitore;
 
 
     @Override
@@ -46,13 +41,13 @@ public class AppuntamentiGenitoreFragment extends AbstractNavigazioneFragment {
 
         View view = inflater.inflate(R.layout.fragment_appuntamenti_genitore, container, false);
 
-        this.mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
-        this.mController = mGenitoreViewModel.getAppuntamentiControllerGenitore();
+        this.genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
+        this.appuntamentiGenitoreController = genitoreViewsModels.getAppuntamentiControllerGenitore();
 
         setToolBar(view,getString(R.string.i_tuoi_appuntamenti));
 
-        recyclerViewAppuntamentiGenitore = view.findViewById(R.id.recyclerViewAppuntamentiGenitore);
-        recyclerViewAppuntamentiGenitore.setLayoutManager(new LinearLayoutManager(getContext()));
+        appuntamentiGenitore = view.findViewById(R.id.recyclerViewAppuntamentiGenitore);
+        appuntamentiGenitore.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
@@ -61,11 +56,10 @@ public class AppuntamentiGenitoreFragment extends AbstractNavigazioneFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+        List<Appuntamento> listAppuntamento = genitoreViewsModels.getAppuntamentiLiveData().getValue();
 
-        List<Appuntamento> appuntamenti = mGenitoreViewModel.getAppuntamentiLiveData().getValue();
-
-        appuntamentoAdapter = new AppuntamentiGenitoreAdapter(appuntamenti);
-        recyclerViewAppuntamentiGenitore.setAdapter(appuntamentoAdapter);
+        appuntamentiGenitoreAdapter = new AppuntamentiGenitoreAdapter(listAppuntamento);
+        appuntamentiGenitore.setAdapter(appuntamentiGenitoreAdapter);
     }
 
 }
