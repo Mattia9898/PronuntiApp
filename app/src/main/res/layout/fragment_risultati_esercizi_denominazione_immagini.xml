@@ -39,7 +39,7 @@
         >
 
         <ImageView
-            android:id="@+id/imageViewImmagineEsercizioDenominazione"
+            android:id="@+id/imageEsercizioDenominazione"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -105,7 +105,7 @@
             >
 
             <ImageView
-                android:id="@+id/imageViewCheckEsercizio"
+                android:id="@+id/checkExercise"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_check"
@@ -114,7 +114,7 @@
                 />
 
             <ImageView
-                android:id="@+id/imageViewWrongEsercizio"
+                android:id="@+id/wrongExercise"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_sbagliato"
@@ -123,7 +123,7 @@
                 />
 
             <ImageView
-                android:id="@+id/imageViewNonSvoltoEsercizio"
+                android:id="@+id/notDoneExercise"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_non_eseguito"
@@ -132,7 +132,7 @@
                 />
 
             <TextView
-                android:id="@+id/textAiutiUtilizzati"
+                android:id="@+id/aidsUsed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -144,7 +144,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayoutRispostaData"
+            android:id="@+id/answerGiven"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -154,7 +154,7 @@
             >
 
             <ImageButton
-                android:id="@+id/imageButtonAvviaAudioRegistrato"
+                android:id="@+id/buttonPlay"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_play"
@@ -163,7 +163,7 @@
                 />
 
             <ImageButton
-                android:id="@+id/imageButtonPausaAudioRegistrato"
+                android:id="@+id/buttonPause"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_pausa"
