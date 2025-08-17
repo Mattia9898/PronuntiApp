@@ -49,13 +49,13 @@
         android:layout_marginTop="80dp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarScorrimentoAudioEsercizioSequenzaParole"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
         android:layout_marginBottom="0dp"
         android:elevation="1dp"
         />
 
     <android.widget.SeekBar
-        android:id="@+id/seekBarScorrimentoAudioEsercizioSequenzaParole"
+        android:id="@+id/seekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="100"
@@ -79,11 +79,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutRisultatoEsercizioSequenzaParole"
-        app:layout_constraintTop_toBottomOf="@+id/seekBarScorrimentoAudioEsercizioSequenzaParole"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
         android:elevation="1dp">
 
         <ImageButton
-            android:id="@+id/playButton"
+            android:id="@+id/buttonPlay"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
@@ -94,7 +94,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
-            android:id="@+id/pauseButton"
+            android:id="@+id/buttonPause"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@android:color/transparent"
@@ -140,7 +140,7 @@
             >
 
             <ImageView
-                android:id="@+id/imageViewCheckEsercizio"
+                android:id="@+id/checkExercise"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_check"
@@ -149,7 +149,7 @@
                 />
 
             <ImageView
-                android:id="@+id/imageViewWrongEsercizio"
+                android:id="@+id/wrongExercise"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_sbagliato"
@@ -158,7 +158,7 @@
                 />
 
             <ImageView
-                android:id="@+id/imageViewNonSvoltoEsercizio"
+                android:id="@+id/notDoneExercise"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_non_eseguito"
@@ -169,7 +169,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayoutRispostaData"
+            android:id="@+id/answerGiven"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -179,7 +179,7 @@
             >
 
             <ImageButton
-                android:id="@+id/imageButtonAvviaAudioRegistrato"
+                android:id="@+id/buttonAnswerPlay"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_play"
@@ -188,7 +188,7 @@
                 />
 
             <ImageButton
-                android:id="@+id/imageButtonPausaAudioRegistrato"
+                android:id="@+id/buttonAnswerPause"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/icona_pausa"
