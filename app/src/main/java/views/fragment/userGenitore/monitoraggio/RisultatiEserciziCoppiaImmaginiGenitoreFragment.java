@@ -1,104 +1,96 @@
 package views.fragment.userGenitore.monitoraggio;
 
-import android.content.pm.ActivityInfo;
-
-import android.media.MediaPlayer;
-
-import android.os.Bundle;
-
-import android.os.Handler;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.ImageButton;
-
-import android.widget.ImageView;
-
-import android.widget.SeekBar;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import java.io.File;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.esercizi.EsercizioCoppiaImmagini;
-
-import models.utils.audioPlayer.AudioPlayerLink;
-
-import models.utils.audioRecorder.AudioRecorder;
-
-import viewsModels.genitoreViewsModels.GenitoreViewsModels;
+import java.io.File;
 
 import views.fragment.AbstractNavigazioneFragment;
 
+import viewsModels.genitoreViewsModels.GenitoreViewsModels;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+
+import androidx.lifecycle.ViewModelProvider;
+
+import models.utils.audioRecorder.AudioRecorder;
+import models.utils.audioPlayer.AudioPlayerLink;
+import models.domain.esercizi.EsercizioCoppiaImmagini;
+
+import android.util.Log;
+import android.content.pm.ActivityInfo;
+import android.view.ViewGroup;
+import android.view.View;
+import android.view.LayoutInflater;
+import android.media.MediaPlayer;
+import android.widget.SeekBar;
+import android.widget.ImageView;
+import android.widget.ImageButton;
+import android.os.Bundle;
+import android.os.Handler;
+
+
 public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNavigazioneFragment {
 
-    private SeekBar seekBarEsercizioCoppiaImmagini;
 
     private AudioRecorder audioRecorder;
 
-    private MediaPlayer mMediaPlayer;
+    private SeekBar seekBar;
+
+    private EsercizioCoppiaImmagini esercizioCoppiaImmagini;
+
+    private GenitoreViewsModels genitoreViewsModels;
 
     private AudioPlayerLink audioPlayerLink;
 
-    private EsercizioCoppiaImmagini mEsercizioCoppiaImmagini;
+    private MediaPlayer mediaPlayer;
 
-    private ImageButton imageButtonPlay;
+    private ImageView notDoneExercise;
 
-    private ImageButton imageButtonPause;
+    private ImageView wrongExercise;
 
-    private ImageView imageViewCheck;
+    private ImageView checkExercise;
 
-    private ImageView imageViewWrong;
+    private int therapy;
 
-    private ImageView imageViewNonSvoltoEsercizio;
+    private int scenery;
 
-    private int indiceEsercizio;
+    private int exercise;
 
-    private int indiceScenario;
+    private ImageButton buttonPause;
 
-    private int indiceTerapia;
-
-    private GenitoreViewsModels mGenitoreViewModel;
+    private ImageButton buttonPlay;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_risultati_esercizi_coppia_immagini, container, false);
-
         setToolBar(view, getString(R.string.risultatoEsercizio));
-
         savedInstanceState = getArguments();
 
-        if (savedInstanceState != null && savedInstanceState.containsKey("indiceEsercizio") && savedInstanceState.containsKey("indiceScenario") && savedInstanceState.containsKey("indiceTerapia")) {
-            indiceEsercizio = savedInstanceState.getInt("indiceEsercizio");
-            indiceScenario = savedInstanceState.getInt("indiceScenario");
-            indiceTerapia = savedInstanceState.getInt("indiceTerapia");
+        if (savedInstanceState != null && savedInstanceState.containsKey("exercise") &&
+                savedInstanceState.containsKey("scenery") &&
+                savedInstanceState.containsKey("therapy")) {
+
+            exercise = savedInstanceState.getInt("exercise");
+            scenery = savedInstanceState.getInt("scenery");
+            therapy = savedInstanceState.getInt("therapy");
         } else {
-            indiceTerapia = 0;
-            indiceEsercizio = 0;
-            indiceScenario = 0;
+            therapy = 0;
+            exercise = 0;
+            scenery = 0;
         }
 
-        seekBarEsercizioCoppiaImmagini = view.findViewById(R.id.seekBarScorrimentoAudioEsercizioCoppiaImmagini);
-        imageButtonPlay = view.findViewById(R.id.playButton);
-        imageButtonPause = view.findViewById(R.id.pauseButton);
-        imageViewNonSvoltoEsercizio = view.findViewById(R.id.imageViewNonSvoltoEsercizio);
-        imageViewCheck = view.findViewById(R.id.imageViewCheckEsercizio);
-        imageViewWrong = view.findViewById(R.id.imageViewWrongEsercizio);
+        seekBar = view.findViewById(R.id.seekBar);
+        buttonPlay = view.findViewById(R.id.buttonPlay);
+        buttonPause = view.findViewById(R.id.buttonPause);
+        notDoneExercise = view.findViewById(R.id.notDoneExercise);
+        checkExercise = view.findViewById(R.id.checkExercise);
+        wrongExercise = view.findViewById(R.id.wrongExercise);
 
-        mGenitoreViewModel = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
+        genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
         return view;
     }
@@ -109,71 +101,65 @@ public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNav
 
         super.onViewCreated(view, savedInstanceState);
 
-        this.mEsercizioCoppiaImmagini = getEsercizioCoppiaImmaginiFromViewModel(indiceEsercizio,indiceScenario,indiceTerapia);
-        this.audioRecorder = initAudioRecorder();
-        this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
-        this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
+        this.esercizioCoppiaImmagini = getEsercizioCoppiaImmagini(exercise, scenery, therapy);
+        this.audioRecorder = audioRecorder();
+        this.audioPlayerLink = new AudioPlayerLink(esercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
+        this.mediaPlayer = audioPlayerLink.getMediaPlayer();
 
-        if(isNonSvolto()){
-            imageViewCheck.setVisibility(View.GONE);
-            imageViewWrong.setVisibility(View.GONE);
-            imageViewNonSvoltoEsercizio.setVisibility(View.VISIBLE);
+        if(isNotDone()){
+            checkExercise.setVisibility(View.GONE);
+            wrongExercise.setVisibility(View.GONE);
+            notDoneExercise.setVisibility(View.VISIBLE);
         }
-        else if (isCorrect()) {
-            imageViewCheck.setVisibility(View.VISIBLE);
-            imageViewWrong.setVisibility(View.GONE);
+        else if(isCorrect()) {
+            checkExercise.setVisibility(View.VISIBLE);
+            wrongExercise.setVisibility(View.GONE);
         } else {
-            imageViewCheck.setVisibility(View.GONE);
-            imageViewWrong.setVisibility(View.VISIBLE);
+            checkExercise.setVisibility(View.GONE);
+            wrongExercise.setVisibility(View.VISIBLE);
         }
 
-        imageButtonPlay.setOnClickListener(v -> avviaRiproduzioneAudio());
-        imageButtonPause.setOnClickListener(v -> stoppaRiproduzioneAudio());
+        buttonPlay.setOnClickListener(v -> startReproductionAudio());
+        buttonPause.setOnClickListener(v -> stopReproductionAudio());
     }
 
-    private AudioRecorder initAudioRecorder() {
+    private AudioRecorder audioRecorder() {
 
-        File cartellaApp = getContext().getFilesDir();
-        File audioRegistrazione = new File(cartellaApp, "tempAudioRegistrato");
+        File appDirectory = getContext().getFilesDir();
+        File audioRegistration = new File(appDirectory, "audioRegistrato");
 
-        return new AudioRecorder(audioRegistrazione);
+        return new AudioRecorder(audioRegistration);
     }
 
-    private void avviaRiproduzioneAudio() {
-        imageButtonPlay.setVisibility(View.GONE);
-        imageButtonPause.setVisibility(View.VISIBLE);
-        inizializzaBarraAvanzamento();
-        audioPlayerLink.playAudio();
-    }
 
-    private void inizializzaBarraAvanzamento() {
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> {
-            Log.d("EsercizioCoppiaImmagini", "Audio completato");
-            imageButtonPlay.setVisibility(View.VISIBLE);
-            imageButtonPause.setVisibility(View.GONE);
+    private void fillProgressBar() {
+        mediaPlayer.setOnCompletionListener(mediaPlayer -> {
+            Log.d("EsercizioCoppiaImmagini", "Audio completed");
+            buttonPlay.setVisibility(View.VISIBLE);
+            buttonPause.setVisibility(View.GONE);
         });
 
-        seekBarEsercizioCoppiaImmagini.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mMediaPlayer.seekTo(progress * mMediaPlayer.getDuration() / 100);
+                    mediaPlayer.seekTo(progress * mediaPlayer.getDuration() / 100);
                 }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                mMediaPlayer.seekTo(seekBar.getProgress() * mMediaPlayer.getDuration() / 100);
+                mediaPlayer.seekTo(seekBar.getProgress() * mediaPlayer.getDuration() / 100);
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mMediaPlayer.seekTo(seekBar.getProgress() * mMediaPlayer.getDuration() / 100);
+                mediaPlayer.seekTo(seekBar.getProgress() * mediaPlayer.getDuration() / 100);
             }
         });
 
-        mMediaPlayer.setOnSeekCompleteListener(mediaPlayer ->
-                seekBarEsercizioCoppiaImmagini.setProgress((int) (mediaPlayer.getCurrentPosition() * 100 / mediaPlayer.getDuration())));
+        mediaPlayer.setOnSeekCompleteListener(mediaPlayer ->
+                seekBar.setProgress((int) (mediaPlayer.getCurrentPosition() * 100 / mediaPlayer.getDuration())));
 
         final int delay = 5;
 
@@ -181,48 +167,61 @@ public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNav
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if (mMediaPlayer != null && mMediaPlayer.isPlaying() && seekBarEsercizioCoppiaImmagini != null) {
-                    seekBarEsercizioCoppiaImmagini.setProgress((int) (mMediaPlayer.getCurrentPosition() * 100 / mMediaPlayer.getDuration()));
+                if (mediaPlayer != null && mediaPlayer.isPlaying() && seekBar != null) {
+                    seekBar.setProgress((int) (mediaPlayer.getCurrentPosition() * 100 / mediaPlayer.getDuration()));
                 }
                 handler.postDelayed(this, delay);
             }
         };
 
-        mMediaPlayer.setOnPreparedListener(mp -> handler.postDelayed(runnable, delay));
-    }
-    public void stoppaRiproduzioneAudio() {
-        imageButtonPlay.setVisibility(View.VISIBLE);
-        imageButtonPause.setVisibility(View.GONE);
-        audioPlayerLink.stopAudio();
-    }
-
-    private boolean isCorrect() {
-        return this.mEsercizioCoppiaImmagini.getRisultatoEsercizio().isEsitoCorretto();
-    }
-
-    private boolean isNonSvolto() {
-        return this.mEsercizioCoppiaImmagini.getRisultatoEsercizio() == null;
-    }
-
-    private EsercizioCoppiaImmagini getEsercizioCoppiaImmaginiFromViewModel(int indiceEsercizio, int indiceScenario, int indiceTerapia){
-        Log.d("RisultatoDenominazione", ":"+ indiceEsercizio);
-
-        return (EsercizioCoppiaImmagini) mGenitoreViewModel.getPazienteLiveData().getValue().getTerapie().get(indiceTerapia).getListScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
+        mediaPlayer.setOnPreparedListener(mp -> handler.postDelayed(runnable, delay));
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        // Blocca l'orientamento in portrait
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-    }
-
+    // per sbloccare l'orientamento quando il fragment non è più visibile
     @Override
     public void onPause() {
         super.onPause();
-        // Sblocca l'orientamento quando il fragment non è più visibile
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }
+
+
+    // per bloccare l'orientamento in portrait
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+
+    private boolean isCorrect() {
+        return this.esercizioCoppiaImmagini.getRisultatoEsercizio().isEsitoCorretto();
+    }
+
+    private boolean isNotDone() {
+        return this.esercizioCoppiaImmagini.getRisultatoEsercizio() == null;
+    }
+
+    public void stopReproductionAudio() {
+        buttonPlay.setVisibility(View.VISIBLE);
+        buttonPause.setVisibility(View.GONE);
+        audioPlayerLink.stopAudio();
+    }
+
+    private void startReproductionAudio() {
+        buttonPlay.setVisibility(View.GONE);
+        buttonPause.setVisibility(View.VISIBLE);
+        fillProgressBar();
+        audioPlayerLink.playAudio();
+    }
+
+
+    private EsercizioCoppiaImmagini getEsercizioCoppiaImmagini(int indexExercise, int indexScenery, int indexTherapy){
+        Log.d("RisultatoDenominazione", ":"+ indexExercise);
+        return (EsercizioCoppiaImmagini) genitoreViewsModels.getPazienteLiveData().getValue().
+                getTerapie().get(indexTherapy).getListScenariGioco().get(indexScenery).
+                getlistEsercizioRealizzabile().get(indexExercise);
+    }
+
 
 }
