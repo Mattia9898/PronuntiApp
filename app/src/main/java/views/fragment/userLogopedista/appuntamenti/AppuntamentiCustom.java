@@ -7,62 +7,65 @@ import java.time.LocalDate;
 
 public class AppuntamentiCustom {
 
-    private String nomePaziente;
-
-    private String cognomePaziente;
-
-    private String luogoAppuntamento;
-
-    private LocalDate dataAppuntamento;
-
-    private LocalTime oraAppuntamento;
-
     private String idAppuntamentoCustom;
 
+    private String namePatient;
 
-    public AppuntamentiCustom(String idAppuntamentoCustom, String nomePaziente, String cognomePaziente, String luogoAppuntamento, LocalDate dataAppuntamento, LocalTime oraAppuntamento) {
+    private String surnamePatient;
+
+    private LocalTime timeAppuntamento;
+
+    private LocalDate dateAppuntamento;
+
+    private String placeAppuntamento;
+
+
+    public AppuntamentiCustom(String idAppuntamentoCustom, String namePatient,
+                              String surnamePatient, String placeAppuntamento,
+                              LocalDate dateAppuntamento, LocalTime timeAppuntamento) {
+
         this.idAppuntamentoCustom = idAppuntamentoCustom;
-        this.nomePaziente = nomePaziente;
-        this.cognomePaziente = cognomePaziente;
-        this.luogoAppuntamento = luogoAppuntamento;
-        this.dataAppuntamento = dataAppuntamento;
-        this.oraAppuntamento = oraAppuntamento;
+        this.namePatient = namePatient;
+        this.surnamePatient = surnamePatient;
+        this.placeAppuntamento = placeAppuntamento;
+        this.dateAppuntamento = dateAppuntamento;
+        this.timeAppuntamento = timeAppuntamento;
     }
 
-
-    public String getNomePaziente() {
-        return nomePaziente;
-    }
-
-    public String getCognomePaziente() {
-        return cognomePaziente;
-    }
-
-    public String getLuogoAppuntamento() {
-        return luogoAppuntamento;
-    }
-
-    public LocalDate getDataAppuntamento() {
-        return dataAppuntamento;
-    }
-
-    public LocalTime getOraAppuntamento() {
-        return oraAppuntamento;
-    }
 
     public String getIdAppuntamentoCustom() {
         return idAppuntamentoCustom;
+    }
+
+    public String getNamePatient() {
+        return namePatient;
+    }
+
+    public String getSurnamePatient() {
+        return surnamePatient;
+    }
+
+    public LocalTime getTimeAppuntamento() {
+        return timeAppuntamento;
+    }
+
+    public LocalDate getDateAppuntamento() {
+        return dateAppuntamento;
+    }
+
+    public String getPlaceAppuntamento() {
+        return placeAppuntamento;
     }
 
 
     @Override
     public String toString() {
         return "Appuntamento{" +
-                "nomePaziente='" + nomePaziente + '\'' +
-                ", cognomePaziente='" + cognomePaziente + '\'' +
-                ", luogoAppuntamento='" + luogoAppuntamento + '\'' +
-                ", dataAppuntamento=" + dataAppuntamento +
-                ", oraAppuntamento=" + oraAppuntamento +
+                "namePatient='" + namePatient + '\'' +
+                ", surnamePatient='" + surnamePatient + '\'' +
+                ", placeAppuntamento='" + placeAppuntamento + '\'' +
+                ", dateAppuntamento=" + dateAppuntamento +
+                ", timeAppuntamento=" + timeAppuntamento +
                 ", idAppuntamento="+ idAppuntamentoCustom+
                 '}';
     }

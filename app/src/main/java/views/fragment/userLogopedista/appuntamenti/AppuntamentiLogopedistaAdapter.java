@@ -70,28 +70,28 @@ public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<Appunta
     @Override
     public void onBindViewHolder(AppuntamentiLogopedistaViewHolder holder, int position) {
         appuntamentiCustom.sort((v1, v2) -> {
-            int compareDate = v1.getDataAppuntamento().compareTo(v2.getDataAppuntamento());
+            int compareDate = v1.getDateAppuntamento().compareTo(v2.getDateAppuntamento());
             if(compareDate == 0){
-                return v1.getOraAppuntamento().compareTo(v2.getOraAppuntamento());
+                return v1.getTimeAppuntamento().compareTo(v2.getTimeAppuntamento());
             }
             return compareDate;
         });
 
         AppuntamentiCustom appuntamento = appuntamentiCustom.get(position);
 
-        holder.textViewNomePaziente.setText(appuntamento.getNomePaziente());
-        holder.textViewCognomePaziente.setText(appuntamento.getCognomePaziente());
+        holder.textViewNomePaziente.setText(appuntamento.getNamePatient());
+        holder.textViewCognomePaziente.setText(appuntamento.getSurnamePatient());
 
         // Modifica in base al tipo di dato previsto per data appuntamento
-        holder.textViewDataAppuntamento.setText(appuntamento.getDataAppuntamento().format(DateTimeFormatter.ofPattern("dd MMMM")));
+        holder.textViewDataAppuntamento.setText(appuntamento.getDateAppuntamento().format(DateTimeFormatter.ofPattern("dd MMMM")));
 
         // Modifica in base al tipo di dato previsto per orario appuntamento
-        holder.textViewOraAppuntamento.setText(appuntamento.getOraAppuntamento().format(DateTimeFormatter.ofPattern("HH:mm")));
+        holder.textViewOraAppuntamento.setText(appuntamento.getTimeAppuntamento().format(DateTimeFormatter.ofPattern("HH:mm")));
 
-        holder.textViewLuogoAppuntamento.setText(appuntamento.getLuogoAppuntamento());
+        holder.textViewLuogoAppuntamento.setText(appuntamento.getPlaceAppuntamento());
 
         LocalDateTime now = LocalDateTime.of(LocalDate.now(), LocalTime.now());
-        LocalDateTime appuntamentoDateTime = LocalDateTime.of(appuntamento.getDataAppuntamento(), appuntamento.getOraAppuntamento());
+        LocalDateTime appuntamentoDateTime = LocalDateTime.of(appuntamento.getDateAppuntamento(), appuntamento.getTimeAppuntamento());
 
         if (appuntamentoDateTime.isBefore(now) || appuntamentoDateTime.isEqual(now)){
             holder.cardViewAppuntamentoLogopedista.setCardBackgroundColor(holder.itemView.getContext().getColor(R.color.hintTextColorDisabled));
@@ -191,8 +191,8 @@ public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<Appunta
             } else {
                 String query = charSequence.toString().toLowerCase();
                 for (AppuntamentiCustom appuntamento : appuntamentiFull) {
-                    String nome = appuntamento.getNomePaziente().toLowerCase();
-                    String cognome = appuntamento.getCognomePaziente().toLowerCase();
+                    String nome = appuntamento.getNamePatient().toLowerCase();
+                    String cognome = appuntamento.getSurnamePatient().toLowerCase();
                     if (nome.contains(query) || cognome.contains(query)) {
                         filteredAppuntamenti.add(appuntamento);
                     }
