@@ -1,8 +1,9 @@
 package views.fragment.userLogopedista.appuntamenti;
 
-import java.time.LocalDate;
 
 import java.time.LocalTime;
+import java.time.LocalDate;
+
 
 public class AppuntamentiCustom {
 
@@ -18,6 +19,7 @@ public class AppuntamentiCustom {
 
     private String idAppuntamentoCustom;
 
+
     public AppuntamentiCustom(String idAppuntamentoCustom, String nomePaziente, String cognomePaziente, String luogoAppuntamento, LocalDate dataAppuntamento, LocalTime oraAppuntamento) {
         this.idAppuntamentoCustom = idAppuntamentoCustom;
         this.nomePaziente = nomePaziente;
@@ -26,15 +28,6 @@ public class AppuntamentiCustom {
         this.dataAppuntamento = dataAppuntamento;
         this.oraAppuntamento = oraAppuntamento;
     }
-
-    public AppuntamentiCustom(String nomePaziente, String cognomePaziente, String luogoAppuntamento, LocalDate dataAppuntamento, LocalTime oraAppuntamento) {
-        this.nomePaziente = nomePaziente;
-        this.cognomePaziente = cognomePaziente;
-        this.luogoAppuntamento = luogoAppuntamento;
-        this.dataAppuntamento = dataAppuntamento;
-        this.oraAppuntamento = oraAppuntamento;
-    }
-
 
 
     public String getNomePaziente() {
@@ -57,33 +50,10 @@ public class AppuntamentiCustom {
         return oraAppuntamento;
     }
 
-    public void setNomePaziente(String nomePaziente) {
-        this.nomePaziente = nomePaziente;
-    }
-
-    public void setCognomePaziente(String cognomePaziente) {
-        this.cognomePaziente = cognomePaziente;
-    }
-
-    public void setLuogoAppuntamento(String luogoAppuntamento) {
-        this.luogoAppuntamento = luogoAppuntamento;
-    }
-
-    public void setDataAppuntamento(LocalDate dataAppuntamento) {
-        this.dataAppuntamento = dataAppuntamento;
-    }
-
-    public void setOraAppuntamento(LocalTime oraAppuntamento) {
-        this.oraAppuntamento = oraAppuntamento;
-    }
-
     public String getIdAppuntamentoCustom() {
         return idAppuntamentoCustom;
     }
 
-    public void setIdAppuntamentoCustom(String idAppuntamentoCustom) {
-        this.idAppuntamentoCustom = idAppuntamentoCustom;
-    }
 
     @Override
     public String toString() {
