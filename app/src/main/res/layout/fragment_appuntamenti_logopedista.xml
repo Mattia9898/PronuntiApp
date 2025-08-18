@@ -10,10 +10,10 @@
     >
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollViewAppuntamentiLogopedista"
+        android:id="@+id/nestedScrollViewAppuntamento"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/buttonNuovoAppuntamentoLogopedista"
+        android:layout_above="@+id/buttonAddAppuntamento"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -22,12 +22,12 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@id/toolBar"
                 style="@style/styleToolBar"
-                app:layout_constraintBottom_toTopOf="@+id/cardViewNuovoAppuntamentoLogopedista"
+                app:layout_constraintBottom_toTopOf="@+id/cardViewAppuntamento"
                 tools:ignore="MissingConstraints"
                 />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardViewNuovoAppuntamentoLogopedista"
+                android:id="@+id/cardViewAppuntamento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/toolBar"
@@ -76,7 +76,7 @@
                             android:elevation="3dp"
                             >
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/textInputEditTextPazienteAppuntamentoLogopedista"
+                                android:id="@+id/patientAppuntamento"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                         >
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextLuogoAppuntamentoLogopedista"
+                            android:id="@+id/placeAppuntamento"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                             >
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/textInputEditTextDataAppuntamentoLogopedista"
+                                android:id="@+id/dateAppuntamento"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <GridLayout
-                        android:id="@+id/gridLayoutAppuntamentoLogopedista"
+                        android:id="@+id/gridLayoutTimeAppuntamento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:columnCount="3"
@@ -246,14 +246,14 @@
                     </GridLayout>
 
                     <Button
-                        android:id="@+id/buttonConfermaAppuntamentoLogopedista"
+                        android:id="@+id/buttonConfirmAppuntamento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/confirm"
                         />
 
                     <ImageButton
-                        android:id="@+id/imageButtonArrowUpAppuntamentoLogopedista"
+                        android:id="@+id/arrowCloseCardView"
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
                         android:src="@drawable/icona_su"
@@ -267,19 +267,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/cardViewNuovoAppuntamentoLogopedista"
-                app:layout_constraintBottom_toTopOf="@+id/searchBarAppuntamentiLogopedista"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewAppuntamento"
+                app:layout_constraintBottom_toTopOf="@+id/searchAppuntamento"
                 app:layout_constraintStart_toStartOf="parent"
                 />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchBarAppuntamentiLogopedista"
+                android:id="@+id/searchAppuntamento"
                 style="@style/SearchBarStyle"
                 android:layout_marginHorizontal="10dp"
                 android:hint="@string/ricerca_appuntamento"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewSeparatorAppuntamentiLogopedista"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerViewAppuntamentiLogopedista"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerViewAppuntamento"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/rettangolo_bordo_grigio"
@@ -292,15 +292,15 @@
                 android:background="@drawable/icona_ricerca"
                 android:layout_marginStart="-40dp"
                 android:scaleType="fitCenter"
-                app:layout_constraintStart_toEndOf="@id/searchBarAppuntamentiLogopedista"
-                app:layout_constraintTop_toTopOf="@id/searchBarAppuntamentiLogopedista"
+                app:layout_constraintStart_toEndOf="@id/searchAppuntamento"
+                app:layout_constraintTop_toTopOf="@id/searchAppuntamento"
                 android:layout_gravity="end" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewAppuntamentiLogopedista"
+                android:id="@+id/recyclerViewAppuntamento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/searchBarAppuntamentiLogopedista"
+                app:layout_constraintTop_toBottomOf="@+id/searchAppuntamento"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="parent"
@@ -313,7 +313,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/buttonNuovoAppuntamentoLogopedista"
+        android:id="@+id/buttonAddAppuntamento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nuovo_appuntamento"
@@ -325,7 +325,7 @@
         />
 
     <View
-        android:id="@+id/viewOverlayAppuntamentiLogopedistaSelezionePaziente"
+        android:id="@+id/viewSelectionPatient"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -333,12 +333,12 @@
         />
 
     <LinearLayout
-        android:id="@+id/llPazienteAppuntamentoLogopedista"
+        android:id="@+id/linearLayoutPatientAppuntamento"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:elevation="2dp"
-        android:layout_alignTop="@+id/nestedScrollViewAppuntamentiLogopedista"
+        android:layout_alignTop="@+id/nestedScrollViewAppuntamento"
         android:layout_marginTop="180dp"
         android:background="@drawable/rettangolo_bianco_bordo_grigio"
         android:padding="2dp"
@@ -349,7 +349,7 @@
             android:layout_height="match_parent"
             >
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewPazienteAppuntamentoLogopedista"
+                android:id="@+id/recyclerViewAppuntamentoPaziente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/backgroundSceltaPaziente"
