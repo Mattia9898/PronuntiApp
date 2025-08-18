@@ -1,109 +1,104 @@
 package views.fragment.userLogopedista.elencoPazienti.monitoraggio;
 
-import android.media.MediaPlayer;
-
-import android.os.Bundle;
-
-import android.os.Handler;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.ImageButton;
-
-import android.widget.ImageView;
-
-import android.widget.SeekBar;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import java.io.File;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.esercizi.EsercizioCoppiaImmagini;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+
+import android.widget.SeekBar;
+import android.widget.ImageView;
+import android.widget.ImageButton;
+
+import android.view.View;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import models.domain.profili.Paziente;
-
+import models.domain.esercizi.EsercizioCoppiaImmagini;
 import models.utils.audioPlayer.AudioPlayerLink;
-
 import models.utils.audioRecorder.AudioRecorder;
+
+import android.os.Handler;
+import android.os.Bundle;
+
+import android.media.MediaPlayer;
+
+import java.io.File;
+
+import android.util.Log;
+
+import androidx.lifecycle.ViewModelProvider;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
 import views.fragment.AbstractNavigazioneFragment;
 
+
 public class RisultatiEserciziCoppiaImmaginiLogopedistaFragment extends AbstractNavigazioneFragment {
 
-    private SeekBar seekBarEsercizioCoppiaImmagini;
-
-    private AudioRecorder audioRecorder;
-
-    private MediaPlayer mMediaPlayer;
-
-    private AudioPlayerLink audioPlayerLink;
-
-    private EsercizioCoppiaImmagini mEsercizioCoppiaImmagini;
-
-    private ImageButton imageButtonPlay;
-
-    private ImageButton imageButtonPause;
-
-    private ImageView imageViewCheck;
-
-    private ImageView imageViewWrong;
 
     private String idPaziente;
 
-    private int indiceTerapia;
+    private int indexTherapy;
 
-    private int indiceEsercizio;
+    private int indexScenery;
 
-    private int indiceScenario;
+    private int indexExercise;
 
-    private LogopedistaViewsModels mLogopedistaViewModel;
+    private MediaPlayer mediaPlayer;
 
-    private ImageView imageViewNonSvoltoEsercizio;
+    private AudioPlayerLink audioPlayerLink;
+
+    private AudioRecorder audioRecorder;
+
+    private EsercizioCoppiaImmagini esercizioCoppiaImmagini;
+
+    private SeekBar seekBar;
+
+    private LogopedistaViewsModels logopedistaViewsModels;
+
+    private ImageButton buttonPause;
+
+    private ImageButton buttonPlay;
+
+    private ImageView wrongExercise;
+
+    private ImageView checkExercise;
+
+    private ImageView notDoneExercise;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_risultati_esercizi_coppia_immagini, container, false);
-
         setToolBar(view, getString(R.string.risultatoEsercizio));
-
         savedInstanceState = getArguments();
 
-        if (savedInstanceState != null && savedInstanceState.containsKey("indiceEsercizio") && savedInstanceState.containsKey("indiceScenario") && savedInstanceState.containsKey("indiceTerapia")) {
-            indiceEsercizio = savedInstanceState.getInt("indiceEsercizio");
-            indiceScenario = savedInstanceState.getInt("indiceScenario");
-            indiceTerapia = savedInstanceState.getInt("indiceTerapia");
+        if (savedInstanceState != null && savedInstanceState.containsKey("indexExercise") &&
+                savedInstanceState.containsKey("indexScenery") &&
+                savedInstanceState.containsKey("indexTherapy")) {
+
+            indexExercise = savedInstanceState.getInt("indexExercise");
+            indexScenery = savedInstanceState.getInt("indexScenery");
+            indexTherapy = savedInstanceState.getInt("indexTherapy");
             idPaziente = savedInstanceState.getString("idPaziente");
         } else {
-            indiceTerapia = 0;
-            indiceEsercizio = 0;
-            indiceScenario = 0;
+            indexTherapy = 0;
+            indexExercise = 0;
+            indexScenery = 0;
         }
 
-        mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
+        logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
 
-        seekBarEsercizioCoppiaImmagini = view.findViewById(R.id.seekBarScorrimentoAudioEsercizioCoppiaImmagini);
-        imageButtonPlay = view.findViewById(R.id.playButton);
-        imageButtonPause = view.findViewById(R.id.pauseButton);
+        seekBar = view.findViewById(R.id.seekBar);
+        buttonPlay = view.findViewById(R.id.buttonPlay);
+        buttonPause = view.findViewById(R.id.buttonPause);
 
-        imageViewCheck = view.findViewById(R.id.imageViewCheckEsercizio);
-        imageViewWrong = view.findViewById(R.id.imageViewWrongEsercizio);
-        imageViewNonSvoltoEsercizio = view.findViewById(R.id.imageViewNonSvoltoEsercizio);
+        checkExercise = view.findViewById(R.id.checkExercise);
+        wrongExercise = view.findViewById(R.id.wrongExercise);
+        notDoneExercise = view.findViewById(R.id.notDoneExercise);
 
         return view;
     }
@@ -114,105 +109,112 @@ public class RisultatiEserciziCoppiaImmaginiLogopedistaFragment extends Abstract
 
         super.onViewCreated(view, savedInstanceState);
 
-        this.mEsercizioCoppiaImmagini = getEsercizioCoppiaImmaginiFromViewModel();
+        this.esercizioCoppiaImmagini = getEsercizioCoppiaImmagini();
 
-        this.audioRecorder = initAudioRecorder();
-        this.audioPlayerLink = new AudioPlayerLink(mEsercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
-        this.mMediaPlayer = audioPlayerLink.getMediaPlayer();
+        this.audioRecorder = audioRecorder();
+        this.audioPlayerLink = new AudioPlayerLink(esercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
+        this.mediaPlayer = audioPlayerLink.getMediaPlayer();
 
-        if(isNonSvolto()){
-            imageViewCheck.setVisibility(View.GONE);
-            imageViewWrong.setVisibility(View.GONE);
-            imageViewNonSvoltoEsercizio.setVisibility(View.VISIBLE);
+        if (isNotDone()){
+            checkExercise.setVisibility(View.GONE);
+            wrongExercise.setVisibility(View.GONE);
+            notDoneExercise.setVisibility(View.VISIBLE);
         }
         else if (isCorrect()) {
-            imageViewCheck.setVisibility(View.VISIBLE);
-            imageViewWrong.setVisibility(View.GONE);
+            checkExercise.setVisibility(View.VISIBLE);
+            wrongExercise.setVisibility(View.GONE);
         } else {
-            imageViewCheck.setVisibility(View.GONE);
-            imageViewWrong.setVisibility(View.VISIBLE);
+            checkExercise.setVisibility(View.GONE);
+            wrongExercise.setVisibility(View.VISIBLE);
         }
 
-        imageButtonPlay.setOnClickListener(v -> avviaRiproduzioneAudio());
-        imageButtonPause.setOnClickListener(v -> stoppaRiproduzioneAudio());
+        buttonPlay.setOnClickListener(v -> startReproductionAudio());
+        buttonPause.setOnClickListener(v -> stopReproductionAudio());
     }
 
-    private boolean isNonSvolto() {
-        return this.mEsercizioCoppiaImmagini.getRisultatoEsercizio() == null;
+    private boolean isCorrect() {
+        return esercizioCoppiaImmagini.getRisultatoEsercizio().isEsitoCorretto();
     }
 
-    private AudioRecorder initAudioRecorder() {
-        File cartellaApp = getContext().getFilesDir();
-        File audioRegistrazione = new File(cartellaApp, "tempAudioRegistrato");
-
-        return new AudioRecorder(audioRegistrazione);
+    private boolean isNotDone() {
+        return this.esercizioCoppiaImmagini.getRisultatoEsercizio() == null;
     }
 
-    private void avviaRiproduzioneAudio() {
-        imageButtonPlay.setVisibility(View.GONE);
-        imageButtonPause.setVisibility(View.VISIBLE);
-        inizializzaBarraAvanzamento();
+    private AudioRecorder audioRecorder() {
+
+        File appDirectory = getContext().getFilesDir();
+        File audioRegistration = new File(appDirectory, "audioRegistrato");
+
+        return new AudioRecorder(audioRegistration);
+    }
+
+    public void stopReproductionAudio() {
+        buttonPlay.setVisibility(View.VISIBLE);
+        buttonPause.setVisibility(View.GONE);
+        audioPlayerLink.stopAudio();
+    }
+
+    private void startReproductionAudio() {
+        buttonPlay.setVisibility(View.GONE);
+        buttonPause.setVisibility(View.VISIBLE);
+        fillProgressBar();
         audioPlayerLink.playAudio();
     }
 
-    private void inizializzaBarraAvanzamento() {
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> {
+    private void fillProgressBar() {
+        mediaPlayer.setOnCompletionListener(mediaPlayer -> {
             Log.d("EsercizioCoppiaImmagini", "Audio completato");
-            imageButtonPlay.setVisibility(View.VISIBLE);
-            imageButtonPause.setVisibility(View.GONE);
+            buttonPlay.setVisibility(View.VISIBLE);
+            buttonPause.setVisibility(View.GONE);
         });
 
-        seekBarEsercizioCoppiaImmagini.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mMediaPlayer.seekTo(progress * mMediaPlayer.getDuration() / 100);
+                    mediaPlayer.seekTo(progress * mediaPlayer.getDuration() / 100);
                 }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                mMediaPlayer.seekTo(seekBar.getProgress() * mMediaPlayer.getDuration() / 100);
+                mediaPlayer.seekTo(seekBar.getProgress() * mediaPlayer.getDuration() / 100);
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mMediaPlayer.seekTo(seekBar.getProgress() * mMediaPlayer.getDuration() / 100);
+                mediaPlayer.seekTo(seekBar.getProgress() * mediaPlayer.getDuration() / 100);
             }
         });
 
-        mMediaPlayer.setOnSeekCompleteListener(mediaPlayer ->
-                seekBarEsercizioCoppiaImmagini.setProgress((int) (mediaPlayer.getCurrentPosition() * 100 / mediaPlayer.getDuration())));
+        mediaPlayer.setOnSeekCompleteListener(mediaPlayer ->
+                seekBar.setProgress((int) (mediaPlayer.getCurrentPosition() * 100 / mediaPlayer.getDuration())));
 
         final int delay = 5;
+
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if (mMediaPlayer != null && mMediaPlayer.isPlaying() && seekBarEsercizioCoppiaImmagini != null) {
-                    seekBarEsercizioCoppiaImmagini.setProgress((int) (mMediaPlayer.getCurrentPosition() * 100 / mMediaPlayer.getDuration()));
+                if (mediaPlayer != null && mediaPlayer.isPlaying() && seekBar != null) {
+                    seekBar.setProgress((int) (mediaPlayer.getCurrentPosition() * 100 / mediaPlayer.getDuration()));
                 }
                 handler.postDelayed(this, delay);
             }
         };
 
-        mMediaPlayer.setOnPreparedListener(mp -> handler.postDelayed(runnable, delay));
-    }
-    public void stoppaRiproduzioneAudio() {
-        imageButtonPlay.setVisibility(View.VISIBLE);
-        imageButtonPause.setVisibility(View.GONE);
-        audioPlayerLink.stopAudio();
+        mediaPlayer.setOnPreparedListener(mp -> handler.postDelayed(runnable, delay));
     }
 
-    private boolean isCorrect() {
-        return mEsercizioCoppiaImmagini.getRisultatoEsercizio().isEsitoCorretto();
-    }
 
-    private EsercizioCoppiaImmagini getEsercizioCoppiaImmaginiFromViewModel(){
+    private EsercizioCoppiaImmagini getEsercizioCoppiaImmagini(){
 
-        for (Paziente pazienti : mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
-            if(pazienti.getIdProfilo().equals(idPaziente)){
-                return (EsercizioCoppiaImmagini) pazienti.getTerapie().get(indiceTerapia).getListScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
+        for (Paziente paziente : logopedistaViewsModels.getLogopedistaLiveData().getValue().getListaPazienti()) {
+            if(paziente.getIdProfilo().equals(idPaziente)){
+                return (EsercizioCoppiaImmagini) paziente.getTerapie().
+                        get(indexTherapy).getListScenariGioco().
+                        get(indexScenery).getlistEsercizioRealizzabile().
+                        get(indexExercise);
             }
         }
         return new EsercizioCoppiaImmagini(0,0,"","","");
