@@ -1,131 +1,140 @@
 package views.fragment.userLogopedista.elencoPazienti.monitoraggio;
 
-import android.os.Bundle;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.Button;
-
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.time.format.DateTimeFormatter;
-
-import java.util.ArrayList;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.profili.Paziente;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
-import models.domain.scenariGioco.ScenarioGioco;
+import android.os.Bundle;
 
-import models.domain.terapie.Terapia;
+import android.widget.Button;
+import android.widget.TextView;
+import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.util.Log;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
-import views.fragment.AbstractNavigazioneFragment;
-
-import views.fragment.adapter.Navigation;
+import models.domain.terapie.Terapia;
+import models.domain.scenariGioco.ScenarioGioco;
+import models.domain.profili.Paziente;
 
 import views.fragment.adapter.ScenarioAdapter;
+import views.fragment.adapter.Navigation;
+import views.fragment.AbstractNavigazioneFragment;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.lifecycle.ViewModelProvider;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import java.time.format.DateTimeFormatter;
 
 
 public class MonitoraggioLogopedistaFragment extends AbstractNavigazioneFragment implements Navigation {
 
-    private RecyclerView recyclerViewScenari;
+    private RecyclerView scenery;
 
-    private List<ScenarioGioco> listaScenari;
-
-    private String idTerapiaScelta;
-
-    private Terapia terapiaScelta;
+    private List<ScenarioGioco> listScenarioGioco;
 
     private String idPaziente;
 
-    private int indiceTerapia;
+    private int therapy;
 
-    private LogopedistaViewsModels mLogopedistaViewModel;
+    private LogopedistaViewsModels logopedistaViewsModels;
 
-    private int indicePaziente;
+    private int indexPatient;
 
-    private TextView textViewDataInizioTerapia;
+    private TextView startTherapy;
 
-    private TextView textViewDataFineTerapia;
+    private TextView endTherapy;
 
-    private Button buttonAddScenario;
+    private Button buttonAddScenery;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_monitoraggio, container, false);
-
         savedInstanceState = getArguments();
-
         Log.d("MonitoraggioLogopedistaFragmetn","savedInstanceState "+savedInstanceState.toString());
 
         this.idPaziente = savedInstanceState.getString("idPaziente");
-        this.indiceTerapia = savedInstanceState.getInt("indiceTerapia");
-        this.indicePaziente = savedInstanceState.getInt("indicePaziente");
+        this.therapy = savedInstanceState.getInt("therapy");
+        this.indexPatient = savedInstanceState.getInt("indexPatient");
 
-        recyclerViewScenari = view.findViewById(R.id.recyclerViewScenari);
-        recyclerViewScenari.setLayoutManager(new LinearLayoutManager(getContext()));
+        scenery = view.findViewById(R.id.scenery);
+        scenery.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        buttonAddScenario = view.findViewById(R.id.buttonAddScenario);
+        buttonAddScenery = view.findViewById(R.id.buttonAddScenario);
 
-        textViewDataInizioTerapia = view.findViewById(R.id.textViewDataInizioTerapia);
-        textViewDataFineTerapia = view.findViewById(R.id.textViewDataFineTerapia);
+        startTherapy = view.findViewById(R.id.startTherapy);
+        endTherapy = view.findViewById(R.id.endTherapy);
 
-
-        mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
+        logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
 
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
-        listaScenari = monitoraggioTerapie();
-        setTextViewDataInizioTerapia();
-        setTextViewDataFineTerapia();
+        listScenarioGioco = monitoringTherapy();
+        startDateTherapy();
+        endDateTherapy();
 
-        buttonAddScenario.setVisibility(View.VISIBLE);
-        buttonAddScenario.setOnClickListener(v -> navigateToAddScenario());
+        buttonAddScenery.setVisibility(View.VISIBLE);
+        buttonAddScenery.setOnClickListener(v -> navigateToAddScenery());
 
-        ScenarioAdapter adapter = new ScenarioAdapter(listaScenari, this,
+        ScenarioAdapter scenarioAdapter = new ScenarioAdapter(listScenarioGioco, this,
                 R.id.action_schedaPazienteFragment_to_risultatoEsercizioDenominazioneImmagineLogopedistaFragment,
                 R.id.action_schedaPazienteFragment_to_risultatoEsercizioCoppiaImmaginiLogopedistaFragment,
-                R.id.action_schedaPazienteFragment_to_risultatoEsercizioSequenzaParoleLogopedistaFragment
-                , mLogopedistaViewModel.getModificaDataScenariLogopedistaController(), indiceTerapia,idPaziente,indicePaziente);
+                R.id.action_schedaPazienteFragment_to_risultatoEsercizioSequenzaParoleLogopedistaFragment,
+                logopedistaViewsModels.getModificaDataScenariLogopedistaController(), therapy, idPaziente, indexPatient);
 
-        recyclerViewScenari.setAdapter(adapter);
+        scenery.setAdapter(scenarioAdapter);
     }
 
-    private void navigateToAddScenario() {
+    private void endDateTherapy(){
+        if (logopedistaViewsModels.getLogopedistaLiveData().getValue().
+                getListaPazienti().get(indexPatient).getTerapie() != null) {
 
-        Bundle bundle = new Bundle();
-        bundle.putString("idPaziente", idPaziente);
-        bundle.putInt("indiceTerapia", indiceTerapia);
-        navigationId(R.id.action_schedaPazienteFragment_to_creazioneScenarioFragment, bundle);
+            endTherapy.setText(logopedistaViewsModels.
+                    getLogopedistaLiveData().getValue().getListaPazienti().
+                    get(indexPatient).getTerapie().get(therapy).
+                    getDataFineTerapia().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        }
+    }
 
+    private void startDateTherapy() {
+        if (logopedistaViewsModels.getLogopedistaLiveData().getValue().
+                getListaPazienti().get(indexPatient).getTerapie() != null) {
+
+            startTherapy.setText(logopedistaViewsModels.
+                    getLogopedistaLiveData().getValue().getListaPazienti().
+                    get(indexPatient).getTerapie().get(therapy).
+                    getDataInizioTerapia().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        }
+
+    }
+
+    private List<ScenarioGioco> monitoringTherapy(){
+
+        List<ScenarioGioco> listScenery = new ArrayList<>();
+
+        for (Paziente paziente: logopedistaViewsModels.getLogopedistaLiveData().getValue().getListaPazienti()) {
+            if (paziente.getIdProfilo().equals(idPaziente)) {
+                listScenery.addAll(paziente.getTerapie().get(therapy).getListScenariGioco());
+                break;
+            }
+        }
+        return listScenery;
     }
 
     @Override
@@ -135,30 +144,14 @@ public class MonitoraggioLogopedistaFragment extends AbstractNavigazioneFragment
         navigationId(id, bundle);
     }
 
-    private List<ScenarioGioco> monitoraggioTerapie(){
+    private void navigateToAddScenery() {
 
-        List<ScenarioGioco> listaScenari = new ArrayList<>();
-
-        for (Paziente paziente: mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
-            if (paziente.getIdProfilo().equals(idPaziente)) {
-                listaScenari.addAll(paziente.getTerapie().get(indiceTerapia).getListScenariGioco());
-                break;
-            }
-        }
-        return listaScenari;
-    }
-
-    private void setTextViewDataInizioTerapia() {
-        if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie() != null) {
-            textViewDataInizioTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataInizioTerapia().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        }
+        Bundle bundle = new Bundle();
+        bundle.putString("idPaziente", idPaziente);
+        bundle.putInt("therapy", therapy);
+        navigationId(R.id.action_schedaPazienteFragment_to_creazioneScenarioFragment, bundle);
 
     }
 
-    private void setTextViewDataFineTerapia(){
-        if (mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie() != null) {
-            textViewDataFineTerapia.setText(mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti().get(indicePaziente).getTerapie().get(indiceTerapia).getDataFineTerapia().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        }
-    }
 
 }

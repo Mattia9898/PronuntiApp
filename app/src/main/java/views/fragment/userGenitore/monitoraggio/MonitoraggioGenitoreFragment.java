@@ -37,7 +37,7 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment im
 
     private int therapy;
 
-    private RecyclerView recyclerViewScenari;
+    private RecyclerView scenery;
 
     private List<ScenarioGioco> listScenarGioco;
 
@@ -63,8 +63,9 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment im
 
         startTherapy = view.findViewById(R.id.startTherapy);
         endTherapy= view.findViewById(R.id.endTherapy);
-        recyclerViewScenari = view.findViewById(R.id.recyclerViewScenari);
-        recyclerViewScenari.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        scenery = view.findViewById(R.id.scenery);
+        scenery.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
@@ -87,7 +88,7 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment im
                                         genitoreViewsModels.getModificaDataScenariController(),
                                         therapy,"",0);
 
-        recyclerViewScenari.setAdapter(scenarioAdapter);
+        scenery.setAdapter(scenarioAdapter);
     }
 
     private void endDateTherapy(){
