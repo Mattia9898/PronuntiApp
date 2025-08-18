@@ -1,64 +1,52 @@
 package views.fragment.userLogopedista.appuntamenti;
 
-import android.annotation.SuppressLint;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.Button;
-
-import android.widget.Filter;
-
-import android.widget.LinearLayout;
-
-import android.widget.TextView;
-
-import androidx.cardview.widget.CardView;
-
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.time.LocalDate;
-
-import java.time.LocalDateTime;
-
-import java.time.LocalTime;
-
-import java.time.format.DateTimeFormatter;
-
-import java.util.ArrayList;
-
-import java.util.Collection;
-
-import java.util.Collections;
-
-import java.util.Comparator;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
+import android.annotation.SuppressLint;
 
 import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiController;
+import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Collections;
+import java.util.Collection;
+import java.util.ArrayList;
+
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+import android.util.Log;
+import android.view.View;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Filter;
+import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+
 
 public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<AppuntamentiLogopedistaAdapter.AppuntamentiLogopedistaViewHolder> {
 
-    private List<AppuntamentiCustom> appuntamentiFull;
+    private LogopedistaViewsModels logopedistaViewsModels;
 
     private List<AppuntamentiCustom> appuntamentiCustom;
 
-    private LogopedistaViewsModels mLogopedistaViewModel;
+    private List<AppuntamentiCustom> appuntamentiFullList;
 
 
-    public AppuntamentiLogopedistaAdapter(List<AppuntamentiCustom> appuntamentiFull, LogopedistaViewsModels logopedistaViewModel) {
-        this.appuntamentiFull = appuntamentiFull;
-        appuntamentiCustom = new ArrayList<>(appuntamentiFull);
-        this.mLogopedistaViewModel = logopedistaViewModel;
+    public AppuntamentiLogopedistaAdapter(List<AppuntamentiCustom> appuntamentiFullList,
+                                          LogopedistaViewsModels logopedistaViewModel) {
+
+        this.appuntamentiFullList = appuntamentiFullList;
+        appuntamentiCustom = new ArrayList<>(appuntamentiFullList);
+        this.logopedistaViewsModels = logopedistaViewModel;
     }
 
     @Override
@@ -69,113 +57,62 @@ public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<Appunta
 
     @Override
     public void onBindViewHolder(AppuntamentiLogopedistaViewHolder holder, int position) {
+
         appuntamentiCustom.sort((v1, v2) -> {
-            int compareDate = v1.getDateAppuntamento().compareTo(v2.getDateAppuntamento());
-            if(compareDate == 0){
+            int comparationDate = v1.getDateAppuntamento().compareTo(v2.getDateAppuntamento());
+            if(comparationDate == 0){
                 return v1.getTimeAppuntamento().compareTo(v2.getTimeAppuntamento());
             }
-            return compareDate;
+            return comparationDate;
         });
 
-        AppuntamentiCustom appuntamento = appuntamentiCustom.get(position);
+        AppuntamentiCustom appuntamenti = appuntamentiCustom.get(position);
 
-        holder.textViewNomePaziente.setText(appuntamento.getNamePatient());
-        holder.textViewCognomePaziente.setText(appuntamento.getSurnamePatient());
+        holder.namePatient.setText(appuntamenti.getNamePatient());
+        holder.surnamePatient.setText(appuntamenti.getSurnamePatient());
 
-        // Modifica in base al tipo di dato previsto per data appuntamento
-        holder.textViewDataAppuntamento.setText(appuntamento.getDateAppuntamento().format(DateTimeFormatter.ofPattern("dd MMMM")));
+        // modifica in base al tipo di dato previsto per dateAppuntamento
+        holder.dateAppuntamento.setText(appuntamenti.getDateAppuntamento().format(DateTimeFormatter.ofPattern("dd MMMM")));
 
-        // Modifica in base al tipo di dato previsto per orario appuntamento
-        holder.textViewOraAppuntamento.setText(appuntamento.getTimeAppuntamento().format(DateTimeFormatter.ofPattern("HH:mm")));
+        // modifica in base al tipo di dato previsto per timeAppuntamento
+        holder.timeAppuntamento.setText(appuntamenti.getTimeAppuntamento().format(DateTimeFormatter.ofPattern("HH:mm")));
 
-        holder.textViewLuogoAppuntamento.setText(appuntamento.getPlaceAppuntamento());
+        holder.placeAppuntamento.setText(appuntamenti.getPlaceAppuntamento());
 
-        LocalDateTime now = LocalDateTime.of(LocalDate.now(), LocalTime.now());
-        LocalDateTime appuntamentoDateTime = LocalDateTime.of(appuntamento.getDateAppuntamento(), appuntamento.getTimeAppuntamento());
+        LocalDateTime actualDate = LocalDateTime.of(LocalDate.now(), LocalTime.now());
+        LocalDateTime appuntamentoDate = LocalDateTime.of(appuntamenti.getDateAppuntamento(), appuntamenti.getTimeAppuntamento());
 
-        if (appuntamentoDateTime.isBefore(now) || appuntamentoDateTime.isEqual(now)){
-            holder.cardViewAppuntamentoLogopedista.setCardBackgroundColor(holder.itemView.getContext().getColor(R.color.hintTextColorDisabled));
+        if (appuntamentoDate.isBefore(actualDate) || appuntamentoDate.isEqual(actualDate)){
+            holder.cardViewInfoAppuntamento.setCardBackgroundColor(holder.itemView.getContext().getColor(R.color.hintTextColorDisabled));
         } else {
-            holder.cardViewAppuntamentoLogopedista.setCardBackgroundColor(holder.itemView.getContext().getColor(R.color.colorPrimary));
+            holder.cardViewInfoAppuntamento.setCardBackgroundColor(holder.itemView.getContext().getColor(R.color.colorPrimary));
         }
 
-        holder.textViewNomePaziente.setOnClickListener(v -> holder.hideInfoAggiuntive());
-        holder.textViewCognomePaziente.setOnClickListener(v -> holder.hideInfoAggiuntive());
-        holder.textViewDataAppuntamento.setOnClickListener(v -> holder.hideInfoAggiuntive());
-        holder.textViewOraAppuntamento.setOnClickListener(v -> holder.hideInfoAggiuntive());
-        holder.llPazienteInAppuntamentiLogopedistaPrincipale.setOnClickListener(v -> holder.hideInfoAggiuntive());
+        holder.namePatient.setOnClickListener(v -> holder.hideOtherInfo());
+        holder.surnamePatient.setOnClickListener(v -> holder.hideOtherInfo());
+        holder.dateAppuntamento.setOnClickListener(v -> holder.hideOtherInfo());
+        holder.timeAppuntamento.setOnClickListener(v -> holder.hideOtherInfo());
+        holder.mainInfoAppuntamento.setOnClickListener(v -> holder.hideOtherInfo());
 
-        holder.buttonRimuoviAppuntamento.setOnClickListener(v -> {
-            String idAppuntamentoToDelete = appuntamento.getIdAppuntamentoCustom();
-
-            ModificaAppuntamentiController.eliminazioneAppuntamento(idAppuntamentoToDelete);
-            mLogopedistaViewModel.rimuoviAppuntamentoFromListaAppuntamentiLiveData(idAppuntamentoToDelete);
+        holder.buttonRemoveAppuntamento.setOnClickListener(v -> {
+            String deleteIdAppuntamento = appuntamenti.getIdAppuntamentoCustom();
+            ModificaAppuntamentiController.eliminazioneAppuntamento(deleteIdAppuntamento);
+            logopedistaViewsModels.rimuoviAppuntamentoFromListaAppuntamentiLiveData(deleteIdAppuntamento);
             appuntamentiCustom.remove(position);
             notifyDataSetChanged();
         });
     }
 
-    @Override
-    public int getItemCount() {
-        return appuntamentiCustom.size();
-    }
 
-    public AppuntamentiCustom getItem(int position) {
-        return appuntamentiCustom.get(position);
-    }
-
-    public void addAppuntamento(AppuntamentiCustom appuntamento) {
-        appuntamentiCustom.add(appuntamento);
-        appuntamentiFull.add(appuntamento);
+    public void addAppuntamento(AppuntamentiCustom newAppuntamento) {
+        appuntamentiCustom.add(newAppuntamento);
+        appuntamentiFullList.add(newAppuntamento);
         notifyDataSetChanged();
     }
 
-    public static class AppuntamentiLogopedistaViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView textViewNomePaziente;
-
-        private TextView textViewCognomePaziente;
-
-        private TextView textViewDataAppuntamento;
-
-        private TextView textViewOraAppuntamento;
-
-        private TextView textViewLuogoAppuntamento;
-
-        private Button buttonRimuoviAppuntamento;
-
-        private LinearLayout llPazienteInAppuntamentiLogopedistaInfoAggiuntive;
-
-        private LinearLayout llPazienteInAppuntamentiLogopedistaPrincipale;
-
-        private CardView cardViewAppuntamentoLogopedista;
-
-        public AppuntamentiLogopedistaViewHolder(View itemView) {
-
-            super(itemView);
-            llPazienteInAppuntamentiLogopedistaPrincipale = itemView.findViewById(R.id.llPazienteInAppuntamentiLogopedistaPrincipale);
-            llPazienteInAppuntamentiLogopedistaInfoAggiuntive = itemView.findViewById(R.id.llPazienteInAppuntamentiLogopedistaInfoAggiuntive);
-            textViewNomePaziente = itemView.findViewById(R.id.textViewNomePaziente);
-            textViewCognomePaziente = itemView.findViewById(R.id.textViewCognomePaziente);
-            textViewDataAppuntamento = itemView.findViewById(R.id.textViewDataNascitaPaziente);
-            textViewOraAppuntamento = itemView.findViewById(R.id.textViewOrarioAppuntamentoLogopedista);
-            textViewLuogoAppuntamento = itemView.findViewById(R.id.textViewLuogoAppuntamentoLogopedista);
-            buttonRimuoviAppuntamento = itemView.findViewById(R.id.buttonRimuoviAppuntamentoLogopedista);
-            cardViewAppuntamentoLogopedista = itemView.findViewById(R.id.cardViewPazienteInAppuntamentiLogopedista);
-        }
-
-        private void hideInfoAggiuntive() {
-            if (llPazienteInAppuntamentiLogopedistaInfoAggiuntive.getVisibility() == View.VISIBLE) {
-                llPazienteInAppuntamentiLogopedistaInfoAggiuntive.setVisibility(View.GONE);
-            } else {
-                llPazienteInAppuntamentiLogopedistaInfoAggiuntive.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
-
-    public Filter getFilter() {
-        return new AppuntamentiLogopedistaAdapter.AppuntamentiFilter();
+    @Override
+    public int getItemCount() {
+        return appuntamentiCustom.size();
     }
 
 
@@ -184,23 +121,23 @@ public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<Appunta
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
 
-            List<AppuntamentiCustom> filteredAppuntamenti = new ArrayList<>();
+            List<AppuntamentiCustom> listAppuntamentiCustom = new ArrayList<>();
 
             if (charSequence == null || charSequence.length() == 0) {
-                filteredAppuntamenti.addAll(appuntamentiFull);
+                listAppuntamentiCustom.addAll(appuntamentiFullList);
             } else {
                 String query = charSequence.toString().toLowerCase();
-                for (AppuntamentiCustom appuntamento : appuntamentiFull) {
-                    String nome = appuntamento.getNamePatient().toLowerCase();
-                    String cognome = appuntamento.getSurnamePatient().toLowerCase();
-                    if (nome.contains(query) || cognome.contains(query)) {
-                        filteredAppuntamenti.add(appuntamento);
+                for (AppuntamentiCustom appuntamenti : appuntamentiFullList) {
+                    String name = appuntamenti.getNamePatient().toLowerCase();
+                    String surname = appuntamenti.getSurnamePatient().toLowerCase();
+                    if (name.contains(query) || surname.contains(query)) {
+                        listAppuntamentiCustom.add(appuntamenti);
                     }
                 }
             }
 
             FilterResults filterResults = new FilterResults();
-            filterResults.values = filteredAppuntamenti;
+            filterResults.values = listAppuntamentiCustom;
 
             return filterResults;
         }
@@ -212,5 +149,54 @@ public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<Appunta
             notifyDataSetChanged();
         }
     }
+
+    public Filter getFilter() {
+        return new AppuntamentiLogopedistaAdapter.AppuntamentiFilter();
+    }
+
+
+    public static class AppuntamentiLogopedistaViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView namePatient;
+
+        private TextView surnamePatient;
+
+        private TextView dateAppuntamento;
+
+        private TextView timeAppuntamento;
+
+        private TextView placeAppuntamento;
+
+        private Button buttonRemoveAppuntamento;
+
+        private LinearLayout otherInfoAppuntamento;
+
+        private LinearLayout mainInfoAppuntamento;
+
+        private CardView cardViewInfoAppuntamento;
+
+        public AppuntamentiLogopedistaViewHolder(View itemView) {
+
+            super(itemView);
+            mainInfoAppuntamento = itemView.findViewById(R.id.mainInfoAppuntamento);
+            otherInfoAppuntamento = itemView.findViewById(R.id.otherInfoAppuntamento);
+            namePatient = itemView.findViewById(R.id.textViewNomePaziente);
+            surnamePatient = itemView.findViewById(R.id.textViewCognomePaziente);
+            dateAppuntamento = itemView.findViewById(R.id.textViewDataNascitaPaziente);
+            timeAppuntamento = itemView.findViewById(R.id.textViewOrarioAppuntamentoLogopedista);
+            placeAppuntamento = itemView.findViewById(R.id.textViewLuogoAppuntamentoLogopedista);
+            buttonRemoveAppuntamento = itemView.findViewById(R.id.buttonRimuoviAppuntamentoLogopedista);
+            cardViewInfoAppuntamento = itemView.findViewById(R.id.cardViewInfoAppuntamento);
+        }
+
+        private void hideOtherInfo() {
+            if (otherInfoAppuntamento.getVisibility() == View.VISIBLE) {
+                otherInfoAppuntamento.setVisibility(View.GONE);
+            } else {
+                otherInfoAppuntamento.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
 
 }

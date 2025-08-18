@@ -7,7 +7,7 @@
     >
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewPazienteInAppuntamentiLogopedista"
+        android:id="@+id/cardViewInfoAppuntamento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="7dp"
@@ -18,7 +18,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/llPazienteInAppuntamentiLogopedistaPrincipale"
+            android:id="@+id/mainInfoAppuntamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -91,7 +91,7 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:id="@+id/llPazienteInAppuntamentiLogopedistaInfoAggiuntive"
+        android:id="@+id/otherInfoAppuntamento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rettangolo_grigio_bordo_nero"
