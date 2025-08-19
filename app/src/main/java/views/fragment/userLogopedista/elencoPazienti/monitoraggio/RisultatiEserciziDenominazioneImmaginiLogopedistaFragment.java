@@ -1,106 +1,105 @@
 package views.fragment.userLogopedista.elencoPazienti.monitoraggio;
 
-import android.os.Bundle;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.ImageButton;
-
-import android.widget.ImageView;
-
-import android.widget.LinearLayout;
-
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.esercizi.EsercizioCoppiaImmagini;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
-import models.domain.esercizi.EsercizioDenominazioneImmagini;
-
-import models.domain.profili.Paziente;
+import android.os.Bundle;
 
 import models.utils.audioPlayer.AudioPlayerLink;
 
-import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
+import models.domain.esercizi.EsercizioDenominazioneImmagini;
+import models.domain.esercizi.EsercizioCoppiaImmagini;
+import models.domain.profili.Paziente;
 
 import views.fragment.AbstractNavigazioneFragment;
 
+import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
+
+import com.squareup.picasso.Picasso;
+
+import androidx.lifecycle.ViewModelProvider;
+
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.view.View;
+
+
 public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends AbstractNavigazioneFragment {
 
-    private ImageView imageViewCheck;
 
-    private ImageView imageViewWrong;
+    private int scenery;
 
-    private TextView textAiutiUtilizzati;
+    private int therapy;
 
-    private ImageButton playButton;
+    private int exercise;
 
-    private ImageButton pauseButton;
+    private ImageView notDoneExercise;
 
-    private ImageView immagineEsercizioDenominazioneImageView;
+    private ImageView wrongExercise;
 
-    private EsercizioDenominazioneImmagini mEsercizioDenominazioneImmagine;
+    private ImageView checkExercise;
 
-    private int indiceEsercizio;
+    private ImageButton buttonPlay;
 
-    private int indiceScenario;
-
-    private int indiceTerapia;
-
-    private String idPaziente;
-
-    private LogopedistaViewsModels mLogopedistaViewModel;
+    private ImageButton buttonPause;
 
     private AudioPlayerLink audioPlayerLink;
 
-    private LinearLayout linearLayoutRispostaData;
+    private TextView aidsUsed;
 
-    private ImageView imageViewNonSvoltoEsercizio;
+    private ImageView imageEsercizioDenominazione;
+
+    private LinearLayout answerGiven;
+
+    private EsercizioDenominazioneImmagini esercizioDenominazioneImmagini;
+
+    private LogopedistaViewsModels mLogopedistaViewModel;
+
+    private String idPaziente;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_risultati_esercizi_denominazione_immagini, container, false);
-
         setToolBar(view, getString(R.string.risultatoEsercizio));
-
         savedInstanceState = getArguments();
 
-        if (savedInstanceState != null && savedInstanceState.containsKey("indiceEsercizio") && savedInstanceState.containsKey("indiceScenario") && savedInstanceState.containsKey("indiceTerapia")) {
-            indiceEsercizio = savedInstanceState.getInt("indiceEsercizio");
-            indiceScenario = savedInstanceState.getInt("indiceScenario");
-            indiceTerapia = savedInstanceState.getInt("indiceTerapia");
+        if (savedInstanceState != null && savedInstanceState.containsKey("exercise") &&
+                savedInstanceState.containsKey("scenery") &&
+                savedInstanceState.containsKey("therapy")) {
+
+            exercise = savedInstanceState.getInt("exercise");
+            scenery = savedInstanceState.getInt("scenery");
+            therapy = savedInstanceState.getInt("therapy");
             idPaziente = savedInstanceState.getString("idPaziente");
         } else {
-            indiceTerapia = 0;
-            indiceEsercizio = 0;
-            indiceScenario = 0;
+            therapy = 0;
+            exercise = 0;
+            scenery = 0;
         }
 
         mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
 
-        immagineEsercizioDenominazioneImageView = view.findViewById(R.id.imageViewImmagineEsercizioDenominazione);
-        imageViewCheck = view.findViewById(R.id.imageViewCheckEsercizio);
-        imageViewWrong = view.findViewById(R.id.imageViewWrongEsercizio);
-        imageViewNonSvoltoEsercizio = view.findViewById(R.id.imageViewNonSvoltoEsercizio);
-        linearLayoutRispostaData = view.findViewById(R.id.linearLayoutRispostaData);
-        textAiutiUtilizzati = view.findViewById(R.id.textAiutiUtilizzati);
-        playButton = view.findViewById(R.id.imageButtonAvviaAudioRegistrato);
-        pauseButton = view.findViewById(R.id.imageButtonPausaAudioRegistrato);
-        pauseButton.setVisibility(View.GONE);
+        imageEsercizioDenominazione = view.findViewById(R.id.imageEsercizioDenominazione);
+
+        checkExercise = view.findViewById(R.id.checkExercise);
+        wrongExercise = view.findViewById(R.id.wrongExercise);
+        notDoneExercise = view.findViewById(R.id.notDoneExercise);
+
+        aidsUsed = view.findViewById(R.id.aidsUsed);
+        answerGiven = view.findViewById(R.id.answerGiven);
+
+        buttonPlay = view.findViewById(R.id.buttonPlay);
+        buttonPause = view.findViewById(R.id.buttonPause);
+        buttonPause.setVisibility(View.GONE);
 
         return view;
     }
@@ -110,58 +109,61 @@ public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends A
 
         super.onViewCreated(view, savedInstanceState);
 
-        this.mEsercizioDenominazioneImmagine = getmEsercizioDenominazioneImmagineFromViewModel();
-        Picasso.get().load(mEsercizioDenominazioneImmagine.getImmagineEsercizioDenominazioneImmagini()).into(immagineEsercizioDenominazioneImageView);
+        this.esercizioDenominazioneImmagini = getEsercizioDenominazioneImmagine();
+        Picasso.get().load(esercizioDenominazioneImmagini.getImmagineEsercizioDenominazioneImmagini()).into(imageEsercizioDenominazione);
 
-        if (isNonSvolto()) {
-            imageViewCheck.setVisibility(View.GONE);
-            imageViewWrong.setVisibility(View.GONE);
-            textAiutiUtilizzati.setVisibility(View.GONE);
-            linearLayoutRispostaData.setVisibility(View.INVISIBLE);
-            imageViewNonSvoltoEsercizio.setVisibility(View.VISIBLE);
+        if (isNotDone()) {
+            checkExercise.setVisibility(View.GONE);
+            wrongExercise.setVisibility(View.GONE);
+            aidsUsed.setVisibility(View.GONE);
+            answerGiven.setVisibility(View.INVISIBLE);
+            notDoneExercise.setVisibility(View.VISIBLE);
         } else {
             if (isCorrect()) {
-                imageViewCheck.setVisibility(View.VISIBLE);
-                imageViewWrong.setVisibility(View.GONE);
+                checkExercise.setVisibility(View.VISIBLE);
+                wrongExercise.setVisibility(View.GONE);
             } else {
-                imageViewCheck.setVisibility(View.GONE);
-                imageViewWrong.setVisibility(View.VISIBLE);
+                checkExercise.setVisibility(View.GONE);
+                wrongExercise.setVisibility(View.VISIBLE);
             }
-            textAiutiUtilizzati.setText("Aiuti utilizzati: " + mEsercizioDenominazioneImmagine.getRisultatoEsercizio().getCounterAiutiUtilizzati());
+            aidsUsed.setText("Aids used: " + esercizioDenominazioneImmagini.getRisultatoEsercizio().getCounterAiutiUtilizzati());
         }
 
-
-        playButton.setOnClickListener(v -> playAudio());
-        pauseButton.setOnClickListener(v -> stopAudio());
+        buttonPlay.setOnClickListener(v -> playAudio());
+        buttonPause.setOnClickListener(v -> stopAudio());
 
     }
 
-    private boolean isNonSvolto() {
-        return this.mEsercizioDenominazioneImmagine.getRisultatoEsercizio() == null;
-    }
-
-    private void playAudio() {
-        playButton.setVisibility(View.GONE);
-        pauseButton.setVisibility(View.VISIBLE);
-        this.audioPlayerLink = new AudioPlayerLink(mEsercizioDenominazioneImmagine.getRisultatoEsercizio().getAudioRegistrato());
-        audioPlayerLink.playAudio();
-    }
-
-    private void stopAudio() {
-        playButton.setVisibility(View.VISIBLE);
-        pauseButton.setVisibility(View.GONE);
-        audioPlayerLink.stopAudio();
+    private boolean isNotDone() {
+        return this.esercizioDenominazioneImmagini.getRisultatoEsercizio() == null;
     }
 
     private boolean isCorrect() {
-        return mEsercizioDenominazioneImmagine.getRisultatoEsercizio().isEsitoCorretto();
+        return esercizioDenominazioneImmagini.getRisultatoEsercizio().isEsitoCorretto();
     }
 
-    private EsercizioDenominazioneImmagini getmEsercizioDenominazioneImmagineFromViewModel(){
 
-        for (Paziente pazienti : mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
-            if(pazienti.getIdProfilo().equals(idPaziente)){
-                return (EsercizioDenominazioneImmagini) pazienti.getTerapie().get(indiceTerapia).getListScenariGioco().get(indiceScenario).getlistEsercizioRealizzabile().get(indiceEsercizio);
+    private void stopAudio() {
+        buttonPlay.setVisibility(View.VISIBLE);
+        buttonPause.setVisibility(View.GONE);
+        audioPlayerLink.stopAudio();
+    }
+
+    private void playAudio() {
+        buttonPlay.setVisibility(View.GONE);
+        buttonPause.setVisibility(View.VISIBLE);
+        this.audioPlayerLink = new AudioPlayerLink(esercizioDenominazioneImmagini.getRisultatoEsercizio().getAudioRegistrato());
+        audioPlayerLink.playAudio();
+    }
+
+
+    private EsercizioDenominazioneImmagini getEsercizioDenominazioneImmagine(){
+
+        for (Paziente paziente : mLogopedistaViewModel.getLogopedistaLiveData().getValue().getListaPazienti()) {
+            if(paziente.getIdProfilo().equals(idPaziente)){
+                return (EsercizioDenominazioneImmagini) paziente.getTerapie().
+                        get(therapy).getListScenariGioco().get(scenery).
+                        getlistEsercizioRealizzabile().get(exercise);
             }
         }
         return new EsercizioDenominazioneImmagini(0,0,"","","");
