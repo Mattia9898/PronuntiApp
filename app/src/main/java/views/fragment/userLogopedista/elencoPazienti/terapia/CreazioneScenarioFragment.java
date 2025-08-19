@@ -1,174 +1,148 @@
 package views.fragment.userLogopedista.elencoPazienti.terapia;
 
+
+import it.uniba.dib.pronuntiapp.R;
+
 import static android.app.Activity.RESULT_OK;
 
 import android.app.DatePickerDialog;
 
-import android.content.Context;
-
-import android.content.Intent;
-
-import android.graphics.Bitmap;
-
-import android.graphics.drawable.BitmapDrawable;
-
-import android.graphics.drawable.Drawable;
-
-import android.net.Uri;
-
-import android.os.Bundle;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.Button;
-
-import android.widget.ImageButton;
-
-import android.widget.ImageView;
-
-import android.widget.LinearLayout;
-
-import android.widget.TextView;
-
+import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
-import androidx.annotation.Nullable;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bumptech.glide.Glide;
-
-import com.bumptech.glide.request.target.CustomTarget;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.util.Log;
 
 import com.bumptech.glide.request.transition.Transition;
-
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.time.LocalDate;
-
-import java.time.ZoneId;
-
 import java.util.ArrayList;
-
+import java.time.ZoneId;
 import java.util.List;
-
-import it.uniba.dib.pronuntiapp.R;
-
-import models.database.ComandiFirebaseStorage;
-
-import models.database.TemplateScenarioGiocoDAO;
-
-import models.domain.esercizi.EsercizioRealizzabile;
-
-import models.domain.profili.Paziente;
-
-import models.domain.scenariGioco.ScenarioGioco;
-
-import models.domain.scenariGioco.TemplateScenarioGioco;
+import java.time.LocalDate;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
 import views.dialog.InfoDialog;
-
 import views.fragment.AbstractNavigazioneFragment;
+
+import models.domain.scenariGioco.ScenarioGioco;
+import models.domain.scenariGioco.TemplateScenarioGioco;
+import models.domain.esercizi.EsercizioRealizzabile;
+import models.domain.profili.Paziente;
+import models.database.ComandiFirebaseStorage;
+import models.database.TemplateScenarioGiocoDAO;
+
 
 public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
 
-    private TextInputEditText dataScenario;
+    private TextInputEditText dateScenery;
 
-    private TextInputEditText ricompensaFinale;
+    private TextInputEditText finalReward;
 
     private Button buttonUseTemplate;
 
-    private Button buttonCreateScenarioFromStart;
+    private Button buttonCreateScenery;
 
-    private Button buttonChooseBackground;
+    private Button buttonPickBackground;
 
-    private Button buttonChooseImgPos1;
+    private Button buttonPickFirstImage;
 
-    private Button buttonChooseImgPos2;
+    private Button buttonPickSecondImage;
 
-    private Button buttonChooseImgPos3;
+    private Button buttonPickThirdImage;
 
-    private ImageView imgPos1;
+    private ImageButton buttonPreviousScenery;
 
-    private ImageView imgPos2;
+    private ImageButton buttonNextScenery;
 
-    private ImageView imgPos3;
+    private Button buttonSaveScenery;
 
-    private Button buttonSalvataggioScenario;
+    private ImageView firstImage;
 
-    private LinearLayout linearLayoutSceltaTemplateOCreaScenario;
+    private ImageView secondImage;
 
-    private LinearLayout linearLayoutCreazioneScenario;
+    private ImageView thirdImage;
 
-    private ConstraintLayout constraintLayoutCostruzioneImmagineScenario;
+    private static final int PICK_FILE_1 = 1;
 
-    private ImageButton buttonNextScenario;
+    private static final int PICK_FILE_2 = 2;
 
-    private ImageButton buttonPreviousScenario;
+    private static final int PICK_FILE_3 = 3;
 
-    private static final int PICK_FILE_REQUEST_1 = 1;
+    private static final int PICK_FILE_4 = 4;
 
-    private static final int PICK_FILE_REQUEST_2 = 2;
+    private int currentIndexTemplateScenery = 0;
 
-    private static final int PICK_FILE_REQUEST_3 = 3;
+    private int indexTherapy;
 
-    private static final int PICK_FILE_REQUEST_4 = 4;
+    private int sizeTemplateScenery;
 
-    private String imgPos1Uri;
+    private int reward;
 
-    private String imgPos2Uri;
+    private String firstImageUri;
 
-    private String imgPos3Uri;
+    private String secondImageUri;
 
-    private String imgBackgroundUri;
+    private String thirdImageUri;
 
-    private String dataInizio;
+    private String backgroundImageUri;
 
-    private int ricompensa;
-
-    private List<EsercizioRealizzabile> esercizi;
-
-    private ScenarioGioco scenario;
-
-    private List<TemplateScenarioGioco> templateScenari;
-
-    private int currentIndexTemplateScenari = 0;
-
-    private int sizeTemplateScenari;
-
-    private boolean sceltaScenari = false;
-
-    private LogopedistaViewsModels mLogopedistaViewModel;
-
-    private SalvataggioScenario mCallback;
-
-    private Bundle bundle;
+    private String startDate;
 
     private String idPaziente;
 
-    private int indiceTerapia;
+    private List<EsercizioRealizzabile> listEsercizioRealizzabile;
 
-    private LocalDate dataInizioTerapia;
+    private List<TemplateScenarioGioco> listTemplateScenery;
 
-    private LocalDate dataFineTerapia;
+    private LogopedistaViewsModels logopedistaViewsModels;
+
+    private LinearLayout pickTemplateOrCreateScenery;
+
+    private LinearLayout createScenery;
+
+    private ConstraintLayout creationImageScenery;
+
+    private boolean pickScenery = false;
+
+    private LocalDate startDateTherapy;
+
+    private LocalDate endDateTherapy;
+
+    private ScenarioGioco scenarioGioco;
+
+    private SalvataggioScenario salvataggioScenario;
+
+    private Bundle bundle;
+
 
     public CreazioneScenarioFragment(SalvataggioScenario mCallback) {
-        this.mCallback = mCallback;
+        this.salvataggioScenario = mCallback;
     }
 
     public CreazioneScenarioFragment() {
         super();
-        mCallback = null;
+        salvataggioScenario = null;
     }
 
 
@@ -177,57 +151,58 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
         View view = inflater.inflate(R.layout.fragment_creazione_scenario, container, false);
-        mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
+        logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
         view.findViewById(R.id.toolBar).setVisibility(View.GONE);
 
-
         bundle = getArguments();
+
         if(bundle!=null) {
-            if (mCallback == null){
+            if (salvataggioScenario == null){
                 setToolBar(view, getString(R.string.nuovoScenario));
                 idPaziente = bundle.getString("idPaziente");
-                indiceTerapia = bundle.getInt("indiceTerapia");
-                view.findViewById(R.id.toolBar).setVisibility(View.VISIBLE);
-                Paziente paziente = mLogopedistaViewModel.getPazienteById(idPaziente);
+                indexTherapy = bundle.getInt("indexTherapy");
 
-                Log.d("CreazioneScenarioFragment", "onCreateView: "+paziente.getTerapie().get(indiceTerapia));
-                dataInizioTerapia = paziente.getTerapie().get(indiceTerapia).getDataInizioTerapia();
-                dataFineTerapia = paziente.getTerapie().get(indiceTerapia).getDataFineTerapia();
+                view.findViewById(R.id.toolBar).setVisibility(View.VISIBLE);
+                Paziente paziente = logopedistaViewsModels.getPazienteById(idPaziente);
+                Log.d("CreazioneScenarioFragment", "onCreateView: "+paziente.getTerapie().get(indexTherapy));
+
+                startDateTherapy = paziente.getTerapie().get(indexTherapy).getDataInizioTerapia();
+                endDateTherapy = paziente.getTerapie().get(indexTherapy).getDataFineTerapia();
             }else {
-                dataInizioTerapia = LocalDate.parse(bundle.getString("dataInizio"));
-                dataFineTerapia = LocalDate.parse(bundle.getString("dataFine"));
+                startDateTherapy = LocalDate.parse(bundle.getString("startDate"));
+                endDateTherapy = LocalDate.parse(bundle.getString("endDate"));
             }
         }
 
+        listEsercizioRealizzabile = new ArrayList<>();
 
-        esercizi = new ArrayList<>();
+        dateScenery = view.findViewById(R.id.dateScenery);
+        finalReward = view.findViewById(R.id.finalReward);
 
-        dataScenario = view.findViewById(R.id.textInputEditTextDataInizioScenario);
-        ricompensaFinale = view.findViewById(R.id.textInputEditTextRicompensaFinaleScenario);
+        pickTemplateOrCreateScenery = view.findViewById(R.id.pickTemplateOrCreateScenery);
 
-        linearLayoutSceltaTemplateOCreaScenario = view.findViewById(R.id.linearLayoutSceltaTemplateOCreaScenario);
-        buttonUseTemplate = view.findViewById(R.id.buttonTemplateScenario);
-        buttonCreateScenarioFromStart = view.findViewById(R.id.buttonCreaScenario);
+        buttonUseTemplate = view.findViewById(R.id.buttonUseTemplate);
+        buttonCreateScenery = view.findViewById(R.id.buttonCreateScenery);
 
-        linearLayoutCreazioneScenario = view.findViewById(R.id.linearLayoutCreazioneScenario);
-        buttonChooseBackground = view.findViewById(R.id.buttonOpenFilePickerImmagineSfondo);
-        buttonChooseImgPos1 = view.findViewById(R.id.buttonOpenFilePickerImmagineTappa1);
-        buttonChooseImgPos2 = view.findViewById(R.id.buttonOpenFilePickerImmagineTappa2);
-        buttonChooseImgPos3 = view.findViewById(R.id.buttonOpenFilePickerImmagineTappa3);
+        createScenery = view.findViewById(R.id.createScenery);
 
+        buttonPickBackground = view.findViewById(R.id.buttonPickBackground);
 
-        constraintLayoutCostruzioneImmagineScenario = view.findViewById(R.id.constraintLayoutCostruzioneImmagineScenario);
-        buttonNextScenario = view.findViewById(R.id.buttonTemplateScenarioNext);
-        buttonPreviousScenario = view.findViewById(R.id.buttonTemplateScenarioBack);
-        imgPos1 = view.findViewById(R.id.primaTappaCreazioneScenario);
-        imgPos2 = view.findViewById(R.id.secondaTappaCreazioneScenario);
-        imgPos3 = view.findViewById(R.id.terzaTappaCreazioneScenario);
+        buttonPickFirstImage = view.findViewById(R.id.buttonPickFirstImage);
+        buttonPickSecondImage = view.findViewById(R.id.buttonPickSecondImage);
+        buttonPickThirdImage = view.findViewById(R.id.buttonPickThirdImage);
 
+        creationImageScenery = view.findViewById(R.id.creationImageScenery);
 
+        buttonNextScenery = view.findViewById(R.id.buttonNextScenery);
+        buttonPreviousScenery = view.findViewById(R.id.buttonPreviousScenery);
 
-        buttonSalvataggioScenario = view.findViewById(R.id.confermaScenarioButton);
+        firstImage = view.findViewById(R.id.firstImage);
+        secondImage = view.findViewById(R.id.secondImage);
+        thirdImage = view.findViewById(R.id.thirdImage);
+
+        buttonSaveScenery = view.findViewById(R.id.buttonSaveScenery);
 
         return view;
     }
@@ -239,60 +214,62 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        linearLayoutSceltaTemplateOCreaScenario.setVisibility(View.VISIBLE);
-        linearLayoutCreazioneScenario.setVisibility(View.GONE);
-        buttonNextScenario.setVisibility(View.GONE);
-        buttonPreviousScenario.setVisibility(View.GONE);
-        buttonChooseImgPos1.setVisibility(View.GONE);
-        buttonChooseImgPos2.setVisibility(View.GONE);
-        buttonChooseImgPos3.setVisibility(View.GONE);
+        pickTemplateOrCreateScenery.setVisibility(View.VISIBLE);
+        createScenery.setVisibility(View.GONE);
 
-        buttonChooseImgPos1.setOnClickListener(v -> startFilePicker(PICK_FILE_REQUEST_1));
-        buttonChooseImgPos2.setOnClickListener(v -> startFilePicker(PICK_FILE_REQUEST_2));
-        buttonChooseImgPos3.setOnClickListener(v -> startFilePicker(PICK_FILE_REQUEST_3));
+        buttonNextScenery.setVisibility(View.GONE);
+        buttonPreviousScenery.setVisibility(View.GONE);
 
-        constraintLayoutCostruzioneImmagineScenario.setVisibility(View.GONE);
+        buttonPickFirstImage.setVisibility(View.GONE);
+        buttonPickSecondImage.setVisibility(View.GONE);
+        buttonPickThirdImage.setVisibility(View.GONE);
 
-        buttonChooseBackground.setOnClickListener(v -> {
-                    startFilePicker(PICK_FILE_REQUEST_4);
-                    constraintLayoutCostruzioneImmagineScenario.setVisibility(View.VISIBLE);
-                    buttonChooseImgPos1.setVisibility(View.VISIBLE);
-                    buttonChooseImgPos2.setVisibility(View.VISIBLE);
-                    buttonChooseImgPos3.setVisibility(View.VISIBLE);
+        buttonPickFirstImage.setOnClickListener(v -> startFilePicker(PICK_FILE_1));
+        buttonPickSecondImage.setOnClickListener(v -> startFilePicker(PICK_FILE_2));
+        buttonPickThirdImage.setOnClickListener(v -> startFilePicker(PICK_FILE_3));
+
+        creationImageScenery.setVisibility(View.GONE);
+
+        buttonPickBackground.setOnClickListener(v -> {
+                    startFilePicker(PICK_FILE_4);
+                    creationImageScenery.setVisibility(View.VISIBLE);
+                    buttonPickFirstImage.setVisibility(View.VISIBLE);
+                    buttonPickSecondImage.setVisibility(View.VISIBLE);
+                    buttonPickThirdImage.setVisibility(View.VISIBLE);
                 }
         );
 
-        dataScenario.setOnClickListener(v -> showDatePickerDialog(getContext(), dataScenario));
+        dateScenery.setOnClickListener(v -> showDialogDatePicker(getContext(), dateScenery));
 
-        buttonSalvataggioScenario.setOnClickListener(v -> saveScenario());
+        buttonSaveScenery.setOnClickListener(v -> saveScenery());
 
         buttonUseTemplate.setOnClickListener(v -> useTemplate());
-        buttonCreateScenarioFromStart.setOnClickListener(v -> createScenarioFromStart());
+        buttonCreateScenery.setOnClickListener(v -> createSceneryFromStart());
 
-        buttonNextScenario.setOnClickListener(v -> prossimoTemplateScenario());
-        buttonPreviousScenario.setOnClickListener(v -> precedenteTemplateScenario());
+        buttonPreviousScenery.setOnClickListener(v -> previousTemplateScenery());
+        buttonNextScenery.setOnClickListener(v -> nextTemplateScenery());
 
-        mLogopedistaViewModel.getLogopedistaLiveData().observe(getViewLifecycleOwner(),logopedista -> {
+        logopedistaViewsModels.getLogopedistaLiveData().observe(getViewLifecycleOwner(),logopedista -> {
             TemplateScenarioGiocoDAO templateScenarioGiocoDAO = new TemplateScenarioGiocoDAO();
             templateScenarioGiocoDAO.getAll().thenAccept(result -> {
-                templateScenari = result;
-                sizeTemplateScenari = result.size();
+                listTemplateScenery = result;
+                sizeTemplateScenery = result.size();
             });
         });
     }
 
-    public void showDatePickerDialog(Context context, TextView textField) {
+    public void showDialogDatePicker(Context context, TextView textField) {
 
-        LocalDate now = LocalDate.now();
+        LocalDate localDate = LocalDate.now();
         DatePickerDialog datePickerDialog = new DatePickerDialog(context, (view, year, month, dayOfMonth) -> {
             String date = LocalDate.of(year, month + 1, dayOfMonth).toString();
             textField.setText(date);
-        }, now.getYear(), now.getMonthValue() - 1, now.getDayOfMonth());
+        }, localDate.getYear(), localDate.getMonthValue() - 1, localDate.getDayOfMonth());
 
         //set min e max date
         ZoneId zoneId = ZoneId.systemDefault();
-        long minDateMillis = dataInizioTerapia.atStartOfDay(zoneId).toInstant().toEpochMilli();
-        long maxDateMillis = dataFineTerapia.atStartOfDay(zoneId).toInstant().toEpochMilli();
+        long minDateMillis = startDateTherapy.atStartOfDay(zoneId).toInstant().toEpochMilli();
+        long maxDateMillis = endDateTherapy.atStartOfDay(zoneId).toInstant().toEpochMilli();
 
         datePickerDialog.getDatePicker().setMinDate(minDateMillis);
         datePickerDialog.getDatePicker().setMaxDate(maxDateMillis);
@@ -305,111 +282,58 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
         infoDialog.show();
     }
 
-    private void saveScenario(){
+    private void saveScenery(){
 
         //pick degli esercizi dai fragment figli
-        EsercizioRealizzabile es1 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio1)).getExercise();
-        EsercizioRealizzabile es2 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio2)).getExercise();
-        EsercizioRealizzabile es3 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio3)).getExercise();
+        EsercizioRealizzabile firstExercise = ((CreazioneEsercizioFragment) getChildFragmentManager().
+                findFragmentById(R.id.containerViewFirstExercise)).getExercise();
 
-        if(sceltaScenari) {
-            imgPos1Uri = templateScenari.get(currentIndexTemplateScenari).getImmagine1();
-            imgPos2Uri = templateScenari.get(currentIndexTemplateScenari).getImmagine2();
-            imgPos3Uri = templateScenari.get(currentIndexTemplateScenari).getImmagine3();
-            imgBackgroundUri = templateScenari.get(currentIndexTemplateScenari).getSfondoImmagine();
+        EsercizioRealizzabile secondExercise = ((CreazioneEsercizioFragment) getChildFragmentManager().
+                findFragmentById(R.id.containerViewSecondExercise)).getExercise();
+
+        EsercizioRealizzabile thirdExercise = ((CreazioneEsercizioFragment) getChildFragmentManager().
+                findFragmentById(R.id.containerViewThirdExercise)).getExercise();
+
+        if (pickScenery) {
+            firstImageUri = listTemplateScenery.get(currentIndexTemplateScenery).getImmagine1();
+            secondImageUri = listTemplateScenery.get(currentIndexTemplateScenery).getImmagine2();
+            thirdImageUri = listTemplateScenery.get(currentIndexTemplateScenery).getImmagine3();
+            backgroundImageUri = listTemplateScenery.get(currentIndexTemplateScenery).getSfondoImmagine();
         }
 
-        if(dataScenario.getText().toString().isEmpty() || ricompensaFinale.getText().toString().isEmpty() || imgPos1Uri==null
-                || imgPos2Uri==null || imgPos3Uri==null || imgBackgroundUri==null || es1==null || es2==null || es3==null){
+        if (dateScenery.getText().toString().isEmpty() ||
+                finalReward.getText().toString().isEmpty() ||
+                firstImageUri == null || secondImageUri == null ||
+                thirdImageUri == null || backgroundImageUri == null ||
+                firstExercise == null || secondExercise == null || thirdExercise == null){
+
             showErrorDialog();
         }
         else {
-            dataInizio = dataScenario.getText().toString();
-            ricompensa = Integer.parseInt(ricompensaFinale.getText().toString());
+            startDate = dateScenery.getText().toString();
+            reward = Integer.parseInt(finalReward.getText().toString());
 
-            esercizi.add(es1);
-            esercizi.add(es2);
-            esercizi.add(es3);
-            Log.d("CreazioneScenarioFragment", "saveScenario: "+esercizi.toString());
+            listEsercizioRealizzabile.add(firstExercise);
+            listEsercizioRealizzabile.add(secondExercise);
+            listEsercizioRealizzabile.add(thirdExercise);
+            Log.d("CreazioneScenarioFragment", "saveScenario: " + listEsercizioRealizzabile.toString());
 
-            String refTemplate = "0";
-            scenario = new ScenarioGioco(imgBackgroundUri, imgPos1Uri, imgPos2Uri, imgPos3Uri, LocalDate.parse(dataInizio), ricompensa, esercizi, refTemplate);
+            String referenceTemplate = "0";
 
-            if(mCallback == null){
-                Paziente paziente = mLogopedistaViewModel.getPazienteById(idPaziente);
-                paziente.getTerapie().get(indiceTerapia).addListScenarioGioco(scenario);
-                mLogopedistaViewModel.aggiornaLogopedistaRemoto();
+            scenarioGioco = new ScenarioGioco(backgroundImageUri, firstImageUri, secondImageUri, thirdImageUri,
+                    LocalDate.parse(startDate), reward, listEsercizioRealizzabile, referenceTemplate);
 
-                navigateTo(R.id.action_creazioneScenarioFragment_to_schedaPazienteFragment,bundle);
+            if(salvataggioScenario == null){
+                Paziente paziente = logopedistaViewsModels.getPazienteById(idPaziente);
+                paziente.getTerapie().get(indexTherapy).addListScenarioGioco(scenarioGioco);
+                logopedistaViewsModels.aggiornaLogopedistaRemoto();
+                navigateTo(R.id.action_creazioneScenarioFragment_to_schedaPazienteFragment, bundle);
             }
             else {
-                mCallback.saveScenario(scenario);
+                salvataggioScenario.saveScenario(scenarioGioco);
                 getParentFragmentManager().beginTransaction().remove(this).commit();
             }
         }
-    }
-
-    private void useTemplate(){
-        sceltaScenari =true;
-        linearLayoutSceltaTemplateOCreaScenario.setVisibility(View.GONE);
-        linearLayoutCreazioneScenario.setVisibility(View.GONE);
-        buttonNextScenario.setVisibility(View.VISIBLE);
-        buttonPreviousScenario.setVisibility(View.VISIBLE);
-        constraintLayoutCostruzioneImmagineScenario.setVisibility(View.VISIBLE);
-        modificaCostruzioneScenarioConTemplate();
-    }
-
-    private void createScenarioFromStart(){
-        linearLayoutSceltaTemplateOCreaScenario.setVisibility(View.GONE);
-        linearLayoutCreazioneScenario.setVisibility(View.VISIBLE);
-        buttonNextScenario.setVisibility(View.GONE);
-        buttonPreviousScenario.setVisibility(View.GONE);
-    }
-
-    private void prossimoTemplateScenario(){
-        if(currentIndexTemplateScenari+1<sizeTemplateScenari){
-            currentIndexTemplateScenari +=1;
-        }else{
-            currentIndexTemplateScenari =0;
-        }
-        modificaCostruzioneScenarioConTemplate();
-    }
-
-    private void precedenteTemplateScenario(){
-        if(currentIndexTemplateScenari-1 >= 0){
-            currentIndexTemplateScenari -=1;
-        }else{
-            currentIndexTemplateScenari = sizeTemplateScenari-1;
-        }
-        modificaCostruzioneScenarioConTemplate();
-
-    }
-
-    private void modificaCostruzioneScenarioConTemplate(){
-
-        String img1 = templateScenari.get(currentIndexTemplateScenari).getImmagine1();
-        String img2 = templateScenari.get(currentIndexTemplateScenari).getImmagine2();
-        String img3 = templateScenari.get(currentIndexTemplateScenari).getImmagine3();
-        String imgSfondo = templateScenari.get(currentIndexTemplateScenari).getSfondoImmagine();
-
-        Glide.with(getContext()).load(img1).into(imgPos1);
-        Glide.with(getContext()).load(img2).into(imgPos2);
-        Glide.with(getContext()).load(img3).into(imgPos3);
-        Glide.with(getContext())
-                .asBitmap()
-                .load(imgSfondo)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        constraintLayoutCostruzioneImmagineScenario.setBackground(new BitmapDrawable(getResources(), resource));
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-                        // Questo metodo viene chiamato quando l'immagine non Ã¨ piÃ¹ necessaria.
-                    }
-                });
-
     }
 
     private void startFilePicker(int requestCode) {
@@ -421,42 +345,106 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), requestCode);
     }
 
+    private void previousTemplateScenery(){
+        if (currentIndexTemplateScenery -1 >= 0){
+            currentIndexTemplateScenery -= 1;
+        }else{
+            currentIndexTemplateScenery = sizeTemplateScenery-1;
+        }
+        editMakingSceneryTemplate();
+    }
+
+    private void nextTemplateScenery(){
+        if (currentIndexTemplateScenery +1 < sizeTemplateScenery){
+            currentIndexTemplateScenery += 1;
+        }else{
+            currentIndexTemplateScenery = 0;
+        }
+        editMakingSceneryTemplate();
+    }
+
+    private void createSceneryFromStart(){
+        pickTemplateOrCreateScenery.setVisibility(View.GONE);
+        createScenery.setVisibility(View.VISIBLE);
+        buttonNextScenery.setVisibility(View.GONE);
+        buttonPreviousScenery.setVisibility(View.GONE);
+    }
+
+    private void useTemplate(){
+        pickScenery = true;
+        pickTemplateOrCreateScenery.setVisibility(View.GONE);
+        createScenery.setVisibility(View.GONE);
+        buttonNextScenery.setVisibility(View.VISIBLE);
+        buttonPreviousScenery.setVisibility(View.VISIBLE);
+        creationImageScenery.setVisibility(View.VISIBLE);
+        editMakingSceneryTemplate();
+    }
+
+
+    private void editMakingSceneryTemplate(){
+
+        String firstImageExercise = listTemplateScenery.get(currentIndexTemplateScenery).getImmagine1();
+        String secondImageExercise = listTemplateScenery.get(currentIndexTemplateScenery).getImmagine2();
+        String thirdImageExercise = listTemplateScenery.get(currentIndexTemplateScenery).getImmagine3();
+        String backgroundImageExercise = listTemplateScenery.get(currentIndexTemplateScenery).getSfondoImmagine();
+
+        Glide.with(getContext()).load(firstImageExercise).into(firstImage);
+        Glide.with(getContext()).load(secondImageExercise).into(secondImage);
+        Glide.with(getContext()).load(thirdImageExercise).into(thirdImage);
+
+        Glide.with(getContext())
+                .asBitmap()
+                .load(backgroundImageExercise)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        creationImageScenery.setBackground(new BitmapDrawable(getResources(), resource));
+                    }
+
+                    // metodo chiamato quando l'immagine non è più necessaria
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {}
+                });
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null && data.getData() != null) {
+
             Uri uri = data.getData();
 
             ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
             comandiFirebaseStorage.uploadFileAndGetLink(uri, ComandiFirebaseStorage.SCENARI_GIOCO).thenAccept(link -> {
 
                 switch (requestCode) {
-                    case PICK_FILE_REQUEST_1:
-                        imgPos1Uri = link;
-                        Glide.with(getContext()).load(uri).into(imgPos1);
+                    case PICK_FILE_1:
+                        firstImageUri = link;
+                        Glide.with(getContext()).load(uri).into(firstImage);
                         break;
-                    case PICK_FILE_REQUEST_2:
-                        imgPos2Uri = link;
-                        Glide.with(getContext()).load(uri).into(imgPos2);
+                    case PICK_FILE_2:
+                        secondImageUri = link;
+                        Glide.with(getContext()).load(uri).into(secondImage);
                         break;
-                    case PICK_FILE_REQUEST_3:
-                        imgPos3Uri = link;
-                        Glide.with(getContext()).load(uri).into(imgPos3);
+                    case PICK_FILE_3:
+                        thirdImageUri = link;
+                        Glide.with(getContext()).load(uri).into(thirdImage);
                         break;
-                    case PICK_FILE_REQUEST_4:
-                        imgBackgroundUri = link;
+                    case PICK_FILE_4:
+                        backgroundImageUri = link;
                         Glide.with(getContext())
                                 .asBitmap()
                                 .load(uri)
                                 .into(new CustomTarget<Bitmap>() {
                                     @Override
                                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                                        constraintLayoutCostruzioneImmagineScenario.setBackground(new BitmapDrawable(getResources(), resource));
+                                        creationImageScenery.setBackground(new BitmapDrawable(getResources(), resource));
                                     }
 
+                                    // metodo chiamato quando l'immagine non è più necessaria
                                     @Override
                                     public void onLoadCleared(@Nullable Drawable placeholder) {
-                                        // Questo metodo viene chiamato quando l'immagine non è più necessaria.
                                     }
                                 });
                         break;
@@ -466,4 +454,5 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
             });
         }
     }
+
 }
