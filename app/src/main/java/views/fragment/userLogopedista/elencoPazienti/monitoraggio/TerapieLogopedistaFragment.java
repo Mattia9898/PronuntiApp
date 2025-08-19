@@ -1,40 +1,37 @@
 package views.fragment.userLogopedista.elencoPazienti.monitoraggio;
 
-import android.os.Bundle;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import java.util.Comparator;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.domain.profili.Logopedista;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
-import models.domain.profili.Paziente;
+import android.os.Bundle;
 
-import models.domain.terapie.Terapia;
+import java.util.Comparator;
+
+import androidx.lifecycle.ViewModelProvider;
+
+import views.fragment.AbstractNavigazioneFragment;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
-import views.fragment.AbstractNavigazioneFragment;
+import android.view.ViewGroup;
+import android.view.View;
+import android.view.LayoutInflater;
+
+import models.domain.terapie.Terapia;
+import models.domain.profili.Paziente;
+import models.domain.profili.Logopedista;
+
 
 public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
 
     private String idPaziente;
 
-    private LogopedistaViewsModels mLogopedistaViewModel;
+    private LogopedistaViewsModels logopedistaViewsModels;
 
-    private int indicePaziente;
+    private int indexPatient;
 
 
     @Nullable
@@ -42,15 +39,14 @@ public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
         View view = inflater.inflate(R.layout.fragment_terapie, container, false);
-
-        mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
+        logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
 
         savedInstanceState = getArguments();
+
         if(savedInstanceState != null){
             this.idPaziente = savedInstanceState.getString("idPaziente");
-            this.indicePaziente = savedInstanceState.getInt("indicePaziente");
+            this.indexPatient = savedInstanceState.getInt("indexPatient");
         }
 
         return view;
@@ -61,27 +57,28 @@ public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-
-        Logopedista logopedista = mLogopedistaViewModel.getLogopedistaLiveData().getValue();
+        Logopedista logopedista = logopedistaViewsModels.getLogopedistaLiveData().getValue();
 
         for (Paziente paziente: logopedista.getListaPazienti()) {
             if (paziente.getIdProfilo().equals(idPaziente)){
                 paziente.getTerapie().sort(Comparator.comparing(Terapia::getDataInizioTerapia));
-                int indiceTerapia = paziente.getTerapie().size() - 1;
-                if(indiceTerapia != -1) {
-                    cambiaFragmentMonitoraggioLogopedista(indiceTerapia);
+                int indexTherapy = paziente.getTerapie().size() - 1;
+                if(indexTherapy != -1) {
+                    switchFragmentMonitoring(indexTherapy);
                 }
             }
         }
     }
 
-    public void cambiaFragmentMonitoraggioLogopedista(int indiceTerapia){
-        if(indiceTerapia != -1) {
+    public void switchFragmentMonitoring(int indexTherapy){
+
+        if(indexTherapy != -1) {
+
             Bundle bundle = new Bundle();
 
             bundle.putString("idPaziente", idPaziente);
-            bundle.putInt("indiceTerapia", indiceTerapia);
-            bundle.putInt("indicePaziente",indicePaziente);
+            bundle.putInt("indexTherapy", indexTherapy);
+            bundle.putInt("indexPatient",indexPatient);
 
             NavigazioneTerapieLogopedistaFragment navigazioneTerapieLogopedistaFragment = new NavigazioneTerapieLogopedistaFragment();
             navigazioneTerapieLogopedistaFragment.setArguments(bundle);
@@ -89,7 +86,9 @@ public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
             MonitoraggioLogopedistaFragment monitoraggioLogopedistaFragment = new MonitoraggioLogopedistaFragment();
             monitoraggioLogopedistaFragment.setArguments(bundle);
 
-            getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewMonitoraggio, monitoraggioLogopedistaFragment).replace(R.id.fragmentContainerViewNavTerapie, navigazioneTerapieLogopedistaFragment).commit();
+            getChildFragmentManager().beginTransaction().
+                    replace(R.id.monitoring, monitoraggioLogopedistaFragment).
+                    replace(R.id.navigationTherapies, navigazioneTerapieLogopedistaFragment).commit();
         }
     }
 
