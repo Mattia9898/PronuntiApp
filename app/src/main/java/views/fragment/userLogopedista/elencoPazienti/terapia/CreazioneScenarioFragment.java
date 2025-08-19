@@ -308,9 +308,9 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
     private void saveScenario(){
 
         //pick degli esercizi dai fragment figli
-        EsercizioRealizzabile es1 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio1)).getEsercizio();
-        EsercizioRealizzabile es2 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio2)).getEsercizio();
-        EsercizioRealizzabile es3 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio3)).getEsercizio();
+        EsercizioRealizzabile es1 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio1)).getExercise();
+        EsercizioRealizzabile es2 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio2)).getExercise();
+        EsercizioRealizzabile es3 = ((CreazioneEsercizioFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerViewEsercizio3)).getExercise();
 
         if(sceltaScenari) {
             imgPos1Uri = templateScenari.get(currentIndexTemplateScenari).getImmagine1();

@@ -1,56 +1,35 @@
 package views.fragment.userLogopedista.elencoPazienti.terapia;
 
+
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
-
 import android.app.Activity;
-
 import android.content.Intent;
-
 import android.content.pm.PackageManager;
-
 import android.net.Uri;
-
 import android.os.Bundle;
-
 import android.util.Log;
-
 import android.view.LayoutInflater;
-
 import android.view.View;
-
 import android.view.ViewGroup;
-
 import android.view.animation.Animation;
-
 import android.view.animation.ScaleAnimation;
-
 import android.widget.Button;
-
 import android.widget.ImageButton;
-
 import android.widget.ImageView;
-
 import android.widget.LinearLayout;
-
 import android.widget.TextView;
-
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
-
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
-
 import androidx.annotation.Nullable;
-
-import androidx.cardview.widget.CardView;
-
-import androidx.core.app.ActivityCompat;
-
-import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 
@@ -59,266 +38,250 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.File;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
 import java.util.concurrent.CompletableFuture;
-
 import java.util.concurrent.atomic.AtomicReference;
 
 import it.uniba.dib.pronuntiapp.R;
 
 import models.database.ComandiFirebaseStorage;
-
 import models.database.TemplateEsercizioDAO;
-
 import models.domain.esercizi.Esercizio;
-
 import models.domain.esercizi.EsercizioCoppiaImmagini;
-
 import models.domain.esercizi.EsercizioDenominazioneImmagini;
-
 import models.domain.esercizi.EsercizioRealizzabile;
-
 import models.domain.esercizi.EsercizioSequenzaParole;
-
 import models.domain.esercizi.TemplateEsercizioCoppiaImmagini;
-
 import models.domain.esercizi.TemplateEsercizioDenominazioneImmagini;
-
 import models.domain.esercizi.TemplateEsercizioSequenzaParole;
-
 import models.API.FFmpegKitAPI.AudioConverter;
-
 import models.utils.audioRecorder.AudioRecorder;
 
 import views.dialog.InfoDialog;
-
 import views.dialog.PermessiDialog;
-
 import views.fragment.AbstractNavigazioneFragment;
+
 
 public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
 
-    private ScaleAnimation animazioneButtonMic;
+    private static final int PICK_FILE_1 = 1;
 
-    private AudioRecorder audioRecorder;
+    private static final int PICK_FILE_2 = 2;
 
-    private static final int PICK_FILE_REQUEST_1 = 1;
+    private static final int PICK_FILE_3 = 3;
 
-    private static final int PICK_FILE_REQUEST_2 = 2;
+    private static int countExercise = 1;
 
-    private static final int PICK_FILE_REQUEST_3 = 3;
+    private int templateCoppiaImmagini = 0;
 
-    private static int countEsercizio = 1;
+    private int templateDenominazioneImmagine = 0;
 
-    private TextView textViewTitleEsercizio;
-
-    private ImageView imageViewArrowDown;
-
-    private LinearLayout linearLayoutTitleEsercizio;
-
-    private LinearLayout linearLayoutAggiungiEsercizio;
-
-    private LinearLayout linearLayoutTipoEsercizio;
-
-    private Button buttonEsercizioDenominazioneImmagine;
-
-    private Button buttonEsercizioSequenzaParole;
-
-    private Button buttonEsercizioCoppiaImmagini;
-
-    private LinearLayout linearLayoutSceltaTemplateEsercizio;
-
-    private Button buttonTemplateEsercizio;
-
-    private Button buttonCreaEsercizio;
-
-    private LinearLayout linearLayoutTemplateEsercizio;
-
-    private CardView cardViewTemplateEsercizioDenominazioneImmagine;
-
-    private ImageButton buttonTemplateDenominazioneImmagineBack;
-
-    private TextView textViewParoleTemplateDenominazioneImmagine;
-
-    private ImageButton buttonTemplateDenominazioneImmagineNext;
-
-    private CardView cardViewTemplateEsercizioSequenzaParole;
-
-    private ImageButton buttonTemplateSequenzaParoleBack;
-
-    private TextView textViewParoleTemplateSequenzaParole1, textViewParoleTemplateSequenzaParole2, textViewParoleTemplateSequenzaParole3;
-
-    private ImageButton buttonTemplateSequenzaParoleNext;
-
-    private CardView cardViewTemplateEsercizioCoppiaImmagini;
-
-    private ImageButton buttonTemplateCoppiaImmagineBack;
-
-    private ImageView templateCoppiaImmagine;
-
-    private ImageButton buttonTemplateCoppiaImmagineNext;
-
-    private LinearLayout linearLayoutCreazioneEsercizio;
-
-    private CardView cardViewCreazioneEsercizioDenominazioneImmagine;
-
-    private ImageButton buttonAudioDenominazione;
-
-    private View viewAnimationAudioDenominazione, viewStopAudioDenominazione;
-
-    private TextInputEditText textInputEditTextRispostaEsercizioDenominaizone;
-
-    private ImageView buttonOpenFilePickerImmagineEsercizioDenominazione;
-
-    private String immagineEsercizioDenominazione, audioDenominazione;
-
-    private TextInputEditText textInputEditTextRicompensaCorrettoDenominazione, textInputEditTextRicompensaErratoDenominazione;
-
-    private Button buttonConfermaEsercizioDenominazione;
-
-    private CardView cardViewCreazioneEsercizioSequenzaParole;
-
-    private ImageButton buttonAudioSequenzaParole;
-
-    private View viewAnimationAudioSequenzaParole, viewStopAudioSequenzaParole;
-
-    private String audioSequenzaParole;
-
-    private TextInputEditText textInputEditTextParola1, textInputEditTextParola2, textInputEditTextParola3;
-
-    private TextInputEditText textInputEditTextRicompensaCorrettoSequenzaParole, textInputEditTextRicompensaErratoSequenzaParole;
-
-    private Button buttonConfermaEsercizioSequenzaParole;
-
-    private CardView cardViewCreazioneEsercizioCoppiaImmagini;
-
-    private ImageButton buttonAudioCoppia;
-
-    private View viewAnimationAudioCoppia, viewStopAudioCoppia;
-
-    private ImageView buttonOpenFilePickerImmagineCoppiaCorretta, buttonOpenFilePickerImmagineCoppiaErrata;
-
-    private String immagineCoppiaCorretta, immagineCoppiaErrata, audioCoppia;
-
-    private TextInputEditText textInputEditTextRicompensaCorrettoCoppiaImmagine, textInputEditTextRicompensaErratoCoppiaImmagine;
-
-    private Button buttonConfermaEsercizioCoppiaImmagine;
-
-    private int indexTemplateDenominazioneImmagine = 0;
-
-    private int maxSizeTemplateDenominazioneImmagine;
-
-    private int indexTemplateSequenzaParole = 0;
-
-    private int maxSizeTemplateSequenzaParole;
-
-    private int indexTemplateCoppiaImmagini = 0;
+    private int templateSequenzaParole = 0;
 
     private int maxSizeTemplateCoppiaImmagini;
 
-    private List<Esercizio> listaTemplate;
+    private int maxSizeTemplateDenominazioneImmagine;
 
-    private List<TemplateEsercizioCoppiaImmagini> listaTemplateCoppiaImmagini;
+    private int maxSizeTemplateSequenzaParole;
 
-    private List<TemplateEsercizioDenominazioneImmagini> listaTemplateDenominazioneImmagine;
+    private LinearLayout typeExercise;
 
-    private List<TemplateEsercizioSequenzaParole> listaTemplateSequenzaParole;
+    private LinearLayout addExercise;
 
-    private boolean isTemplateListCompleted = false;
+    private LinearLayout titleExercise;
 
+    private LinearLayout creationExercise;
 
-    //esercizio che creo
-    private EsercizioRealizzabile esercizio;
+    private LinearLayout templateExercise;
+
+    private LinearLayout pickTemplateExercise;
+
+    private ScaleAnimation scaleAnimation;
+
+    private Button buttonCoppiaImmagineExercise;
+
+    private Button buttonConfirmCoppiaImmagineExercise;
+
+    private Button buttonDenominazioneImmagineExercise;
+
+    private Button buttonConfirmDenominazioneImmagineExercise;
+
+    private Button buttonSequenzaParoleExercise;
+
+    private Button buttonConfirmSequenzaParoleExercise;
+
+    private Button buttonCreateExercise;
+
+    private Button buttonTemplateExercise;
+
+    private ImageButton buttonPreviousTemplateDenominazioneImmagine;
+
+    private ImageButton buttonNextTemplateDenominazioneImmagine;
+
+    private ImageButton buttonPreviousTemplateCoppiaImmagine;
+
+    private ImageButton buttonNextTemplateCoppiaImmagine;
+
+    private ImageButton buttonPreviousTemplateSequenzaParole;
+
+    private ImageButton buttonNextTemplateSequenzaParole;
+
+    private ImageButton buttonAudioDenominazioneImmagine;
+
+    private ImageButton buttonAudioCoppiaImmagine;
+
+    private ImageButton buttonAudioSequenzaParole;
+
+    private AudioRecorder audioRecorder;
+
+    private TextView textViewTitleExercise;
+
+    private TextView wordsTemplateDenominazioneImmagine;
+
+    private TextView firstWordTemplateSequenzaParole, secondWordTemplateSequenzaParole, thirdWordTemplateSequenzaParole;
+
+    private ImageView arrowDown;
+
+    private ImageView templateCoppiaImmagine;
+
+    private ImageView openFileCoppiaImmagineCorrect, openFileCoppiaImmagineWrong;
+
+    private ImageView openFileDenominazioneImmagineExercise;
+
+    private CardView cardViewTemplateDenominazioneImmagineExercise;
+
+    private CardView cardViewTemplateSequenzaParoleExercise;
+
+    private CardView cardViewTemplateCoppiaImmagineExercise;
+
+    private CardView cardViewCreateDenominazioneImmagineExercise;
+
+    private CardView cardViewCreateSequenzaParoleExercise;
+
+    private CardView cardViewCreateCoppiaImmagineExercise;
+
+    private View startAudioDenominazioneImmagine, stopAudioDenominazioneImmagine;
+
+    private View startAudioCoppiaImmagine, stopAudioCoppiaImmagine;
+
+    private View startAudioSequenzaParole, stopAudioSequenzaParole;
+
+    private TextInputEditText answerDenominazioneImmagineExercise;
+
+    private TextInputEditText firstWord, secondWord, thirdWord;
+
+    private TextInputEditText correctAnswerCoppiaImmagine, wrongAnswerCoppiaImmagine;
+
+    private TextInputEditText correctRewardSequenzaParole, wrongRewardSequenzaParole;
+
+    private TextInputEditText correctRewardDenominazioneImmagine, wrongRewardDenominazioneImmagine;
+
+    private String imageDenominazioneImmagineExercise, audioDenominazioneImmagineExercise;
+
+    private String audioSequenzaParoleExercise;
+
+    private String correctImageCoppiaImmagine, wrongImageCoppiaImmagine, audioCoppiaImmagineExercise;
+
+    private List<Esercizio> listTemplateExercise;
+
+    private List<TemplateEsercizioCoppiaImmagini> listTemplateCoppiaImmagine;
+
+    private List<TemplateEsercizioDenominazioneImmagini> listTemplateDenominazioneImmagine;
+
+    private List<TemplateEsercizioSequenzaParole> listTemplateSequenzaParole;
+
+    // exercise to create
+    private EsercizioRealizzabile exerciseToCreate;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_creazione_esercizio, container, false);
-        listaTemplateCoppiaImmagini = new ArrayList<>();
-        listaTemplateDenominazioneImmagine = new ArrayList<>();
-        listaTemplateSequenzaParole = new ArrayList<>();
 
-        //titolo
-        textViewTitleEsercizio = view.findViewById(R.id.textViewTitleEsercizio);
-        imageViewArrowDown = view.findViewById(R.id.imageViewArrowDown);
-        linearLayoutTitleEsercizio = view.findViewById(R.id.linearLayoutTitleEsercizio);
+        listTemplateCoppiaImmagine = new ArrayList<>();
+        listTemplateDenominazioneImmagine = new ArrayList<>();
+        listTemplateSequenzaParole = new ArrayList<>();
 
-        //aggiungi esercizio
-        linearLayoutAggiungiEsercizio = view.findViewById(R.id.linearLayoutAggiungiEsercizio);
+        // title exercise
+        textViewTitleExercise = view.findViewById(R.id.textViewTitleExercise);
+        arrowDown = view.findViewById(R.id.arrowDown);
+        titleExercise = view.findViewById(R.id.titleExercise);
 
-        //tipo esercizio
-        linearLayoutTipoEsercizio = view.findViewById(R.id.linearLayoutTipoEsercizio);
-        buttonEsercizioDenominazioneImmagine = view.findViewById(R.id.buttonEsercizioDenominazioneImmagine);
-        buttonEsercizioSequenzaParole = view.findViewById(R.id.buttonEsercizioSequenzaParole);
-        buttonEsercizioCoppiaImmagini = view.findViewById(R.id.buttonEsercizioCoppiaImmagini);
+        // add exercise
+        addExercise = view.findViewById(R.id.addExercise);
 
-        //scelta template o creazione
-        linearLayoutSceltaTemplateEsercizio = view.findViewById(R.id.linearLayoutSceltaTemplateEsercizio);
-        buttonTemplateEsercizio = view.findViewById(R.id.buttonTemplateEsercizio);
-        buttonCreaEsercizio = view.findViewById(R.id.buttonCreaEsercizio);
+        // type exercise
+        typeExercise = view.findViewById(R.id.typeExercise);
+        buttonDenominazioneImmagineExercise = view.findViewById(R.id.buttonDenominazioneImmagineExercise);
+        buttonSequenzaParoleExercise = view.findViewById(R.id.buttonSequenzaParoleExercise);
+        buttonCoppiaImmagineExercise = view.findViewById(R.id.buttonCoppiaImmagineExercise);
 
-        //template
-        linearLayoutTemplateEsercizio = view.findViewById(R.id.linearLayoutTemplateEsercizio);
+        // pick template or creation
+        pickTemplateExercise = view.findViewById(R.id.pickTemplateExercise);
+        buttonTemplateExercise = view.findViewById(R.id.buttonTemplateExercise);
+        buttonCreateExercise = view.findViewById(R.id.buttonCreateExercise);
 
-        //template denominazione
-        cardViewTemplateEsercizioDenominazioneImmagine = view.findViewById(R.id.cardViewTemplateEsercizioDenominazioneImmagine);
-        buttonTemplateDenominazioneImmagineBack = view.findViewById(R.id.buttonTemplateDenominazioneImmagineBack);
-        textViewParoleTemplateDenominazioneImmagine = view.findViewById(R.id.textViewParoleTemplateDenominazioneImmagine);
-        buttonTemplateDenominazioneImmagineNext = view.findViewById(R.id.buttonTemplateDenominazioneImmagineNext);
+        // template exercise
+        templateExercise = view.findViewById(R.id.templateExercise);
 
-        //template sequenza
-        cardViewTemplateEsercizioSequenzaParole = view.findViewById(R.id.cardViewTemplateEsercizioSequenzaParole);
-        buttonTemplateSequenzaParoleBack = view.findViewById(R.id.buttonTemplateSequenzaParoleBack);
-        textViewParoleTemplateSequenzaParole1 = view.findViewById(R.id.textViewParoleTemplateSequenzaParole1);
-        textViewParoleTemplateSequenzaParole2 = view.findViewById(R.id.textViewParoleTemplateSequenzaParole2);
-        textViewParoleTemplateSequenzaParole3 = view.findViewById(R.id.textViewParoleTemplateSequenzaParole3);
-        buttonTemplateSequenzaParoleNext = view.findViewById(R.id.buttonTemplateSequenzaParoleNext);
+        // template exercise denominazione immagine
+        cardViewTemplateDenominazioneImmagineExercise = view.findViewById(R.id.cardViewTemplateDenominazioneImmagineExercise);
+        buttonPreviousTemplateDenominazioneImmagine = view.findViewById(R.id.buttonPreviousTemplateDenominazioneImmagine);
+        wordsTemplateDenominazioneImmagine = view.findViewById(R.id.wordsTemplateDenominazioneImmagine);
+        buttonNextTemplateDenominazioneImmagine = view.findViewById(R.id.buttonNextTemplateDenominazioneImmagine);
 
-        //template coppia
-        cardViewTemplateEsercizioCoppiaImmagini = view.findViewById(R.id.cardViewTemplateEsercizioCoppiaImmagini);
-        buttonTemplateCoppiaImmagineBack = view.findViewById(R.id.buttonTemplateCoppiaImmagineBack);
+        // template exercise sequenza parole
+        cardViewTemplateSequenzaParoleExercise = view.findViewById(R.id.cardViewTemplateSequenzaParoleExercise);
+        buttonPreviousTemplateSequenzaParole = view.findViewById(R.id.buttonPreviousTemplateSequenzaParole);
+        firstWordTemplateSequenzaParole = view.findViewById(R.id.firstWordTemplateSequenzaParole);
+        secondWordTemplateSequenzaParole = view.findViewById(R.id.secondWordTemplateSequenzaParole);
+        thirdWordTemplateSequenzaParole = view.findViewById(R.id.thirdWordTemplateSequenzaParole);
+        buttonNextTemplateSequenzaParole = view.findViewById(R.id.buttonNextTemplateSequenzaParole);
+
+        // template exercise coppia immagine
+        cardViewTemplateCoppiaImmagineExercise = view.findViewById(R.id.cardViewTemplateCoppiaImmagineExercise);
+        buttonPreviousTemplateCoppiaImmagine = view.findViewById(R.id.buttonPreviousTemplateCoppiaImmagine);
         templateCoppiaImmagine = view.findViewById(R.id.templateCoppiaImmagine);
-        buttonTemplateCoppiaImmagineNext = view.findViewById(R.id.buttonTemplateCoppiaImmagineNext);
+        buttonNextTemplateCoppiaImmagine = view.findViewById(R.id.buttonNextTemplateCoppiaImmagine);
 
-        //creazione
-        linearLayoutCreazioneEsercizio = view.findViewById(R.id.linearLayoutCreazioneEsercizio);
+        // creation exercise
+        creationExercise = view.findViewById(R.id.creationExercise);
 
-        //creazione denominazione
-        cardViewCreazioneEsercizioDenominazioneImmagine = view.findViewById(R.id.cardViewCreazioneEsercizioDenominazioneImmagine);
-        buttonAudioDenominazione = view.findViewById(R.id.buttonAudioDenominazione);
-        viewAnimationAudioDenominazione = view.findViewById(R.id.viewAnimationAudioDenominazione);
-        viewStopAudioDenominazione = view.findViewById(R.id.viewStopAudioDenominazione);
-        textInputEditTextRispostaEsercizioDenominaizone = view.findViewById(R.id.textInputEditTextRispostaEsercizioDenominaizone);
-        textInputEditTextRicompensaCorrettoDenominazione = view.findViewById(R.id.textInputEditTextRicompensaCorrettoDenominazione);
-        textInputEditTextRicompensaErratoDenominazione = view.findViewById(R.id.textInputEditTextRicompensaErratoDenominazione);
-        buttonConfermaEsercizioDenominazione = view.findViewById(R.id.buttonConfermaEsercizioDenominazione);
-        buttonOpenFilePickerImmagineEsercizioDenominazione = view.findViewById(R.id.buttonOpenFilePickerImmagineEsercizioDenominazione);
+        // creation exercise denominazione immagine
+        cardViewCreateDenominazioneImmagineExercise = view.findViewById(R.id.cardViewCreateDenominazioneImmagineExercise);
+        buttonAudioDenominazioneImmagine = view.findViewById(R.id.buttonAudioDenominazioneImmagine);
+        startAudioDenominazioneImmagine = view.findViewById(R.id.startAudioDenominazioneImmagine);
+        stopAudioDenominazioneImmagine = view.findViewById(R.id.stopAudioDenominazioneImmagine);
+        answerDenominazioneImmagineExercise = view.findViewById(R.id.answerDenominazioneImmagineExercise);
+        correctRewardDenominazioneImmagine = view.findViewById(R.id.correctRewardDenominazioneImmagine);
+        wrongRewardDenominazioneImmagine = view.findViewById(R.id.wrongRewardDenominazioneImmagine);
+        buttonConfirmDenominazioneImmagineExercise = view.findViewById(R.id.buttonConfirmDenominazioneImmagineExercise);
+        openFileDenominazioneImmagineExercise = view.findViewById(R.id.openFileDenominazioneImmagineExercise);
 
-        //creazione sequenza parole
-        cardViewCreazioneEsercizioSequenzaParole = view.findViewById(R.id.cardViewCreazioneEsercizioSequenzaParole);
+        // creation exercise sequenza parole
+        cardViewCreateSequenzaParoleExercise = view.findViewById(R.id.cardViewCreateSequenzaParoleExercise);
         buttonAudioSequenzaParole = view.findViewById(R.id.buttonAudioSequenzaParole);
-        viewAnimationAudioSequenzaParole = view.findViewById(R.id.viewAnimationAudioSequenzaParole);
-        viewStopAudioSequenzaParole = view.findViewById(R.id.viewStopAudioSequenzaParole);
-        textInputEditTextParola1 = view.findViewById(R.id.textInputEditTextParola1);
-        textInputEditTextParola2 = view.findViewById(R.id.textInputEditTextParola2);
-        textInputEditTextParola3 = view.findViewById(R.id.textInputEditTextParola3);
-        textInputEditTextRicompensaCorrettoSequenzaParole = view.findViewById(R.id.textInputEditTextRicompensaCorrettoSequenzaParole);
-        textInputEditTextRicompensaErratoSequenzaParole = view.findViewById(R.id.textInputEditTextRicompensaErratoSequenzaParole);
-        buttonConfermaEsercizioSequenzaParole = view.findViewById(R.id.buttonConfermaEsercizioSequenzaParole);
+        startAudioSequenzaParole = view.findViewById(R.id.startAudioSequenzaParole);
+        stopAudioSequenzaParole = view.findViewById(R.id.stopAudioSequenzaParole);
+        firstWord = view.findViewById(R.id.firstWord);
+        secondWord = view.findViewById(R.id.secondWord);
+        thirdWord = view.findViewById(R.id.thirdWord);
+        correctRewardSequenzaParole = view.findViewById(R.id.correctRewardSequenzaParole);
+        wrongRewardSequenzaParole = view.findViewById(R.id.wrongRewardSequenzaParole);
+        buttonConfirmSequenzaParoleExercise = view.findViewById(R.id.buttonConfirmSequenzaParoleExercise);
 
-        //creazione coppia immagini
-        cardViewCreazioneEsercizioCoppiaImmagini = view.findViewById(R.id.cardViewCreazioneEsercizioCoppiaImmagini);
-        buttonAudioCoppia = view.findViewById(R.id.buttonAudioCoppia);
-        viewAnimationAudioCoppia = view.findViewById(R.id.viewAnimationAudioCoppia);
-        viewStopAudioCoppia = view.findViewById(R.id.viewStopAudioCoppia);
-        buttonOpenFilePickerImmagineCoppiaCorretta = view.findViewById(R.id.buttonOpenFilePickerImmagineCoppiaCorretta);
-        buttonOpenFilePickerImmagineCoppiaErrata = view.findViewById(R.id.buttonOpenFilePickerImmagineCoppiaErrata);
-        textInputEditTextRicompensaCorrettoCoppiaImmagine = view.findViewById(R.id.textInputEditTextRicompensaCorrettoCoppiaImmagine);
-        textInputEditTextRicompensaErratoCoppiaImmagine = view.findViewById(R.id.textInputEditTextRicompensaErratoCoppiaImmagine);
-        buttonConfermaEsercizioCoppiaImmagine = view.findViewById(R.id.buttonConfermaEsercizioCoppiaImmagini);
-
+        // creation exercise coppia immagine
+        cardViewCreateCoppiaImmagineExercise = view.findViewById(R.id.cardViewCreateCoppiaImmagineExercise);
+        buttonAudioCoppiaImmagine = view.findViewById(R.id.buttonAudioCoppiaImmagine);
+        startAudioCoppiaImmagine = view.findViewById(R.id.startAudioCoppiaImmagine);
+        stopAudioCoppiaImmagine = view.findViewById(R.id.stopAudioCoppiaImmagine);
+        openFileCoppiaImmagineCorrect = view.findViewById(R.id.openFileCoppiaImmagineCorrect);
+        openFileCoppiaImmagineWrong = view.findViewById(R.id.openFileCoppiaImmagineWrong);
+        correctAnswerCoppiaImmagine = view.findViewById(R.id.correctAnswerCoppiaImmagine);
+        wrongAnswerCoppiaImmagine = view.findViewById(R.id.wrongAnswerCoppiaImmagine);
+        buttonConfirmCoppiaImmagineExercise = view.findViewById(R.id.buttonConfirmCoppiaImmagineExercise);
 
         return view;
     }
@@ -333,123 +296,146 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
         templateEsercizioDAO.getAll().thenAccept(result -> {
             if (isAdded()) {
                 requireActivity().runOnUiThread(() -> {
-                    listaTemplate = result;
-                    setListsTemplateEsercizi();
-                    setTemplates();
-                    isTemplateListCompleted = true;
-                    textViewTitleEsercizio.setText(textViewTitleEsercizio.getText().toString() + " " + countEsercizio);
+                    listTemplateExercise = result;
+                    setListTemplateExercise();
+                    setTemplate();
+                    textViewTitleExercise.setText(textViewTitleExercise.getText().toString() + " " + countExercise);
 
-                    if (countEsercizio == 3)
-                        countEsercizio = 1;
-                    else countEsercizio++;
+                    if (countExercise == 3)
+                        countExercise = 1;
+                    else countExercise++;
 
-                    linearLayoutAggiungiEsercizio.setVisibility(View.GONE);
-                    linearLayoutTipoEsercizio.setVisibility(View.VISIBLE);
-                    linearLayoutSceltaTemplateEsercizio.setVisibility(View.GONE);
-                    viewStopAudioDenominazione.setVisibility(View.GONE);
-                    viewStopAudioSequenzaParole.setVisibility(View.GONE);
-                    viewStopAudioCoppia.setVisibility(View.GONE);
-                    viewAnimationAudioDenominazione.setVisibility(View.GONE);
-                    viewAnimationAudioSequenzaParole.setVisibility(View.GONE);
-                    viewAnimationAudioCoppia.setVisibility(View.GONE);
+                    addExercise.setVisibility(View.GONE);
+                    typeExercise.setVisibility(View.VISIBLE);
 
-                    //set onclick su button picker immagine
-                    buttonOpenFilePickerImmagineEsercizioDenominazione.setOnClickListener(v -> startFilePicker(PICK_FILE_REQUEST_1));
-                    buttonOpenFilePickerImmagineCoppiaCorretta.setOnClickListener(v -> startFilePicker(PICK_FILE_REQUEST_2));
-                    buttonOpenFilePickerImmagineCoppiaErrata.setOnClickListener(v -> startFilePicker(PICK_FILE_REQUEST_3));
+                    pickTemplateExercise.setVisibility(View.GONE);
 
-                    //set onclik su button conferma esercizio
-                    buttonConfermaEsercizioDenominazione.setOnClickListener(v -> createEsercizioDenominazioneImmagine());
-                    buttonConfermaEsercizioSequenzaParole.setOnClickListener(v -> createEsercizioSequenzaParole());
-                    buttonConfermaEsercizioCoppiaImmagine.setOnClickListener(v -> createEsercizioCoppiaImmagini());
+                    stopAudioDenominazioneImmagine.setVisibility(View.GONE);
+                    stopAudioSequenzaParole.setVisibility(View.GONE);
+                    stopAudioCoppiaImmagine.setVisibility(View.GONE);
 
-                    //set onclick su microfono
-                    this.audioRecorder = initAudioRecorder();
-                    setAnimazioneRegistrazione();
+                    startAudioDenominazioneImmagine.setVisibility(View.GONE);
+                    startAudioSequenzaParole.setVisibility(View.GONE);
+                    startAudioCoppiaImmagine.setVisibility(View.GONE);
 
-                    buttonAudioDenominazione.setOnClickListener(v -> avviaPrimaRegistrazione(buttonAudioDenominazione, viewStopAudioDenominazione, viewAnimationAudioDenominazione));
-                    viewStopAudioDenominazione.setOnClickListener(v -> stoppaRegistrazione(buttonAudioDenominazione, viewStopAudioDenominazione, viewAnimationAudioDenominazione, 1).thenAccept(value -> audioDenominazione = value));
+                    // set onclick button file picker image
+                    openFileDenominazioneImmagineExercise.setOnClickListener(v -> startFilePicker(PICK_FILE_1));
+                    openFileCoppiaImmagineCorrect.setOnClickListener(v -> startFilePicker(PICK_FILE_2));
+                    openFileCoppiaImmagineWrong.setOnClickListener(v -> startFilePicker(PICK_FILE_3));
 
-                    buttonAudioSequenzaParole.setOnClickListener(v -> avviaPrimaRegistrazione(buttonAudioSequenzaParole, viewStopAudioSequenzaParole, viewAnimationAudioSequenzaParole));
-                    viewStopAudioSequenzaParole.setOnClickListener(v -> stoppaRegistrazione(buttonAudioSequenzaParole, viewStopAudioSequenzaParole, viewAnimationAudioSequenzaParole, 2).thenAccept(value -> audioSequenzaParole = value));
+                    // set onclik button confirm exercise
+                    buttonConfirmDenominazioneImmagineExercise.setOnClickListener(v -> createDenominazioneImmagineExercise());
+                    buttonConfirmSequenzaParoleExercise.setOnClickListener(v -> createSequenzaParoleExercise());
+                    buttonConfirmCoppiaImmagineExercise.setOnClickListener(v -> createCoppiaImmagineExercise());
 
-                    buttonAudioCoppia.setOnClickListener(v -> avviaPrimaRegistrazione(buttonAudioCoppia, viewStopAudioCoppia, viewAnimationAudioCoppia));
-                    viewStopAudioCoppia.setOnClickListener(v -> stoppaRegistrazione(buttonAudioCoppia, viewStopAudioCoppia, viewAnimationAudioCoppia, 3).thenAccept(value -> audioCoppia = value));
+                    // set onclick microphone
+                    this.audioRecorder = audioRecorder();
+                    setScaleAnimation();
 
-                    //denominazione
-                    buttonTemplateDenominazioneImmagineBack.setOnClickListener(v -> {
-                        indexTemplateDenominazioneImmagine--;
-                        if (indexTemplateDenominazioneImmagine < 0)
-                            indexTemplateDenominazioneImmagine = maxSizeTemplateDenominazioneImmagine;
-                        mostraTemplateDenominazioneImmagine();
-                    });
-                    buttonTemplateDenominazioneImmagineNext.setOnClickListener(v -> {
-                        indexTemplateDenominazioneImmagine++;
-                        if (indexTemplateDenominazioneImmagine > maxSizeTemplateDenominazioneImmagine)
-                            indexTemplateDenominazioneImmagine = 0;
-                        mostraTemplateDenominazioneImmagine();
-                    });
+                    buttonAudioDenominazioneImmagine.setOnClickListener(v ->
+                            startFirstRegistration(buttonAudioDenominazioneImmagine, stopAudioDenominazioneImmagine, startAudioDenominazioneImmagine));
 
-                    //sequenza
-                    buttonTemplateSequenzaParoleBack.setOnClickListener(v -> {
-                        indexTemplateSequenzaParole--;
-                        if (indexTemplateSequenzaParole < 0)
-                            indexTemplateSequenzaParole = maxSizeTemplateSequenzaParole;
-                        mostraTemplateSequenzaParole();
-                    });
-                    buttonTemplateSequenzaParoleNext.setOnClickListener(v -> {
-                        indexTemplateSequenzaParole++;
-                        if (indexTemplateSequenzaParole > maxSizeTemplateSequenzaParole)
-                            indexTemplateSequenzaParole = 0;
-                        mostraTemplateSequenzaParole();
+                    stopAudioDenominazioneImmagine.setOnClickListener(v ->
+                            stopRegistration(buttonAudioDenominazioneImmagine, stopAudioDenominazioneImmagine, startAudioDenominazioneImmagine, 1).
+                                    thenAccept(value -> audioDenominazioneImmagineExercise = value));
+
+
+                    buttonAudioSequenzaParole.setOnClickListener(v ->
+                            startFirstRegistration(buttonAudioSequenzaParole, stopAudioSequenzaParole, startAudioSequenzaParole));
+
+                    stopAudioSequenzaParole.setOnClickListener(v ->
+                            stopRegistration(buttonAudioSequenzaParole, stopAudioSequenzaParole, startAudioSequenzaParole, 2).
+                                    thenAccept(value -> audioSequenzaParoleExercise = value));
+
+
+                    buttonAudioCoppiaImmagine.setOnClickListener(v ->
+                            startFirstRegistration(buttonAudioCoppiaImmagine, stopAudioCoppiaImmagine, startAudioCoppiaImmagine));
+
+                    stopAudioCoppiaImmagine.setOnClickListener(v ->
+                            stopRegistration(buttonAudioCoppiaImmagine, stopAudioCoppiaImmagine, startAudioCoppiaImmagine, 3).
+                                    thenAccept(value -> audioCoppiaImmagineExercise = value));
+
+                    // button previous template denominazione immagine exercise
+                    buttonPreviousTemplateDenominazioneImmagine.setOnClickListener(v -> {
+                        templateDenominazioneImmagine--;
+                        if (templateDenominazioneImmagine < 0)
+                            templateDenominazioneImmagine = maxSizeTemplateDenominazioneImmagine;
+                        showTemplateDenominazioneImmagine();
                     });
 
-                    //coppia
-                    buttonTemplateCoppiaImmagineBack.setOnClickListener(v -> {
-                        indexTemplateCoppiaImmagini--;
-                        if (indexTemplateCoppiaImmagini < 0)
-                            indexTemplateCoppiaImmagini = maxSizeTemplateCoppiaImmagini;
-                        mostraTemplateCoppiaImmagini();
-                    });
-                    buttonTemplateCoppiaImmagineNext.setOnClickListener(v -> {
-                        indexTemplateCoppiaImmagini++;
-                        if (indexTemplateCoppiaImmagini > maxSizeTemplateCoppiaImmagini)
-                            indexTemplateCoppiaImmagini = 0;
-                        mostraTemplateCoppiaImmagini();
+                    // button next template denominazione immagine exercise
+                    buttonNextTemplateDenominazioneImmagine.setOnClickListener(v -> {
+                        templateDenominazioneImmagine++;
+                        if (templateDenominazioneImmagine > maxSizeTemplateDenominazioneImmagine)
+                            templateDenominazioneImmagine = 0;
+                        showTemplateDenominazioneImmagine();
                     });
 
-                    //mostra nascondi esercizio
-                    linearLayoutTitleEsercizio.setOnClickListener(v -> {
-                        if (linearLayoutAggiungiEsercizio.getVisibility() == View.VISIBLE) {
-                            linearLayoutAggiungiEsercizio.setVisibility(View.GONE);
-                            imageViewArrowDown.setRotation(0);
+                    // button previous template sequenza parole exercise
+                    buttonPreviousTemplateSequenzaParole.setOnClickListener(v -> {
+                        templateSequenzaParole--;
+                        if (templateSequenzaParole < 0)
+                            templateSequenzaParole = maxSizeTemplateSequenzaParole;
+                        showTemplateSequenzaParole();
+                    });
+
+                    // button next template sequenza parole exercise
+                    buttonNextTemplateSequenzaParole.setOnClickListener(v -> {
+                        templateSequenzaParole++;
+                        if (templateSequenzaParole > maxSizeTemplateSequenzaParole)
+                            templateSequenzaParole = 0;
+                        showTemplateSequenzaParole();
+                    });
+
+                    // button previous template coppia immagine exercise
+                    buttonPreviousTemplateCoppiaImmagine.setOnClickListener(v -> {
+                        templateCoppiaImmagini--;
+                        if (templateCoppiaImmagini < 0)
+                            templateCoppiaImmagini = maxSizeTemplateCoppiaImmagini;
+                        showTemplateCoppiaImmagini();
+                    });
+
+                    // button next template coppia immagine exercise
+                    buttonNextTemplateCoppiaImmagine.setOnClickListener(v -> {
+                        templateCoppiaImmagini++;
+                        if (templateCoppiaImmagini > maxSizeTemplateCoppiaImmagini)
+                            templateCoppiaImmagini = 0;
+                        showTemplateCoppiaImmagini();
+                    });
+
+                    // show hide exercise
+                    titleExercise.setOnClickListener(v -> {
+                        if (addExercise.getVisibility() == View.VISIBLE) {
+                            addExercise.setVisibility(View.GONE);
+                            arrowDown.setRotation(0);
                         } else {
-                            linearLayoutAggiungiEsercizio.setVisibility(View.VISIBLE);
-                            imageViewArrowDown.setRotation(180);
+                            addExercise.setVisibility(View.VISIBLE);
+                            arrowDown.setRotation(180);
                         }
                     });
 
-                    buttonEsercizioDenominazioneImmagine.setOnClickListener(v -> scegliTipoEsercizio(1));
-                    buttonEsercizioSequenzaParole.setOnClickListener(v -> scegliTipoEsercizio(2));
-                    buttonEsercizioCoppiaImmagini.setOnClickListener(v -> scegliTipoEsercizio(3));
+                    buttonDenominazioneImmagineExercise.setOnClickListener(v -> pickTypeExercise(1));
+                    buttonSequenzaParoleExercise.setOnClickListener(v -> pickTypeExercise(2));
+                    buttonCoppiaImmagineExercise.setOnClickListener(v -> pickTypeExercise(3));
                 });
             }
         });
     }
 
-    private void setListsTemplateEsercizi() {
-        for (Esercizio templeate : listaTemplate) {
-            if (templeate instanceof TemplateEsercizioCoppiaImmagini) {
-                listaTemplateCoppiaImmagini.add((TemplateEsercizioCoppiaImmagini) templeate);
-            } else if (templeate instanceof TemplateEsercizioDenominazioneImmagini) {
-                listaTemplateDenominazioneImmagine.add((TemplateEsercizioDenominazioneImmagini) templeate);
+    private void setListTemplateExercise() {
+        for (Esercizio esercizio : listTemplateExercise) {
+            if (esercizio instanceof TemplateEsercizioCoppiaImmagini) {
+                listTemplateCoppiaImmagine.add((TemplateEsercizioCoppiaImmagini) esercizio);
+            } else if (esercizio instanceof TemplateEsercizioDenominazioneImmagini) {
+                listTemplateDenominazioneImmagine.add((TemplateEsercizioDenominazioneImmagini) esercizio);
             } else {
-                listaTemplateSequenzaParole.add((TemplateEsercizioSequenzaParole) templeate);
+                listTemplateSequenzaParole.add((TemplateEsercizioSequenzaParole) esercizio);
             }
         }
     }
 
     private void startFilePicker(int requestCode) {
+
         Intent intent = new Intent();
         intent.setType("*/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -464,23 +450,24 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && data != null && data.getData() != null) {
+
             Uri uri = data.getData();
 
             ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
-            comandiFirebaseStorage.uploadFileAndGetLink(uri, "TEST/TERAPIA_TEST").thenAccept(link -> {
+            comandiFirebaseStorage.uploadFileAndGetLink(uri, "TEST/THERAPY_TEST").thenAccept(link -> {
 
                 switch (requestCode) {
-                    case PICK_FILE_REQUEST_1:
-                        immagineEsercizioDenominazione = link;
-                        Glide.with(getContext()).load(uri).into(buttonOpenFilePickerImmagineEsercizioDenominazione);
+                    case PICK_FILE_1:
+                        imageDenominazioneImmagineExercise = link;
+                        Glide.with(getContext()).load(uri).into(openFileDenominazioneImmagineExercise);
                         break;
-                    case PICK_FILE_REQUEST_2:
-                        immagineCoppiaCorretta = link;
-                        Glide.with(getContext()).load(uri).into(buttonOpenFilePickerImmagineCoppiaCorretta);
+                    case PICK_FILE_2:
+                        correctImageCoppiaImmagine = link;
+                        Glide.with(getContext()).load(uri).into(openFileCoppiaImmagineCorrect);
                         break;
-                    case PICK_FILE_REQUEST_3:
-                        immagineCoppiaErrata = link;
-                        Glide.with(getContext()).load(uri).into(buttonOpenFilePickerImmagineCoppiaErrata);
+                    case PICK_FILE_3:
+                        wrongImageCoppiaImmagine = link;
+                        Glide.with(getContext()).load(uri).into(openFileCoppiaImmagineWrong);
                         break;
                     default:
                         break;
@@ -489,290 +476,246 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
         }
     }
 
-    private void scegliTipoEsercizio(int tipoEsercizio) {
+    private void setTemplate() {
+        maxSizeTemplateCoppiaImmagini = listTemplateCoppiaImmagine.size() -1 ;
+        maxSizeTemplateDenominazioneImmagine = listTemplateDenominazioneImmagine.size() -1 ;
+        maxSizeTemplateSequenzaParole = listTemplateSequenzaParole.size() -1 ;
+    }
 
-        linearLayoutTipoEsercizio.setVisibility(View.GONE);
-        linearLayoutSceltaTemplateEsercizio.setVisibility(View.VISIBLE);
+    private void pickTypeExercise(int exercise) {
 
-        if(tipoEsercizio == 1) {
-            buttonTemplateEsercizio.setOnClickListener(v -> mostraTemplateEsercizio(1));
-            buttonCreaEsercizio.setOnClickListener(v -> mostraCreazioneEsercizio(1));
-        } else if(tipoEsercizio == 2) {
-            buttonTemplateEsercizio.setOnClickListener(v -> mostraTemplateEsercizio(2));
-            buttonCreaEsercizio.setOnClickListener(v -> mostraCreazioneEsercizio(2));
-        } else if(tipoEsercizio == 3) {
-            buttonTemplateEsercizio.setOnClickListener(v -> mostraTemplateEsercizio(3));
-            buttonCreaEsercizio.setOnClickListener(v -> mostraCreazioneEsercizio(3));
+        typeExercise.setVisibility(View.GONE);
+        pickTemplateExercise.setVisibility(View.VISIBLE);
+
+        if(exercise == 1) {
+            buttonTemplateExercise.setOnClickListener(v -> showTemplateExercise(1));
+            buttonCreateExercise.setOnClickListener(v -> showCreationExercise(1));
+        } else if(exercise == 2) {
+            buttonTemplateExercise.setOnClickListener(v -> showTemplateExercise(2));
+            buttonCreateExercise.setOnClickListener(v -> showCreationExercise(2));
+        } else if(exercise == 3) {
+            buttonTemplateExercise.setOnClickListener(v -> showTemplateExercise(3));
+            buttonCreateExercise.setOnClickListener(v -> showCreationExercise(3));
         }
 
     }
 
-    private void mostraCreazioneEsercizio(int tipoEsercizio){
+    private void showCreationExercise(int exercise){
 
-        linearLayoutSceltaTemplateEsercizio.setVisibility(View.GONE);
-        linearLayoutCreazioneEsercizio.setVisibility(View.VISIBLE);
+        pickTemplateExercise.setVisibility(View.GONE);
+        creationExercise.setVisibility(View.VISIBLE);
 
-        if(tipoEsercizio == 1){
-            cardViewCreazioneEsercizioDenominazioneImmagine.setVisibility(View.VISIBLE);
-            cardViewCreazioneEsercizioSequenzaParole.setVisibility(View.GONE);
-            cardViewCreazioneEsercizioCoppiaImmagini.setVisibility(View.GONE);
-        } else if(tipoEsercizio == 2){
-            cardViewCreazioneEsercizioDenominazioneImmagine.setVisibility(View.GONE);
-            cardViewCreazioneEsercizioSequenzaParole.setVisibility(View.VISIBLE);
-            cardViewCreazioneEsercizioCoppiaImmagini.setVisibility(View.GONE);
-        } else if(tipoEsercizio == 3){
-            cardViewCreazioneEsercizioDenominazioneImmagine.setVisibility(View.GONE);
-            cardViewCreazioneEsercizioSequenzaParole.setVisibility(View.GONE);
-            cardViewCreazioneEsercizioCoppiaImmagini.setVisibility(View.VISIBLE);
+        if(exercise == 1){
+            cardViewCreateDenominazioneImmagineExercise.setVisibility(View.VISIBLE);
+            cardViewCreateSequenzaParoleExercise.setVisibility(View.GONE);
+            cardViewCreateCoppiaImmagineExercise.setVisibility(View.GONE);
+        } else if(exercise == 2){
+            cardViewCreateDenominazioneImmagineExercise.setVisibility(View.GONE);
+            cardViewCreateSequenzaParoleExercise.setVisibility(View.VISIBLE);
+            cardViewCreateCoppiaImmagineExercise.setVisibility(View.GONE);
+        } else if(exercise == 3){
+            cardViewCreateDenominazioneImmagineExercise.setVisibility(View.GONE);
+            cardViewCreateSequenzaParoleExercise.setVisibility(View.GONE);
+            cardViewCreateCoppiaImmagineExercise.setVisibility(View.VISIBLE);
         }
     }
 
-    private void mostraTemplateEsercizio(int tipoEsercizio) {
+    private void showTemplateExercise(int exercise) {
 
-        linearLayoutSceltaTemplateEsercizio.setVisibility(View.GONE);
-        linearLayoutTemplateEsercizio.setVisibility(View.VISIBLE);
+        pickTemplateExercise.setVisibility(View.GONE);
+        templateExercise.setVisibility(View.VISIBLE);
 
-        switch (tipoEsercizio) {
+        switch (exercise) {
             case 1:
-                cardViewTemplateEsercizioDenominazioneImmagine.setVisibility(View.VISIBLE);
-                cardViewTemplateEsercizioSequenzaParole.setVisibility(View.GONE);
-                cardViewTemplateEsercizioCoppiaImmagini.setVisibility(View.GONE);
-                mostraTemplateDenominazioneImmagine();
+                cardViewTemplateDenominazioneImmagineExercise.setVisibility(View.VISIBLE);
+                cardViewTemplateSequenzaParoleExercise.setVisibility(View.GONE);
+                cardViewTemplateCoppiaImmagineExercise.setVisibility(View.GONE);
+                showTemplateDenominazioneImmagine();
                 break;
             case 2:
-                cardViewTemplateEsercizioDenominazioneImmagine.setVisibility(View.GONE);
-                cardViewTemplateEsercizioSequenzaParole.setVisibility(View.VISIBLE);
-                cardViewTemplateEsercizioCoppiaImmagini.setVisibility(View.GONE);
-                mostraTemplateSequenzaParole();
+                cardViewTemplateDenominazioneImmagineExercise.setVisibility(View.GONE);
+                cardViewTemplateSequenzaParoleExercise.setVisibility(View.VISIBLE);
+                cardViewTemplateCoppiaImmagineExercise.setVisibility(View.GONE);
+                showTemplateSequenzaParole();
                 break;
             case 3:
-                cardViewTemplateEsercizioDenominazioneImmagine.setVisibility(View.GONE);
-                cardViewTemplateEsercizioSequenzaParole.setVisibility(View.GONE);
-                cardViewTemplateEsercizioCoppiaImmagini.setVisibility(View.VISIBLE);
-                mostraTemplateCoppiaImmagini();
+                cardViewTemplateDenominazioneImmagineExercise.setVisibility(View.GONE);
+                cardViewTemplateSequenzaParoleExercise.setVisibility(View.GONE);
+                cardViewTemplateCoppiaImmagineExercise.setVisibility(View.VISIBLE);
+                showTemplateCoppiaImmagini();
                 break;
         }
     }
 
-    private void mostraTemplateDenominazioneImmagine() {
+    private void showTemplateDenominazioneImmagine() {
 
-        TemplateEsercizioDenominazioneImmagini template = listaTemplateDenominazioneImmagine.get(indexTemplateDenominazioneImmagine);
+        TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini =
+                listTemplateDenominazioneImmagine.get(templateDenominazioneImmagine);
 
-        String idEsercizio = template.getIdEsercizio();
-        String immagineEsercizio = template.getImmagineEsercizioDenominazioneImmagini();
-        String parolaEsercizio = template.getParolaEsercizioDenominazioneImmagini();
-        String audioAiuto = template.getAudioAiuto();
+        String idExercise = templateEsercizioDenominazioneImmagini.getIdEsercizio();
+        String imageExercise = templateEsercizioDenominazioneImmagini.getImmagineEsercizioDenominazioneImmagini();
+        String wordExercise = templateEsercizioDenominazioneImmagini.getParolaEsercizioDenominazioneImmagini();
+        String aidAudio = templateEsercizioDenominazioneImmagini.getAudioAiuto();
+        String referenceTemplate = "0";
 
-        int ricompensaCorretto = template.getRicompensaCorretto();
-        int ricompensaErrato = template.getRicompensaErrato();
+        int correctReward = templateEsercizioDenominazioneImmagini.getRicompensaCorretto();
+        int wrongReward = templateEsercizioDenominazioneImmagini.getRicompensaErrato();
 
-        String refTemplate = "0";
+        exerciseToCreate = new EsercizioDenominazioneImmagini(idExercise, correctReward, wrongReward,
+                imageExercise, wordExercise, aidAudio, referenceTemplate);
 
-        esercizio = new EsercizioDenominazioneImmagini(idEsercizio, ricompensaCorretto, ricompensaErrato, immagineEsercizio, parolaEsercizio, audioAiuto, refTemplate);
-        textViewParoleTemplateDenominazioneImmagine.setText(parolaEsercizio);
+        wordsTemplateDenominazioneImmagine.setText(wordExercise);
     }
 
-    private void mostraTemplateSequenzaParole() {
+    private void showTemplateSequenzaParole() {
 
-        TemplateEsercizioSequenzaParole template = listaTemplateSequenzaParole.get(indexTemplateSequenzaParole);
+        TemplateEsercizioSequenzaParole templateEsercizioSequenzaParole =
+                listTemplateSequenzaParole.get(templateSequenzaParole);
 
-        String audioEsercizio = template.getAudioEsercizioSequenzaParole();
-        String parola1 = template.getParolaDaIndovinare1();
-        String parola2 = template.getParolaDaIndovinare2();
-        String parola3 = template.getParolaDaIndovinare3();
-        String idEsercizio = template.getIdEsercizio();
+        String audioExercise = templateEsercizioSequenzaParole.getAudioEsercizioSequenzaParole();
+        String firstWord = templateEsercizioSequenzaParole.getParolaDaIndovinare1();
+        String secondWord = templateEsercizioSequenzaParole.getParolaDaIndovinare2();
+        String thirdWord = templateEsercizioSequenzaParole.getParolaDaIndovinare3();
+        String idExercise = templateEsercizioSequenzaParole.getIdEsercizio();
+        String referenceTemplate = "0";
 
-        int ricompensaCorretto = template.getRicompensaCorretto();
-        int ricompensaErrato = template.getRicompensaErrato();
+        int correctReward = templateEsercizioSequenzaParole.getRicompensaCorretto();
+        int wrongReward = templateEsercizioSequenzaParole.getRicompensaErrato();
 
-        String refTemplate = "0";
+        exerciseToCreate = new EsercizioSequenzaParole(idExercise, correctReward, wrongReward,
+                audioExercise, firstWord, secondWord, thirdWord, referenceTemplate);
 
-        esercizio= new EsercizioSequenzaParole(idEsercizio,ricompensaCorretto,ricompensaErrato,audioEsercizio,parola1,parola2,parola3,refTemplate);
-
-        textViewParoleTemplateSequenzaParole1.setText(parola1);
-        textViewParoleTemplateSequenzaParole2.setText(parola2);
-        textViewParoleTemplateSequenzaParole3.setText(parola3);
+        firstWordTemplateSequenzaParole.setText(firstWord);
+        secondWordTemplateSequenzaParole.setText(secondWord);
+        thirdWordTemplateSequenzaParole.setText(thirdWord);
     }
 
-    private void mostraTemplateCoppiaImmagini() {
+    private void showTemplateCoppiaImmagini() {
 
-        TemplateEsercizioCoppiaImmagini template = listaTemplateCoppiaImmagini.get(indexTemplateCoppiaImmagini);
+        TemplateEsercizioCoppiaImmagini templateEsercizioCoppiaImmagini =
+                listTemplateCoppiaImmagine.get(templateCoppiaImmagini);
 
-        String idEsercizio = template.getIdEsercizio();
-        String audioEsercizio =  template.getAudioEsercizioCoppiaImmagini();
-        String immagineCorretta = template.getImmagineCorrettaEsercizioCoppiaImmagini();
-        String immagineErrata = template.getImmagineErrataEsercizioCoppiaImmagini();
+        String idExercise = templateEsercizioCoppiaImmagini.getIdEsercizio();
+        String audioExercise =  templateEsercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini();
+        String correctImage = templateEsercizioCoppiaImmagini.getImmagineCorrettaEsercizioCoppiaImmagini();
+        String wrongImage = templateEsercizioCoppiaImmagini.getImmagineErrataEsercizioCoppiaImmagini();
+        String referenceTemplate = "0";
 
-        int ricompensaCorretto = template.getRicompensaCorretto();
-        int ricompensaErrato = template.getRicompensaErrato();
+        int correctReward = templateEsercizioCoppiaImmagini.getRicompensaCorretto();
+        int wrongReward = templateEsercizioCoppiaImmagini.getRicompensaErrato();
 
-        String refTemplate = "0";
+        exerciseToCreate = new EsercizioCoppiaImmagini(idExercise, correctReward, wrongReward,
+                audioExercise, correctImage, wrongImage, referenceTemplate);
 
-        esercizio= new EsercizioCoppiaImmagini(idEsercizio,ricompensaCorretto,ricompensaErrato,audioEsercizio,immagineCorretta,immagineErrata,refTemplate);
-        Glide.with(this).load(immagineCorretta).into(templateCoppiaImmagine);
+        Glide.with(this).load(correctImage).into(templateCoppiaImmagine);
     }
 
-    private void setTemplates() {
-        maxSizeTemplateCoppiaImmagini = listaTemplateCoppiaImmagini.size()-1;
-        maxSizeTemplateDenominazioneImmagine = listaTemplateDenominazioneImmagine.size()-1;
-        maxSizeTemplateSequenzaParole = listaTemplateSequenzaParole.size()-1;
-        isTemplateListCompleted = true;
-    }
+    private void startFirstRegistration(ImageButton buttonStartRegistration, View stopMicrophone, View startMicrophone) {
 
-    private void avviaPrimaRegistrazione(ImageButton buttonAvviaRegistrazione, View viewStopMic, View viewAnimationMic) {
-        if (richiestaPermessi()) {
-            avviaRegistrazione(buttonAvviaRegistrazione, viewStopMic, viewAnimationMic);
+        if (requestPermissions()) {
 
-            viewStopMic.setVisibility(View.VISIBLE);
+            startRegistration(buttonStartRegistration, stopMicrophone, startMicrophone);
+            stopMicrophone.setVisibility(View.VISIBLE);
             Toast.makeText(getContext(), getContext().getString(R.string.startedRecording), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void avviaRegistrazione(ImageButton buttonAvviaRegistrazione, View viewStopMic, View viewAnimationMic) {
+    public CompletableFuture<String> stopRegistration(ImageButton buttonStartRegistration, View stopMicrophone,
+                                                      View startMicrophone, int exercise) {
 
-        buttonAvviaRegistrazione.setBackground(null);
+        CompletableFuture<String> completableFuture = new CompletableFuture<>();
 
-        viewAnimationMic.setVisibility(View.VISIBLE);
-        viewAnimationMic.startAnimation(animazioneButtonMic);
-        viewStopMic.setVisibility(View.VISIBLE);
-
-        audioRecorder.startRecording();
-
-    }
-
-    public CompletableFuture<String> stoppaRegistrazione(ImageButton buttonAvviaRegistrazione, View viewStopMic, View viewAnimationMic, int tipoEsecizio) {
-
-        CompletableFuture<String> future = new CompletableFuture<>();
-
-        viewAnimationMic.clearAnimation();
-        buttonAvviaRegistrazione.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.circle_background_verde));
-        viewStopMic.setVisibility(View.GONE);
-        viewAnimationMic.setVisibility(View.GONE);
+        startMicrophone.clearAnimation();
+        buttonStartRegistration.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.circle_background_verde));
+        stopMicrophone.setVisibility(View.GONE);
+        startMicrophone.setVisibility(View.GONE);
 
         audioRecorder.stopRecording();
         Toast.makeText(getContext(), getContext().getString(R.string.stopedRecording), Toast.LENGTH_SHORT).show();
 
-        File fileConvertito = new File(getContext().getFilesDir(), "tempAudioConvertito.mp3");
-        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), fileConvertito);
+        File convertedFile = new File(getContext().getFilesDir(), "convertedFile.mp3");
+        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), convertedFile);
         ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
-        AtomicReference<String> audioRegistrato = new AtomicReference<>();
-        String directoryCorrente = "";
+        AtomicReference<String> atomicReference = new AtomicReference<>();
 
-        switch(tipoEsecizio) {
+        String actualDirectory = "";
+
+        switch(exercise) {
             case 1:
-                directoryCorrente = ComandiFirebaseStorage.AUDIO_REGISTRATI_DENOMINAZIONE_IMMAGINE;
+                actualDirectory = ComandiFirebaseStorage.AUDIO_DENOMINAZIONE_IMMAGINE_EXERCISE;
                 break;
             case 2:
-                directoryCorrente = ComandiFirebaseStorage.AUDIO_REGISTRATI_SEQUENZA_PAROLE;
+                actualDirectory = ComandiFirebaseStorage.AUDIO_SEQUENZA_PAROLE_EXERCISE;
                 break;
             case 3:
-                directoryCorrente = ComandiFirebaseStorage.AUDIO_REGISTRATI_COPPIA_IMMAGINI;
+                actualDirectory = ComandiFirebaseStorage.AUDIO_COPPIA_IMMAGINI_EXERCISE;
                 break;
         }
 
-        comandiFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(fileConvertito), directoryCorrente)
+        comandiFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(convertedFile), actualDirectory)
                 .thenAccept(value ->{
-                    audioRegistrato.set(value);
+                    atomicReference.set(value);
                 })
                 .thenRun(() -> {
-                    future.complete(audioRegistrato.get());
+                    completableFuture.complete(atomicReference.get());
                 });
-        return future;
+
+        return completableFuture;
     }
 
-    private void setAnimazioneRegistrazione() {
-        animazioneButtonMic = new ScaleAnimation(1f, 0.8f, 1f, 0.8f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animazioneButtonMic.setDuration(500);
-        animazioneButtonMic.setRepeatMode(Animation.REVERSE);
-        animazioneButtonMic.setRepeatCount(Animation.INFINITE);
+    private void startRegistration(ImageButton buttonStartRegistration, View stopMicrophone, View startMicrophone) {
+
+        buttonStartRegistration.setBackground(null);
+        startMicrophone.setVisibility(View.VISIBLE);
+        startMicrophone.startAnimation(scaleAnimation);
+        stopMicrophone.setVisibility(View.VISIBLE);
+
+        audioRecorder.startRecording();
     }
 
-    private boolean richiestaPermessi() {
+    EsercizioRealizzabile getExercise() {
+        return exerciseToCreate;
+    }
+
+    private AudioRecorder audioRecorder() {
+
+        File appDirectory = requireActivity().getFilesDir();
+        File audioRegistration = new File(appDirectory, "audioRegistrato");
+
+        return new AudioRecorder(audioRegistration);
+    }
+
+    private void setScaleAnimation() {
+        scaleAnimation = new ScaleAnimation(1f, 0.8f, 1f, 0.8f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setDuration(500);
+        scaleAnimation.setRepeatMode(Animation.REVERSE);
+        scaleAnimation.setRepeatCount(Animation.INFINITE);
+    }
+
+    private boolean requestPermissions() {
         if (!checkPermissions(requireActivity())) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.RECORD_AUDIO)) {
-                setPermissionDialog();
+                setDialogPermissions();
             } else {
-                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
+                requestPermissionsLauncher.launch(Manifest.permission.RECORD_AUDIO);
             }
             return false;
         } else {
             return true;
         }
     }
-    private boolean checkPermissions(Activity currentactivity) {
-        int recordAudioPermission = ContextCompat.checkSelfPermission(currentactivity, Manifest.permission.RECORD_AUDIO);
-        return recordAudioPermission == PackageManager.PERMISSION_GRANTED;
-    }
 
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    this.audioRecorder = initAudioRecorder();
-                } else {
-                    InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.permissionDeniedInstructions), getString(R.string.infoOk));
-                    infoDialog.show();
-                    infoDialog.setOnConfirmButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
-                }
-            });
-
-    private void setPermissionDialog() {
+    private void setDialogPermissions() {
         PermessiDialog permessiDialog = new PermessiDialog(getContext(), getString(R.string.permissionDeniedDescription));
         permessiDialog.show();
-        permessiDialog.setOnConfirmButtonClickListener(() -> requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO));
+        permessiDialog.setOnConfirmButtonClickListener(() -> requestPermissionsLauncher.launch(Manifest.permission.RECORD_AUDIO));
         permessiDialog.setOnCancelButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
     }
 
-    private AudioRecorder initAudioRecorder() {
-
-        File cartellaApp = requireActivity().getFilesDir();
-        File audioRegistrazione = new File(cartellaApp, "tempAudioRegistrato");
-
-        return new AudioRecorder(audioRegistrazione);
-    }
-
-    private void createEsercizioDenominazioneImmagine() {
-
-        if (immagineEsercizioDenominazione==null || audioDenominazione==null || textInputEditTextRicompensaCorrettoDenominazione.getText().toString().isEmpty() || textInputEditTextRicompensaErratoDenominazione.getText().toString().isEmpty() || textInputEditTextRispostaEsercizioDenominaizone.getText().toString().isEmpty()) {
-            showErrorDialog();
-        }else {
-            esercizio = new EsercizioDenominazioneImmagini(Integer.parseInt(textInputEditTextRicompensaCorrettoDenominazione.getText().toString()), Integer.parseInt(textInputEditTextRicompensaErratoDenominazione.getText().toString()), audioDenominazione, immagineEsercizioDenominazione, textInputEditTextRispostaEsercizioDenominaizone.getText().toString());
-            Log.d("Esercizio", esercizio.toString());
-            linearLayoutAggiungiEsercizio.setVisibility(View.GONE);
-            imageViewArrowDown.setRotation(0);
-            Toast.makeText(getContext(), getString(R.string.esercizio) + " " + getString(R.string.confermato), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void createEsercizioSequenzaParole() {
-
-        if (audioSequenzaParole==null || textInputEditTextRicompensaCorrettoSequenzaParole.getText().toString().isEmpty() || textInputEditTextRicompensaErratoSequenzaParole.getText().toString().isEmpty() || textInputEditTextParola1.getText().toString().isEmpty() || textInputEditTextParola2.getText().toString().isEmpty() || textInputEditTextParola3.getText().toString().isEmpty()) {
-            showErrorDialog();
-        }else {
-            esercizio = new EsercizioSequenzaParole(Integer.parseInt(textInputEditTextRicompensaCorrettoSequenzaParole.getText().toString()), Integer.parseInt(textInputEditTextRicompensaErratoSequenzaParole.getText().toString()), audioSequenzaParole, textInputEditTextParola1.getText().toString(), textInputEditTextParola2.getText().toString(), textInputEditTextParola3.getText().toString());
-            Log.d("Esercizio", esercizio.toString());
-            linearLayoutAggiungiEsercizio.setVisibility(View.GONE);
-            imageViewArrowDown.setRotation(0);
-            Toast.makeText(getContext(), getString(R.string.esercizio) + " " + getString(R.string.confermato), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void createEsercizioCoppiaImmagini() {
-        if(immagineCoppiaCorretta==null || immagineCoppiaErrata==null || audioCoppia==null || textInputEditTextRicompensaCorrettoCoppiaImmagine.getText().toString().isEmpty() || textInputEditTextRicompensaErratoCoppiaImmagine.getText().toString().isEmpty()){
-            Log.d("Esercizio", (immagineCoppiaCorretta==null) +" " +(immagineCoppiaErrata==null) +" " +(audioCoppia==null) +" " +(textInputEditTextRicompensaCorrettoCoppiaImmagine.getText().toString().isEmpty()) +" " +(textInputEditTextRicompensaErratoCoppiaImmagine.getText().toString().isEmpty()));
-            showErrorDialog();
-        }else {
-            esercizio = new EsercizioCoppiaImmagini(Integer.parseInt(textInputEditTextRicompensaCorrettoCoppiaImmagine.getText().toString()), Integer.parseInt(textInputEditTextRicompensaErratoCoppiaImmagine.getText().toString()), audioCoppia, immagineCoppiaCorretta, immagineCoppiaErrata);
-            Log.d("Esercizio", esercizio.toString());
-            linearLayoutAggiungiEsercizio.setVisibility(View.GONE);
-            imageViewArrowDown.setRotation(0);
-            Toast.makeText(getContext(), getString(R.string.esercizio) + " " + getString(R.string.confermato), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    EsercizioRealizzabile getEsercizio() {
-
-        return esercizio;
-
+    private boolean checkPermissions(Activity activity) {
+        int audioPermission = ContextCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO);
+        return audioPermission == PackageManager.PERMISSION_GRANTED;
     }
 
     private void showErrorDialog(){
@@ -780,5 +723,89 @@ public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
         infoDialog.setOnConfirmButtonClickListener(null);
         infoDialog.show();
     }
+
+    private final ActivityResultLauncher<String> requestPermissionsLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    this.audioRecorder = audioRecorder();
+                } else {
+                    InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.permissionDeniedInstructions), getString(R.string.infoOk));
+                    infoDialog.show();
+                    infoDialog.setOnConfirmButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
+                }
+            });
+
+
+    private void createDenominazioneImmagineExercise() {
+
+        if (imageDenominazioneImmagineExercise==null || audioDenominazioneImmagineExercise==null ||
+                correctRewardDenominazioneImmagine.getText().toString().isEmpty() ||
+                wrongRewardDenominazioneImmagine.getText().toString().isEmpty() ||
+                answerDenominazioneImmagineExercise.getText().toString().isEmpty()) {
+
+            showErrorDialog();
+
+        }else {
+            exerciseToCreate = new EsercizioDenominazioneImmagini(Integer.parseInt(correctRewardDenominazioneImmagine.
+                    getText().toString()), Integer.parseInt(wrongRewardDenominazioneImmagine.
+                    getText().toString()), audioDenominazioneImmagineExercise, imageDenominazioneImmagineExercise, answerDenominazioneImmagineExercise.
+                    getText().toString());
+
+            Log.d("exerciseToCreate", exerciseToCreate.toString());
+            addExercise.setVisibility(View.GONE);
+            arrowDown.setRotation(0);
+            Toast.makeText(getContext(), getString(R.string.esercizio) + " " + getString(R.string.confermato), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void createSequenzaParoleExercise() {
+
+        if (audioSequenzaParoleExercise==null || correctRewardSequenzaParole.getText().toString().isEmpty() ||
+                wrongRewardSequenzaParole.getText().toString().isEmpty() ||
+                firstWord.getText().toString().isEmpty() ||
+                secondWord.getText().toString().isEmpty() ||
+                thirdWord.getText().toString().isEmpty()) {
+
+            showErrorDialog();
+
+        }else {
+            exerciseToCreate = new EsercizioSequenzaParole(Integer.parseInt(correctRewardSequenzaParole.
+                    getText().toString()), Integer.parseInt(wrongRewardSequenzaParole.
+                    getText().toString()), audioSequenzaParoleExercise, firstWord.
+                    getText().toString(), secondWord.
+                    getText().toString(), thirdWord.
+                    getText().toString());
+
+            Log.d("exerciseToCreate", exerciseToCreate.toString());
+            addExercise.setVisibility(View.GONE);
+            arrowDown.setRotation(0);
+            Toast.makeText(getContext(), getString(R.string.esercizio) + " " + getString(R.string.confermato), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void createCoppiaImmagineExercise() {
+        if (correctImageCoppiaImmagine == null || audioCoppiaImmagineExercise == null || audioCoppiaImmagineExercise == null ||
+                correctAnswerCoppiaImmagine.getText().toString().isEmpty() ||
+                wrongAnswerCoppiaImmagine.getText().toString().isEmpty()){
+
+            Log.d("exerciseToCreate", (correctImageCoppiaImmagine == null) + " "
+                    + (wrongImageCoppiaImmagine == null) + " " + (audioCoppiaImmagineExercise == null) + " "
+                    + (correctAnswerCoppiaImmagine.getText().toString().isEmpty()) + " "
+                    + (wrongAnswerCoppiaImmagine.getText().toString().isEmpty()));
+
+            showErrorDialog();
+
+        }else {
+            exerciseToCreate = new EsercizioCoppiaImmagini(Integer.parseInt(correctAnswerCoppiaImmagine.
+                    getText().toString()), Integer.parseInt(wrongAnswerCoppiaImmagine.
+                    getText().toString()), audioCoppiaImmagineExercise, correctImageCoppiaImmagine, wrongImageCoppiaImmagine);
+
+            Log.d("exerciseToCreate", exerciseToCreate.toString());
+            addExercise.setVisibility(View.GONE);
+            arrowDown.setRotation(0);
+            Toast.makeText(getContext(), getString(R.string.esercizio) + " " + getString(R.string.confermato), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

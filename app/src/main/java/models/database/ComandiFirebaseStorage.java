@@ -18,17 +18,17 @@ public class ComandiFirebaseStorage {
 
     public static final String SCENARI_GIOCO = "scenarigioco";
 
-    public static final String ESERCIZI_DENOMINAZIONE_IMMAGINE = "esercizi_denominazione_immagine";
+    public static final String DENOMINAZIONE_IMMAGINE_EXERCISE = "denominazione_immagine_exercise";
 
-    public static final String AUDIO_REGISTRATI_DENOMINAZIONE_IMMAGINE = ESERCIZI_DENOMINAZIONE_IMMAGINE + "/audio_registrati";
+    public static final String AUDIO_DENOMINAZIONE_IMMAGINE_EXERCISE = DENOMINAZIONE_IMMAGINE_EXERCISE + "/audio_registrati";
 
-    public static final String ESERCIZI_SEQUENZA_PAROLE = "esercizi_sequenza_parole";
+    public static final String SEQUENZA_PAROLE_EXERCISE = "sequenza_parole_exercise";
 
-    public static final String AUDIO_REGISTRATI_SEQUENZA_PAROLE = ESERCIZI_SEQUENZA_PAROLE + "/audio_registrati";
+    public static final String AUDIO_SEQUENZA_PAROLE_EXERCISE = SEQUENZA_PAROLE_EXERCISE + "/audio_registrati";
 
-    public static final String ESERCIZI_COPPIA_IMMAGINI = "esercizi_coppia_immagini";
+    public static final String COPPIA_IMMAGINI_EXERCISE = "coppia_immagini_exercise";
 
-    public static final String AUDIO_REGISTRATI_COPPIA_IMMAGINI = ESERCIZI_COPPIA_IMMAGINI + "/audio_registrati";
+    public static final String AUDIO_COPPIA_IMMAGINI_EXERCISE = COPPIA_IMMAGINI_EXERCISE + "/audio_registrati";
 
 
     public ComandiFirebaseStorage() {
