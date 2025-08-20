@@ -42,7 +42,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextDataInizioTerapia"
+                        android:id="@+id/startDate"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextDataFineTerapia"
+                        android:id="@+id/endDate"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
 
             <!-- Button per aggiungere scenario-->
             <Button
-                android:id="@+id/buttonAddScenario"
+                android:id="@+id/addScenery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/add_scenario"
@@ -123,7 +123,7 @@
 
             <!-- Button per salvare terapia-->
             <Button
-                android:id="@+id/buttonSalvaTerapia"
+                android:id="@+id/saveTherapy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

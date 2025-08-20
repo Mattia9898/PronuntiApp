@@ -330,7 +330,7 @@ public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
                 navigateTo(R.id.action_creazioneScenarioFragment_to_schedaPazienteFragment, bundle);
             }
             else {
-                salvataggioScenario.saveScenario(scenarioGioco);
+                salvataggioScenario.saveScenery(scenarioGioco);
                 getParentFragmentManager().beginTransaction().remove(this).commit();
             }
         }

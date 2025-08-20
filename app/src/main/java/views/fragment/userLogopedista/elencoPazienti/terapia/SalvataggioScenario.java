@@ -4,6 +4,6 @@ import models.domain.scenariGioco.ScenarioGioco;
 
 public interface SalvataggioScenario {
 
-    void saveScenario(ScenarioGioco scenarioGioco);
+    void saveScenery(ScenarioGioco scenarioGioco);
 
 }
