@@ -1,86 +1,80 @@
 package views.fragment.userLogopedista.elencoPazienti;
 
+
+import it.uniba.dib.pronuntiapp.R;
+
 import android.os.Bundle;
 
-import android.util.Log;
-
 import android.view.LayoutInflater;
-
 import android.view.View;
-
 import android.view.ViewGroup;
 
-import android.widget.Button;
+import models.domain.profili.Genitore;
+import models.domain.profili.Logopedista;
+import models.domain.profili.Paziente;
 
-import android.widget.Spinner;
+import views.dialog.InfoDialog;
+import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.DataCustomizzata;
+
+import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.verificaRegistrazione;
+import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
+import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;
+
+import android.util.Log;
 
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import android.widget.Button;
+import android.widget.Spinner;
+
 import java.time.LocalDate;
 
 import java.util.concurrent.CompletableFuture;
 
-import it.uniba.dib.pronuntiapp.R;
-
-import models.domain.profili.Genitore;
-
-import models.domain.profili.Logopedista;
-
-import models.domain.profili.Paziente;
-
-import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.verificaRegistrazione;
-
-import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
-
-import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;
-
-import views.dialog.InfoDialog;
-
-import views.fragment.AbstractNavigazioneFragment;
-
-import views.fragment.DataCustomizzata;
 
 public class RegistrazionePazienteGenitoreFragment extends AbstractNavigazioneFragment {
 
-    private TextInputEditText editTextNomePaziente;
+    private TextInputEditText namePatient;
 
-    private TextInputEditText editTextCognomePaziente;
+    private TextInputEditText surnamePatient;
 
-    private TextInputEditText editTextEmailPaziente;
+    private TextInputEditText emailPatient;
 
-    private TextInputEditText editTextUsernamePaziente;
+    private TextInputEditText usernamePatient;
 
-    private TextInputEditText editTextPasswordPaziente;
+    private TextInputEditText passwordPatient;
 
-    private TextInputEditText editTextConfermaPasswordPaziente;
+    private TextInputEditText confirmPasswordPatient;
 
-    private TextInputEditText editTextEtaPaziente;
+    private TextInputEditText agePatient;
 
-    private TextInputEditText editTextDataNascitaPaziente;
+    private TextInputEditText birthdatePatient;
 
-    private Spinner spinnerSessoPaziente;
 
-    private TextInputEditText editTextNomeGenitore;
+    private TextInputEditText nameParent;
 
-    private TextInputEditText editTextCognomeGenitore;
+    private TextInputEditText surnameParent;
 
-    private TextInputEditText editTextEmailGenitore;
+    private TextInputEditText emailParent;
 
-    private TextInputEditText editTextUsernameGenitore;
+    private TextInputEditText usernameParent;
 
-    private TextInputEditText editTextPasswordGenitore;
+    private TextInputEditText passwordParent;
 
-    private TextInputEditText editTextConfermaPasswordGenitore;
+    private TextInputEditText confirmPasswordParent;
 
-    private TextInputEditText editTextTelefonoGenitore;
+    private TextInputEditText phoneNumberParent;
 
-    private Button buttonRegistraPazienteEGenitore;
+    private Spinner spinnerSexPatient;
 
-    private LogopedistaViewsModels mLogopedistaViewsModels;
+    private Button buttonRegisterPatientAndParent;
 
-    private RegistrazionePazienteGenitoreController mController;
+    private LogopedistaViewsModels logopedistaViewsModels;
+
+    private RegistrazionePazienteGenitoreController registrazionePazienteGenitoreController;
 
 
     @Override
@@ -89,29 +83,28 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigazioneFr
         View view = inflater.inflate(R.layout.fragment_registrazione_paziente_genitore, container, false);
         setToolBar(view, getString(R.string.registrazionePaziente));
 
-        this.mLogopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
-        this.mController = mLogopedistaViewsModels.getRegistrazionePazienteGenitoreController();
+        this.logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
+        this.registrazionePazienteGenitoreController = logopedistaViewsModels.getRegistrazionePazienteGenitoreController();
 
+        this.namePatient = view.findViewById(R.id.namePatient);
+        this.surnamePatient = view.findViewById(R.id.surnamePatient);
+        this.emailPatient = view.findViewById(R.id.emailPatient);
+        this.usernamePatient = view.findViewById(R.id.usernamePatient);
+        this.passwordPatient = view.findViewById(R.id.passwordPatient);
+        this.confirmPasswordPatient = view.findViewById(R.id.confirmPasswordPatient);
+        this.agePatient = view.findViewById(R.id.agePatient);
+        this.spinnerSexPatient = view.findViewById(R.id.spinnerSexPatient);
+        this.birthdatePatient = view.findViewById(R.id.birthdatePatient);
 
-        this.editTextNomePaziente = view.findViewById(R.id.textInputEditTextNomePaziente);
-        this.editTextCognomePaziente = view.findViewById(R.id.textInputEditTextCognomePaziente);
-        this.editTextEmailPaziente = view.findViewById(R.id.textInputEditTextEmailPaziente);
-        this.editTextUsernamePaziente = view.findViewById(R.id.textInputEditTextUsernamePaziente);
-        this.editTextPasswordPaziente = view.findViewById(R.id.textInputEditTextPasswordPaziente);
-        this.editTextConfermaPasswordPaziente = view.findViewById(R.id.textInputEditTextConfermaPasswordPaziente);
-        this.editTextEtaPaziente = view.findViewById(R.id.textInputEditTextEtaPaziente);
-        this.spinnerSessoPaziente = view.findViewById(R.id.spinnerSessoPaziente);
-        this.editTextDataNascitaPaziente = view.findViewById(R.id.textInputEditTextDataNascitaPaziente);
+        this.nameParent = view.findViewById(R.id.nameParent);
+        this.surnameParent = view.findViewById(R.id.surnameParent);
+        this.emailParent = view.findViewById(R.id.emailParent);
+        this.usernameParent = view.findViewById(R.id.usernameParent);
+        this.passwordParent = view.findViewById(R.id.passwordParent);
+        this.confirmPasswordParent = view.findViewById(R.id.confirmPasswordParent);
+        this.phoneNumberParent = view.findViewById(R.id.phoneNumberParent);
 
-        this.editTextNomeGenitore = view.findViewById(R.id.textInputEditTextNomeGenitore);
-        this.editTextCognomeGenitore = view.findViewById(R.id.textInputEditTextCognomeGenitore);
-        this.editTextEmailGenitore = view.findViewById(R.id.textInputEditTextEmailGenitore);
-        this.editTextUsernameGenitore = view.findViewById(R.id.textInputEditTextUsernameGenitore);
-        this.editTextPasswordGenitore = view.findViewById(R.id.textInputEditTextPasswordGenitore);
-        this.editTextConfermaPasswordGenitore = view.findViewById(R.id.textInputEditTextConfermaPasswordGenitore);
-        this.editTextTelefonoGenitore = view.findViewById(R.id.textInputEditTextTelefonoGenitore);
-
-        this.buttonRegistraPazienteEGenitore = view.findViewById(R.id.buttonRegistraPazienteEGenitore);
+        this.buttonRegisterPatientAndParent = view.findViewById(R.id.buttonRegisterPatientAndParent);
 
         return view;
     }
@@ -121,131 +114,157 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigazioneFr
 
         super.onViewCreated(view, savedInstanceState);
 
-        editTextDataNascitaPaziente.setOnClickListener(v -> DataCustomizzata.showDatePickerDialog(getContext(), editTextDataNascitaPaziente));
+        birthdatePatient.setOnClickListener(v -> DataCustomizzata.showDatePickerDialog(getContext(), birthdatePatient));
 
-        buttonRegistraPazienteEGenitore.setOnClickListener(v -> {
-            Logopedista mLogopedista = mLogopedistaViewsModels.getLogopedistaLiveData().getValue();
-            String idLogopedista = mLogopedista.getIdProfilo();
+        buttonRegisterPatientAndParent.setOnClickListener(v -> {
+            Logopedista logopedista = logopedistaViewsModels.getLogopedistaLiveData().getValue();
+            String idLogopedista = logopedista.getIdProfilo();
 
-            eseguiRegistrazionePaziente(idLogopedista).thenAccept(paziente -> {
-                eseguiRegistrazioneGenitore(idLogopedista, paziente.getIdProfilo()).thenAccept(genitore -> {
-                    paziente.setGenitore(genitore);
-                    mController.reLogLogopedista(mLogopedista.getEmail(), mLogopedista.getPassword()).thenAccept(userId -> {
-                        mLogopedista.addPaziente(paziente);
-                        mLogopedista.aggiornaClassificaPazienti();
-                        mLogopedistaViewsModels.aggiornaLogopedistaRemoto();
+            executeRegistrationPatient(idLogopedista).thenAccept(patient -> {
+                executeRegistrationParent(idLogopedista, patient.getIdProfilo()).thenAccept(parent -> {
+                    patient.setGenitore(parent);
+
+                    // una volta completata la registrazione e aver premuto con successo il button per la registrazione di
+                    // paziente e genitore, tornerà al fragment precedente (fragment_pazienti.xml)
+                    registrazionePazienteGenitoreController.
+                            reLogLogopedista(logopedista.getEmail(), logopedista.getPassword()).thenAccept(userId -> {
+                                logopedista.addPaziente(patient);
+                                logopedista.aggiornaClassificaPazienti();
+                        logopedistaViewsModels.aggiornaLogopedistaRemoto();
                         getActivity().runOnUiThread(() -> navigateTo(R.id.action_registrazionePazienteGenitoreFragment_to_pazientiFragment));
                     });
+
                 });
             });
         });
     }
 
-    private CompletableFuture<Paziente> eseguiRegistrazionePaziente(String idLogopedista) {
-        String nomePaziente = editTextNomePaziente.getText().toString();
-        String cognomePaziente = editTextCognomePaziente.getText().toString();
-        String emailPaziente = editTextEmailPaziente.getText().toString();
-        String usernamePaziente = editTextUsernamePaziente.getText().toString();
-        String passwordPaziente = editTextPasswordPaziente.getText().toString();
-        String confermaPasswordPaziente = editTextConfermaPasswordPaziente.getText().toString();
 
-        CompletableFuture<Paziente> futurePaziente = new CompletableFuture<>();
+    public void showDialogErrorFields(int typeError) {
 
-        int statusCampiValidi = mController.verificaCorrettezzaCampiPaziente(nomePaziente, cognomePaziente, emailPaziente, usernamePaziente, passwordPaziente, confermaPasswordPaziente, editTextEtaPaziente.getText().toString(), editTextDataNascitaPaziente.getText().toString(), spinnerSessoPaziente.getSelectedItem().toString());
-        if (statusCampiValidi != 0) {
-            creaDialogErroreCampi(statusCampiValidi);
-        }
-        else {
-            char sessoPaziente = spinnerSessoPaziente.getSelectedItem().toString().charAt(0);
-            LocalDate dataNascitaPaziente = LocalDate.parse(editTextDataNascitaPaziente.getText().toString());
-            int etaPaziente = Integer.parseInt(editTextEtaPaziente.getText().toString());
+        String messageError = "";
 
-            CompletableFuture<String> futureIsRegistrationCorrect = verificaRegistrazione(emailPaziente, passwordPaziente);
-            futureIsRegistrationCorrect.thenAccept(userId -> {
-                if (userId == null) {
-                    creaDialogErroreCampi(8);
-                } else {
-                    Paziente paziente = mController.registrazionePaziente(userId, nomePaziente, cognomePaziente, usernamePaziente, emailPaziente, passwordPaziente, etaPaziente, dataNascitaPaziente, sessoPaziente, idLogopedista);
-                    Log.d("RegistrazionePazienteGenitoreFragment.eseguiRegistrazionePaziente()", paziente.toString());
-
-                    futurePaziente.complete(paziente);
-                }
-            });
-        }
-
-        return futurePaziente;
-    }
-
-    private CompletableFuture<Genitore> eseguiRegistrazioneGenitore(String idLogopedista, String idPaziente) {
-        String nomeGenitore = editTextNomeGenitore.getText().toString();
-        String cognomeGenitore = editTextCognomeGenitore.getText().toString();
-        String emailGenitore = editTextEmailGenitore.getText().toString();
-        String usernameGenitore = editTextUsernameGenitore.getText().toString();
-        String passwordGenitore = editTextPasswordGenitore.getText().toString();
-        String confermaPasswordGenitore = editTextConfermaPasswordGenitore.getText().toString();
-        String telefonoGenitore = editTextTelefonoGenitore.getText().toString();
-
-        CompletableFuture<Genitore> futureGenitore = new CompletableFuture<>();
-
-        int statusCampiValidi = mController.verificaCorrettezzaCampiGenitore(nomeGenitore, cognomeGenitore, emailGenitore, usernameGenitore, passwordGenitore, confermaPasswordGenitore, telefonoGenitore);
-        if (statusCampiValidi != 0) {
-            creaDialogErroreCampi(statusCampiValidi);
-        }
-        else {
-            CompletableFuture<String> futureIsRegistrationCorrect = verificaRegistrazione(emailGenitore, passwordGenitore);
-            futureIsRegistrationCorrect.thenAccept(userId -> {
-                if (userId == null) {
-                    creaDialogErroreCampi(9);
-                } else {
-                    Genitore genitore = mController.registrazioneGenitore(userId, nomeGenitore, cognomeGenitore, usernameGenitore, emailGenitore, passwordGenitore, telefonoGenitore, idLogopedista, idPaziente);
-                    Log.d("RegistrazionePazienteGenitoreFragment.eseguiRegistrazioneGenitore()", genitore.toString());
-
-                    futureGenitore.complete(genitore);
-                }
-            });
-        }
-
-        return futureGenitore;
-    }
-
-    public void creaDialogErroreCampi(int tipoErrore) {
-
-        String messaggioErrore = "";
-
-        switch (tipoErrore) {
+        switch (typeError) {
             case 1:
-                messaggioErrore = getString(R.string.erroreRegistrazionePazienteCampiMancanti);
+                messageError = getString(R.string.erroreRegistrazionePazienteCampiMancanti);
                 break;
             case 2:
-                messaggioErrore = getString(R.string.erroreRegistrazionePazientePasswordDifformi);
+                messageError = getString(R.string.erroreRegistrazionePazientePasswordDifformi);
                 break;
             case 3:
-                messaggioErrore = getString(R.string.erroreRegistrazionePazienteEtaNonValida);
+                messageError = getString(R.string.erroreRegistrazionePazienteEtaNonValida);
                 break;
             case 4:
-                messaggioErrore = getString(R.string.erroreRegistrazionePazienteDataNonValida);
+                messageError = getString(R.string.erroreRegistrazionePazienteDataNonValida);
                 break;
             case 5:
-                messaggioErrore = getString(R.string.erroreRegistrazionePazienteSessoNonValido);
+                messageError = getString(R.string.erroreRegistrazionePazienteSessoNonValido);
                 break;
             case 6:
-                messaggioErrore = getString(R.string.erroreRegistrazioneGenitoreCampiMancanti);
+                messageError = getString(R.string.erroreRegistrazioneGenitoreCampiMancanti);
                 break;
             case 7:
-                messaggioErrore = getString(R.string.erroreRegistrazioneGenitorePasswordDifformi);
+                messageError = getString(R.string.erroreRegistrazioneGenitorePasswordDifformi);
                 break;
             case 8:
-                messaggioErrore = getString(R.string.erroreRegistrazionePazienteAutenticazione);
+                messageError = getString(R.string.erroreRegistrazionePazienteAutenticazione);
                 break;
             case 9:
-                messaggioErrore = getString(R.string.erroreRegistrazioneGenitoreAutenticazione);
+                messageError = getString(R.string.erroreRegistrazioneGenitoreAutenticazione);
                 break;
         }
 
-        InfoDialog infoDialog = new InfoDialog(getContext(), messaggioErrore, getString(R.string.tastoRiprova));
+        InfoDialog infoDialog = new InfoDialog(getContext(), messageError, getString(R.string.tastoRiprova));
         infoDialog.show();
         infoDialog.setOnConfirmButtonClickListener(null);
     }
+
+    private CompletableFuture<Genitore> executeRegistrationParent(String idLogopedista, String idPaziente) {
+
+        String name = nameParent.getText().toString();
+        String surname = surnameParent.getText().toString();
+        String email = emailParent.getText().toString();
+        String username = usernameParent.getText().toString();
+        String password = passwordParent.getText().toString();
+        String confirmPassword = confirmPasswordParent.getText().toString();
+        String phoneNumber = phoneNumberParent.getText().toString();
+
+        CompletableFuture<Genitore> completableFutureParent = new CompletableFuture<>();
+
+        int statusFields = registrazionePazienteGenitoreController.
+                verificaCorrettezzaCampiGenitore(name, surname, email, username,
+                        password, confirmPassword, phoneNumber);
+
+        if (statusFields != 0) {
+            showDialogErrorFields(statusFields);
+        }
+        else {
+
+            CompletableFuture<String> completableFutureRegistrationCorrect = verificaRegistrazione(email, password);
+
+            completableFutureRegistrationCorrect.thenAccept(userId -> {
+                if (userId == null) {
+                    showDialogErrorFields(9);
+                } else {
+                    Genitore genitore = registrazionePazienteGenitoreController.
+                            registrazioneGenitore(userId, name, surname, username,
+                                    email, password, phoneNumber, idLogopedista, idPaziente);
+
+                    Log.d("RegistrazionePazienteGenitoreFragment.eseguiRegistrazioneGenitore()", genitore.toString());
+
+                    completableFutureParent.complete(genitore);
+                }
+            });
+        }
+
+        return completableFutureParent;
+    }
+
+    private CompletableFuture<Paziente> executeRegistrationPatient(String idLogopedista) {
+
+        String name = namePatient.getText().toString();
+        String surname = surnamePatient.getText().toString();
+        String email = emailPatient.getText().toString();
+        String username = usernamePatient.getText().toString();
+        String password = passwordPatient.getText().toString();
+        String confirmPassword = confirmPasswordPatient.getText().toString();
+
+        CompletableFuture<Paziente> completableFuturePatient = new CompletableFuture<>();
+
+        int statusFields = registrazionePazienteGenitoreController.
+                verificaCorrettezzaCampiPaziente(name, surname, email, username,
+                        password, confirmPassword, agePatient.getText().toString(),
+                        birthdatePatient.getText().toString(), spinnerSexPatient.getSelectedItem().toString());
+
+        if (statusFields != 0) {
+            showDialogErrorFields(statusFields);
+        }
+        else {
+            char sex = spinnerSexPatient.getSelectedItem().toString().charAt(0);
+            LocalDate birthdate = LocalDate.parse(birthdatePatient.getText().toString());
+
+            int age = Integer.parseInt(agePatient.getText().toString());
+            CompletableFuture<String> completableFutureRegistrationCorrect = verificaRegistrazione(email, password);
+
+            completableFutureRegistrationCorrect.thenAccept(userId -> {
+                if (userId == null) {
+                    showDialogErrorFields(8);
+                } else {
+                    Paziente paziente = registrazionePazienteGenitoreController.
+                            registrazionePaziente(userId, name, surname, username,
+                                    email, password, age, birthdate,
+                                    sex, idLogopedista);
+
+                    Log.d("RegistrazionePazienteGenitoreFragment.eseguiRegistrazionePaziente()", paziente.toString());
+
+                    completableFuturePatient.complete(paziente);
+                }
+            });
+        }
+
+        return completableFuturePatient;
+    }
+
 
 }
 

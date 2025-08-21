@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextNomePaziente"
+                        android:id="@+id/namePatient"
                         style="@style/TextInputEditTextStyle"
                         android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextCognomePaziente"
+                        android:id="@+id/surnamePatient"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextEmailPaziente"
+                        android:id="@+id/emailPatient"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextUsernamePaziente"
+                        android:id="@+id/usernamePatient"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextEtaPaziente"
+                            android:id="@+id/agePatient"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
                         >
 
                         <Spinner
-                            android:id="@+id/spinnerSessoPaziente"
+                            android:id="@+id/spinnerSexPatient"
                             style="@style/SpinnerStyle"
                             android:layout_marginTop="20dp"
                             android:entries="@array/sesso_array"
@@ -213,7 +213,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextDataNascitaPaziente"
+                            android:id="@+id/birthdatePatient"
                             style="@style/TextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -246,7 +246,7 @@
                     android:layout_height="wrap_content"
                     app:passwordToggleEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextPasswordPaziente"
+                        android:id="@+id/passwordPatient"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -262,7 +262,7 @@
                     android:layout_marginBottom="10dp"
                     app:passwordToggleEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextConfermaPasswordPaziente"
+                        android:id="@+id/confirmPasswordPatient"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -318,7 +318,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextNomeGenitore"
+                        android:id="@+id/nameParent"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -332,7 +332,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextCognomeGenitore"
+                        android:id="@+id/surnameParent"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -346,7 +346,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextEmailGenitore"
+                        android:id="@+id/emailParent"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -360,7 +360,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextUsernameGenitore"
+                        android:id="@+id/usernameParent"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -374,7 +374,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextTelefonoGenitore"
+                        android:id="@+id/phoneNumberParent"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -389,7 +389,7 @@
                     android:layout_height="wrap_content"
                     app:passwordToggleEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextPasswordGenitore"
+                        android:id="@+id/passwordParent"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -406,7 +406,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditTextConfermaPasswordGenitore"
+                        android:id="@+id/confirmPasswordParent"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -417,7 +417,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <Button
-            android:id="@+id/buttonRegistraPazienteEGenitore"
+            android:id="@+id/buttonRegisterPatientAndParent"
             android:layout_width="296dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
