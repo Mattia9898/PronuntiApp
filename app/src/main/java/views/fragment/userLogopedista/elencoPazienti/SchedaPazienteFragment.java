@@ -1,72 +1,55 @@
 package views.fragment.userLogopedista.elencoPazienti;
 
-import android.os.Bundle;
 
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.Button;
+import it.uniba.dib.pronuntiapp.R;
 
 import androidx.annotation.NonNull;
-
 import androidx.annotation.Nullable;
+
+import android.widget.Button;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Comparator;
 
-import it.uniba.dib.pronuntiapp.R;
+import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
+import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.userGenitore.monitoraggio.MonitoraggioGenitoreFragment;
+import views.fragment.userLogopedista.elencoPazienti.monitoraggio.MonitoraggioLogopedistaFragment;
+import views.fragment.userLogopedista.elencoPazienti.monitoraggio.TerapieLogopedistaFragment;
 
 import models.domain.profili.Logopedista;
-
 import models.domain.profili.Paziente;
-
 import models.domain.terapie.Terapia;
 
-import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
-
-import views.fragment.AbstractNavigazioneFragment;
-
-import views.fragment.userGenitore.monitoraggio.MonitoraggioGenitoreFragment;
-
-import views.fragment.userLogopedista.elencoPazienti.monitoraggio.MonitoraggioLogopedistaFragment;
-
-import views.fragment.userLogopedista.elencoPazienti.monitoraggio.TerapieLogopedistaFragment;
 
 public class SchedaPazienteFragment extends AbstractNavigazioneFragment {
 
-    private Button addTerapiaButton;
+    private Button buttonAddTherapy;
 
     private String idPaziente;
 
-    private String nomePaziente;
-
-    private String cognomePaziente;
-
-    private LogopedistaViewsModels mLogopedistaViewModel;
+    private LogopedistaViewsModels logopedistaViewsModels;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
         View view = inflater.inflate(R.layout.fragment_scheda_paziente_logopedista, container, false);
-
         savedInstanceState = getArguments();
 
         if(savedInstanceState != null){
             idPaziente = savedInstanceState.getString("idPaziente");
         }
 
-        this.mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
+        this.logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
 
-
-
-        addTerapiaButton = view.findViewById(R.id.buttonAddTerapia);
+        buttonAddTherapy = view.findViewById(R.id.buttonAddTherapy);
 
         return view;
     }
@@ -78,44 +61,40 @@ public class SchedaPazienteFragment extends AbstractNavigazioneFragment {
         super.onViewCreated(view, savedInstanceState);
 
         Bundle bundle = new Bundle();
+        int indexTherapy = -1;
+        int indexPatient = 0;
+        Logopedista logopedista = logopedistaViewsModels.getLogopedistaLiveData().getValue();
+        Paziente paziente = logopedistaViewsModels.getPazienteById(idPaziente);
 
-        int indicePaziente = 0;
+        setToolBar(view, paziente.getNome() + " " + paziente.getCognome());
 
-        int indiceTerapia = -1;
-
-        Logopedista logopedista = mLogopedistaViewModel.getLogopedistaLiveData().getValue();
-        Paziente paziente1 = mLogopedistaViewModel.getPazienteById(idPaziente);
-
-        setToolBar(view, paziente1.getNome()+" "+paziente1.getCognome());
-
-
-        for (Paziente paziente: logopedista.getListaPazienti()) {
-            if (paziente.getIdProfilo().equals(idPaziente)) {
-                if (paziente.getTerapie() != null) {
-                    indiceTerapia = paziente.getTerapie().size() - 1;
-                    if (indiceTerapia != -1) {
+        for (Paziente pazienteCycle: logopedista.getListaPazienti()) {
+            if (pazienteCycle.getIdProfilo().equals(idPaziente)) {
+                if (pazienteCycle.getTerapie() != null) {
+                    indexTherapy = pazienteCycle.getTerapie().size() - 1;
+                    if (indexTherapy != -1) {
                         bundle.putString("idPaziente", idPaziente);
-                        bundle.putInt("indicePaziente", indicePaziente);
-                        indicePaziente++;
-                        bundle.putInt("indiceTerapia", indiceTerapia);
+                        bundle.putInt("indexPatient", indexPatient);
+                        indexPatient++;
+                        bundle.putInt("indexTherapy", indexTherapy);
                         break;
                     }
                 }
             }
-            indicePaziente++;
+
+            indexPatient++;
         }
 
-        if(indiceTerapia != -1) {
+        if(indexTherapy != -1) {
             TerapieLogopedistaFragment terapieLogopedistaFragment = new TerapieLogopedistaFragment();
             terapieLogopedistaFragment.setArguments(bundle);
-
             getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewTerapie, terapieLogopedistaFragment).commit();
         }
 
-        addTerapiaButton.setOnClickListener(v -> {
-            Bundle bundle1 = new Bundle();
-            bundle1.putString("idPaziente",idPaziente);
-            navigateTo(R.id.action_schedaPazienteFragment_to_creazioneTerapiaFragment, bundle1);
+        buttonAddTherapy.setOnClickListener(v -> {
+            Bundle bundleButtonAddTherapy = new Bundle();
+            bundleButtonAddTherapy.putString("idPaziente", idPaziente);
+            navigateTo(R.id.action_schedaPazienteFragment_to_creazioneTerapiaFragment, bundleButtonAddTherapy);
         });
 
     }
