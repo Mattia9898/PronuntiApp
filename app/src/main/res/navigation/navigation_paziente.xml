@@ -49,7 +49,7 @@
         android:id="@+id/esercizioDenominazioneImmagineFragment"
         android:name="views.fragment.userPaziente.giochi.esercizi.EsercizioDenominazioneImmaginiFragment"
         android:label="@string/gioco"
-        tools:layout="@layout/fragment_esercizio_scelta_immagini">
+        tools:layout="@layout/fragment_esercizio_denominazione_immagini">
         <action
             android:id="@+id/action_esercizioDenominazioneImmagineFragment_to_scenarioFragment"
             app:destination="@id/fragmentScenarioGenerico" />

@@ -76,7 +76,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_esercizio_scelta_immagini, container, false);
+        View view = inflater.inflate(R.layout.fragment_esercizio_denominazione_immagini, container, false);
 
         this.mPazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
         this.mSceltaImmaginiController = mPazienteViewsModels.getSceltaImmaginiController();
