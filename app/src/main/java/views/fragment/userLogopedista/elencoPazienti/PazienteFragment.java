@@ -1,70 +1,58 @@
 package views.fragment.userLogopedista.elencoPazienti;
 
-import android.os.Bundle;
-
-import android.util.Log;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-
-import android.widget.Button;
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-import androidx.appcompat.widget.SearchView;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import models.domain.profili.Paziente;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
-
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
 import views.fragment.AbstractNavigazioneFragment;
-
 import views.fragment.adapter.Navigation;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.os.Bundle;
+import android.util.Log;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.ViewModelProvider;
+
 
 public class PazienteFragment extends AbstractNavigazioneFragment implements Navigation {
 
-    private RecyclerView recyclerViewListaPazienti;
+    private RecyclerView listPatients;
 
-    private PazienteAdapter adapterPazienti;
+    private PazienteAdapter pazienteAdapter;
 
-    private Button addPazientiButton;
+    private Button buttonAddPatient;
 
-    private SearchView searchViewListaPazienti;
+    private SearchView searchView;
 
-    private PazienteViewsModels mPazienteViewModel;
+    private PazienteViewsModels pazienteViewsModels;
 
-    private LogopedistaViewsModels mLogopedistaViewModel;
+    private LogopedistaViewsModels logopedistaViewsModels;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_pazienti, container, false);
-
-        mLogopedistaViewModel = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
-        mPazienteViewModel = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
+        logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
+        pazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
 
         initViews(view);
-
         return view;
     }
 
@@ -74,66 +62,72 @@ public class PazienteFragment extends AbstractNavigazioneFragment implements Nav
         loadData();
     }
 
-    private void initViews(View view) {
-        addPazientiButton = view.findViewById(R.id.addPaziente);
-        addPazientiButton.setOnClickListener(v -> navigateTo(R.id.action_pazientiFragment_to_registrazionePazienteGenitoreFragment));
-
-        searchViewListaPazienti = view.findViewById(R.id.searchViewListaPazienti);
-        recyclerViewListaPazienti = view.findViewById(R.id.pazientiRecyclerView);
-        recyclerViewListaPazienti.setLayoutManager(new LinearLayoutManager(requireContext()));
-    }
-
-    private void loadData() {
-
-        mLogopedistaViewModel.getLogopedistaLiveData().observe(getViewLifecycleOwner(), logopedista -> {
-
-            List<Paziente> pazienti = new ArrayList<>();
-            if(logopedista.getListaPazienti() != null) {
-                pazienti = logopedista.getListaPazienti();
-            }
-            Log.d("PazientiFragment.loadData()", "pazienti: " + ((pazienti == null) ? "null" : pazienti.toString()));
-
-            adapterPazienti = new PazienteAdapter(pazienti, this);
-            recyclerViewListaPazienti.setAdapter(adapterPazienti);
-
-            searchViewListaPazienti.setOnCloseListener(() -> {
-                addPazientiButton.setText("Paziente +");
-                return false;
-            });
-            searchViewListaPazienti.setOnSearchClickListener(v -> addPazientiButton.setText("+"));
-
-            searchViewListaPazienti.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    Log.d("PazientiFragment", "onQueryTextSubmit: " + query);
-                    adapterPazienti.getFilter().filter(query);
-                    return true;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    adapterPazienti.getFilter().filter(newText);
-                    return true;
-                }
-            });
-        });
-    }
-
-
     @Override
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
             getActivity().setTitle("I tuoi pazienti");
         }
-        if(searchViewListaPazienti.isIconified())
-            addPazientiButton.setText("Paziente +");
-        else addPazientiButton.setText("+");
+        if(searchView.isIconified())
+            buttonAddPatient.setText("Paziente +");
+        else buttonAddPatient.setText("+");
     }
 
     @Override
     public void navigationId(int id, Bundle bundle) {
         navigateTo(id, bundle);
     }
+
+    private void loadData() {
+
+        logopedistaViewsModels.getLogopedistaLiveData().observe(getViewLifecycleOwner(), logopedista -> {
+
+            List<Paziente> listPatient = new ArrayList<>();
+
+            if(logopedista.getListaPazienti() != null) {
+                listPatient = logopedista.getListaPazienti();
+            }
+
+            Log.d("PazientiFragment.loadData()", "pazienti: " + ((listPatient == null) ? "null" : listPatient.toString()));
+
+            pazienteAdapter = new PazienteAdapter(listPatient, this);
+            listPatients.setAdapter(pazienteAdapter);
+
+            searchView.setOnCloseListener(() -> {
+                buttonAddPatient.setText("Paziente +");
+                return false;
+            });
+
+            searchView.setOnSearchClickListener(v ->
+                    buttonAddPatient.setText("+"));
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Log.d("PazientiFragment", "onQueryTextSubmit: " + query);
+                    pazienteAdapter.getFilter().filter(query);
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    pazienteAdapter.getFilter().filter(newText);
+                    return true;
+                }
+            });
+        });
+    }
+
+    private void initViews(View view) {
+
+        buttonAddPatient = view.findViewById(R.id.buttonAddPatient);
+        buttonAddPatient.setOnClickListener(v -> navigateTo(R.id.action_pazientiFragment_to_registrazionePazienteGenitoreFragment));
+
+        searchView = view.findViewById(R.id.searchView);
+        listPatients = view.findViewById(R.id.listPatients);
+        listPatients.setLayoutManager(new LinearLayoutManager(requireContext()));
+    }
+
+
 }
 

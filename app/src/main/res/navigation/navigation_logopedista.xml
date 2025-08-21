@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_logopedista"
@@ -25,11 +26,13 @@
         android:name="views.fragment.userLogopedista.appuntamenti.AppuntamentiLogopedistaFragment"
         android:label="@string/i_tuoi_appuntamenti"
         tools:layout="@layout/fragment_appuntamenti_logopedista" />
+
     <fragment
         android:id="@+id/profiloLogopedistaFragment"
         android:name="views.fragment.profilo.ProfiloLogopedistaFragment"
         android:label="@string/tuoProfilo"
         tools:layout="@layout/fragment_profilo_logopedista" />
+
     <fragment
         android:id="@+id/registrazionePazienteGenitoreFragment"
         android:name="views.fragment.userLogopedista.elencoPazienti.RegistrazionePazienteGenitoreFragment"
@@ -80,14 +83,17 @@
         android:id="@+id/risultatoEsercizioCoppiaImmaginiLogopedistaFragment"
         android:name="views.fragment.userLogopedista.elencoPazienti.monitoraggio.RisultatiEserciziCoppiaImmaginiLogopedistaFragment"
         android:label="RisultatoEsercizioCoppiaImmaginiLogopedistaFragment" />
+
     <fragment
         android:id="@+id/risultatoEsercizioDenominazioneImmagineLogopedistaFragment"
         android:name="views.fragment.userLogopedista.elencoPazienti.monitoraggio.RisultatiEserciziDenominazioneImmaginiLogopedistaFragment"
         android:label="RisultatoEsercizioDenominazioneImmagineLogopedistaFragment" />
+
     <fragment
         android:id="@+id/risultatoEsercizioSequenzaParoleLogopedistaFragment"
         android:name="views.fragment.userLogopedista.elencoPazienti.monitoraggio.RisultatiEserciziSequenzaParoleLogopedistaFragment"
         android:label="RisultatoEsercizioSequenzaParoleLogopedistaFragment" />
+
     <fragment
         android:id="@+id/creazioneScenarioFragment"
         android:name="views.fragment.userLogopedista.elencoPazienti.terapia.CreazioneScenarioFragment"

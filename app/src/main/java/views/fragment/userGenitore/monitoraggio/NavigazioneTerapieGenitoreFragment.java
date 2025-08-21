@@ -30,9 +30,9 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
 
     private int therapy;
 
-    private ImageButton nextTherapy;
+    private ImageButton buttonNextTherapy;
 
-    private ImageButton previousTherapy;
+    private ImageButton buttonPreviousTherapy;
 
     private GenitoreViewsModels genitoreViewsModels;
 
@@ -63,8 +63,8 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_navigazione_terapie, container, false);
 
-        previousTherapy = view.findViewById(R.id.buttonPreviousTherapy);
-        nextTherapy = view.findViewById(R.id.buttonNextTherapy);
+        buttonPreviousTherapy = view.findViewById(R.id.buttonPreviousTherapy);
+        buttonNextTherapy = view.findViewById(R.id.buttonNextTherapy);
 
         genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
 
@@ -85,7 +85,7 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
 
         Bundle bundle = new Bundle();
 
-        nextTherapy.setOnClickListener(v -> {
+        buttonNextTherapy.setOnClickListener(v -> {
             if (therapy != genitoreViewsModels.getIndiceUltimaTerapia() && therapy != -1) {
 
                 therapy++;
@@ -95,13 +95,13 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
                 MonitoraggioGenitoreFragment newMonitoraggioGenitoreFragment = new MonitoraggioGenitoreFragment();
                 newMonitoraggioGenitoreFragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerViewMonitoraggio,newMonitoraggioGenitoreFragment).commit();
+                        .replace(R.id.monitoring, newMonitoraggioGenitoreFragment).commit();
             }else{
                 showDialogError(1);
             }
         });
 
-        previousTherapy.setOnClickListener(v -> {
+        buttonPreviousTherapy.setOnClickListener(v -> {
             if (therapy != 0 && therapy != -1) {
 
                 therapy--;
@@ -111,7 +111,7 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
                 MonitoraggioGenitoreFragment newMonitoraggioGenitoreFragment = new MonitoraggioGenitoreFragment();
                 newMonitoraggioGenitoreFragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerViewMonitoraggio,newMonitoraggioGenitoreFragment).commit();
+                        .replace(R.id.monitoring, newMonitoraggioGenitoreFragment).commit();
             }else{
                 showDialogError(2);
             }

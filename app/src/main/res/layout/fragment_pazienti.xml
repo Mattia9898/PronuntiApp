@@ -20,8 +20,9 @@
         android:weightSum="8"
         android:paddingTop="15dp"
         >
+
         <Button
-            android:id="@+id/addPaziente"
+            android:id="@+id/buttonAddPatient"
             android:layout_height="match_parent"
             android:text="@string/addPatient"
             app:layout_constraintEnd_toStartOf="@+id/searchViewListaPazienti"
@@ -35,7 +36,7 @@
             />
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchViewListaPazienti"
+            android:id="@+id/searchView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -111,7 +112,7 @@
             android:layout_marginBottom="125dp"
             >
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/pazientiRecyclerView"
+                android:id="@+id/listPatients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_paziente_in_lista_logopedista"

@@ -79,7 +79,8 @@ public class NavigazioneTerapieLogopedistaFragment extends AbstractNavigazioneFr
 
                     MonitoraggioLogopedistaFragment monitoraggioLogopedistaFragment = new MonitoraggioLogopedistaFragment();
                     monitoraggioLogopedistaFragment.setArguments(bundle);
-                    getParentFragmentManager().beginTransaction().replace(R.id.monitoring, monitoraggioLogopedistaFragment).commit();
+                    getParentFragmentManager().beginTransaction().
+                            replace(R.id.monitoring, monitoraggioLogopedistaFragment).commit();
                 } else {
                     showDialogError(1);
                 }
@@ -97,7 +98,8 @@ public class NavigazioneTerapieLogopedistaFragment extends AbstractNavigazioneFr
 
                     MonitoraggioLogopedistaFragment monitoraggioLogopedistaFragment = new MonitoraggioLogopedistaFragment();
                     monitoraggioLogopedistaFragment.setArguments(bundle);
-                    getParentFragmentManager().beginTransaction().replace(R.id.monitoring, monitoraggioLogopedistaFragment).commit();
+                    getParentFragmentManager().beginTransaction().
+                            replace(R.id.monitoring, monitoraggioLogopedistaFragment).commit();
                 } else {
                     showDialogError(2);
                 }
