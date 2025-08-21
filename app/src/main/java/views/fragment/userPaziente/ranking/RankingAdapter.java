@@ -1,6 +1,4 @@
-package views.fragment.userPaziente.classifica;
-
-import android.util.Log;
+package views.fragment.userPaziente.ranking;
 
 import android.view.LayoutInflater;
 
@@ -22,13 +20,13 @@ import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 
-public class EntryClassificaAdapter extends RecyclerView.Adapter<EntryClassificaAdapter.PazienteViewHolder> {
+public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.PazienteViewHolder> {
 
-    private List<EntryClassifica> entriesPazienti;
+    private List<Ranking> entriesPazienti;
 
     private String pazienteAttuale;
 
-    public EntryClassificaAdapter(List<EntryClassifica> entriesPazienti, String pazienteAttuale) {
+    public RankingAdapter(List<Ranking> entriesPazienti, String pazienteAttuale) {
         this.entriesPazienti = entriesPazienti;
         this.pazienteAttuale = pazienteAttuale;
     }
@@ -42,24 +40,26 @@ public class EntryClassificaAdapter extends RecyclerView.Adapter<EntryClassifica
     @Override
     public void onBindViewHolder(PazienteViewHolder holder, int position) {
 
-        EntryClassifica entryPaziente = entriesPazienti.get(position);
+        Ranking entryPaziente = entriesPazienti.get(position);
 
         if (position == 0) {
             holder.imageViewCorona.setVisibility(View.VISIBLE);
-            holder.imageViewCorona.setImageResource(R.drawable.crown_gold);
+            holder.imageViewCorona.setImageResource(R.drawable.corona_oro);
         } else if (position == 1) {
             holder.imageViewCorona.setVisibility(View.VISIBLE);
-            holder.imageViewCorona.setImageResource(R.drawable.crown_silver);
+            holder.imageViewCorona.setImageResource(R.drawable.corona_argento);
         } else if (position == 2) {
             holder.imageViewCorona.setVisibility(View.VISIBLE);
-            holder.imageViewCorona.setImageResource(R.drawable.crown_bronze);
+            holder.imageViewCorona.setImageResource(R.drawable.corona_bronzo);
         } else {
             holder.imageViewCorona.setVisibility(View.INVISIBLE);
         }
 
         if (pazienteAttuale.equals(entryPaziente.getUsername())) {
-            holder.linearLayoutClassificaPosizione.setBackground(holder.itemView.getContext().getDrawable(R.drawable.rectangle_no_right_corners_selector_bkg));
-            holder.linearLayoutClassificaPaziente.setBackground(holder.itemView.getContext().getDrawable(R.drawable.rectangle_no_left_corners_selector_bkg));
+            holder.linearLayoutClassificaPosizione.
+                    setBackground(holder.itemView.getContext().getDrawable(R.drawable.rettangolo_blu));
+            holder.linearLayoutClassificaPaziente.
+                    setBackground(holder.itemView.getContext().getDrawable(R.drawable.rettangolo_blu));
 
         }
 

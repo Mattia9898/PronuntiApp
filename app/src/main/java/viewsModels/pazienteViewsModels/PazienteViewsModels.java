@@ -28,7 +28,7 @@ import models.domain.scenariGioco.ScenarioGioco;
 
 import models.domain.terapie.Terapia;
 
-import viewsModels.pazienteViewsModels.controller.ClassificaController;
+import viewsModels.pazienteViewsModels.controller.RankingController;
 
 import viewsModels.pazienteViewsModels.controller.CoppiaImmaginiController;
 
@@ -38,7 +38,7 @@ import viewsModels.pazienteViewsModels.controller.SequenzaParoleController;
 
 import viewsModels.pazienteViewsModels.controller.PersonaggiController;
 
-import views.fragment.userPaziente.classifica.EntryClassifica;
+import views.fragment.userPaziente.ranking.Ranking;
 
 import models.domain.esercizi.EsercizioCoppiaImmagini;
 
@@ -56,13 +56,13 @@ public class PazienteViewsModels extends ViewModel {
 
     private MutableLiveData<Paziente> mPaziente = new MutableLiveData<>();
     private MutableLiveData<List<Personaggio>> mListaPersonaggi = new MutableLiveData<>();
-    private MutableLiveData<List<EntryClassifica>> mClassifica = new MutableLiveData<>();
+    private MutableLiveData<List<Ranking>> mClassifica = new MutableLiveData<>();
     private MutableLiveData<String> mTexturePersonaggioSelezionato = new MutableLiveData<>();
     private SceltaImmaginiController mSceltaImmaginiController;
     private SequenzaParoleController mSequenzaParoleController;
     private CoppiaImmaginiController mCoppiaImmaginiController;
     private PersonaggiController mPersonaggiController;
-    private ClassificaController mClassificaController;
+    private RankingController mRankingController;
 
 
     public LiveData<Paziente> getPazienteLiveData() {
@@ -147,10 +147,10 @@ public class PazienteViewsModels extends ViewModel {
         return indiciTerapieFiltrati;
     }
 
-    public LiveData<List<EntryClassifica>> getClassificaLiveData() {
+    public LiveData<List<Ranking>> getClassificaLiveData() {
         return mClassifica;
     }
-    public void setClassifica(List<EntryClassifica> classifica) {
+    public void setClassifica(List<Ranking> classifica) {
         this.mClassifica.setValue(classifica);
     }
 
@@ -178,7 +178,7 @@ public class PazienteViewsModels extends ViewModel {
             LogopedistaDAO logopedistaDAO = new LogopedistaDAO();
             logopedistaDAO.update(logopedista);
 
-            List<EntryClassifica> classifica = ClassificaController.creazioneClassifica(logopedista.getListaPazienti(), getListaPersonaggiLiveData().getValue());
+            List<Ranking> classifica = RankingController.creazioneClassifica(logopedista.getListaPazienti(), getListaPersonaggiLiveData().getValue());
             setClassifica(classifica);
         });
     }
@@ -229,11 +229,11 @@ public class PazienteViewsModels extends ViewModel {
         return this.mPersonaggiController;
     }
 
-    public ClassificaController getClassificaController() {
-        if(this.mClassificaController == null){
-            this.mClassificaController = new ClassificaController();
+    public RankingController getClassificaController() {
+        if(this.mRankingController == null){
+            this.mRankingController = new RankingController();
         }
-        return this.mClassificaController;
+        return this.mRankingController;
     }
 
     class IndexDate{

@@ -63,9 +63,9 @@
 
     <fragment
         android:id="@+id/classificaFragment"
-        android:name="views.fragment.userPaziente.classifica.ClassificaFragment"
+        android:name="views.fragment.userPaziente.ranking.RankingFragment"
         android:label="@string/classifica"
-        tools:layout="@layout/fragment_classifica" />
+        tools:layout="@layout/fragment_ranking" />
 
     <fragment
         android:id="@+id/fragmentScenario"

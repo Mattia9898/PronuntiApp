@@ -18,11 +18,11 @@ import models.domain.profili.Paziente;
 
 import models.domain.profili.personaggio.Personaggio;
 
-import viewsModels.pazienteViewsModels.controller.ClassificaController;
+import viewsModels.pazienteViewsModels.controller.RankingController;
 
 import views.activity.PazienteActivity;
 
-import views.fragment.userPaziente.classifica.EntryClassifica;
+import views.fragment.userPaziente.ranking.Ranking;
 
 public class InitialPaziente {
 
@@ -55,13 +55,13 @@ public class InitialPaziente {
         return future;
     }
 
-    private static CompletableFuture<List<EntryClassifica>> extraMClassifica(String idPaziente, List<Personaggio> personaggi) {
+    private static CompletableFuture<List<Ranking>> extraMClassifica(String idPaziente, List<Personaggio> personaggi) {
 
-        CompletableFuture<List<EntryClassifica>> future = new CompletableFuture<>();
+        CompletableFuture<List<Ranking>> future = new CompletableFuture<>();
 
         PazienteDAO pazienteDAO = new PazienteDAO();
         pazienteDAO.getLogopedistaByIdPaziente(idPaziente).thenAccept(logopedista -> {
-            List<EntryClassifica> classifica = ClassificaController.creazioneClassifica(logopedista.getListaPazienti(), personaggi);
+            List<Ranking> classifica = RankingController.creazioneClassifica(logopedista.getListaPazienti(), personaggi);
             future.complete(classifica);
         });
 

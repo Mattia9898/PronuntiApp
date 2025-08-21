@@ -1,8 +1,8 @@
-package views.fragment.userPaziente.classifica;
+package views.fragment.userPaziente.ranking;
 
 import java.io.Serializable;
 
-public class EntryClassifica implements Serializable {
+public class Ranking implements Serializable {
 
     private String username;
 
@@ -10,7 +10,7 @@ public class EntryClassifica implements Serializable {
 
     private String immaginePersonaggio;
 
-    public EntryClassifica(String username, int punteggio, String immaginePersonaggio) {
+    public Ranking(String username, int punteggio, String immaginePersonaggio) {
         this.username = username;
         this.punteggio = punteggio;
         this.immaginePersonaggio = immaginePersonaggio;

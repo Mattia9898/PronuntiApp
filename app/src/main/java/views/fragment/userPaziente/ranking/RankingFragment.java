@@ -1,4 +1,4 @@
-package views.fragment.userPaziente.classifica;
+package views.fragment.userPaziente.ranking;
 
 import android.os.Bundle;
 
@@ -16,26 +16,26 @@ import android.view.ViewGroup;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import viewsModels.pazienteViewsModels.controller.ClassificaController;
+import viewsModels.pazienteViewsModels.controller.RankingController;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
 import views.fragment.AbstractNavigazioneFragment;
 
-public class ClassificaFragment extends AbstractNavigazioneFragment {
+public class RankingFragment extends AbstractNavigazioneFragment {
 
     private RecyclerView recyclerViewClassifica;
 
-    private EntryClassificaAdapter entryClassificaAdapter;
+    private RankingAdapter rankingAdapter;
 
     private PazienteViewsModels mPazienteViewModel;
 
-    private ClassificaController mController;
+    private RankingController mController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_classifica, container, false);
+        View view = inflater.inflate(R.layout.fragment_ranking, container, false);
 
         this.mPazienteViewModel = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
         this.mController = mPazienteViewModel.getClassificaController();
@@ -55,8 +55,8 @@ public class ClassificaFragment extends AbstractNavigazioneFragment {
 
         mPazienteViewModel.getClassificaLiveData().observe(getViewLifecycleOwner(), classifica -> {
 
-            entryClassificaAdapter = new EntryClassificaAdapter(classifica, mPazienteViewModel.getPazienteLiveData().getValue().getUsername());
-            recyclerViewClassifica.setAdapter(entryClassificaAdapter);
+            rankingAdapter = new RankingAdapter(classifica, mPazienteViewModel.getPazienteLiveData().getValue().getUsername());
+            recyclerViewClassifica.setAdapter(rankingAdapter);
         });
     }
 

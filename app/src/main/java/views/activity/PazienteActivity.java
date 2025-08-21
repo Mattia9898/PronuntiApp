@@ -11,7 +11,7 @@ import viewsModels.pazienteViewsModels.controller.PersonaggiController;
 import models.domain.profili.Paziente;
 import models.domain.profili.personaggio.Personaggio;
 
-import views.fragment.userPaziente.classifica.EntryClassifica;
+import views.fragment.userPaziente.ranking.Ranking;
 
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -85,7 +85,7 @@ public class PazienteActivity extends AbstractAppActivity {
 
         this.pazienteViewsModels.setPaziente((Paziente) getIntent().getSerializableExtra("mPaziente"));
         this.pazienteViewsModels.setPersonaggi((List<Personaggio>) getIntent().getSerializableExtra("mPersonaggi"));
-        this.pazienteViewsModels.setClassifica((List<EntryClassifica>) getIntent().getSerializableExtra("mClassifica"));
+        this.pazienteViewsModels.setClassifica((List<Ranking>) getIntent().getSerializableExtra("mClassifica"));
         this.pazienteViewsModels.setTexturePersonaggioSelezionato(PersonaggiController.getTexturePersonaggioSelezionato(pazienteViewsModels.getListaPersonaggiLiveData().getValue(), pazienteViewsModels.getPazienteLiveData().getValue().getPersonaggiSbloccati()));
     }
 
