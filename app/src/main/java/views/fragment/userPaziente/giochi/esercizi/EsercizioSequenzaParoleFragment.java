@@ -46,7 +46,7 @@ import views.dialog.PermessiDialog;
 import views.dialog.RequestConfirmDialog;
 import views.fragment.userPaziente.giochi.FineScenarioEsercizioView;
 
-public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEsercizioFragment {
+public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragment {
 
     private FineScenarioEsercizioView fineScenarioEsercizioView;
     private ConstraintLayout constraintLayoutEsercizioSequenzaParole;
@@ -204,7 +204,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioSequenzaParole.getRicompensaCorretto());
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioSequenzaParole.getRicompensaCorretto());
                 setEsitoEsercizio(esito, link);
-                if (checkFineScenario(scenarioGioco)) {
+                if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
                     fineScenarioEsercizioView.setEsercizioCorretto(mEsercizioSequenzaParole.getRicompensaCorretto(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
@@ -215,7 +215,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioEserciz
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioSequenzaParole.getRicompensaErrato());
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioSequenzaParole.getRicompensaErrato());
                 setEsitoEsercizio(esito, link);
-                if (checkFineScenario(scenarioGioco)) {
+                if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
                     fineScenarioEsercizioView.setEsercizioSbagliato(mEsercizioSequenzaParole.getRicompensaErrato(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);

@@ -48,7 +48,7 @@ import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import viewsModels.pazienteViewsModels.controller.SceltaImmaginiController;
 
 
-public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEsercizioFragment {
+public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenarioFragment {
 
     private ImageButton buttonAiutiImageView;
     private ImageButton buttonCompletaEsercizioImageView;
@@ -210,7 +210,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioDenominazioneImmagini.getRicompensaCorretto());
                 setEsitoEsercizio(esito, link);
 
-                if (checkFineScenario(scenarioGioco)) {
+                if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
                     fineScenarioEsercizioView.setEsercizioCorretto(mEsercizioDenominazioneImmagini.getRicompensaCorretto(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
@@ -222,7 +222,7 @@ public class EsercizioSceltaImmaginiFragment extends AbstractFineScenarioEserciz
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioDenominazioneImmagini.getRicompensaErrato());
                 setEsitoEsercizio(esito, link);
 
-                if (checkFineScenario(scenarioGioco)) {
+                if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
                     fineScenarioEsercizioView.setEsercizioSbagliato(mEsercizioDenominazioneImmagini.getRicompensaErrato(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);

@@ -62,7 +62,7 @@ import viewsModels.pazienteViewsModels.controller.CoppiaImmaginiController;
 
 import views.fragment.userPaziente.giochi.FineScenarioEsercizioView;
 
-public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEsercizioFragment {
+public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragment {
 
     private TextView textViewEsercizioCoppiaImmagini, textViewEsercizioPlaySuggestion;
 
@@ -241,7 +241,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
             mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioCoppiaImmagini.getRicompensaCorretto());
             setEsitoEsercizio(esito);
 
-            if(checkFineScenario(scenarioGioco)){
+            if(checkEndScenery(scenarioGioco)){
                 bundle.putBoolean("checkFineScenario", true);
                 addRicompensaScenario();
                 fineScenarioEsercizioView.setEsercizioCorretto(mEsercizioCoppiaImmagini.getRicompensaCorretto(), R.id.action_esercizioCoppiaImmagini_to_scenarioFragment, this, bundle);
@@ -256,7 +256,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioEserciz
             mPazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTotale(mEsercizioCoppiaImmagini.getRicompensaErrato());
             setEsitoEsercizio(esito);
 
-            if(checkFineScenario(scenarioGioco)){
+            if(checkEndScenery(scenarioGioco)){
                 bundle.putBoolean("checkFineScenario", true);
                 addRicompensaScenario();
                 fineScenarioEsercizioView.setEsercizioSbagliato(mEsercizioCoppiaImmagini.getRicompensaErrato(), R.id.action_esercizioCoppiaImmagini_to_scenarioFragment, this, bundle);
