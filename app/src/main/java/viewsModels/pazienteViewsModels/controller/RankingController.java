@@ -12,13 +12,13 @@ import models.domain.profili.Paziente;
 
 import models.domain.profili.personaggio.Personaggio;
 
-import views.fragment.userPaziente.classifica.EntryClassifica;
+import views.fragment.userPaziente.ranking.Ranking;
 
-public class ClassificaController {
+public class RankingController {
 
-    public static List<EntryClassifica> creazioneClassifica(List<Paziente> pazienti, List<Personaggio> personaggi) {
+    public static List<Ranking> creazioneClassifica(List<Paziente> pazienti, List<Personaggio> personaggi) {
 
-        List<EntryClassifica> classifica = new ArrayList<>();
+        List<Ranking> classifica = new ArrayList<>();
 
         for (Paziente paziente : pazienti) {
 
@@ -33,8 +33,8 @@ public class ClassificaController {
 
                     for (Personaggio personaggio : personaggi) {
                         if (personaggio.getIdPersonaggio().equals(idPersonaggio)) {
-                            EntryClassifica entryClassifica = new EntryClassifica(paziente.getUsername(), paziente.getPunteggioTot(), personaggio.getTexturePersonaggio());
-                            classifica.add(entryClassifica);
+                            Ranking ranking = new Ranking(paziente.getUsername(), paziente.getPunteggioTot(), personaggio.getTexturePersonaggio());
+                            classifica.add(ranking);
                             break;
                         }
                     }
