@@ -37,7 +37,7 @@ import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.terapie.Terapia;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import views.fragment.AbstractNavigazioneFragment;
-import views.fragment.userPaziente.giochi.FineScenarioEsercizioView;
+import views.fragment.userPaziente.giochi.FineScenarioView;
 
 public class ScenarioFragment extends AbstractNavigazioneFragment {
     private float xDelta, yDelta;
@@ -52,7 +52,7 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
     private PazienteViewsModels mPazienteViewsModels;
     private Bundle bundle;
     private ScenarioGioco scenarioGioco;
-    private FineScenarioEsercizioView fineScenarioEsercizioView;
+    private FineScenarioView fineScenarioView;
 
 
     @SuppressLint("MissingInflatedId")
@@ -62,8 +62,8 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
         bundle = getArguments();
         this.mPazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
 
-        fineScenarioEsercizioView= view.findViewById(R.id.fineScenarioView);
-        fineScenarioEsercizioView.setVisibility(View.GONE);
+        fineScenarioView = view.findViewById(R.id.fineScenarioView);
+        fineScenarioView.setVisibility(View.GONE);
 
         constraintLayout = view.findViewById(R.id.constraintLayoutScenario);
 
@@ -155,10 +155,10 @@ public class ScenarioFragment extends AbstractNavigazioneFragment {
     }
 
     private void showFineScenario(){
-        fineScenarioEsercizioView.setVisibility(View.VISIBLE);
+        fineScenarioView.setVisibility(View.VISIBLE);
         Log.d("FineScenario", "fine scenario" + scenarioGioco.getlistEsercizioRealizzabile().toString());
         int ricompensaFinale = scenarioGioco.getRicompensaFinale();
-        fineScenarioEsercizioView.showFineScenario(ricompensaFinale, posizioneGioco1ImageView, posizioneGioco2ImageView, posizioneGioco3ImageView);
+        fineScenarioView.showFineScenario(ricompensaFinale, posizioneGioco1ImageView, posizioneGioco2ImageView, posizioneGioco3ImageView);
     }
 
     private void disableImageView(ImageView view) {

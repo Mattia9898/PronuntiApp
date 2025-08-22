@@ -43,7 +43,7 @@ import models.utils.audioRecorder.AudioRecorder;
 import views.dialog.InfoDialog;
 import views.dialog.PermessiDialog;
 import views.dialog.RequestConfirmDialog;
-import views.fragment.userPaziente.giochi.FineScenarioEsercizioView;
+import views.fragment.userPaziente.giochi.FineScenarioView;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import viewsModels.pazienteViewsModels.controller.SceltaImmaginiController;
 
@@ -60,7 +60,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
     private View viewAnimationMic, viewConfirmMic, viewStopMic;
     private ImageView imageViewConfermaRegistrazione;
     private ConstraintLayout constraintLayoutEsercizioDenominazione;
-    private FineScenarioEsercizioView fineScenarioEsercizioView;
+    private FineScenarioView fineScenarioView;
 
 
     private AudioRecorder audioRecorder;
@@ -84,7 +84,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
         constraintLayoutEsercizioDenominazione = view.findViewById(R.id.constraintLayoutEsercizioDenominazioneImmagine);
         constraintLayoutEsercizioDenominazione.setVisibility(View.VISIBLE);
 
-        fineScenarioEsercizioView = view.findViewById(R.id.fineEsercizioView);
+        fineScenarioView = view.findViewById(R.id.fineEsercizioView);
 
         buttonAiutiImageView = view.findViewById(R.id.buttonAiuti);
         buttonCompletaEsercizioImageView = view.findViewById(R.id.buttonCompletaEsercizio);
@@ -213,9 +213,9 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
                 if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
-                    fineScenarioEsercizioView.setEsercizioCorretto(mEsercizioDenominazioneImmagini.getRicompensaCorretto(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioCorretto(mEsercizioDenominazioneImmagini.getRicompensaCorretto(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
                 } else
-                    fineScenarioEsercizioView.setEsercizioCorretto(mEsercizioDenominazioneImmagini.getRicompensaCorretto(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioCorretto(mEsercizioDenominazioneImmagini.getRicompensaCorretto(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
             } else {
                 esito = false;
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioDenominazioneImmagini.getRicompensaErrato());
@@ -225,9 +225,9 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
                 if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
-                    fineScenarioEsercizioView.setEsercizioSbagliato(mEsercizioDenominazioneImmagini.getRicompensaErrato(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioSbagliato(mEsercizioDenominazioneImmagini.getRicompensaErrato(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
                 } else
-                    fineScenarioEsercizioView.setEsercizioSbagliato(mEsercizioDenominazioneImmagini.getRicompensaErrato(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioSbagliato(mEsercizioDenominazioneImmagini.getRicompensaErrato(), R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
             }
 
             constraintLayoutEsercizioDenominazione.setVisibility(View.GONE);

@@ -61,8 +61,9 @@ public class ScenarioGenericoFragment extends AbstractNavigazioneFragment {
                 scenarioFragment.setArguments(bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.fragment_scenari_singolo, scenarioFragment).commit();
             }else{
-                NoScenariFragment assenzaScenariFragment = new NoScenariFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_scenari_singolo, assenzaScenariFragment).commit();
+                NessunGiocoDisponibileFragment nessunGiocoDisponibileFragment = new NessunGiocoDisponibileFragment();
+                getParentFragmentManager().beginTransaction().
+                        replace(R.id.fragment_scenari_singolo, nessunGiocoDisponibileFragment).commit();
             }
         });
     }

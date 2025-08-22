@@ -11,12 +11,13 @@ import androidx.annotation.Nullable;
 import it.uniba.dib.pronuntiapp.R;
 import views.fragment.AbstractNavigazioneFragment;
 
-public class NoScenariFragment extends AbstractNavigazioneFragment {
+// classe che carica il fragment di assenza di giochi disponibili
+public class NessunGiocoDisponibileFragment extends AbstractNavigazioneFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_assenza_scenari,container,false);
+        View view = inflater.inflate(R.layout.fragment_nessun_gioco_disponibile,container,false);
         return view;
     }
 

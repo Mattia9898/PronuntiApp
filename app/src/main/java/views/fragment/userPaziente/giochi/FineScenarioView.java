@@ -3,7 +3,6 @@ package views.fragment.userPaziente.giochi;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -19,19 +18,19 @@ import it.uniba.dib.pronuntiapp.R;
 import models.utils.audioPlayer.AudioPlayerRaw;
 import views.fragment.AbstractNavigazioneFragment;
 
-public class FineScenarioEsercizioView extends FrameLayout {
+public class FineScenarioView extends FrameLayout {
 
     private FrameLayout frameLayoutFineEsercizio;
     private ImageView imageViewUpCoin;
     private TextView textViewCoins, textViewEsercizioCorretto, textViewEsercizioSbagliato, textViewFineScenario;
 
 
-    public FineScenarioEsercizioView(Context context) {
+    public FineScenarioView(Context context) {
         super(context);
         initView(context);
     }
 
-    public FineScenarioEsercizioView(Context context, AttributeSet attrs) {
+    public FineScenarioView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }

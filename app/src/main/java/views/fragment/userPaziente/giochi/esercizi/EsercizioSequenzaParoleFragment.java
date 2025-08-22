@@ -44,11 +44,11 @@ import viewsModels.pazienteViewsModels.controller.SequenzaParoleController;
 import views.dialog.InfoDialog;
 import views.dialog.PermessiDialog;
 import views.dialog.RequestConfirmDialog;
-import views.fragment.userPaziente.giochi.FineScenarioEsercizioView;
+import views.fragment.userPaziente.giochi.FineScenarioView;
 
 public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragment {
 
-    private FineScenarioEsercizioView fineScenarioEsercizioView;
+    private FineScenarioView fineScenarioView;
     private ConstraintLayout constraintLayoutEsercizioSequenzaParole;
     private SeekBar seekBarEsercizioSequenzaParole;
     private ImageButton imageButtonPlay, imageButtonPause;
@@ -77,7 +77,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
         this.mPazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
         this.mSequenzaParoleController = mPazienteViewsModels.getSequenzaParoleController();
 
-        fineScenarioEsercizioView = view.findViewById(R.id.fineEsercizioView);
+        fineScenarioView = view.findViewById(R.id.fineEsercizioView);
         textViewEsercizioMicSuggestion = view.findViewById(R.id.textViewEsercizioMicSuggestion);
         viewClickForSuggestion = view.findViewById(R.id.viewClickForSuggestion);
         constraintLayoutEsercizioSequenzaParole = view.findViewById(R.id.constraintLayoutEsercizioSequenzaParole);
@@ -207,9 +207,9 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
                 if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
-                    fineScenarioEsercizioView.setEsercizioCorretto(mEsercizioSequenzaParole.getRicompensaCorretto(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioCorretto(mEsercizioSequenzaParole.getRicompensaCorretto(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
                 } else
-                    fineScenarioEsercizioView.setEsercizioCorretto(mEsercizioSequenzaParole.getRicompensaCorretto(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioCorretto(mEsercizioSequenzaParole.getRicompensaCorretto(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
             } else {
                 esito = false;
                 mPazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(mEsercizioSequenzaParole.getRicompensaErrato());
@@ -218,9 +218,9 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
                 if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkFineScenario", true);
                     addRicompensaScenario();
-                    fineScenarioEsercizioView.setEsercizioSbagliato(mEsercizioSequenzaParole.getRicompensaErrato(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioSbagliato(mEsercizioSequenzaParole.getRicompensaErrato(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
                 } else
-                    fineScenarioEsercizioView.setEsercizioSbagliato(mEsercizioSequenzaParole.getRicompensaErrato(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
+                    fineScenarioView.setEsercizioSbagliato(mEsercizioSequenzaParole.getRicompensaErrato(), R.id.action_esercizioSequenzaParole_to_scenarioFragment, this, bundle);
             }
 
             constraintLayoutEsercizioSequenzaParole.setVisibility(View.GONE);
