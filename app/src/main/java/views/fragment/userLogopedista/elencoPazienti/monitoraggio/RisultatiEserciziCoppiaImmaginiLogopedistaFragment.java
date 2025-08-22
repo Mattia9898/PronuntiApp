@@ -190,7 +190,7 @@ public class RisultatiEserciziCoppiaImmaginiLogopedistaFragment extends Abstract
         mediaPlayer.setOnSeekCompleteListener(mediaPlayer ->
                 seekBar.setProgress((int) (mediaPlayer.getCurrentPosition() * 100 / mediaPlayer.getDuration())));
 
-        final int delay = 5;
+        final int delay = 5; // Milliseconds
 
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {

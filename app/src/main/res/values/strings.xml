@@ -80,8 +80,8 @@
     <string name="overwriteAudioDescription">Sei sicuro di voler sovrascrivere l audio?</string>
     <string name="startedRecording">Registrazione avviata</string>
     <string name="stopedRecording">Registrazione stoppata</string>
-    <string name="suggestionSequenzaParole">Riproduci l audio col bottone in basso a sinistra, dopo registra la stessa frase! </string>
-    <string name="suggestEsercizioCoppiaImmagini">Aziona l audio prima di rispondere!</string>
+    <string name="suggestionSequenzaParole">Riproduci l\'audio col bottone in basso a sinistra, dopo registra la stessa frase! </string>
+    <string name="suggestEsercizioCoppiaImmagini">Aziona l\'audio prima di rispondere!</string>
     <string name="suggestEsercizioDenominazione">Clicca sul microfono e pronuncia l\'elemento nell\'immagine!</string>
     <string name="titleEsercizioCoppiaImmagini">Quale immagine hai sentito?</string>
     <string name="titleEsercizioSequenzaParole">Cosa sta dicendo l\'audio?\nProva a ripetere!</string>

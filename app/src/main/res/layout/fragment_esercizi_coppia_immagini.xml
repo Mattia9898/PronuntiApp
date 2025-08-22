@@ -34,7 +34,7 @@
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutEsercizioCoppiaImmagini"
+        android:id="@+id/mainConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -73,7 +73,7 @@
             android:gravity="center"
             >
             <FrameLayout
-                android:id="@+id/fl1ImmagineEsercizioCoppiaImmagini"
+                android:id="@+id/firstImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -85,7 +85,7 @@
                     app:cardCornerRadius="16dp"
                     >
                     <ImageButton
-                        android:id="@+id/imageView1ImmagineEsercizioCoppiaImmagini"
+                        android:id="@+id/buttonFirstImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
@@ -95,7 +95,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/fl2ImmagineEsercizioCoppiaImmagini"
+                android:id="@+id/secondImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -107,7 +107,7 @@
                     app:cardCornerRadius="16dp"
                     >
                     <ImageButton
-                        android:id="@+id/imageView2ImmagineEsercizioCoppiaImmagini"
+                        android:id="@+id/buttonSecondImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
@@ -118,7 +118,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textViewEsercizioPlaySuggestion"
+            android:id="@+id/playSuggestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -146,7 +146,7 @@
             android:elevation="1dp"
             >
             <SeekBar
-                android:id="@+id/seekBarScorrimentoAudioEsercizioCoppiaImmagini"
+                android:id="@+id/seekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="100"
@@ -159,7 +159,7 @@
                 />
 
             <ImageButton
-                android:id="@+id/playButton"
+                android:id="@+id/buttonPlay"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@android:color/transparent"
@@ -172,7 +172,7 @@
                 android:layout_gravity="center"
                 />
             <ImageButton
-                android:id="@+id/pauseButton"
+                android:id="@+id/buttonPause"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@android:color/transparent"
