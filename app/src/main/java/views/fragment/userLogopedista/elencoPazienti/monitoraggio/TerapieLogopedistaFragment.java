@@ -80,15 +80,15 @@ public class TerapieLogopedistaFragment extends AbstractNavigazioneFragment {
             bundle.putInt("indexTherapy", indexTherapy);
             bundle.putInt("indexPatient",indexPatient);
 
-            NavigazioneTerapieLogopedistaFragment navigazioneTerapieLogopedistaFragment = new NavigazioneTerapieLogopedistaFragment();
-            navigazioneTerapieLogopedistaFragment.setArguments(bundle);
+            NavigationTerapieLogopedistaFragment navigationTerapieLogopedistaFragment = new NavigationTerapieLogopedistaFragment();
+            navigationTerapieLogopedistaFragment.setArguments(bundle);
 
             MonitoraggioLogopedistaFragment monitoraggioLogopedistaFragment = new MonitoraggioLogopedistaFragment();
             monitoraggioLogopedistaFragment.setArguments(bundle);
 
             getChildFragmentManager().beginTransaction().
                     replace(R.id.monitoring, monitoraggioLogopedistaFragment).
-                    replace(R.id.navigationTherapies, navigazioneTerapieLogopedistaFragment).commit();
+                    replace(R.id.navigationTherapies, navigationTerapieLogopedistaFragment).commit();
         }
     }
 

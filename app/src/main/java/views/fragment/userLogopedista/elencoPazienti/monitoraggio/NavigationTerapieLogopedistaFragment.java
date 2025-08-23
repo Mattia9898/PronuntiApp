@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import views.fragment.AbstractNavigazioneFragment;
 import views.dialog.InfoDialog;
 
-import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
-
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ImageButton;
 
 
-public class NavigazioneTerapieLogopedistaFragment extends AbstractNavigazioneFragment {
+public class NavigationTerapieLogopedistaFragment extends AbstractNavigazioneFragment {
 
     private LinearLayout linearLayout;
 
@@ -41,7 +39,7 @@ public class NavigazioneTerapieLogopedistaFragment extends AbstractNavigazioneFr
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_navigazione_terapie, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigation_terapie, container, false);
 
         buttonNextTherapy = view.findViewById(R.id.buttonNextTherapy);
         buttonPreviousTherapy = view.findViewById(R.id.buttonPreviousTherapy);

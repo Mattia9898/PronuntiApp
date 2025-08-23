@@ -15,18 +15,15 @@ import views.dialog.InfoDialog;
 import android.view.ViewGroup;
 import android.view.View;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
 import android.widget.ImageButton;
 import android.util.Log;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
-import models.domain.terapie.Terapia;
-
 import androidx.lifecycle.ViewModelProvider;
 
 
-public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragment {
+public class NavigationTerapieGenitoreFragment extends AbstractNavigazioneFragment {
 
     private int therapy;
 
@@ -61,7 +58,7 @@ public class NavigazioneTerapieGenitoreFragment extends AbstractNavigazioneFragm
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_navigazione_terapie, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigation_terapie, container, false);
 
         buttonPreviousTherapy = view.findViewById(R.id.buttonPreviousTherapy);
         buttonNextTherapy = view.findViewById(R.id.buttonNextTherapy);

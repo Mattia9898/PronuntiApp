@@ -21,7 +21,7 @@ import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import views.dialog.InfoDialog;
 import views.fragment.AbstractNavigazioneFragment;
 
-public class NavigazioneTraScenariFragment extends AbstractNavigazioneFragment {
+public class NavigationScenariFragment extends AbstractNavigazioneFragment {
 
     private TextView textViewDataScenario;
     private ImageButton buttonIndietroScenario;
@@ -37,7 +37,7 @@ public class NavigazioneTraScenariFragment extends AbstractNavigazioneFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_navigazione_scenari, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigation_scenari, container, false);
         mPazienteViewModel = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
         textViewDataScenario = view.findViewById(R.id.textViewDataScenario);
         buttonIndietroScenario = view.findViewById(R.id.buttonIndietroScenario);

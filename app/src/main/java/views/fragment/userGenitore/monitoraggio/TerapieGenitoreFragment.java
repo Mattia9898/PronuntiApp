@@ -12,22 +12,14 @@ import views.fragment.AbstractNavigazioneFragment;
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 import models.domain.terapie.Terapia;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 import java.util.Comparator;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.FragmentContainerView;
 
 import android.view.LayoutInflater;
-import android.util.Log;
-import android.widget.LinearLayout;
 import android.view.ViewGroup;
 import android.view.View;
-import android.widget.FrameLayout;
-
-import java.time.LocalDate;
 
 
 public class TerapieGenitoreFragment extends AbstractNavigazioneFragment {
@@ -65,7 +57,7 @@ public class TerapieGenitoreFragment extends AbstractNavigazioneFragment {
 
         super.onViewCreated(view, savedInstanceState);
         getChildFragmentManager().beginTransaction().
-                replace(R.id.navigationTherapies, new NavigazioneTerapieGenitoreFragment()).commit();
+                replace(R.id.navigationTherapies, new NavigationTerapieGenitoreFragment()).commit();
 
         genitoreViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
 
