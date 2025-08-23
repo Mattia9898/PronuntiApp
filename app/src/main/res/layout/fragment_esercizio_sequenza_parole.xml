@@ -24,14 +24,14 @@
     <views.fragment.userPaziente.giochi.FineScenarioView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fineEsercizioView"
+        android:id="@+id/fineScenarioView"
         android:elevation="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutEsercizioSequenzaParole"
+        android:id="@+id/mainConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <View
-            android:id="@+id/viewClickForSuggestion"
+            android:id="@+id/clickSuggestion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
@@ -59,14 +59,14 @@
             android:layout_marginTop="80dp"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/seekBarScorrimentoAudioEsercizioSequenzaParole"
+            app:layout_constraintBottom_toTopOf="@+id/seekBar"
             android:layout_marginBottom="0dp"
             android:elevation="1dp"
             android:textAppearance="@style/styleTextPersonaggi"
             />
 
         <android.widget.SeekBar
-            android:id="@+id/seekBarScorrimentoAudioEsercizioSequenzaParole"
+            android:id="@+id/seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="100"
@@ -81,7 +81,7 @@
             />
 
         <TextView
-            android:id="@+id/textViewEsercizioMicSuggestion"
+            android:id="@+id/exerciseMicrophoneSuggestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -89,7 +89,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:text="@string/suggestionSequenzaParole"
-            app:layout_constraintTop_toBottomOf="@+id/seekBarScorrimentoAudioEsercizioSequenzaParole"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
             app:layout_constraintStart_toStartOf="parent"
             android:padding="10dp"
             android:background="#61000000"
@@ -110,7 +110,7 @@
             android:elevation="1dp">
 
             <ImageButton
-                android:id="@+id/playButton"
+                android:id="@+id/buttonPlay"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
@@ -122,7 +122,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
-                android:id="@+id/pauseButton"
+                android:id="@+id/buttonPause"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@android:color/transparent"
@@ -137,19 +137,19 @@
         </FrameLayout>
 
         <View
-            android:id="@+id/viewAnimationMic"
+            android:id="@+id/startMicrophone"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@drawable/ovale_rosso"
-            app:layout_constraintStart_toStartOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintEnd_toEndOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintTop_toTopOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonAvviaRegistrazione"
+            app:layout_constraintStart_toStartOf="@id/buttonStartRegistration"
+            app:layout_constraintEnd_toEndOf="@id/buttonStartRegistration"
+            app:layout_constraintTop_toTopOf="@id/buttonStartRegistration"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonStartRegistration"
             android:elevation="1dp"
             />
 
         <ImageButton
-            android:id="@+id/buttonAvviaRegistrazione"
+            android:id="@+id/buttonStartRegistration"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
@@ -159,7 +159,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/buttonCompletaEsercizio"
+            app:layout_constraintEnd_toStartOf="@+id/buttonCompleteExercise"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toEndOf="@+id/frameLayoutPlayPauseEsercizioSequenzaParole"
             app:layout_constraintVertical_bias="0.243"
@@ -170,7 +170,7 @@
 
         <ImageView
             android:scaleType="centerCrop"
-            android:id="@+id/confermaRegistrazioneImageView"
+            android:id="@+id/confirmRegistration"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/CheckAnswer"
@@ -178,8 +178,8 @@
             android:tooltipText="@string/CheckAnswer"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            app:layout_constraintBottom_toTopOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintEnd_toEndOf="@id/buttonAvviaRegistrazione"
+            app:layout_constraintBottom_toTopOf="@id/buttonStartRegistration"
+            app:layout_constraintEnd_toEndOf="@id/buttonStartRegistration"
             android:layout_marginEnd="-0dp"
             android:layout_marginBottom="-30dp"
             android:background="@null"
@@ -188,34 +188,34 @@
             />
 
         <View
-            android:id="@+id/viewConfirmMic"
+            android:id="@+id/confirmMicrophone"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@null"
-            app:layout_constraintStart_toStartOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintEnd_toEndOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintTop_toTopOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonAvviaRegistrazione"
+            app:layout_constraintStart_toStartOf="@id/buttonStartRegistration"
+            app:layout_constraintEnd_toEndOf="@id/buttonStartRegistration"
+            app:layout_constraintTop_toTopOf="@id/buttonStartRegistration"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonStartRegistration"
             android:elevation="11dp"
             android:visibility="gone"
             />
 
         <View
-            android:id="@+id/viewStopRegMic"
+            android:id="@+id/stopMicrophone"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@null"
-            app:layout_constraintStart_toStartOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintEnd_toEndOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintTop_toTopOf="@id/buttonAvviaRegistrazione"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonAvviaRegistrazione"
+            app:layout_constraintStart_toStartOf="@id/buttonStartRegistration"
+            app:layout_constraintEnd_toEndOf="@id/buttonStartRegistration"
+            app:layout_constraintTop_toTopOf="@id/buttonStartRegistration"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonStartRegistration"
             android:elevation="11dp"
             android:visibility="gone"
             />
 
         <ImageButton
             android:scaleType="centerCrop"
-            android:id="@+id/buttonCompletaEsercizio"
+            android:id="@+id/buttonCompleteExercise"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/icona_check"
