@@ -8,7 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.dialog.InfoDialog;
 
 import android.view.ViewGroup;
@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ImageButton;
 
 
-public class NavigationTerapieLogopedistaFragment extends AbstractNavigazioneFragment {
+public class NavigationTerapieLogopedistaFragment extends AbstractNavigationFragment {
 
     private LinearLayout linearLayout;
 

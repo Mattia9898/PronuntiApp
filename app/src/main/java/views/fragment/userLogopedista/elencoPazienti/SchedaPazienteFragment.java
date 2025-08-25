@@ -14,20 +14,15 @@ import android.view.ViewGroup;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import java.util.Comparator;
-
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
-import views.fragment.AbstractNavigazioneFragment;
-import views.fragment.userGenitore.monitoraggio.MonitoraggioGenitoreFragment;
-import views.fragment.userLogopedista.elencoPazienti.monitoraggio.MonitoraggioLogopedistaFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.fragment.userLogopedista.elencoPazienti.monitoraggio.TerapieLogopedistaFragment;
 
 import models.domain.profili.Logopedista;
 import models.domain.profili.Paziente;
-import models.domain.terapie.Terapia;
 
 
-public class SchedaPazienteFragment extends AbstractNavigazioneFragment {
+public class SchedaPazienteFragment extends AbstractNavigationFragment {
 
     private Button buttonAddTherapy;
 

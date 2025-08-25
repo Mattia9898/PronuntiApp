@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 
 import it.uniba.dib.pronuntiapp.R;
 
-public abstract class AbstractNavigazioneFragment extends Fragment {
+public abstract class AbstractNavigationFragment extends Fragment {
 
     protected NavController navController;
 

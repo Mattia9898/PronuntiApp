@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import views.fragment.adapter.ScenarioAdapter;
 import views.fragment.adapter.Navigation;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import android.view.ViewGroup;
 import android.view.View;
 
 
-public class MonitoraggioGenitoreFragment extends AbstractNavigazioneFragment implements Navigation {
+public class MonitoraggioGenitoreFragment extends AbstractNavigationFragment implements Navigation {
 
     private GenitoreViewsModels genitoreViewsModels;
 

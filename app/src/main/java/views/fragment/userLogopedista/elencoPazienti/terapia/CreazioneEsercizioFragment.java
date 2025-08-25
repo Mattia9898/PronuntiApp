@@ -59,10 +59,10 @@ import models.utils.audioRecorder.AudioRecorder;
 
 import views.dialog.InfoDialog;
 import views.dialog.PermessiDialog;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 
-public class CreazioneEsercizioFragment extends AbstractNavigazioneFragment {
+public class CreazioneEsercizioFragment extends AbstractNavigationFragment {
 
     private static final int PICK_FILE_1 = 1;
 

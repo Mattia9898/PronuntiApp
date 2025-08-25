@@ -14,7 +14,7 @@ import models.domain.profili.Paziente;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.fragment.adapter.Navigation;
 
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 
 
-public class PazienteFragment extends AbstractNavigazioneFragment implements Navigation {
+public class PazienteFragment extends AbstractNavigationFragment implements Navigation {
 
     private RecyclerView listPatients;
 

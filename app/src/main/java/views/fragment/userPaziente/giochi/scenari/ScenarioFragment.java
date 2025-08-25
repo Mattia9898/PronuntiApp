@@ -36,10 +36,10 @@ import models.domain.esercizi.EsercizioSequenzaParole;
 import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.terapie.Terapia;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.fragment.userPaziente.giochi.FineScenarioView;
 
-public class ScenarioFragment extends AbstractNavigazioneFragment {
+public class ScenarioFragment extends AbstractNavigationFragment {
     private float xDelta, yDelta;
     private float bottomHeight;
     private float topHeight;

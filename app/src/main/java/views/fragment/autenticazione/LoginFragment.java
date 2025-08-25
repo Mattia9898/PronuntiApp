@@ -9,7 +9,7 @@ import models.domain.profili.Profilo;
 import models.autenticazione.AutenticazioneSharedPreferences;
 import views.activity.AbstractAppActivity;
 import viewsModels.autenticazioneViewsModels.LoginViewsModels;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.dialog.InfoDialog;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -25,7 +25,7 @@ import android.util.Log;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-public class LoginFragment extends AbstractNavigazioneFragment {
+public class LoginFragment extends AbstractNavigationFragment {
 
     private LoginViewsModels loginViewsModels;
 

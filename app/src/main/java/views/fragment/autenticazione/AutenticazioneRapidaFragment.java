@@ -10,7 +10,7 @@ import models.domain.profili.Profilo;
 import views.dialog.InfoDialog;
 import views.fragment.CaricamentoFragment;
 import views.activity.AbstractAppActivity;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -25,7 +25,7 @@ import android.os.Bundle;
 
 
 // classe utile per l'autenticazione rapida dell'app, consentendo di accedere con profili di default
-public class AutenticazioneRapidaFragment extends AbstractNavigazioneFragment {
+public class AutenticazioneRapidaFragment extends AbstractNavigationFragment {
 
 
     private FrameLayout frameLayout;

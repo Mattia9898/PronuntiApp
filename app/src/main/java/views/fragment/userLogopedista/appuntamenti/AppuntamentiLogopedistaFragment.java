@@ -3,8 +3,6 @@ package views.fragment.userLogopedista.appuntamenti;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import android.app.DatePickerDialog;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import android.annotation.SuppressLint;
@@ -25,7 +23,7 @@ import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiController;
 
 import views.fragment.userLogopedista.elencoPazienti.PazienteAdapter;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.fragment.DataCustomizzata;
 import views.dialog.InfoDialog;
 
@@ -50,7 +48,7 @@ import android.widget.LinearLayout;
 import android.widget.ImageButton;
 
 
-public class AppuntamentiLogopedistaFragment extends AbstractNavigazioneFragment {
+public class AppuntamentiLogopedistaFragment extends AbstractNavigationFragment {
 
 
     private RecyclerView recyclerViewAppuntamento;

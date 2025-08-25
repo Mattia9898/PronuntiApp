@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 
 import android.media.MediaPlayer;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
@@ -33,7 +33,7 @@ import models.domain.profili.Paziente;
 import models.domain.esercizi.EsercizioSequenzaParole;
 
 
-public class RisultatiEserciziSequenzaParoleLogopedistaFragment extends AbstractNavigazioneFragment {
+public class RisultatiEserciziSequenzaParoleLogopedistaFragment extends AbstractNavigationFragment {
 
 
     private int scenery;

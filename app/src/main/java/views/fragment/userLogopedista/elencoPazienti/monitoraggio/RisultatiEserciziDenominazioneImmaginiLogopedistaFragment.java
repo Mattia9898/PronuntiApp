@@ -11,10 +11,9 @@ import android.os.Bundle;
 import models.utils.audioPlayer.AudioPlayerLink;
 
 import models.domain.esercizi.EsercizioDenominazioneImmagini;
-import models.domain.esercizi.EsercizioCoppiaImmagini;
 import models.domain.profili.Paziente;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
@@ -31,7 +30,7 @@ import android.view.ViewGroup;
 import android.view.View;
 
 
-public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends AbstractNavigazioneFragment {
+public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends AbstractNavigationFragment {
 
 
     private int scenery;

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.concurrent.CompletableFuture;
 
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.activity.LogopedistaActivity;
 
 import models.domain.profili.Logopedista;
@@ -27,7 +27,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels;
 
 
-public class RegistrazioneFragment extends AbstractNavigazioneFragment {
+public class RegistrazioneFragment extends AbstractNavigationFragment {
 
 
     private RegistrazioneViewsModels registrazioneViewsModels;

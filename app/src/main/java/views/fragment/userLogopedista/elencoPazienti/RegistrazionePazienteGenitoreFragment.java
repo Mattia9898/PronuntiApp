@@ -14,7 +14,7 @@ import models.domain.profili.Logopedista;
 import models.domain.profili.Paziente;
 
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.fragment.DataCustomizzata;
 
 import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.verificaRegistrazione;
@@ -35,7 +35,7 @@ import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 
 
-public class RegistrazionePazienteGenitoreFragment extends AbstractNavigazioneFragment {
+public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationFragment {
 
     private TextInputEditText namePatient;
 

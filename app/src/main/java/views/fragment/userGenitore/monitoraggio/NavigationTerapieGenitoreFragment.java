@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import android.os.Bundle;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 import views.dialog.InfoDialog;
 
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 import androidx.lifecycle.ViewModelProvider;
 
 
-public class NavigationTerapieGenitoreFragment extends AbstractNavigazioneFragment {
+public class NavigationTerapieGenitoreFragment extends AbstractNavigationFragment {
 
     private int therapy;
 

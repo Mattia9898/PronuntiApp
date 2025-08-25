@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 
 import it.uniba.dib.pronuntiapp.R;
 import models.utils.audioPlayer.AudioPlayerRaw;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 public class FineScenarioView extends FrameLayout {
 
@@ -62,7 +62,7 @@ public class FineScenarioView extends FrameLayout {
         animazioneIncrementoValutaFineScenario(coins, imageView1, imageView2, imageView3);
     }
 
-    public void setEsercizioCorretto(int coins, int idNagiation, AbstractNavigazioneFragment fragment, Bundle bundle) {
+    public void setEsercizioCorretto(int coins, int idNagiation, AbstractNavigationFragment fragment, Bundle bundle) {
 
         AudioPlayerRaw audioPlayerRaw = new AudioPlayerRaw(getContext(), R.raw.correct_sound);
         audioPlayerRaw.playAudio();
@@ -74,7 +74,7 @@ public class FineScenarioView extends FrameLayout {
         animazioneIncrementoValuta(coins, idNagiation, fragment, bundle);
     }
 
-    public void setEsercizioSbagliato(int coins, int idNagiation, AbstractNavigazioneFragment fragment, Bundle bundle) {
+    public void setEsercizioSbagliato(int coins, int idNagiation, AbstractNavigationFragment fragment, Bundle bundle) {
 
         AudioPlayerRaw audioPlayerRaw = new AudioPlayerRaw(getContext(), R.raw.error_sound);
         audioPlayerRaw.playAudio();
@@ -86,7 +86,7 @@ public class FineScenarioView extends FrameLayout {
         animazioneIncrementoValuta(coins, idNagiation, fragment, bundle);
     }
 
-    private void animazioneIncrementoValuta(int targetCoins, int idNagiation, AbstractNavigazioneFragment fragment, Bundle bundle) {
+    private void animazioneIncrementoValuta(int targetCoins, int idNagiation, AbstractNavigationFragment fragment, Bundle bundle) {
 
         ValueAnimator animator = ValueAnimator.ofInt(0, targetCoins);
         animator.setDuration(4000);

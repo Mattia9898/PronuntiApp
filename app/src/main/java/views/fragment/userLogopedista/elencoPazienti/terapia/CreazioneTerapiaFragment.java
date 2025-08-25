@@ -10,11 +10,10 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import models.domain.terapie.Terapia;
 import models.domain.scenariGioco.ScenarioGioco;
-import models.domain.profili.Logopedista;
 
 import views.fragment.DataCustomizzata;
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import java.util.List;
 import java.time.LocalDate;
@@ -33,7 +32,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 
-public class CreazioneTerapiaFragment extends AbstractNavigazioneFragment implements SalvataggioScenario {
+public class CreazioneTerapiaFragment extends AbstractNavigationFragment implements SalvataggioScenario {
 
     private boolean isFirstScenery = true;
 

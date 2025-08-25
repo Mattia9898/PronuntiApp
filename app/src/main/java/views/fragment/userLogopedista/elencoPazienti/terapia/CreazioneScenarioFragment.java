@@ -43,7 +43,7 @@ import java.time.LocalDate;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.scenariGioco.TemplateScenarioGioco;
@@ -53,7 +53,7 @@ import models.database.ComandiFirebaseStorage;
 import models.database.TemplateScenarioGiocoDAO;
 
 
-public class CreazioneScenarioFragment extends AbstractNavigazioneFragment {
+public class CreazioneScenarioFragment extends AbstractNavigationFragment {
 
     private TextInputEditText dateScenery;
 

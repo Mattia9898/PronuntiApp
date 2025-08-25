@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import it.uniba.dib.pronuntiapp.R;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 // classe che carica il fragment di assenza di giochi disponibili
-public class NessunGiocoDisponibileFragment extends AbstractNavigazioneFragment {
+public class NessunGiocoDisponibileFragment extends AbstractNavigationFragment {
 
     @Nullable
     @Override

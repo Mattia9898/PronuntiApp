@@ -14,9 +14,9 @@ import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
-public class ScenarioGenericoFragment extends AbstractNavigazioneFragment {
+public class ScenarioGenericoFragment extends AbstractNavigationFragment {
 
     private PazienteViewsModels mPazienteViewsModels;
 

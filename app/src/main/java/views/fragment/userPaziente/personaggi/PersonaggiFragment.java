@@ -25,9 +25,9 @@ import viewsModels.pazienteViewsModels.controller.PersonaggiController;
 
 import models.domain.profili.personaggio.Personaggio;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
-public class PersonaggiFragment extends AbstractNavigazioneFragment {
+public class PersonaggiFragment extends AbstractNavigationFragment {
 
     private RecyclerView recyclerViewPersonaggiSbloccati;
     private RecyclerView recyclerViewPersonaggiAcquistabili;

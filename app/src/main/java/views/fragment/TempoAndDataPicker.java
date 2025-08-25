@@ -19,9 +19,7 @@ import java.time.LocalDate;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import views.fragment.AbstractNavigazioneFragment;
-
-public class TempoAndDataPicker extends AbstractNavigazioneFragment {
+public class TempoAndDataPicker extends AbstractNavigationFragment {
 
     private TextInputEditText textInputEditTextDataNascitaProfiloPaziente;
     private TextInputLayout textInputLayoutDataNascitaProfiloPaziente;
@@ -62,13 +60,13 @@ public class TempoAndDataPicker extends AbstractNavigazioneFragment {
 
     //metodi del picker del tempo
     private void handleTextViewSelection(TextView selectedTextView) {
-        selectedTextView.setBackground(getContext().getDrawable(R.drawable.rectangle_rounded_border_selector_bkg));
+        selectedTextView.setBackground(getContext().getDrawable(R.drawable.rettangolo_grigio_bordo_blu));
         for (int i = 0; i < gridLayout.getChildCount(); i++) {
             View child = gridLayout.getChildAt(i);
             if (child instanceof TextView) {
                 TextView textView = (TextView) child;
                 if (textView != selectedTextView) {
-                    textView.setBackground(getContext().getDrawable(R.drawable.rectangle_rounded_border_bkg));
+                    textView.setBackground(getContext().getDrawable(R.drawable.rettangolo_bordo_grigio));
                 }
             }
         }

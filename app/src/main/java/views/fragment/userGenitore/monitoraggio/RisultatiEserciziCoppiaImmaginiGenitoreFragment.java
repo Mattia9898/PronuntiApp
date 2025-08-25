@@ -5,7 +5,7 @@ import it.uniba.dib.pronuntiapp.R;
 
 import java.io.File;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
@@ -31,7 +31,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 
-public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNavigazioneFragment {
+public class RisultatiEserciziCoppiaImmaginiGenitoreFragment extends AbstractNavigationFragment {
 
 
     private AudioRecorder audioRecorder;

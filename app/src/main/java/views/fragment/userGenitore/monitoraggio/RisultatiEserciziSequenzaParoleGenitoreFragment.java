@@ -3,7 +3,7 @@ package views.fragment.userGenitore.monitoraggio;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
@@ -31,7 +31,7 @@ import android.widget.ImageView;
 import android.widget.ImageButton;
 
 
-public class RisultatiEserciziSequenzaParoleGenitoreFragment extends AbstractNavigazioneFragment {
+public class RisultatiEserciziSequenzaParoleGenitoreFragment extends AbstractNavigationFragment {
 
     private ImageView checkExercise;
 

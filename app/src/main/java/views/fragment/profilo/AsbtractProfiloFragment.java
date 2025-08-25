@@ -1,16 +1,14 @@
 package views.fragment.profilo;
 
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import androidx.fragment.app.Fragment;
 
-
-public abstract class AsbtractProfiloFragment extends AbstractNavigazioneFragment {
+public abstract class AsbtractProfiloFragment extends AbstractNavigationFragment {
 
     protected TextView usernameProfile;
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 import models.domain.profili.Appuntamento;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 import viewsModels.genitoreViewsModels.controller.AppuntamentiGenitoreController;
@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class AppuntamentiGenitoreFragment extends AbstractNavigazioneFragment {
+public class AppuntamentiGenitoreFragment extends AbstractNavigationFragment {
 
 
     private AppuntamentiGenitoreAdapter appuntamentiGenitoreAdapter;

@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:paddingVertical="5dp"
-        android:id="@+id/myLinearLayout"
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -20,7 +20,7 @@
         >
 
         <ImageButton
-            android:id="@+id/buttonIndietroScenario"
+            android:id="@+id/buttonBackScenery"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_gravity="left"
@@ -30,7 +30,7 @@
             android:src="@drawable/icona_back_bianca" />
 
         <TextView
-            android:id="@+id/textViewDataScenario"
+            android:id="@+id/dateScenery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -42,7 +42,7 @@
         </TextView>
 
         <ImageButton
-            android:id="@+id/buttonAvantiScenario"
+            android:id="@+id/buttonNextScenery"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_gravity="right"

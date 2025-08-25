@@ -20,9 +20,9 @@ import viewsModels.pazienteViewsModels.controller.RankingController;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
-public class RankingFragment extends AbstractNavigazioneFragment {
+public class RankingFragment extends AbstractNavigationFragment {
 
     private RecyclerView recyclerViewClassifica;
 

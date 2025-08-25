@@ -17,13 +17,12 @@ import android.util.Log;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
-import models.domain.terapie.Terapia;
 import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.profili.Paziente;
 
 import views.fragment.adapter.ScenarioAdapter;
 import views.fragment.adapter.Navigation;
-import views.fragment.AbstractNavigazioneFragment;
+import views.fragment.AbstractNavigationFragment;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
 
-public class MonitoraggioLogopedistaFragment extends AbstractNavigazioneFragment implements Navigation {
+public class MonitoraggioLogopedistaFragment extends AbstractNavigationFragment implements Navigation {
 
     private RecyclerView scenery;
 
