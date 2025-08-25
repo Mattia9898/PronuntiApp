@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayoutScenario"
+    android:id="@+id/mainConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_neve_montagne"
@@ -23,53 +23,54 @@
         />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/line_posizioni"
-        app:layout_constraintTop_toBottomOf="@+id/posizione_secondo_esercizio"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="175dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="125dp"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="270dp"
-        android:layout_marginEnd="65dp"
-        android:scaleX="-1"
-        android:scaleY="1.05"
-        android:src="@drawable/line_posizioni"
-        app:layout_constraintBottom_toTopOf="@+id/posizione_secondo_esercizio"
+        android:id="@+id/secondArrow"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="160dp"
+        android:src="@drawable/freccia_goto_immagine_successiva"
+        android:rotationY="-180"
+        app:layout_constraintBottom_toTopOf="@+id/positionFirstGame"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/positionSecondGame"
         />
 
     <ImageView
-        android:id="@+id/posizione_primo_esercizio"
+        android:id="@+id/firstArrow"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="120dp"
+        android:scaleY="-1"
+        android:rotationX="-180"
+        android:src="@drawable/freccia_goto_immagine_successiva"
+        app:layout_constraintBottom_toTopOf="@+id/positionSecondGame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/positionThirdGame" />
+
+    <ImageView
+        android:id="@+id/positionFirstGame"
         style="@style/stylePosizioniScenario"
         android:layout_marginStart="56dp"
         android:layout_marginBottom="112dp"
-        android:src="@drawable/igloo"
+        android:src="@drawable/caramella_gialla"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/posizione_secondo_esercizio"
+        android:id="@+id/positionSecondGame"
         style="@style/stylePosizioniScenario"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="320dp"
+        android:scaleX="-1"
         android:src="@drawable/caramella_rossa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/posizione_terzo_esercizio"
+        android:id="@+id/positionThirdGame"
         style="@style/stylePosizioniScenario"
         android:layout_marginStart="76dp"
         android:layout_marginBottom="528dp"
-        android:src="@drawable/caramella_rossa"
+        android:src="@drawable/caramella_verde"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

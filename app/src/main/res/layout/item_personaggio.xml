@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/item_image.xml -->
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/primaryColorSoft"
     app:cardCornerRadius="8dp"
     android:layout_margin="5dp"
     app:cardElevation="8dp"
@@ -13,21 +13,21 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="40dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
         android:gravity="center"
-        android:paddingVertical="20dp"
+        android:paddingVertical="10dp"
         >
 
         <TextView
             android:id="@+id/textViewNomePersonaggio"
-            android:text="@string/nome"
+            android:text="Nome"
             style="@style/NomePersonaggioStyle"
             android:textAppearance="@style/styleTextPersonaggi"
             />
 
         <ImageView
-            android:id="@+id/imageViewPersonaggio"
+            android:id="@+id/character"
             android:src="@drawable/personaggio_default"
             style="@style/PersonaggiStyle"
             android:clipToOutline="true"
@@ -36,27 +36,30 @@
 
         <LinearLayout
             android:id="@+id/llAcquistaPersonaggio"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@drawable/rettangolo_nero"
-            android:gravity="center"
             android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
             android:paddingVertical="7dp"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:background="@drawable/rettangolo_nero"
+            >
 
-            <include layout="@layout/immagine_view_coins" />
+            <include layout="@layout/immagine_view_coins"/>
 
             <TextView
                 android:id="@+id/textViewCostoPersonaggio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:text="100"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:gravity="center"
                 android:textAppearance="@style/styleTextPersonaggi"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                />
+
         </LinearLayout>
 
         <LinearLayout
@@ -74,16 +77,19 @@
                 android:id="@+id/imageViewSelectedPersonaggio"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/icona_giusto" />
+                android:src="@drawable/icona_giusto"
+                />
+
             <TextView
                 android:id="@+id/textViewPersonaggioSelezionato"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="In uso"
                 android:gravity="center"
                 android:textAppearance="@style/styleTextPersonaggi"
                 android:textSize="12sp"
                 />
+
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -92,7 +98,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="visible"
-            android:layout_marginLeft="30dp"
             android:text="Usa"
             android:gravity="center"
             android:textAppearance="@style/styleTextPersonaggi"

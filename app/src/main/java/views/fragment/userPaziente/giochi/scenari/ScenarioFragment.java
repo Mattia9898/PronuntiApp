@@ -1,35 +1,12 @@
 package views.fragment.userPaziente.giochi.scenari;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.transition.Transition;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
+
+import android.annotation.SuppressLint;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import models.domain.esercizi.EsercizioDenominazioneImmagini;
 import models.domain.esercizi.EsercizioRealizzabile;
 import models.domain.esercizi.EsercizioSequenzaParole;
@@ -39,279 +16,340 @@ import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import views.fragment.AbstractNavigationFragment;
 import views.fragment.userPaziente.giochi.FineScenarioView;
 
+import android.widget.ImageView;
+import android.util.Log;
+import android.util.TypedValue;
+import android.content.Context;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+
+
+import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProvider;
+
+import java.util.List;
+
+
 public class ScenarioFragment extends AbstractNavigationFragment {
-    private float xDelta, yDelta;
-    private float bottomHeight;
-    private float topHeight;
-    private ImageView personaggioImageView;
-    private ImageView posizioneGioco1ImageView, posizioneGioco2ImageView, posizioneGioco3ImageView;
-    private float personaggioX, personaggioY, personaggioWidth, personaggioHeight;
-    private ConstraintLayout constraintLayout;
-    private Vibrator vibrator;
-    private boolean isVibrating = false;
-    private PazienteViewsModels mPazienteViewsModels;
+
+
+    private float characterCoordinatesX, characterCoordinatesY, characterWidth, characterHeight;
+
+    private float alphaCoordinatesX, alphaCoordinatesY;
+
+    private float bottomHeight, topHeight;
+
+    private boolean isOnVibration = false;
+
     private Bundle bundle;
+
+    private Vibrator vibrator;
+
+    private ImageView character;
+
+    private ImageView positionFirstGame, positionSecondGame, positionThirdGame;
+
+    private PazienteViewsModels pazienteViewsModels;
+
     private ScenarioGioco scenarioGioco;
+
     private FineScenarioView fineScenarioView;
+
+    private ConstraintLayout mainConstraintLayout;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_scenario, container, false);
         bundle = getArguments();
-        this.mPazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
+        this.pazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
 
         fineScenarioView = view.findViewById(R.id.fineScenarioView);
         fineScenarioView.setVisibility(View.GONE);
 
-        constraintLayout = view.findViewById(R.id.constraintLayoutScenario);
+        mainConstraintLayout = view.findViewById(R.id.mainConstraintLayout);
 
-        personaggioImageView = view.findViewById(R.id.imageViewPersonaggio);
+        character = view.findViewById(R.id.character);
 
-        posizioneGioco1ImageView = view.findViewById(R.id.posizione_primo_esercizio);
-        posizioneGioco2ImageView = view.findViewById(R.id.posizione_secondo_esercizio);
-        posizioneGioco3ImageView = view.findViewById(R.id.posizione_terzo_esercizio);
+        positionFirstGame = view.findViewById(R.id.positionFirstGame);
+        positionSecondGame = view.findViewById(R.id.positionSecondGame);
+        positionThirdGame = view.findViewById(R.id.positionThirdGame);
 
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
-        int scenarioIndex = bundle.getInt("indiceScenarioCorrente");
-        int terapiaIndex = bundle.getInt("indiceTerapia");
-        Log.d("indiceScenarioCorrente","indiceScenarioCorrente "+String.valueOf(scenarioIndex));
-        mPazienteViewsModels.getTexturePersonaggioSelezionatoLiveData().observe(getViewLifecycleOwner(), texture -> {
-            Picasso.get().load(texture).into(personaggioImageView);
+        int indexScenery = bundle.getInt("actualscenarioIndex");
+        int indexTherapy = bundle.getInt("indiceTerapia");
+
+        Log.d("actualscenarioIndex", "actualscenarioIndex "+String.valueOf(indexScenery));
+
+        pazienteViewsModels.getTexturePersonaggioSelezionatoLiveData().observe(getViewLifecycleOwner(), texture -> {
+            Picasso.get().load(texture).into(character);
         });
 
-        mPazienteViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
+        pazienteViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
 
-            List<Terapia> terapie = paziente.getTerapie();
-            Terapia terapia  = terapie.get(terapiaIndex);
-            scenarioGioco = terapia.getListScenariGioco().get(scenarioIndex);
+            List<Terapia> listTherapies = paziente.getTerapie();
+            Terapia terapia  = listTherapies.get(indexTherapy);
+            scenarioGioco = terapia.getListScenariGioco().get(indexScenery);
 
-            String immagineSfondo = scenarioGioco.getSfondoImmagine();
-            String immagineTappa1 = scenarioGioco.getImmagine1();
-            String immagineTappa2 = scenarioGioco.getImmagine2();
-            String immagineTappa3 = scenarioGioco.getImmagine3();
-            Glide.with(this).load(immagineSfondo).centerCrop().into(new CustomTarget<Drawable>() {
+            String backgroundImage = scenarioGioco.getSfondoImmagine();
+            String firstImage = scenarioGioco.getImmagine1();
+            String secondImage = scenarioGioco.getImmagine2();
+            String thirdImage = scenarioGioco.getImmagine3();
+
+            Glide.with(this).load(backgroundImage).centerCrop().into(new CustomTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                    constraintLayout.setBackground(resource);
+                    mainConstraintLayout.setBackground(resource);
                 }
                 @Override
                 public void onLoadCleared(@Nullable Drawable placeholder) {}
             });
 
+            Glide.with(this).load(firstImage).centerInside().into(positionFirstGame);
+            Glide.with(this).load(secondImage).centerInside().into(positionSecondGame);
+            Glide.with(this).load(thirdImage).centerInside().into(positionThirdGame);
 
-
-            Glide.with(this).load(immagineTappa1).centerInside().into(posizioneGioco1ImageView);
-            Glide.with(this).load(immagineTappa2).centerInside().into(posizioneGioco2ImageView);
-            Glide.with(this).load(immagineTappa3).centerInside().into(posizioneGioco3ImageView);
-
-            //se è completato, allora bisogna disattivarlo
-            if (isCompletato(0)) {
-                disableImageView(posizioneGioco1ImageView);
+            // se l'esercizio è completato, allora bisogna disattivare la relativa immagine
+            if (isDone(0)) {
+                disableImageView(positionFirstGame);
             }
-            if (isCompletato(1)) {
-                disableImageView(posizioneGioco2ImageView);
+            if (isDone(1)) {
+                disableImageView(positionSecondGame);
             }
-            if (isCompletato(2)) {
-                disableImageView(posizioneGioco3ImageView);
+            if (isDone(2)) {
+                disableImageView(positionThirdGame);
             }
 
-            mPazienteViewsModels.getTexturePersonaggioSelezionatoLiveData().observe(getViewLifecycleOwner(), texture -> {
-                Picasso.get().load(texture).into(personaggioImageView);
+            pazienteViewsModels.getTexturePersonaggioSelezionatoLiveData().observe(getViewLifecycleOwner(), texture -> {
+                Picasso.get().load(texture).into(character);
             });
 
             vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-            personaggioImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            character.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
                 @Override
                 public void onGlobalLayout() {
-                    personaggioImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    int dp=125;
-                    topHeight= TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+                    character.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    int imageDP = 125;
+                    topHeight= TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, imageDP, getResources().getDisplayMetrics());
                     bottomHeight = getResources().getDimension(R.dimen.nav_bar_height);
-                    bottomHeight += bottomHeight*0.2f;
-                    // Abilita il drag dell'immagine del personaggio
-                    enableImageDrag(personaggioImageView);
+                    bottomHeight += bottomHeight * 0.2f;
+
+                    // per abilitare il drag dell'immagine del personaggio
+                    enableImageDrag(character);
                 }
 
             });
 
-            Bundle bundleFineScenario = getArguments();
-            Log.d("Bundle", "onViewCreated fine scenario: " + bundleFineScenario);
-            if(bundleFineScenario != null) {
-                if(bundleFineScenario.containsKey("checkFineScenario") && bundleFineScenario.getBoolean("checkFineScenario")) {
-                    showFineScenario();
+            Bundle endScenery = getArguments();
+            Log.d("Bundle", "onViewCreated fine scenario: " + endScenery);
+
+            if(endScenery != null) {
+                if(endScenery.containsKey("checkEndScenery") && endScenery.getBoolean("checkEndScenery")) {
+                    showEndScenery();
                 }
             }
 
         });
     }
 
-    private void showFineScenario(){
+    private void showEndScenery(){
         fineScenarioView.setVisibility(View.VISIBLE);
-        Log.d("FineScenario", "fine scenario" + scenarioGioco.getlistEsercizioRealizzabile().toString());
-        int ricompensaFinale = scenarioGioco.getRicompensaFinale();
-        fineScenarioView.showFineScenario(ricompensaFinale, posizioneGioco1ImageView, posizioneGioco2ImageView, posizioneGioco3ImageView);
+        Log.d("endScenery", "end scenery" + scenarioGioco.getlistEsercizioRealizzabile().toString());
+        int finalReward = scenarioGioco.getRicompensaFinale();
+        fineScenarioView.showFineScenario(finalReward, positionFirstGame, positionSecondGame, positionThirdGame);
     }
 
-    private void disableImageView(ImageView view) {
+    private void disableImageView(ImageView imageView) {
         ColorMatrix colorMatrix = new ColorMatrix();
         colorMatrix.setSaturation(0);
-        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
-        view.setColorFilter(filter);
+        ColorMatrixColorFilter colorMatrixColorFilter = new ColorMatrixColorFilter(colorMatrix);
+        imageView.setColorFilter(colorMatrixColorFilter);
     }
 
-    private boolean isCompletato(int index){
-        if(scenarioGioco.getlistEsercizioRealizzabile().get(index).getRisultatoEsercizio()!=null){
-            Log.d("Esercizio", index + " completato");
+    private boolean isDone(int indexExercise){
+        if(scenarioGioco.getlistEsercizioRealizzabile().get(indexExercise).getRisultatoEsercizio() != null){
+            Log.d("Exercise", indexExercise + " completed");
             return true;
         }else{
-            Log.d("Esercizio", index + " non completato");
+            Log.d("Exercise", indexExercise + " not completed");
             return false;
         }
     }
 
-    private void setPersonaggioPosition() {
-        personaggioX = personaggioImageView.getX();
-        personaggioY = personaggioImageView.getY();
-        personaggioWidth = personaggioImageView.getWidth();
-        personaggioHeight = personaggioImageView.getHeight();
+    private void vibration() {
+        if (!isOnVibration) {
+            if (vibrator.hasVibrator())
+                vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+            isOnVibration = true;
+        }
     }
 
-    private void highlightPosizione(ImageView imageView) {
-        ingrandisciPosizione(imageView);
-        vibrate();
+    private int getScreenHeight() {
+        return getResources().getDisplayMetrics().heightPixels;
+    }
+
+    private int getScreenWidth() {
+        return getResources().getDisplayMetrics().widthPixels;
+    }
+
+    private void highlightPosition(ImageView imageView) {
+        zoomInPosition(imageView);
+        vibration();
         imageView.setBackground(getContext().getDrawable(R.drawable.esercizio_highlight_background));
     }
 
-    private void ingrandisciPosizione(ImageView imageView){
-        imageView.setScaleX(1.3f);
-        imageView.setScaleY(1.3f);
+    private void setPositionCharacter() {
+        characterCoordinatesX = character.getX();
+        characterCoordinatesY = character.getY();
+        characterWidth = character.getWidth();
+        characterHeight = character.getHeight();
     }
 
-    private void ridimensionaPosizione(ImageView imageView){
+    private void resizePosition(ImageView imageView){
         imageView.setScaleX(1f);
         imageView.setScaleY(1f);
     }
 
-    private boolean isPersonaggioInAreaPrimoEsercizio() {
-        setPersonaggioPosition();
-        float areaPrimoEsercizioX = posizioneGioco1ImageView.getX();
-        float areaPrimoEsercizioY = posizioneGioco1ImageView.getY();
-        float areaPrimoEsercizioWidth = posizioneGioco1ImageView.getWidth();
-        float areaPrimoEsercizioHeight = posizioneGioco1ImageView.getHeight();
-
-        return personaggioX < (areaPrimoEsercizioX + areaPrimoEsercizioWidth) &&
-                (personaggioX + personaggioWidth) > areaPrimoEsercizioX &&
-                personaggioY < (areaPrimoEsercizioY + areaPrimoEsercizioHeight) &&
-                (personaggioY + personaggioHeight) > areaPrimoEsercizioY;
+    private void zoomInPosition(ImageView imageView){
+        imageView.setScaleX(1.3f);
+        imageView.setScaleY(1.3f);
     }
 
-    private boolean isPersonaggioInAreaSecondaEsercizio() {
-        setPersonaggioPosition();
-        float areaSecondoEsercizioX = posizioneGioco2ImageView.getX();
-        float areaSecondoEsercizioY = posizioneGioco2ImageView.getY();
-        float areaSecondoEsercizioWidth = posizioneGioco2ImageView.getWidth();
-        float areaSecondoEsercizioHeight = posizioneGioco2ImageView.getHeight();
 
-        return personaggioX < (areaSecondoEsercizioX + areaSecondoEsercizioWidth) &&
-                (personaggioX + personaggioWidth) > areaSecondoEsercizioX &&
-                personaggioY < (areaSecondoEsercizioY + areaSecondoEsercizioHeight) &&
-                (personaggioY + personaggioHeight) > areaSecondoEsercizioY;
+    private boolean isCharacterInFirstExercise() {
+        setPositionCharacter();
+        float areaCoordinatesX = positionFirstGame.getX();
+        float areaCoordinatesY = positionFirstGame.getY();
+        float areaWidth = positionFirstGame.getWidth();
+        float areaHeight = positionFirstGame.getHeight();
+
+        return characterCoordinatesX < (areaCoordinatesX + areaWidth) &&
+                (characterCoordinatesX + characterWidth) > areaCoordinatesX &&
+                characterCoordinatesY < (areaCoordinatesY + areaHeight) &&
+                (characterCoordinatesY + characterHeight) > areaCoordinatesY;
     }
 
-    private boolean isPersonaggioInAreaTerzoEsercizio() {
-        setPersonaggioPosition();
-        float areaTerzoEsercizioX = posizioneGioco3ImageView.getX();
-        float areaTerzoEsercizioY = posizioneGioco3ImageView.getY();
-        float areaTerzoEsercizioWidth = posizioneGioco3ImageView.getWidth();
-        float areaTerzoEsercizioHeight = posizioneGioco3ImageView.getHeight();
+    private boolean isCharacterInSecondExercise() {
+        setPositionCharacter();
+        float areaCoordinatesX = positionSecondGame.getX();
+        float areaCoordinatesY = positionSecondGame.getY();
+        float areaWidth = positionSecondGame.getWidth();
+        float areaHeight = positionSecondGame.getHeight();
 
-        return personaggioX < (areaTerzoEsercizioX + areaTerzoEsercizioWidth) &&
-                (personaggioX + personaggioWidth) > areaTerzoEsercizioX &&
-                personaggioY < (areaTerzoEsercizioY + areaTerzoEsercizioHeight) &&
-                (personaggioY + personaggioHeight) > areaTerzoEsercizioY;
+        return characterCoordinatesX < (areaCoordinatesX + areaWidth) &&
+                (characterCoordinatesX + characterWidth) > areaCoordinatesX &&
+                characterCoordinatesY < (areaCoordinatesY + areaHeight) &&
+                (characterCoordinatesY + characterHeight) > areaCoordinatesY;
+    }
+
+    private boolean isCharacterInThirdExercise() {
+        setPositionCharacter();
+        float areaCoordinatesX = positionThirdGame.getX();
+        float areaCoordinatesY = positionThirdGame.getY();
+        float areaWidth = positionThirdGame.getWidth();
+        float areaHeight = positionThirdGame.getHeight();
+
+        return characterCoordinatesX < (areaCoordinatesX + areaWidth) &&
+                (characterCoordinatesX + characterWidth) > areaCoordinatesX &&
+                characterCoordinatesY < (areaCoordinatesY + areaHeight) &&
+                (characterCoordinatesY + characterHeight) > areaCoordinatesY;
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void enableImageDrag(ImageView view) {
-        view.setOnTouchListener(new View.OnTouchListener() {
+    private void enableImageDrag(ImageView imageView) {
+        imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final float x = event.getRawX();
-                final float y = event.getRawY();
+            public boolean onTouch(View wiev, MotionEvent motionEvent) {
+                final float x = motionEvent.getRawX();
+                final float y = motionEvent.getRawY();
 
-                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
                     case MotionEvent.ACTION_DOWN:
                         // Salva le coordinate iniziali del tocco
-                        xDelta = x - v.getX();
-                        yDelta = y - v.getY();
+                        alphaCoordinatesX = x - wiev.getX();
+                        alphaCoordinatesY = y - wiev.getY();
                         break;
 
                     case MotionEvent.ACTION_MOVE:
                         // Calcola la nuova posizione della ImageView
-                        float newX = x - xDelta;
-                        float newY = y - yDelta;
+                        float newX = x - alphaCoordinatesX;
+                        float newY = y - alphaCoordinatesY;
 
-                        if (isPersonaggioInAreaPrimoEsercizio() && !isCompletato(0)) {
-                            ridimensionaPosizione(posizioneGioco2ImageView);
-                            ridimensionaPosizione(posizioneGioco3ImageView);
-                            posizioneGioco2ImageView.setBackground(null);
-                            posizioneGioco3ImageView.setBackground(null);
-                            highlightPosizione(posizioneGioco1ImageView);
+                        if (isCharacterInFirstExercise() && !isDone(0)) {
+                            resizePosition(positionSecondGame);
+                            resizePosition(positionThirdGame);
+                            positionSecondGame.setBackground(null);
+                            positionThirdGame.setBackground(null);
+                            highlightPosition(positionFirstGame);
 
-                        } else if (isPersonaggioInAreaSecondaEsercizio() && !isCompletato(1)) {
-                            ridimensionaPosizione(posizioneGioco1ImageView);
-                            ridimensionaPosizione(posizioneGioco3ImageView);
-                            posizioneGioco1ImageView.setBackground(null);
-                            posizioneGioco3ImageView.setBackground(null);
-                            highlightPosizione(posizioneGioco2ImageView);
+                        } else if (isCharacterInSecondExercise() && !isDone(1)) {
+                            resizePosition(positionFirstGame);
+                            resizePosition(positionThirdGame);
+                            positionFirstGame.setBackground(null);
+                            positionThirdGame.setBackground(null);
+                            highlightPosition(positionSecondGame);
 
-                        } else if (isPersonaggioInAreaTerzoEsercizio() && !isCompletato(2)) {
-                            ridimensionaPosizione(posizioneGioco1ImageView);
-                            ridimensionaPosizione(posizioneGioco2ImageView);
-                            posizioneGioco1ImageView.setBackground(null);
-                            posizioneGioco2ImageView.setBackground(null);
-                            highlightPosizione(posizioneGioco3ImageView);
+                        } else if (isCharacterInThirdExercise() && !isDone(2)) {
+                            resizePosition(positionFirstGame);
+                            resizePosition(positionSecondGame);
+                            positionFirstGame.setBackground(null);
+                            positionSecondGame.setBackground(null);
+                            highlightPosition(positionThirdGame);
 
                         } else {
-                            Log.d("Personaggio", "non in area esercizio");
-                            //isPersonaggioInAreaEsercizio = false;
-                            isVibrating = false;
-                            ridimensionaPosizione(posizioneGioco1ImageView);
-                            ridimensionaPosizione(posizioneGioco2ImageView);
-                            ridimensionaPosizione(posizioneGioco3ImageView);
-                            posizioneGioco1ImageView.setBackground(null);
-                            posizioneGioco2ImageView.setBackground(null);
-                            posizioneGioco3ImageView.setBackground(null);
+                            Log.d("Character", "not in exercise area");
+                            isOnVibration = false;
+                            resizePosition(positionFirstGame);
+                            resizePosition(positionSecondGame);
+                            resizePosition(positionThirdGame);
+                            positionFirstGame.setBackground(null);
+                            positionSecondGame.setBackground(null);
+                            positionThirdGame.setBackground(null);
                         }
 
-                        // Verifica che la ImageView non esca dalla schermata
-                        if (newX > 0 && newX < (getScreenWidth() - v.getWidth())) {
-                            v.setX(newX);
+                        // per verificare che la ImageView non esca dalla schermata
+                        if (newX > 0 && newX < (getScreenWidth() - wiev.getWidth())) {
+                            wiev.setX(newX);
                         }
 
                         if (newY > topHeight && newY < getScreenHeight() - bottomHeight) {
-                            v.setY(newY);
+                            wiev.setY(newY);
                         }
 
                         break;
 
                     case MotionEvent.ACTION_UP:
-                        List<EsercizioRealizzabile> esercizioRealizzabileList = scenarioGioco.getlistEsercizioRealizzabile();
-                        if (isPersonaggioInAreaPrimoEsercizio() && !isCompletato(0)) {
-                            verificaEssercizio(esercizioRealizzabileList.get(0),0 );
-                        } else if (isPersonaggioInAreaSecondaEsercizio() && !isCompletato(1)) {
-                            verificaEssercizio(esercizioRealizzabileList.get(1),1 );
-                        } else if (isPersonaggioInAreaTerzoEsercizio() && !isCompletato(2)) {
-                            verificaEssercizio(esercizioRealizzabileList.get(2),2 );
+                        List<EsercizioRealizzabile> listEsercizioRealizzabile = scenarioGioco.getlistEsercizioRealizzabile();
+                        if (isCharacterInFirstExercise() && !isDone(0)) {
+                            checkExercise(listEsercizioRealizzabile.get(0),0 );
+                        } else if (isCharacterInSecondExercise() && !isDone(1)) {
+                            checkExercise(listEsercizioRealizzabile.get(1),1 );
+                        } else if (isCharacterInThirdExercise() && !isDone(2)) {
+                            checkExercise(listEsercizioRealizzabile.get(2),2 );
                         }
 
                 }
@@ -320,33 +358,17 @@ public class ScenarioFragment extends AbstractNavigationFragment {
         });
     }
 
-    private void verificaEssercizio(EsercizioRealizzabile esercizioRealizzabile, int index){
+    private void checkExercise(EsercizioRealizzabile esercizioRealizzabile, int indexExercise){
         if(esercizioRealizzabile instanceof EsercizioDenominazioneImmagini){
-            bundle.putInt("indiceEsercizio",index);
-            navigateTo(R.id.action_scenarioFragment_to_esercizioDenominazioneImmagineFragment2,bundle);
+            bundle.putInt("indexExercise", indexExercise);
+            navigateTo(R.id.action_scenarioFragment_to_esercizioDenominazioneImmagineFragment2, bundle);
         }else if(esercizioRealizzabile instanceof EsercizioSequenzaParole){
-            bundle.putInt("indiceEsercizio",index);
-            navigateTo(R.id.action_scenarioFragment_to_esercizioSequenzaParole,bundle);
+            bundle.putInt("indexExercise", indexExercise);
+            navigateTo(R.id.action_scenarioFragment_to_esercizioSequenzaParole, bundle);
         }else{
-            bundle.putInt("indiceEsercizio",index);
-            navigateTo(R.id.action_scenarioFragment_to_esercizioCoppiaImmagini2,bundle);
+            bundle.putInt("indexExercise", indexExercise);
+            navigateTo(R.id.action_scenarioFragment_to_esercizioCoppiaImmagini2, bundle);
         }
-    }
-
-    private void vibrate() {
-        if (!isVibrating) {
-            if (vibrator.hasVibrator())
-                vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
-            isVibrating = true;
-        }
-    }
-
-    private int getScreenWidth() {
-        return getResources().getDisplayMetrics().widthPixels;
-    }
-
-    private int getScreenHeight() {
-        return getResources().getDisplayMetrics().heightPixels;
     }
 
 }
