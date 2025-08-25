@@ -120,12 +120,12 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
         private TextView textViewNomePersonaggio;
         private LinearLayout llAcquistaPersonaggio;
         private TextView textViewCostoPersonaggio;
-        private LinearLayout llPersonaggioSelezionato; //DA NON VISUALIZZARE QUI
+        private LinearLayout llPersonaggioSelezionato;
         private Button buttonPossiediPersonaggio;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewPersonaggio = itemView.findViewById(R.id.imageViewPersonaggio);
+            imageViewPersonaggio = itemView.findViewById(R.id.character);
             textViewNomePersonaggio = itemView.findViewById(R.id.textViewNomePersonaggio);
 
             llPersonaggioSelezionato = itemView.findViewById(R.id.llPersonaggioSelezionato);

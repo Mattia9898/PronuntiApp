@@ -91,7 +91,7 @@ public class PersonaggiSbloccatiAdapter extends RecyclerView.Adapter<PersonaggiS
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewPersonaggio = itemView.findViewById(R.id.imageViewPersonaggio);
+            imageViewPersonaggio = itemView.findViewById(R.id.character);
             textViewNomePersonaggio = itemView.findViewById(R.id.textViewNomePersonaggio);
 
             llAcquistaPersonaggio = itemView.findViewById(R.id.llAcquistaPersonaggio);

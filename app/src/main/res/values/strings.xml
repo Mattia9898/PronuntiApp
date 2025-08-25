@@ -231,6 +231,8 @@
     <string name="immagine_corretta">Immagine corretta</string>
     <string name="immagine_errata">Immagine sbagliata</string>
     <string name="esercizio">Esercizio</string>
+    <string name="usa">Usa</string>
+    <string name="in_uso">In uso</string>
     <string name="usa_un_template">Usa un template</string>
     <string name="crealo_dall_inizio">Crealo dall inizio</string>
     <string name="quali_parole_il_paziente_dovrebbe_indovinare">Quali parole il paziente dovrebbe indovinare?</string>
