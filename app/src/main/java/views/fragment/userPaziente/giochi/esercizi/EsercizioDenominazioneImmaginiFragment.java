@@ -47,7 +47,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
-import views.fragment.userPaziente.giochi.FineScenarioView;
+import views.fragment.userPaziente.giochi.FineScenario;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import viewsModels.pazienteViewsModels.controller.SceltaImmaginiController;
 
@@ -91,7 +91,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
 
     private ScenarioGioco scenarioGioco;
 
-    private FineScenarioView fineScenarioView;
+    private FineScenario fineScenario;
 
     private AudioRecorder audioRecorder;
 
@@ -108,7 +108,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
         mainConstraintLayout = view.findViewById(R.id.mainConstraintLayout);
         mainConstraintLayout.setVisibility(View.VISIBLE);
 
-        fineScenarioView = view.findViewById(R.id.fineScenarioView);
+        fineScenario = view.findViewById(R.id.fineScenarioView);
 
         buttonAids = view.findViewById(R.id.buttonAids);
         buttonCompleteExercise = view.findViewById(R.id.buttonCompleteExercise);
@@ -246,10 +246,10 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
                 if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkEndScenery", true);
                     addSceneryReward();
-                    fineScenarioView.setEsercizioCorretto(esercizioDenominazioneImmagini.getRicompensaCorretto(),
+                    fineScenario.setCorrectExercise(esercizioDenominazioneImmagini.getRicompensaCorretto(),
                             R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
                 } else
-                    fineScenarioView.setEsercizioCorretto(esercizioDenominazioneImmagini.getRicompensaCorretto(),
+                    fineScenario.setCorrectExercise(esercizioDenominazioneImmagini.getRicompensaCorretto(),
                             R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
             } else {
                 result = false;
@@ -262,10 +262,10 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
                 if (checkEndScenery(scenarioGioco)) {
                     bundle.putBoolean("checkEndScenery", true);
                     addSceneryReward();
-                    fineScenarioView.setEsercizioSbagliato(esercizioDenominazioneImmagini.getRicompensaErrato(),
+                    fineScenario.setWrongExercise(esercizioDenominazioneImmagini.getRicompensaErrato(),
                             R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
                 } else
-                    fineScenarioView.setEsercizioSbagliato(esercizioDenominazioneImmagini.getRicompensaErrato(),
+                    fineScenario.setWrongExercise(esercizioDenominazioneImmagini.getRicompensaErrato(),
                             R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment, this, bundle);
             }
 

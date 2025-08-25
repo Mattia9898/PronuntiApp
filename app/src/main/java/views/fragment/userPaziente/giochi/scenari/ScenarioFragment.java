@@ -14,7 +14,7 @@ import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.terapie.Terapia;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import views.fragment.AbstractNavigationFragment;
-import views.fragment.userPaziente.giochi.FineScenarioView;
+import views.fragment.userPaziente.giochi.FineScenario;
 
 import android.widget.ImageView;
 import android.util.Log;
@@ -67,7 +67,7 @@ public class ScenarioFragment extends AbstractNavigationFragment {
 
     private ScenarioGioco scenarioGioco;
 
-    private FineScenarioView fineScenarioView;
+    private FineScenario fineScenario;
 
     private ConstraintLayout mainConstraintLayout;
 
@@ -80,8 +80,8 @@ public class ScenarioFragment extends AbstractNavigationFragment {
         bundle = getArguments();
         this.pazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
 
-        fineScenarioView = view.findViewById(R.id.fineScenarioView);
-        fineScenarioView.setVisibility(View.GONE);
+        fineScenario = view.findViewById(R.id.fineScenarioView);
+        fineScenario.setVisibility(View.GONE);
 
         mainConstraintLayout = view.findViewById(R.id.mainConstraintLayout);
 
@@ -177,10 +177,10 @@ public class ScenarioFragment extends AbstractNavigationFragment {
     }
 
     private void showEndScenery(){
-        fineScenarioView.setVisibility(View.VISIBLE);
+        fineScenario.setVisibility(View.VISIBLE);
         Log.d("endScenery", "end scenery" + scenarioGioco.getlistEsercizioRealizzabile().toString());
         int finalReward = scenarioGioco.getRicompensaFinale();
-        fineScenarioView.showFineScenario(finalReward, positionFirstGame, positionSecondGame, positionThirdGame);
+        fineScenario.showFineScenario(finalReward, positionFirstGame, positionSecondGame, positionThirdGame);
     }
 
     private void disableImageView(ImageView imageView) {

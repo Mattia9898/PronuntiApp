@@ -1,24 +1,28 @@
 package views.fragment.userPaziente.giochi.scenari;
 
+
+import it.uniba.dib.pronuntiapp.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.List;
+
+import androidx.lifecycle.ViewModelProvider;
+
+import viewsModels.pazienteViewsModels.PazienteViewsModels;
+import views.fragment.AbstractNavigationFragment;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-
-import java.util.List;
-
-import it.uniba.dib.pronuntiapp.R;
-import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import views.fragment.AbstractNavigationFragment;
 
 public class ScenarioGenericoFragment extends AbstractNavigationFragment {
 
-    private PazienteViewsModels mPazienteViewsModels;
+    private PazienteViewsModels pazienteViewsModels;
 
     @Nullable
     @Override
@@ -26,7 +30,8 @@ public class ScenarioGenericoFragment extends AbstractNavigationFragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_scenario_generico,container,false);
-        this.mPazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
+
+        this.pazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
         return view;
 
     }
@@ -35,31 +40,36 @@ public class ScenarioGenericoFragment extends AbstractNavigationFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mPazienteViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), Void -> {
-            List<Integer> scenariGiocoValidi = mPazienteViewsModels.getScenariPaziente();
-            if(scenariGiocoValidi!=null) {
-                int terapiaIndex = mPazienteViewsModels.getTerapiaPazienteIndex();
+        pazienteViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), Void -> {
+            List<Integer> listSceneryGames = pazienteViewsModels.getScenariPaziente();
+            if(listSceneryGames != null) {
+                int indexTherapy = pazienteViewsModels.getTerapiaPazienteIndex();
                 Bundle bundle = getArguments();
-                Log.d("Bundle", "onViewCreated SCENARI fine scenario: " + bundle);
+                Log.d("Bundle", "onViewCreated fine scenario: " + bundle);
 
-                //se è presente checkFineScenario, vuol dire che è stato completato uno scenario
-                //quindi si deve mostrare la schermata di fine esercizio
+                // se è presente checkEndScenery --> è stato completato uno scenario
+                // quindi mostrare la schermata di fine esercizio
                 if(bundle != null) {
-                    if(bundle.containsKey("checkFineScenario") && bundle.getBoolean("checkFineScenario")) {
-                        bundle.putBoolean("checkFineScenario", true);
+                    if(bundle.containsKey("checkEndScenery") && bundle.getBoolean("checkEndScenery")) {
+                        bundle.putBoolean("checkEndScenery", true);
                     }
                 }
                 else {
                     bundle = new Bundle();
                 }
+
                 ScenarioFragment scenarioFragment = new ScenarioFragment();
-                bundle.putInt("indiceScenarioCorrente", scenariGiocoValidi.get(scenariGiocoValidi.size() - 1));
-                bundle.putInt("indiceTerapia",terapiaIndex);
-                if(bundle.containsKey("indiceScenarioGioco")){
-                    bundle.putInt("indiceScenarioCorrente",bundle.getInt("indiceScenarioGioco"));
+                bundle.putInt("actualIndexScenery", listSceneryGames.get(listSceneryGames.size() - 1));
+                bundle.putInt("indexTherapy", indexTherapy);
+
+                if(bundle.containsKey("indexSceneryGame")){
+                    bundle.putInt("actualIndexScenery",bundle.getInt("indexSceneryGame"));
                 }
+
                 scenarioFragment.setArguments(bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_scenari_singolo, scenarioFragment).commit();
+                getParentFragmentManager().beginTransaction().
+                        replace(R.id.fragment_scenari_singolo, scenarioFragment).commit();
+
             }else{
                 NessunGiocoDisponibileFragment nessunGiocoDisponibileFragment = new NessunGiocoDisponibileFragment();
                 getParentFragmentManager().beginTransaction().

@@ -1,7 +1,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/frameLayoutFineEsercizioDenominazioneImmagineFine"
+    android:id="@+id/mainFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +20,7 @@
         android:paddingVertical="20dp">
 
         <TextView
-            android:id="@+id/textViewEsercizioCorretto"
+            android:id="@+id/correctExercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/corretto"
@@ -38,7 +38,7 @@
             android:textAppearance="@style/styleTextPersonaggi" />
 
         <TextView
-            android:id="@+id/textViewFineScenario"
+            android:id="@+id/endScenery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -58,7 +58,7 @@
             android:textAppearance="@style/styleTextPersonaggi" />
 
         <TextView
-            android:id="@+id/textViewEsercizioSbagliato"
+            android:id="@+id/wrongExercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -80,7 +80,7 @@
             android:id="@+id/linearLayoutCoinsFineEsercizio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/textViewEsercizioCorretto"
+            app:layout_constraintTop_toBottomOf="@id/correctExercise"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +89,7 @@
             android:layout_marginTop="10dp">
 
             <ImageView
-                android:id="@+id/imageViewUpCoinFineEsercizio"
+                android:id="@+id/upCoins"
                 android:layout_width="5dp"
                 android:layout_height="50dp"
                 android:src="@drawable/icona_coins_su"
@@ -105,7 +105,7 @@
                 android:layout_marginLeft="5dp" />
 
             <TextView
-                android:id="@+id/textViewCoinsFineEsercizio"
+                android:id="@+id/coins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"

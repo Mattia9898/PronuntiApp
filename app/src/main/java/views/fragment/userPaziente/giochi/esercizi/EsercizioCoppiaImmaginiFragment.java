@@ -28,7 +28,7 @@ import android.os.Handler;
 import viewsModels.pazienteViewsModels.controller.CoppiaImmaginiController;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
-import views.fragment.userPaziente.giochi.FineScenarioView;
+import views.fragment.userPaziente.giochi.FineScenario;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
 
     private ImageView buttonFirstImage, buttonSecondImage;
 
-    private FineScenarioView fineScenarioView;
+    private FineScenario fineScenario;
 
     private ConstraintLayout mainConstraintLayout;
 
@@ -93,7 +93,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
         this.pazienteViewModel = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
         this.coppiaImmaginiController = pazienteViewModel.getCoppiaImmaginiController();
 
-        fineScenarioView = view.findViewById(R.id.fineEsercizioView);
+        fineScenario = view.findViewById(R.id.fineScenario);
         mainConstraintLayout = view.findViewById(R.id.mainConstraintLayout);
 
         firstImage = view.findViewById(R.id.firstImage);
@@ -301,11 +301,11 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
             if(checkEndScenery(scenarioGioco)){
                 bundle.putBoolean("checkFineScenario", true);
                 addSceneryReward();
-                fineScenarioView.setEsercizioCorretto(esercizioCoppiaImmagini.getRicompensaCorretto(),
+                fineScenario.setCorrectExercise(esercizioCoppiaImmagini.getRicompensaCorretto(),
                         R.id.action_esercizioCoppiaImmagini_to_scenarioFragment, this, bundle);
             }
             else {
-                fineScenarioView.setEsercizioCorretto(esercizioCoppiaImmagini.getRicompensaCorretto(),
+                fineScenario.setCorrectExercise(esercizioCoppiaImmagini.getRicompensaCorretto(),
                         R.id.action_esercizioCoppiaImmagini_to_scenarioFragment, this, bundle);
             }
 
@@ -320,10 +320,10 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
             if(checkEndScenery(scenarioGioco)){
                 bundle.putBoolean("checkFineScenario", true);
                 addSceneryReward();
-                fineScenarioView.setEsercizioSbagliato(esercizioCoppiaImmagini.getRicompensaErrato(),
+                fineScenario.setWrongExercise(esercizioCoppiaImmagini.getRicompensaErrato(),
                         R.id.action_esercizioCoppiaImmagini_to_scenarioFragment, this, bundle);
             }
-            else  fineScenarioView.setEsercizioSbagliato(esercizioCoppiaImmagini.getRicompensaErrato(),
+            else  fineScenario.setWrongExercise(esercizioCoppiaImmagini.getRicompensaErrato(),
                     R.id.action_esercizioCoppiaImmagini_to_scenarioFragment, this, bundle);
 
         }
