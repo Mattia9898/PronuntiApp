@@ -40,9 +40,9 @@ public class TopBarFragment extends Fragment {
         this.mPazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
 
         topBarLayout = view.findViewById(R.id.topBarPaziente);
-        imageViewPaziente = view.findViewById(R.id.imageViewPaziente);
-        textViewUsernamePaziente = view.findViewById(R.id.textViewUsernamePaziente);
-        textViewPunteggio = view.findViewById(R.id.textViewPunteggio);
+        imageViewPaziente = view.findViewById(R.id.imagePatient);
+        textViewUsernamePaziente = view.findViewById(R.id.username);
+        textViewPunteggio = view.findViewById(R.id.score);
         coinsTextView = view.findViewById(R.id.coinsTextView);
 
         return view;

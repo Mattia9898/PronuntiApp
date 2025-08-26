@@ -1,31 +1,35 @@
 package views.fragment.userPaziente.ranking;
 
+
 import java.io.Serializable;
+
 
 public class Ranking implements Serializable {
 
     private String username;
 
-    private int punteggio;
+    private String imageCharacter;
 
-    private String immaginePersonaggio;
+    private int score;
 
-    public Ranking(String username, int punteggio, String immaginePersonaggio) {
+
+    public Ranking(String username, int score, String imageCharacter) {
         this.username = username;
-        this.punteggio = punteggio;
-        this.immaginePersonaggio = immaginePersonaggio;
+        this.score = score;
+        this.imageCharacter = imageCharacter;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public int getPunteggio() {
-        return punteggio;
+    public String getImageCharacter() {
+        return imageCharacter;
     }
 
-    public String getImmaginePersonaggio() {
-        return immaginePersonaggio;
+    public int getScore() {
+        return score;
     }
+
 
 }

@@ -44,7 +44,7 @@ public class RankingController {
             }
         }
 
-        classifica.sort((p1, p2) -> p2.getPunteggio() - p1.getPunteggio());
+        classifica.sort((p1, p2) -> p2.getScore() - p1.getScore());
         return classifica;
 
     }
