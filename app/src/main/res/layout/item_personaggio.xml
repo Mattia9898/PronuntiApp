@@ -20,8 +20,8 @@
         >
 
         <TextView
-            android:id="@+id/textViewNomePersonaggio"
-            android:text="Nome"
+            android:id="@+id/nameCharacter"
+            android:text="@string/name"
             style="@style/NomePersonaggioStyle"
             android:textAppearance="@style/styleTextPersonaggi"
             />
@@ -35,7 +35,7 @@
             />
 
         <LinearLayout
-            android:id="@+id/llAcquistaPersonaggio"
+            android:id="@+id/buyCharacter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -50,7 +50,7 @@
             <include layout="@layout/immagine_view_coins"/>
 
             <TextView
-                android:id="@+id/textViewCostoPersonaggio"
+                android:id="@+id/costCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
@@ -63,7 +63,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llPersonaggioSelezionato"
+            android:id="@+id/selectedCharacter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -93,7 +93,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonPossiediPersonaggio"
+            android:id="@+id/buttonObtainCharacter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

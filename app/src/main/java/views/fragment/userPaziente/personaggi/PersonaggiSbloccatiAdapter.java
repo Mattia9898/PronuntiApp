@@ -92,13 +92,13 @@ public class PersonaggiSbloccatiAdapter extends RecyclerView.Adapter<PersonaggiS
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageViewPersonaggio = itemView.findViewById(R.id.character);
-            textViewNomePersonaggio = itemView.findViewById(R.id.textViewNomePersonaggio);
+            textViewNomePersonaggio = itemView.findViewById(R.id.nameCharacter);
 
-            llAcquistaPersonaggio = itemView.findViewById(R.id.llAcquistaPersonaggio);
+            llAcquistaPersonaggio = itemView.findViewById(R.id.buyCharacter);
             llAcquistaPersonaggio.setVisibility(View.GONE);
 
-            llPersonaggioSelezionato = itemView.findViewById(R.id.llPersonaggioSelezionato);
-            buttonPossiediPersonaggio  = itemView.findViewById(R.id.buttonPossiediPersonaggio);
+            llPersonaggioSelezionato = itemView.findViewById(R.id.selectedCharacter);
+            buttonPossiediPersonaggio  = itemView.findViewById(R.id.buttonObtainCharacter);
         }
     }
 

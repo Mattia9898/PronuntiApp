@@ -207,7 +207,7 @@
     <string name="personaggi_acquistabili">Personaggi acquistabili</string>
     <string name="valutaInsufficiente">Non hai abbastanza soldi per sbloccare questo personaggio!</string>
     <string name="acquistoPersonaggioTitle">Acquisto personaggio</string>
-    <string name="acquistoPersonaggioDescription">Sei sicuro di voler acquistare e sbloccare questo personaggio??</string>
+    <string name="acquistoPersonaggioDescription">Sei sicuro di voler acquistare e sbloccare questo personaggio?</string>
     <string name="risultatoEsercizio">Risultato esercizio</string>
     <string name="terapia">Terapia</string>
     <string name="scenarioDel">Scenario del:</string>
