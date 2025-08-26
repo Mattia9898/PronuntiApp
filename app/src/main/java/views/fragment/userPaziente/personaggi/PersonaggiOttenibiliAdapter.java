@@ -92,7 +92,7 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
 
     private void refreshCharacters(Personaggio character){
         listCharactersToBuy.remove(character);
-        charactersUnlockedAdapter.addPersonaggioSbloccato(character);
+        charactersUnlockedAdapter.addUnlockedCharacter(character);
     }
 
     private Animator getAnimator(){
@@ -147,9 +147,9 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
 
         private LinearLayout buyCharacter;
 
-        private TextView costCharacter;
-
         private LinearLayout selectedCharacter;
+
+        private TextView costCharacter;
 
         private Button buttonObtainCharacter;
 

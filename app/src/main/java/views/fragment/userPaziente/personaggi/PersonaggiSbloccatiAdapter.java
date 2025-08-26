@@ -1,15 +1,9 @@
 package views.fragment.userPaziente.personaggi;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import it.uniba.dib.pronuntiapp.R;
+
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -17,22 +11,36 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.Collections;
 import java.util.List;
 
-import it.uniba.dib.pronuntiapp.R;
-
 import models.domain.profili.personaggio.Personaggio;
 
 import viewsModels.pazienteViewsModels.controller.PersonaggiController;
 
+import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+
 public class PersonaggiSbloccatiAdapter extends RecyclerView.Adapter<PersonaggiSbloccatiAdapter.ViewHolder> {
 
     private Context context;
-    private List<Personaggio> personaggiSbloccati;
-    private PersonaggiController mController;
 
-    public PersonaggiSbloccatiAdapter(Context context, List<Personaggio> personaggiSbloccati, PersonaggiController personaggiController) {
+    private List<Personaggio> listUnlockedCharacters;
+
+    private PersonaggiController personaggiController;
+
+
+    public PersonaggiSbloccatiAdapter(Context context,
+                                      List<Personaggio> listUnlockedCharacters,
+                                      PersonaggiController personaggiController) {
         this.context = context;
-        this.personaggiSbloccati = personaggiSbloccati;
-        this.mController = personaggiController;
+        this.listUnlockedCharacters = listUnlockedCharacters;
+        this.personaggiController = personaggiController;
     }
 
     @NonNull
@@ -45,60 +53,68 @@ public class PersonaggiSbloccatiAdapter extends RecyclerView.Adapter<PersonaggiS
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Personaggio personaggio = personaggiSbloccati.get(position);
-        String urlPersonaggio = personaggio.getTexturePersonaggio();
-        String nomePersonaggio = personaggio.getNomePersonaggio();
-        String idPersonaggio = personaggio.getIdPersonaggio();
+        Personaggio character = listUnlockedCharacters.get(position);
+        String urlCharacter = character.getTexturePersonaggio();
+        String nameCharacter = character.getNomePersonaggio();
+        String idCharacter = character.getIdPersonaggio();
 
         if (position == 0) {
-            holder.buttonPossiediPersonaggio.setVisibility(View.GONE);
-            holder.llPersonaggioSelezionato.setVisibility(View.VISIBLE);
+            holder.buttonObtainCharacter.setVisibility(View.GONE);
+            holder.selectedCharacter.setVisibility(View.VISIBLE);
         } else {
-            holder.llPersonaggioSelezionato.setVisibility(View.GONE);
-            holder.buttonPossiediPersonaggio.setVisibility(View.VISIBLE);
+            holder.selectedCharacter.setVisibility(View.GONE);
+            holder.buttonObtainCharacter.setVisibility(View.VISIBLE);
         }
 
-        holder.textViewNomePersonaggio.setText(nomePersonaggio);
-        Glide.with(context).asBitmap().apply(new RequestOptions().override(150, 150)).load(urlPersonaggio).into(holder.imageViewPersonaggio);
+        holder.nameCharacter.setText(nameCharacter);
+        Glide.with(context).asBitmap().apply(new RequestOptions().
+                override(150, 150)).load(urlCharacter).into(holder.character);
 
-        holder.buttonPossiediPersonaggio.setOnClickListener(v -> {
-            refreshPersonaggioSelezionato(position);
-            mController.updateSelezionePersonaggio(idPersonaggio);
+        holder.buttonObtainCharacter.setOnClickListener(v -> {
+            refreshSelectedCharacter(position);
+            personaggiController.updateSelezionePersonaggio(idCharacter);
         });
-    }
-
-    private void refreshPersonaggioSelezionato(int position) {
-        Collections.swap(personaggiSbloccati, 0, position);
-        notifyDataSetChanged();
-    }
-
-    public void addPersonaggioSbloccato(Personaggio personaggio){
-        personaggiSbloccati.add(0,personaggio);
-        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return personaggiSbloccati.size();
+        return listUnlockedCharacters.size();
     }
 
+    public void addUnlockedCharacter(Personaggio personaggio){
+        listUnlockedCharacters.add(0,personaggio);
+        notifyDataSetChanged();
+    }
+
+    private void refreshSelectedCharacter(int position) {
+        Collections.swap(listUnlockedCharacters, 0, position);
+        notifyDataSetChanged();
+    }
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageViewPersonaggio;
-        private TextView textViewNomePersonaggio;
-        private LinearLayout llAcquistaPersonaggio; // DA NON VISUALIZZARE QUI
-        private LinearLayout llPersonaggioSelezionato;
-        private Button buttonPossiediPersonaggio;
+
+        private ImageView character;
+
+        private TextView nameCharacter;
+
+        private LinearLayout buyCharacter;
+
+        private LinearLayout selectedCharacter;
+
+        private Button buttonObtainCharacter;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewPersonaggio = itemView.findViewById(R.id.character);
-            textViewNomePersonaggio = itemView.findViewById(R.id.nameCharacter);
+            character = itemView.findViewById(R.id.character);
+            nameCharacter = itemView.findViewById(R.id.nameCharacter);
 
-            llAcquistaPersonaggio = itemView.findViewById(R.id.buyCharacter);
-            llAcquistaPersonaggio.setVisibility(View.GONE);
+            buyCharacter = itemView.findViewById(R.id.buyCharacter);
+            buyCharacter.setVisibility(View.GONE);
 
-            llPersonaggioSelezionato = itemView.findViewById(R.id.selectedCharacter);
-            buttonPossiediPersonaggio  = itemView.findViewById(R.id.buttonObtainCharacter);
+            selectedCharacter = itemView.findViewById(R.id.selectedCharacter);
+            buttonObtainCharacter = itemView.findViewById(R.id.buttonObtainCharacter);
         }
     }
 
