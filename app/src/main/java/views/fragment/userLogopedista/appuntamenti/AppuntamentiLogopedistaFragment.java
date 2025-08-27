@@ -230,7 +230,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigationBetweenFr
             public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {}
         });
 
-        dateAppuntamento.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), dateAppuntamento));
+        dateAppuntamento.setOnClickListener(v -> CustomDate.datePickerDialog(getContext(), dateAppuntamento));
 
         searchAppuntamento.addTextChangedListener(new TextWatcher() {
 

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class CustomDate {
 
-    public static void DatePickerDialog(Context context, TextView textView) {
+    public static void datePickerDialog(Context context, TextView textView) {
 
         LocalDate localDate = LocalDate.now();
 

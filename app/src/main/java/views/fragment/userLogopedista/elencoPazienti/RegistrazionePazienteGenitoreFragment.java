@@ -114,7 +114,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBet
 
         super.onViewCreated(view, savedInstanceState);
 
-        birthdatePatient.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), birthdatePatient));
+        birthdatePatient.setOnClickListener(v -> CustomDate.datePickerDialog(getContext(), birthdatePatient));
 
         buttonRegisterPatientAndParent.setOnClickListener(v -> {
             Logopedista logopedista = logopedistaViewsModels.getLogopedistaLiveData().getValue();

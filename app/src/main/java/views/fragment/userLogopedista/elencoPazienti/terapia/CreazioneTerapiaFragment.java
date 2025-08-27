@@ -87,8 +87,8 @@ public class CreazioneTerapiaFragment extends AbstractNavigationBetweenFragment 
 
             setToolBar(view,getString(R.string.creaTerapia) + " " + namePaziente + " " + surnamePaziente);
 
-            startDate.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), startDate));
-            endDate.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), endDate));
+            startDate.setOnClickListener(v -> CustomDate.datePickerDialog(getContext(), startDate));
+            endDate.setOnClickListener(v -> CustomDate.datePickerDialog(getContext(), endDate));
 
             addScenery.setOnClickListener(v -> addScenery());
             saveTherapy.setOnClickListener(v-> saveTherapy(idPaziente, namePaziente, surnamePaziente));

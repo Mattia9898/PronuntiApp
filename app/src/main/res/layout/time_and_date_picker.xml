@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutDataNascitaProfiloPaziente"
+        android:id="@+id/mainTextInputLayout"
         style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditTextDataNascitaProfiloPaziente"
+            android:id="@+id/editTextBirthdatePatient"
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,15 +26,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
-        android:id="@+id/imageButtonDataNascitaProfiloPaziente"
+        android:id="@+id/buttonBirthdatePatient"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/icona_datapicker"
         android:layout_marginStart="-40dp"
         android:layout_marginTop="21dp"
         android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@id/textInputLayoutDataNascitaProfiloPaziente"
-        app:layout_constraintTop_toTopOf="@id/textInputLayoutDataNascitaProfiloPaziente"
+        app:layout_constraintStart_toEndOf="@id/mainTextInputLayout"
+        app:layout_constraintTop_toTopOf="@id/mainTextInputLayout"
         android:layout_gravity="end" />
 
 
@@ -48,7 +48,7 @@
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="true"
         android:useDefaultMargins="true"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutDataNascitaProfiloPaziente"
+        app:layout_constraintTop_toBottomOf="@id/mainTextInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
