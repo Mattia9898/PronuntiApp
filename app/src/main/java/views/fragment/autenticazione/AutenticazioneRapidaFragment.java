@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import models.autenticazione.AutenticazioneSharedPreferences;
 import models.domain.profili.Profilo;
 import views.dialog.InfoDialog;
-import views.fragment.CaricamentoFragment;
+import views.fragment.StartingLoadingFragment;
 import views.activity.AbstractAppActivity;
 import views.fragment.AbstractNavigationBetweenFragment;
 
@@ -103,7 +103,7 @@ public class AutenticazioneRapidaFragment extends AbstractNavigationBetweenFragm
         frameLayout.removeAllViews();
 
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.layoutAvvioRapido, new CaricamentoFragment())
+                .replace(R.id.layoutAvvioRapido, new StartingLoadingFragment())
                 .commit();
     }
 

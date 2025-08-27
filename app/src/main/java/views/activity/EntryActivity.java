@@ -10,7 +10,7 @@ import android.util.Log;
 import android.os.Bundle;
 import android.content.Intent;
 
-import views.fragment.CaricamentoFragment;
+import views.fragment.StartingLoadingFragment;
 
 import viewsModels.autenticazioneViewsModels.LoginViewsModels;
 
@@ -61,7 +61,7 @@ public class EntryActivity extends AbstractAppActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
         this.loginViewsModels = new ViewModelProvider(this).get(LoginViewsModels.class);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerEntry, new CaricamentoFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerEntry, new StartingLoadingFragment()).commit();
     }
 
 
