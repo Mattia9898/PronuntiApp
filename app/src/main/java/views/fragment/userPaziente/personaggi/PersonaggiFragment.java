@@ -23,14 +23,14 @@ import viewsModels.pazienteViewsModels.controller.PersonaggiController;
 
 import models.domain.profili.personaggio.Personaggio;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
-public class PersonaggiFragment extends AbstractNavigationFragment {
+public class PersonaggiFragment extends AbstractNavigationBetweenFragment {
 
     private RecyclerView RecyclerViewCharactersUnlocked;
 

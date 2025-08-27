@@ -32,10 +32,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 
-public class RisultatiEserciziCoppiaImmaginiLogopedistaFragment extends AbstractNavigationFragment {
+public class RisultatiEserciziCoppiaImmaginiLogopedistaFragment extends AbstractNavigationBetweenFragment {
 
 
     private String idPaziente;

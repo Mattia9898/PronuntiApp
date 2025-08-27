@@ -13,7 +13,7 @@ import models.domain.esercizi.EsercizioSequenzaParole;
 import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.terapie.Terapia;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import views.fragment.userPaziente.giochi.FineScenario;
 
 import android.widget.ImageView;
@@ -44,7 +44,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.List;
 
 
-public class ScenarioFragment extends AbstractNavigationFragment {
+public class ScenarioFragment extends AbstractNavigationBetweenFragment {
 
 
     private float characterCoordinatesX, characterCoordinatesY, characterWidth, characterHeight;
@@ -361,13 +361,13 @@ public class ScenarioFragment extends AbstractNavigationFragment {
     private void checkExercise(EsercizioRealizzabile esercizioRealizzabile, int indexExercise){
         if(esercizioRealizzabile instanceof EsercizioDenominazioneImmagini){
             bundle.putInt("indexExercise", indexExercise);
-            navigateTo(R.id.action_scenarioFragment_to_esercizioDenominazioneImmagineFragment2, bundle);
+            navigationTo(R.id.action_scenarioFragment_to_esercizioDenominazioneImmagineFragment2, bundle);
         }else if(esercizioRealizzabile instanceof EsercizioSequenzaParole){
             bundle.putInt("indexExercise", indexExercise);
-            navigateTo(R.id.action_scenarioFragment_to_esercizioSequenzaParole, bundle);
+            navigationTo(R.id.action_scenarioFragment_to_esercizioSequenzaParole, bundle);
         }else{
             bundle.putInt("indexExercise", indexExercise);
-            navigateTo(R.id.action_scenarioFragment_to_esercizioCoppiaImmagini2, bundle);
+            navigationTo(R.id.action_scenarioFragment_to_esercizioCoppiaImmagini2, bundle);
         }
     }
 

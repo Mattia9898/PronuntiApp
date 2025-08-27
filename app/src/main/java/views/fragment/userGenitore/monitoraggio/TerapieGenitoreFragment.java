@@ -8,7 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 import models.domain.terapie.Terapia;
 
@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.view.View;
 
 
-public class TerapieGenitoreFragment extends AbstractNavigationFragment {
+public class TerapieGenitoreFragment extends AbstractNavigationBetweenFragment {
 
     private FragmentContainerView navigationTherapies;
 

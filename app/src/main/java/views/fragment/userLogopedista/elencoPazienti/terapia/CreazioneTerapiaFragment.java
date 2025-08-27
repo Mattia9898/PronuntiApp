@@ -13,7 +13,7 @@ import models.domain.scenariGioco.ScenarioGioco;
 
 import views.fragment.DataCustomizzata;
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import java.util.List;
 import java.time.LocalDate;
@@ -32,7 +32,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 
-public class CreazioneTerapiaFragment extends AbstractNavigationFragment implements SalvataggioScenario {
+public class CreazioneTerapiaFragment extends AbstractNavigationBetweenFragment implements SalvataggioScenario {
 
     private boolean isFirstScenery = true;
 
@@ -116,7 +116,7 @@ public class CreazioneTerapiaFragment extends AbstractNavigationFragment impleme
         bundle.putString("idPaziente", idPaziente);
         bundle.putString("nomePaziente", name);
         bundle.putString("cognomePaziente", surname);
-        navigateTo(R.id.action_creazioneTerapiaFragment_to_schedaPazienteFragment, bundle);
+        navigationTo(R.id.action_creazioneTerapiaFragment_to_schedaPazienteFragment, bundle);
     }
 
     private void addScenery(){

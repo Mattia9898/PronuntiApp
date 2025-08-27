@@ -22,7 +22,7 @@ import models.domain.profili.Paziente;
 
 import views.fragment.adapter.ScenarioAdapter;
 import views.fragment.adapter.Navigation;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
 
-public class MonitoraggioLogopedistaFragment extends AbstractNavigationFragment implements Navigation {
+public class MonitoraggioLogopedistaFragment extends AbstractNavigationBetweenFragment implements Navigation {
 
     private RecyclerView scenery;
 

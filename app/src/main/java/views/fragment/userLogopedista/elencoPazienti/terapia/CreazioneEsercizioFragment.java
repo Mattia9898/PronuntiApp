@@ -59,10 +59,10 @@ import models.utils.audioRecorder.AudioRecorder;
 
 import views.dialog.InfoDialog;
 import views.dialog.PermessiDialog;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 
-public class CreazioneEsercizioFragment extends AbstractNavigationFragment {
+public class CreazioneEsercizioFragment extends AbstractNavigationBetweenFragment {
 
     private static final int PICK_FILE_1 = 1;
 
@@ -710,7 +710,7 @@ public class CreazioneEsercizioFragment extends AbstractNavigationFragment {
         PermessiDialog permessiDialog = new PermessiDialog(getContext(), getString(R.string.permissionDeniedDescription));
         permessiDialog.show();
         permessiDialog.setOnConfirmButtonClickListener(() -> requestPermissionsLauncher.launch(Manifest.permission.RECORD_AUDIO));
-        permessiDialog.setOnCancelButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
+        permessiDialog.setOnCancelButtonClickListener(() -> navigationTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
     }
 
     private boolean checkPermissions(Activity activity) {
@@ -731,7 +731,7 @@ public class CreazioneEsercizioFragment extends AbstractNavigationFragment {
                 } else {
                     InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.permissionDeniedInstructions), getString(R.string.infoOk));
                     infoDialog.show();
-                    infoDialog.setOnConfirmButtonClickListener(() -> navigateTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
+                    infoDialog.setOnConfirmButtonClickListener(() -> navigationTo(R.id.action_esercizioDenominazioneImmagineFragment_to_scenarioFragment));
                 }
             });
 

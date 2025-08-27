@@ -15,14 +15,14 @@ import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import views.fragment.userLogopedista.elencoPazienti.monitoraggio.TerapieLogopedistaFragment;
 
 import models.domain.profili.Logopedista;
 import models.domain.profili.Paziente;
 
 
-public class SchedaPazienteFragment extends AbstractNavigationFragment {
+public class SchedaPazienteFragment extends AbstractNavigationBetweenFragment {
 
     private Button buttonAddTherapy;
 
@@ -89,7 +89,7 @@ public class SchedaPazienteFragment extends AbstractNavigationFragment {
         buttonAddTherapy.setOnClickListener(v -> {
             Bundle bundleButtonAddTherapy = new Bundle();
             bundleButtonAddTherapy.putString("idPaziente", idPaziente);
-            navigateTo(R.id.action_schedaPazienteFragment_to_creazioneTerapiaFragment, bundleButtonAddTherapy);
+            navigationTo(R.id.action_schedaPazienteFragment_to_creazioneTerapiaFragment, bundleButtonAddTherapy);
         });
 
     }

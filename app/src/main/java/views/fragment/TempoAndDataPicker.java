@@ -19,7 +19,7 @@ import java.time.LocalDate;
 
 import it.uniba.dib.pronuntiapp.R;
 
-public class TempoAndDataPicker extends AbstractNavigationFragment {
+public class TempoAndDataPicker extends AbstractNavigationBetweenFragment {
 
     private TextInputEditText textInputEditTextDataNascitaProfiloPaziente;
     private TextInputLayout textInputLayoutDataNascitaProfiloPaziente;

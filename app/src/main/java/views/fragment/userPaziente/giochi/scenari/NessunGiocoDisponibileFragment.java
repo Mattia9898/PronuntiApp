@@ -11,11 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 
 // classe che carica il fragment di assenza di giochi disponibili
-public class NessunGiocoDisponibileFragment extends AbstractNavigationFragment {
+public class NessunGiocoDisponibileFragment extends AbstractNavigationBetweenFragment {
 
     @Nullable
     @Override

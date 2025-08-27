@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import models.utils.audioPlayer.AudioPlayerLink;
 
@@ -31,7 +31,7 @@ import android.widget.ImageButton;
 import android.util.Log;
 
 
-public class RisultatiEserciziDenominazioneImmaginiGenitoreFragment extends AbstractNavigationFragment {
+public class RisultatiEserciziDenominazioneImmaginiGenitoreFragment extends AbstractNavigationBetweenFragment {
 
 
     private int scenery;

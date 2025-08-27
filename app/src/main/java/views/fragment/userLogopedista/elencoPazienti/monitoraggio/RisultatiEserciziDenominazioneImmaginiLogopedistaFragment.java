@@ -13,7 +13,7 @@ import models.utils.audioPlayer.AudioPlayerLink;
 import models.domain.esercizi.EsercizioDenominazioneImmagini;
 import models.domain.profili.Paziente;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
@@ -30,7 +30,7 @@ import android.view.ViewGroup;
 import android.view.View;
 
 
-public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends AbstractNavigationFragment {
+public class RisultatiEserciziDenominazioneImmaginiLogopedistaFragment extends AbstractNavigationBetweenFragment {
 
 
     private int scenery;

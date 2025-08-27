@@ -355,7 +355,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
         PermessiDialog permessiDialog = new PermessiDialog(getContext(), getString(R.string.permissionDeniedDescription));
         permessiDialog.show();
         permessiDialog.setOnConfirmButtonClickListener(() -> requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO));
-        permessiDialog.setOnCancelButtonClickListener(() -> navigateTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
+        permessiDialog.setOnCancelButtonClickListener(() -> navigationTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
     }
 
     private boolean checkPermissions(Activity actualActivity) {
@@ -463,7 +463,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
                 } else {
                     InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.permissionDeniedInstructions), getString(R.string.infoOk));
                     infoDialog.show();
-                    infoDialog.setOnConfirmButtonClickListener(() -> navigateTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
+                    infoDialog.setOnConfirmButtonClickListener(() -> navigationTo(R.id.action_esercizioSequenzaParole_to_scenarioFragment));
                 }
             });
 

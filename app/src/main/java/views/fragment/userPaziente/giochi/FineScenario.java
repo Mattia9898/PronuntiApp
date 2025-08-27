@@ -18,7 +18,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 
 import models.utils.audioPlayer.AudioPlayerRaw;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 
 public class FineScenario extends FrameLayout {
@@ -58,7 +58,7 @@ public class FineScenario extends FrameLayout {
         wrongExercise = view.findViewById(R.id.wrongExercise);
     }
 
-    public void setWrongExercise(int coins, int idNavigation, AbstractNavigationFragment abstractNavigationFragment, Bundle bundle) {
+    public void setWrongExercise(int coins, int idNavigation, AbstractNavigationBetweenFragment abstractNavigationBetweenFragment, Bundle bundle) {
 
         AudioPlayerRaw audioPlayerRaw = new AudioPlayerRaw(getContext(), R.raw.error_sound);
         audioPlayerRaw.playAudio();
@@ -67,10 +67,10 @@ public class FineScenario extends FrameLayout {
         upCoins.setVisibility(View.VISIBLE);
         wrongExercise.setVisibility(View.VISIBLE);
 
-        animationUpCoins(coins, idNavigation, abstractNavigationFragment, bundle);
+        animationUpCoins(coins, idNavigation, abstractNavigationBetweenFragment, bundle);
     }
 
-    public void setCorrectExercise(int coins, int idNavigation, AbstractNavigationFragment abstractNavigationFragment, Bundle bundle) {
+    public void setCorrectExercise(int coins, int idNavigation, AbstractNavigationBetweenFragment abstractNavigationBetweenFragment, Bundle bundle) {
 
         AudioPlayerRaw audioPlayerRaw = new AudioPlayerRaw(getContext(), R.raw.correct_sound);
         audioPlayerRaw.playAudio();
@@ -79,7 +79,7 @@ public class FineScenario extends FrameLayout {
         upCoins.setVisibility(View.VISIBLE);
         correctExercise.setVisibility(View.VISIBLE);
 
-        animationUpCoins(coins, idNavigation, abstractNavigationFragment, bundle);
+        animationUpCoins(coins, idNavigation, abstractNavigationBetweenFragment, bundle);
     }
 
     public void showFineScenario(int coins, ImageView positionFirstGame, ImageView positionSecondGame, ImageView positionThirdGame) {
@@ -94,7 +94,7 @@ public class FineScenario extends FrameLayout {
         animationUpCoinsEndScenery(coins, positionFirstGame, positionSecondGame, positionThirdGame);
     }
 
-    private void animationUpCoins(int targetCoins, int idNavigation, AbstractNavigationFragment abstractNavigationFragment, Bundle bundle) {
+    private void animationUpCoins(int targetCoins, int idNavigation, AbstractNavigationBetweenFragment abstractNavigationBetweenFragment, Bundle bundle) {
 
         ValueAnimator animator = ValueAnimator.ofInt(0, targetCoins);
         animator.setDuration(4000);
@@ -113,7 +113,8 @@ public class FineScenario extends FrameLayout {
 
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
-                new Handler().postDelayed(()->{abstractNavigationFragment.navigateTo(idNavigation, bundle);},1000);
+                new Handler().postDelayed(()->{
+                    abstractNavigationBetweenFragment.navigationTo(idNavigation, bundle);},1000);
             }
 
             @Override

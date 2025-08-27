@@ -23,7 +23,7 @@ import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiController;
 
 import views.fragment.userLogopedista.elencoPazienti.PazienteAdapter;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import views.fragment.DataCustomizzata;
 import views.dialog.InfoDialog;
 
@@ -48,7 +48,7 @@ import android.widget.LinearLayout;
 import android.widget.ImageButton;
 
 
-public class AppuntamentiLogopedistaFragment extends AbstractNavigationFragment {
+public class AppuntamentiLogopedistaFragment extends AbstractNavigationBetweenFragment {
 
 
     private RecyclerView recyclerViewAppuntamento;

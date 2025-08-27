@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.concurrent.CompletableFuture;
 
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import views.activity.LogopedistaActivity;
 
 import models.domain.profili.Logopedista;
@@ -27,7 +27,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels;
 
 
-public class RegistrazioneFragment extends AbstractNavigationFragment {
+public class RegistrazioneFragment extends AbstractNavigationBetweenFragment {
 
 
     private RegistrazioneViewsModels registrazioneViewsModels;
@@ -78,7 +78,7 @@ public class RegistrazioneFragment extends AbstractNavigationFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         buttonRegister.setOnClickListener(v -> executeRegistration());
-        buttonGoToLogin.setOnClickListener(v -> navigateTo(R.id.action_registrazioneFragment_to_loginFragment));
+        buttonGoToLogin.setOnClickListener(v -> navigationTo(R.id.action_registrazioneFragment_to_loginFragment));
     }
 
     public void dialogErrorFields(int typeError) {

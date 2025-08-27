@@ -14,7 +14,7 @@ import models.domain.profili.Paziente;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import views.fragment.adapter.Navigation;
 
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 
 
-public class PazienteFragment extends AbstractNavigationFragment implements Navigation {
+public class PazienteFragment extends AbstractNavigationBetweenFragment implements Navigation {
 
     private RecyclerView listPatients;
 
@@ -75,7 +75,7 @@ public class PazienteFragment extends AbstractNavigationFragment implements Navi
 
     @Override
     public void navigationId(int id, Bundle bundle) {
-        navigateTo(id, bundle);
+        navigationTo(id, bundle);
     }
 
     private void loadData() {
@@ -121,7 +121,7 @@ public class PazienteFragment extends AbstractNavigationFragment implements Navi
     private void initViews(View view) {
 
         buttonAddPatient = view.findViewById(R.id.buttonAddPatient);
-        buttonAddPatient.setOnClickListener(v -> navigateTo(R.id.action_pazientiFragment_to_registrazionePazienteGenitoreFragment));
+        buttonAddPatient.setOnClickListener(v -> navigationTo(R.id.action_pazientiFragment_to_registrazionePazienteGenitoreFragment));
 
         searchView = view.findViewById(R.id.searchView);
         listPatients = view.findViewById(R.id.listPatients);

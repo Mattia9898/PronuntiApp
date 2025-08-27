@@ -17,13 +17,13 @@ import android.widget.TextView;
 import models.domain.terapie.Terapia;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
-public class NavigationScenariFragment extends AbstractNavigationFragment {
+public class NavigationScenariFragment extends AbstractNavigationBetweenFragment {
 
     private TextView dateScenery;
 

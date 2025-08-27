@@ -9,7 +9,7 @@ import models.domain.profili.Profilo;
 import models.autenticazione.AutenticazioneSharedPreferences;
 import views.activity.AbstractAppActivity;
 import viewsModels.autenticazioneViewsModels.LoginViewsModels;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import views.dialog.InfoDialog;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -25,7 +25,7 @@ import android.util.Log;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-public class LoginFragment extends AbstractNavigationFragment {
+public class LoginFragment extends AbstractNavigationBetweenFragment {
 
     private LoginViewsModels loginViewsModels;
 
@@ -60,8 +60,8 @@ public class LoginFragment extends AbstractNavigationFragment {
         super.onViewCreated(view, savedInstanceState);
 
         buttonLogin.setOnClickListener(v -> executeLogin());
-        buttonRapidAccess.setOnClickListener(v -> navigateTo(R.id.action_loginFragment_to_avvioRapidoFragment));
-        buttonRegister.setOnClickListener(v -> navigateTo(R.id.action_loginFragment_to_registrazioneFragment));
+        buttonRapidAccess.setOnClickListener(v -> navigationTo(R.id.action_loginFragment_to_avvioRapidoFragment));
+        buttonRegister.setOnClickListener(v -> navigationTo(R.id.action_loginFragment_to_registrazioneFragment));
     }
 
     private void executeLogin() {

@@ -43,7 +43,7 @@ import java.time.LocalDate;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.scenariGioco.TemplateScenarioGioco;
@@ -53,7 +53,7 @@ import models.database.ComandiFirebaseStorage;
 import models.database.TemplateScenarioGiocoDAO;
 
 
-public class CreazioneScenarioFragment extends AbstractNavigationFragment {
+public class CreazioneScenarioFragment extends AbstractNavigationBetweenFragment {
 
     private TextInputEditText dateScenery;
 
@@ -327,7 +327,7 @@ public class CreazioneScenarioFragment extends AbstractNavigationFragment {
                 Paziente paziente = logopedistaViewsModels.getPazienteById(idPaziente);
                 paziente.getTerapie().get(indexTherapy).addListScenarioGioco(scenarioGioco);
                 logopedistaViewsModels.aggiornaLogopedistaRemoto();
-                navigateTo(R.id.action_creazioneScenarioFragment_to_schedaPazienteFragment, bundle);
+                navigationTo(R.id.action_creazioneScenarioFragment_to_schedaPazienteFragment, bundle);
             }
             else {
                 salvataggioScenario.saveScenery(scenarioGioco);

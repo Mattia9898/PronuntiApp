@@ -1,13 +1,13 @@
 package views.fragment.userPaziente.giochi.esercizi;
 
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import models.domain.esercizi.EsercizioRealizzabile;
 import models.domain.scenariGioco.ScenarioGioco;
 
 
-public class AbstractFineScenarioFragment extends AbstractNavigationFragment {
+public class AbstractFineScenarioFragment extends AbstractNavigationBetweenFragment {
 
     protected boolean checkEndScenery(ScenarioGioco gioco) {
 

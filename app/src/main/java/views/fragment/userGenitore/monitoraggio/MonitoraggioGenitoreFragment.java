@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import views.fragment.adapter.ScenarioAdapter;
 import views.fragment.adapter.Navigation;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import android.view.ViewGroup;
 import android.view.View;
 
 
-public class MonitoraggioGenitoreFragment extends AbstractNavigationFragment implements Navigation {
+public class MonitoraggioGenitoreFragment extends AbstractNavigationBetweenFragment implements Navigation {
 
     private GenitoreViewsModels genitoreViewsModels;
 
@@ -116,7 +116,7 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigationFragment imp
 
     @Override
     public void navigationId(int id, Bundle bundle){
-        navigateTo(id, bundle);
+        navigationTo(id, bundle);
     }
 
 }

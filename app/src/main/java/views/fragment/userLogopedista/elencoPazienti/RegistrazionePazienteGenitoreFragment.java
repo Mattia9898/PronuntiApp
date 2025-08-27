@@ -14,7 +14,7 @@ import models.domain.profili.Logopedista;
 import models.domain.profili.Paziente;
 
 import views.dialog.InfoDialog;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 import views.fragment.DataCustomizzata;
 
 import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.verificaRegistrazione;
@@ -35,7 +35,7 @@ import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 
 
-public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationFragment {
+public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBetweenFragment {
 
     private TextInputEditText namePatient;
 
@@ -131,7 +131,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationFra
                                 logopedista.addPaziente(patient);
                                 logopedista.aggiornaClassificaPazienti();
                         logopedistaViewsModels.aggiornaLogopedistaRemoto();
-                        getActivity().runOnUiThread(() -> navigateTo(R.id.action_registrazionePazienteGenitoreFragment_to_pazientiFragment));
+                        getActivity().runOnUiThread(() -> navigationTo(R.id.action_registrazionePazienteGenitoreFragment_to_pazientiFragment));
                     });
 
                 });

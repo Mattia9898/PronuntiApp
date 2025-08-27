@@ -12,7 +12,7 @@ import java.util.Comparator;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
@@ -25,7 +25,7 @@ import models.domain.profili.Paziente;
 import models.domain.profili.Logopedista;
 
 
-public class TerapieLogopedistaFragment extends AbstractNavigationFragment {
+public class TerapieLogopedistaFragment extends AbstractNavigationBetweenFragment {
 
     private String idPaziente;
 

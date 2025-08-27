@@ -12,12 +12,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
 
-public class RankingFragment extends AbstractNavigationFragment {
+public class RankingFragment extends AbstractNavigationBetweenFragment {
 
     private RecyclerView recyclerViewClassifica;
 

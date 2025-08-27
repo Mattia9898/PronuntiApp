@@ -11,7 +11,7 @@ import java.util.List;
 import androidx.lifecycle.ViewModelProvider;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import views.fragment.AbstractNavigationFragment;
+import views.fragment.AbstractNavigationBetweenFragment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class ScenarioGenericoFragment extends AbstractNavigationFragment {
+public class ScenarioGenericoFragment extends AbstractNavigationBetweenFragment {
 
     private PazienteViewsModels pazienteViewsModels;
 
