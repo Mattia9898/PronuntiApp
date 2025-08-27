@@ -15,7 +15,7 @@ import models.domain.profili.Paziente;
 
 import views.dialog.InfoDialog;
 import views.fragment.AbstractNavigationBetweenFragment;
-import views.fragment.DataCustomizzata;
+import views.fragment.CustomDate;
 
 import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.verificaRegistrazione;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
@@ -114,7 +114,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBet
 
         super.onViewCreated(view, savedInstanceState);
 
-        birthdatePatient.setOnClickListener(v -> DataCustomizzata.showDatePickerDialog(getContext(), birthdatePatient));
+        birthdatePatient.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), birthdatePatient));
 
         buttonRegisterPatientAndParent.setOnClickListener(v -> {
             Logopedista logopedista = logopedistaViewsModels.getLogopedistaLiveData().getValue();

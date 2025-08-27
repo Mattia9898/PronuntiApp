@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import models.domain.terapie.Terapia;
 import models.domain.scenariGioco.ScenarioGioco;
 
-import views.fragment.DataCustomizzata;
+import views.fragment.CustomDate;
 import views.dialog.InfoDialog;
 import views.fragment.AbstractNavigationBetweenFragment;
 
@@ -87,8 +87,8 @@ public class CreazioneTerapiaFragment extends AbstractNavigationBetweenFragment 
 
             setToolBar(view,getString(R.string.creaTerapia) + " " + namePaziente + " " + surnamePaziente);
 
-            startDate.setOnClickListener(v -> DataCustomizzata.showDatePickerDialog(getContext(), startDate));
-            endDate.setOnClickListener(v -> DataCustomizzata.showDatePickerDialog(getContext(), endDate));
+            startDate.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), startDate));
+            endDate.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), endDate));
 
             addScenery.setOnClickListener(v -> addScenery());
             saveTherapy.setOnClickListener(v-> saveTherapy(idPaziente, namePaziente, surnamePaziente));

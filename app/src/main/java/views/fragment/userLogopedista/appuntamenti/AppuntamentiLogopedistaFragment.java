@@ -24,7 +24,7 @@ import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiControl
 
 import views.fragment.userLogopedista.elencoPazienti.PazienteAdapter;
 import views.fragment.AbstractNavigationBetweenFragment;
-import views.fragment.DataCustomizzata;
+import views.fragment.CustomDate;
 import views.dialog.InfoDialog;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -230,7 +230,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigationBetweenFr
             public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {}
         });
 
-        dateAppuntamento.setOnClickListener(v -> DataCustomizzata.showDatePickerDialog(getContext(), dateAppuntamento));
+        dateAppuntamento.setOnClickListener(v -> CustomDate.DatePickerDialog(getContext(), dateAppuntamento));
 
         searchAppuntamento.addTextChangedListener(new TextWatcher() {
 
