@@ -43,7 +43,7 @@ public class FineScenario extends FrameLayout {
     private void initializeView(Context context) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.layout_fine_scenario, this, true);
+        View view = layoutInflater.inflate(R.layout.fragment_fine_scenario, this, true);
 
         endScenery = view.findViewById(R.id.endScenery);
         endScenery.setVisibility(View.GONE);

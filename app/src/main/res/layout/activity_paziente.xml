@@ -51,7 +51,7 @@
                 android:src="@drawable/icona_classifica_colori"
                 style="@style/styleNavBarPazienteButton"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:tooltipText="@string/classifica"
+                android:tooltipText="@string/ranking"
                 />
 
             <androidx.appcompat.widget.AppCompatImageButton
