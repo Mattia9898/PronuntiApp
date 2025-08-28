@@ -72,7 +72,7 @@ public class LoginFragment extends AbstractNavigationBetweenFragment {
     }
 
     private void loginActivityProfile(String email, String password) {
-        CompletableFuture<Boolean> loginCompletableFuture = loginViewsModels.verificaLogin(email, password);
+        CompletableFuture<Boolean> loginCompletableFuture = loginViewsModels.checkUserLogin(email, password);
         loginCompletableFuture.thenAccept(isLoginCorrect -> {
             if (!isLoginCorrect) {
                 InfoDialog infoDialog = new InfoDialog(getContext(), getString(R.string.erroreLoginCredenziali), getString(R.string.tastoRiprova));
@@ -83,7 +83,7 @@ public class LoginFragment extends AbstractNavigationBetweenFragment {
                 AutenticazioneSharedPreferences autenticazioneSharedPreferences = new AutenticazioneSharedPreferences(requireActivity());
                 autenticazioneSharedPreferences.saveCredentials(email, password);
 
-                CompletableFuture<Profilo> profiloCompletableFuture = loginViewsModels.login();
+                CompletableFuture<Profilo> profiloCompletableFuture = loginViewsModels.userLogin();
                 profiloCompletableFuture.thenAccept(profilo -> {
                     Log.d("LoginFragment.loginActivityProfilo()", "Profilo: " + profilo.toString());
 

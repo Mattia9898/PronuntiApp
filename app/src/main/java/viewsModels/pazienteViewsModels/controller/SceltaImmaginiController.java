@@ -8,9 +8,7 @@ import java.util.List;
 
 import models.domain.esercizi.EsercizioDenominazioneImmagini;
 
-import models.API.FFmpegKitAPI.AudioConverter;
-
-import models.API.SpeechToTextAPI.SpeechToTextAPI;
+import models.API.SpeechToText;
 
 public class SceltaImmaginiController{
 
@@ -22,7 +20,7 @@ public class SceltaImmaginiController{
 
 
     public boolean verificaAudio(File audioRegistrato, Context context) {
-        List<String> paroleRegistrate = SpeechToTextAPI.callAPI(context, audioRegistrato);
+        List<String> paroleRegistrate = SpeechToText.callAPI(context, audioRegistrato);
 
         if (paroleRegistrate == null || paroleRegistrate.isEmpty()) {
             return false;

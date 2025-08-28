@@ -30,14 +30,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import models.API.FFmpegKitAPI.AudioConverter;
+import models.API.AudioConverter;
 import models.utils.audioPlayer.AudioPlayerLink;
 import models.utils.audioRecorder.AudioRecorder;
 import models.domain.esercizi.EsercizioSequenzaParole;
 import models.domain.esercizi.risultati.RisultatoEsercizioSequenzaParole;
 import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.terapie.Terapia;
-import models.database.ComandiFirebaseStorage;
+import models.database.CommandsFirebaseStorage;
 
 import views.fragment.userPaziente.giochi.FineScenario;
 import views.dialog.InfoDialog;
@@ -303,15 +303,15 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
         CompletableFuture<String> future = new CompletableFuture<>();
 
         File fileConvertito = new File(getContext().getFilesDir(), "tempAudioConvertito.mp3");
-        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), fileConvertito);
+        AudioConverter.convertAudio(audioRecorder.getAudioRecorder(), fileConvertito);
 
-        ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
+        CommandsFirebaseStorage commandsFirebaseStorage = new CommandsFirebaseStorage();
 
         AtomicReference<String> audioRegistrato = new AtomicReference<>();
 
-        String directoryCorrente = ComandiFirebaseStorage.AUDIO_SEQUENZA_PAROLE_EXERCISE;
+        String directoryCorrente = CommandsFirebaseStorage.AUDIO_SEQUENZA_PAROLE_EXERCISE;
 
-        comandiFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(fileConvertito), directoryCorrente)
+        commandsFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(fileConvertito), directoryCorrente)
                 .thenAccept(value ->{
                     audioRegistrato.set(value);
                 })

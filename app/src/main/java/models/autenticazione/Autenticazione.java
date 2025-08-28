@@ -26,7 +26,7 @@ public class Autenticazione {
     }
 
 
-    public CompletableFuture<String> registrazioneUtente(String email, String password) {
+    public CompletableFuture<String> userRegistration(String email, String password) {
 
         CompletableFuture<String> completableFuture = new CompletableFuture<>();
 

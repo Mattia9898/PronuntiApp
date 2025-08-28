@@ -45,10 +45,10 @@ public class EntryActivity extends AbstractAppActivity {
 
     private void loginActivityProfile(String email, String password) {
 
-        CompletableFuture<Boolean> loginCorrect = loginViewsModels.verificaLogin(email, password);
+        CompletableFuture<Boolean> loginCorrect = loginViewsModels.checkUserLogin(email, password);
 
         loginCorrect.thenAccept(isLoginCorrect -> {
-            CompletableFuture<Profilo> completableFutureProfilo = loginViewsModels.login();
+            CompletableFuture<Profilo> completableFutureProfilo = loginViewsModels.userLogin();
             completableFutureProfilo.thenAccept(profilo -> {
                 Log.d("LoginFragment.loginActivityProfilo()", "Profilo: " + profilo.toString());
                 this.runOnUiThread(() -> navigationWithProfile(profilo, this));

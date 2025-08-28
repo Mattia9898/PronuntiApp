@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/pazientiFragment"
-        android:title="Pazienti"
+        android:title="@string/pazienti"
         android:icon="@drawable/icona_pazienti"/>
 
     <item
         android:id="@+id/appuntamentiLogopedistaFragment2"
-        android:title="Appuntamenti"
+        android:title="@string/appuntamenti"
         android:icon="@drawable/icona_calendario"/>
 
     <item
         android:id="@+id/profiloLogopedistaFragment"
-        android:title="Profilo"
+        android:title="@string/profilo"
         android:icon="@drawable/icona_profilo"/>
 
 </menu>

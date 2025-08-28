@@ -10,9 +10,9 @@ import java.util.List;
 
 import models.domain.esercizi.EsercizioSequenzaParole;
 
-import models.API.FFmpegKitAPI.AudioConverter;
+import models.API.AudioConverter;
 
-import models.API.SpeechToTextAPI.SpeechToTextAPI;
+import models.API.SpeechToText;
 
 public class SequenzaParoleController {
 
@@ -29,7 +29,7 @@ public class SequenzaParoleController {
                 mEsercizioSequenzaParole.getParolaDaIndovinare2().toLowerCase(),
                 mEsercizioSequenzaParole.getParolaDaIndovinare3().toLowerCase());
 
-        List<String> paroleRegistrate = SpeechToTextAPI.callAPI(context, audioRegistrato);
+        List<String> paroleRegistrate = SpeechToText.callAPI(context, audioRegistrato);
 
         if (paroleRegistrate == null || paroleCorrette.size() != paroleRegistrate.size()) {
             return false;
@@ -45,7 +45,7 @@ public class SequenzaParoleController {
     }
 
     public File convertiAudio(File audioRegistrato, File outputFile) {
-        return AudioConverter.convertiAudio(audioRegistrato, outputFile);
+        return AudioConverter.convertAudio(audioRegistrato, outputFile);
     }
 
 }

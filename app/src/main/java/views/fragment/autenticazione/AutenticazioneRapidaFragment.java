@@ -77,7 +77,7 @@ public class AutenticazioneRapidaFragment extends AbstractNavigationBetweenFragm
     private void loginActivityProfile(String email, String password) {
 
         startLoadingScreen();
-        CompletableFuture<Boolean> loginCompletableFuture = loginViewsModels.verificaLogin(email, password);
+        CompletableFuture<Boolean> loginCompletableFuture = loginViewsModels.checkUserLogin(email, password);
 
         loginCompletableFuture.thenAccept(isLoginCorrect -> {
             if (!isLoginCorrect) {
@@ -89,7 +89,7 @@ public class AutenticazioneRapidaFragment extends AbstractNavigationBetweenFragm
                 AutenticazioneSharedPreferences autenticazioneSharedPreferences = new AutenticazioneSharedPreferences(requireActivity());
                 autenticazioneSharedPreferences.saveCredentials(email, password);
 
-                CompletableFuture<Profilo> profileCompletableFuture = loginViewsModels.login();
+                CompletableFuture<Profilo> profileCompletableFuture = loginViewsModels.userLogin();
                 profileCompletableFuture.thenAccept(profilo -> {
                     Log.d("AvvioRapidoFragment.loginActivityProfilo()", "Profilo: " + profilo.toString());
                     getActivity().runOnUiThread(() -> ((AbstractAppActivity) getActivity()).navigationWithProfile(profilo, getActivity()));

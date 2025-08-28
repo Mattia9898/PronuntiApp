@@ -1,4 +1,4 @@
-package models.API.FFmpegKitAPI;
+package models.API;
 
 
 import com.arthenica.ffmpegkit.FFmpegKit;
@@ -19,17 +19,17 @@ public class AudioConverter {
 
     private static final String OVERWRITE = "-y";
 
-    public static File convertiAudio(File inputFile, File outputFile) {
+    public static File convertAudio(File inputFile, File outputFile) {
 
-        String inputFilePath = inputFile.getAbsolutePath();
-        String outputFilePath = outputFile.getAbsolutePath();
+        String pathInputFile = inputFile.getAbsolutePath();
+        String pathOutputFile = outputFile.getAbsolutePath();
 
         String command = OVERWRITE + " -f " + CODEC_INPUT +
                 " -ar " + SAMPLE_RATE_INPUT +
                 " -ac " + CHANNEL_CONFIG_INPUT +
-                " -i " + inputFilePath +
+                " -i " + pathInputFile +
                 " -acodec " + CODEC_OUTPUT +
-                " -ab " + SAMPLE_RATE_OUTPUT + " " + outputFilePath;
+                " -ab " + SAMPLE_RATE_OUTPUT + " " + pathOutputFile;
 
         FFmpegKit.execute(command);
         FFmpegKit.cancel();

@@ -50,6 +50,11 @@
     <string name="confermato">Confermato</string>
     <string name="cancel">Cancella</string>
     <string name="annulla">Annulla</string>
+    <string name="monitoraggio">Monitoraggio</string>
+    <string name="visite">Visite</string>
+    <string name="profilo">Profilo</string>
+    <string name="pazienti">Pazienti</string>
+    <string name="appuntamenti">Appuntamenti</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="formDiLogin">FORM DI LOGIN</string>
@@ -65,7 +70,6 @@
     <string name="getHelp">Clicca qui per aiuto!</string>
     <string name="aiutiUtilizzati">Aiuti utilizzati: </string>
     <string name="rispostaData">Risposta data</string>
-    <string name="showHelp">Clicca per aiuto!</string>
     <string name="checkAnswer">Controlla</string>
     <string name="micDenominazioneImmagine">Clicca per rispondere!</string>
     <string name="corretto">Corretto!</string>
@@ -188,8 +192,6 @@
     <string name="tuoProfilo">Il tuo profilo</string>
     <string name="ranking">Ranking</string>
     <string name="fragmentScenery">Fragment Scenario</string>
-    <string name="giochiBambini">Giochi del bambino</string>
-    <string name="monitoraggio">Terapie del bambino</string>
     <string name="gioco">Gioco</string>
     <string name="personaggi">Personaggi</string>
     <string name="logoutTitle">Logout?</string>

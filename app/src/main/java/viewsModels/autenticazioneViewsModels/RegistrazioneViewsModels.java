@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 import models.autenticazione.Autenticazione;
 
-import models.database.ComandiDBGenerici;
+import models.database.CommandsDB;
 
 import models.database.profili.LogopedistaDAO;
 
@@ -24,7 +24,7 @@ public class RegistrazioneViewsModels extends ViewModel {
 
         Autenticazione autenticazione = new Autenticazione();
 
-        autenticazione.registrazioneUtente(email, password).handle((userId, exception) -> {
+        autenticazione.userRegistration(email, password).handle((userId, exception) -> {
             if (exception != null) {
                 Log.e("RegistrazioneViewsModels.verificaRegistrazione()", "Errore durante la registrazione: " + exception.getMessage());
                 future.complete(null);
@@ -38,8 +38,8 @@ public class RegistrazioneViewsModels extends ViewModel {
 
     public static void helperRegistrazione(String userId, TipoUtente tipoUtente) {
 
-        ComandiDBGenerici comandiDBGenerici = new ComandiDBGenerici();
-        comandiDBGenerici.saveTipologiaUtente(userId, tipoUtente);
+        CommandsDB commandsDB = new CommandsDB();
+        commandsDB.saveUserType(userId, tipoUtente);
 
     }
 

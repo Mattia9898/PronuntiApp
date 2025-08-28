@@ -11,26 +11,26 @@ import models.database.costantiDB.CostantiDBNodi;
 
 import android.util.Log;
 
-public class ComandiDBGenerici {
+public class CommandsDB {
 
     private final FirebaseDatabase firebaseDatabase;
 
-    public ComandiDBGenerici() {
+    public CommandsDB() {
         firebaseDatabase = FirebaseDatabase.getInstance();
     }
 
 
-    public CompletableFuture<TipoUtente> getTipoUtente(String userId) {
+    public CompletableFuture<TipoUtente> getUserType(String userId) {
 
         CompletableFuture<TipoUtente> completableFuture = new CompletableFuture<>();
         DatabaseReference databaseReference = firebaseDatabase.getReference(CostantiDBNodi.MAPPA_UTENTI);
 
         databaseReference.child(userId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Log.d("ComandiDatabaseGenerici.getTipoUtente()", "Tipo utente: " + task.getResult().getValue().toString());
+                Log.d("ComandiDatabaseGenerici.getUserType()", "Tipo utente: " + task.getResult().getValue().toString());
                 completableFuture.complete(TipoUtente.fromString(task.getResult().getValue().toString()));
             } else {
-                Log.e("ComandiDatabaseGenerici.getTipoUtente()", "Errore nel recupero del tipo utente: " + task.getException());
+                Log.e("ComandiDatabaseGenerici.getUserType()", "Errore recupero tipo utente: " + task.getException());
                 completableFuture.completeExceptionally(task.getException());
             }
         });
@@ -38,7 +38,7 @@ public class ComandiDBGenerici {
         return completableFuture;
     }
 
-    public void saveTipologiaUtente(String userId, TipoUtente tipoUtente) {
+    public void saveUserType(String userId, TipoUtente tipoUtente) {
         DatabaseReference databaseReference = firebaseDatabase.getReference(CostantiDBNodi.MAPPA_UTENTI);
         databaseReference.child(userId).setValue(tipoUtente.toString());
     }

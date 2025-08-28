@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/terapieFragment"
-        android:title="Monitoraggio"
+        android:title="@string/monitoraggio"
         android:icon="@drawable/icona_monitoraggio" />
 
     <item
         android:id="@+id/appuntamentiGenitoreFragment2"
-        android:title="Visite"
+        android:title="@string/visite"
         android:icon="@drawable/icona_calendario" />
 
     <item
         android:id="@+id/profiloGenitoreFragment"
-        android:title="Profilo"
+        android:title="@string/profilo"
         android:icon="@drawable/icona_profilo" />
 
 </menu>

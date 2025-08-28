@@ -1,4 +1,4 @@
-package models.API.SpeechToTextAPI;
+package models.API;
 
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -11,16 +11,16 @@ import java.io.IOException;
 
 import android.content.Context;
 
-public final class ProviderCredenzialiGoogle {
+public final class ProviderGoogleCredentials {
 
-    private static ProviderCredenzialiGoogle providerCredenzialiGoogle = null;
+    private static ProviderGoogleCredentials providerGoogleCredentials = null;
 
-    private static GoogleCredentials credentials = null;
+    private static GoogleCredentials googleCredentials = null;
 
     private static final String GOOGLE_CREDENTIALS_FILE_NAME = "google-cloud-credentials.json";
 
 
-    private ProviderCredenzialiGoogle(Context context) {
+    private ProviderGoogleCredentials(Context context) {
 
         try {
             InputStream inputStream = context.getAssets().open(GOOGLE_CREDENTIALS_FILE_NAME);
@@ -28,21 +28,21 @@ public final class ProviderCredenzialiGoogle {
                 Log.e("GoogleCredentialsProvider", "Credentials file not found in assets: " + GOOGLE_CREDENTIALS_FILE_NAME);
                 return;
             }
-            credentials = GoogleCredentials.fromStream(inputStream);
+            googleCredentials = GoogleCredentials.fromStream(inputStream);
         } catch (IOException e) {
             Log.e("GoogleCredentialsProvider", "Error reading credentials from file", e);
         }
     }
 
     public GoogleCredentials getCredentials() {
-        return credentials;
+        return googleCredentials;
     }
 
-    public static ProviderCredenzialiGoogle getInstance(Context context) {
-        if (providerCredenzialiGoogle == null) {
-            providerCredenzialiGoogle = new ProviderCredenzialiGoogle(context);
+    public static ProviderGoogleCredentials getInstance(Context context) {
+        if (providerGoogleCredentials == null) {
+            providerGoogleCredentials = new ProviderGoogleCredentials(context);
         }
-        return providerCredenzialiGoogle;
+        return providerGoogleCredentials;
     }
 
 

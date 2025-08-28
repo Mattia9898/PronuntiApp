@@ -49,7 +49,7 @@ import models.domain.scenariGioco.ScenarioGioco;
 import models.domain.scenariGioco.TemplateScenarioGioco;
 import models.domain.esercizi.EsercizioRealizzabile;
 import models.domain.profili.Paziente;
-import models.database.ComandiFirebaseStorage;
+import models.database.CommandsFirebaseStorage;
 import models.database.TemplateScenarioGiocoDAO;
 
 
@@ -415,8 +415,8 @@ public class CreazioneScenarioFragment extends AbstractNavigationBetweenFragment
 
             Uri uri = data.getData();
 
-            ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
-            comandiFirebaseStorage.uploadFileAndGetLink(uri, ComandiFirebaseStorage.SCENARI_GIOCO).thenAccept(link -> {
+            CommandsFirebaseStorage commandsFirebaseStorage = new CommandsFirebaseStorage();
+            commandsFirebaseStorage.uploadFileAndGetLink(uri, CommandsFirebaseStorage.SCENARI_GIOCO).thenAccept(link -> {
 
                 switch (requestCode) {
                     case PICK_FILE_1:

@@ -12,11 +12,11 @@ import android.util.Log;
 import android.net.Uri;
 
 
-public class ComandiFirebaseStorage {
+public class CommandsFirebaseStorage {
 
-    private final FirebaseStorage storage;
+    private final FirebaseStorage firebaseStorage;
 
-    public static final String SCENARI_GIOCO = "scenarigioco";
+    public static final String SCENARI_GIOCO = "scenari_gioco";
 
     public static final String DENOMINAZIONE_IMMAGINE_EXERCISE = "denominazione_immagine_exercise";
 
@@ -31,19 +31,20 @@ public class ComandiFirebaseStorage {
     public static final String AUDIO_COPPIA_IMMAGINI_EXERCISE = COPPIA_IMMAGINI_EXERCISE + "/audio_registrati";
 
 
-    public ComandiFirebaseStorage() {
-        storage = FirebaseStorage.getInstance();
+    public CommandsFirebaseStorage() {
+        firebaseStorage = FirebaseStorage.getInstance();
     }
 
     public CompletableFuture<String> uploadFileAndGetLink(Uri file, String path) {
 
         CompletableFuture<String> completableFuture = new CompletableFuture<>();
-        StorageReference storageReference = storage.getReference().child(path);
+        StorageReference storageReference = firebaseStorage.getReference().child(path);
 
         StorageReference mStorageReference = storageReference.
                 child(LocalDate.now().toString() + LocalTime.now().toString());
 
-        mStorageReference.putFile(file).addOnSuccessListener(taskSnapshot -> mStorageReference.getDownloadUrl().addOnSuccessListener(uri -> {
+        mStorageReference.putFile(file).addOnSuccessListener(taskSnapshot ->
+                mStorageReference.getDownloadUrl().addOnSuccessListener(uri -> {
 
             completableFuture.complete(uri.toString());
             Log.d("ComandiFirebaseStorage.uploadFileAndGetLink()", "File uploaded: " + uri.toString());

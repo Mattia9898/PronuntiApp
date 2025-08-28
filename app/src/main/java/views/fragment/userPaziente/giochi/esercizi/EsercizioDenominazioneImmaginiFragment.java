@@ -28,13 +28,13 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
-import models.database.ComandiFirebaseStorage;
+import models.database.CommandsFirebaseStorage;
 import models.utils.audioPlayer.AudioPlayerLink;
 import models.utils.audioRecorder.AudioRecorder;
 import views.dialog.InfoDialog;
 import views.dialog.PermessiDialog;
 import views.dialog.RequestConfirmDialog;
-import models.API.FFmpegKitAPI.AudioConverter;
+import models.API.AudioConverter;
 import models.domain.esercizi.EsercizioDenominazioneImmagini;
 import models.domain.esercizi.risultati.RisultatoEsercizioDenominazioneImmagini;
 import models.domain.scenariGioco.ScenarioGioco;
@@ -308,15 +308,15 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
         CompletableFuture<String> completableFuture = new CompletableFuture<>();
 
         File convertedFile = new File(getContext().getFilesDir(), "tempAudioConvertitoDenominazione.mp3");
-        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), convertedFile);
+        AudioConverter.convertAudio(audioRecorder.getAudioRecorder(), convertedFile);
 
-        ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
+        CommandsFirebaseStorage commandsFirebaseStorage = new CommandsFirebaseStorage();
 
         AtomicReference<String> registeredAudio = new AtomicReference<>();
 
-        String actualDirectory = ComandiFirebaseStorage.AUDIO_DENOMINAZIONE_IMMAGINE_EXERCISE;
+        String actualDirectory = CommandsFirebaseStorage.AUDIO_DENOMINAZIONE_IMMAGINE_EXERCISE;
 
-        comandiFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(convertedFile), actualDirectory)
+        commandsFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(convertedFile), actualDirectory)
                 .thenAccept(value ->{
                     registeredAudio.set(value);
                 })

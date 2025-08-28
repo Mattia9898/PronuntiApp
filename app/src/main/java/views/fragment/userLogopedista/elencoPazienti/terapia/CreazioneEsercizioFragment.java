@@ -44,7 +44,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import models.database.ComandiFirebaseStorage;
+import models.database.CommandsFirebaseStorage;
 import models.database.TemplateEsercizioDAO;
 import models.domain.esercizi.Esercizio;
 import models.domain.esercizi.EsercizioCoppiaImmagini;
@@ -54,7 +54,7 @@ import models.domain.esercizi.EsercizioSequenzaParole;
 import models.domain.esercizi.TemplateEsercizioCoppiaImmagini;
 import models.domain.esercizi.TemplateEsercizioDenominazioneImmagini;
 import models.domain.esercizi.TemplateEsercizioSequenzaParole;
-import models.API.FFmpegKitAPI.AudioConverter;
+import models.API.AudioConverter;
 import models.utils.audioRecorder.AudioRecorder;
 
 import views.dialog.InfoDialog;
@@ -453,8 +453,8 @@ public class CreazioneEsercizioFragment extends AbstractNavigationBetweenFragmen
 
             Uri uri = data.getData();
 
-            ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
-            comandiFirebaseStorage.uploadFileAndGetLink(uri, "TEST/THERAPY_TEST").thenAccept(link -> {
+            CommandsFirebaseStorage commandsFirebaseStorage = new CommandsFirebaseStorage();
+            commandsFirebaseStorage.uploadFileAndGetLink(uri, "TEST/THERAPY_TEST").thenAccept(link -> {
 
                 switch (requestCode) {
                     case PICK_FILE_1:
@@ -634,25 +634,25 @@ public class CreazioneEsercizioFragment extends AbstractNavigationBetweenFragmen
         Toast.makeText(getContext(), getContext().getString(R.string.stopedRecording), Toast.LENGTH_SHORT).show();
 
         File convertedFile = new File(getContext().getFilesDir(), "convertedFile.mp3");
-        AudioConverter.convertiAudio(audioRecorder.getAudioRecorder(), convertedFile);
-        ComandiFirebaseStorage comandiFirebaseStorage = new ComandiFirebaseStorage();
+        AudioConverter.convertAudio(audioRecorder.getAudioRecorder(), convertedFile);
+        CommandsFirebaseStorage commandsFirebaseStorage = new CommandsFirebaseStorage();
         AtomicReference<String> atomicReference = new AtomicReference<>();
 
         String actualDirectory = "";
 
         switch(exercise) {
             case 1:
-                actualDirectory = ComandiFirebaseStorage.AUDIO_DENOMINAZIONE_IMMAGINE_EXERCISE;
+                actualDirectory = CommandsFirebaseStorage.AUDIO_DENOMINAZIONE_IMMAGINE_EXERCISE;
                 break;
             case 2:
-                actualDirectory = ComandiFirebaseStorage.AUDIO_SEQUENZA_PAROLE_EXERCISE;
+                actualDirectory = CommandsFirebaseStorage.AUDIO_SEQUENZA_PAROLE_EXERCISE;
                 break;
             case 3:
-                actualDirectory = ComandiFirebaseStorage.AUDIO_COPPIA_IMMAGINI_EXERCISE;
+                actualDirectory = CommandsFirebaseStorage.AUDIO_COPPIA_IMMAGINI_EXERCISE;
                 break;
         }
 
-        comandiFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(convertedFile), actualDirectory)
+        commandsFirebaseStorage.uploadFileAndGetLink(Uri.fromFile(convertedFile), actualDirectory)
                 .thenAccept(value ->{
                     atomicReference.set(value);
                 })
