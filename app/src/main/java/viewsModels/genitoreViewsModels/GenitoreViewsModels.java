@@ -28,8 +28,6 @@ import models.domain.profili.Paziente;
 
 import models.domain.terapie.Terapia;
 
-import viewsModels.genitoreViewsModels.controller.AppuntamentiGenitoreController;
-
 import viewsModels.genitoreViewsModels.controller.ModificaDataScenariGenitoreController;
 
 public class GenitoreViewsModels extends ViewModel {
@@ -37,8 +35,6 @@ public class GenitoreViewsModels extends ViewModel {
     private MutableLiveData<Genitore> mGenitore = new MutableLiveData<>();
     private MutableLiveData<Paziente> mPaziente = new MutableLiveData<>();
     private MutableLiveData<List<Appuntamento>> mListaAppuntamenti = new MutableLiveData<>();
-
-    private AppuntamentiGenitoreController appuntamentiGenitoreController;
 
     private ModificaDataScenariGenitoreController modificaDataScenariGenitoreController;
 
@@ -107,14 +103,6 @@ public class GenitoreViewsModels extends ViewModel {
         return -1;
     }
 
-    public AppuntamentiGenitoreController getAppuntamentiControllerGenitore(){
-
-        if (this.appuntamentiGenitoreController == null){
-            this.appuntamentiGenitoreController = new AppuntamentiGenitoreController();
-        }
-
-        return this.appuntamentiGenitoreController;
-    }
 
     public ModificaDataScenariGenitoreController getModificaDataScenariController(){
 

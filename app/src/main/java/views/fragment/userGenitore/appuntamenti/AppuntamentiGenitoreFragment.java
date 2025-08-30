@@ -10,7 +10,6 @@ import models.domain.profili.Appuntamento;
 import views.fragment.AbstractNavigationBetweenFragment;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
-import viewsModels.genitoreViewsModels.controller.AppuntamentiGenitoreController;
 
 import android.view.ViewGroup;
 import android.view.View;
@@ -29,8 +28,6 @@ public class AppuntamentiGenitoreFragment extends AbstractNavigationBetweenFragm
 
     private AppuntamentiGenitoreAdapter appuntamentiGenitoreAdapter;
 
-    private AppuntamentiGenitoreController appuntamentiGenitoreController;
-
     private GenitoreViewsModels genitoreViewsModels;
 
     private RecyclerView appuntamentiGenitore;
@@ -42,9 +39,8 @@ public class AppuntamentiGenitoreFragment extends AbstractNavigationBetweenFragm
         View view = inflater.inflate(R.layout.fragment_appuntamenti_genitore, container, false);
 
         this.genitoreViewsModels = new ViewModelProvider(requireActivity()).get(GenitoreViewsModels.class);
-        this.appuntamentiGenitoreController = genitoreViewsModels.getAppuntamentiControllerGenitore();
 
-        setToolBar(view,getString(R.string.i_tuoi_appuntamenti));
+        setToolBar(view, getString(R.string.i_tuoi_appuntamenti));
 
         appuntamentiGenitore = view.findViewById(R.id.recyclerViewAppuntamentiGenitore);
         appuntamentiGenitore.setLayoutManager(new LinearLayoutManager(getContext()));
