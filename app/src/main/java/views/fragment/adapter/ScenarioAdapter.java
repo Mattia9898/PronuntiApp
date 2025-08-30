@@ -20,7 +20,7 @@ import java.util.List;
 
 import it.uniba.dib.pronuntiapp.R;
 import models.domain.scenariGioco.ScenarioGioco;
-import viewsModels.genitoreViewsModels.controller.ModificaDataScenariController;
+import viewsModels.genitoreViewsModels.controller.EditDataSceneryController;
 
 public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.ScenarioViewHolder> {
 
@@ -34,29 +34,29 @@ public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.Scenar
 
     private int therapy;
 
-    private ModificaDataScenariController modificaDataScenariController;
+    private EditDataSceneryController editDataSceneryController;
 
     private Navigation navigation;
 
-    private String idPaziente;
+    private String idPatient;
 
-    private int indicePaziente;
+    private int indexPatient;
 
 
     public ScenarioAdapter(List<ScenarioGioco> listScenarioGioco, Navigation navigation,
                            int idNavigationToEsercizioDenominazioneImmagine, int idNavigationToEsercizioCoppiaImmagini,
-                           int idNavigationToEsercizioSequenzaParole, ModificaDataScenariController modificaDataScenariController,
-                           int therapy, String idPaziente, int indicePaziente) {
+                           int idNavigationToEsercizioSequenzaParole, EditDataSceneryController editDataSceneryController,
+                           int therapy, String idPatient, int indexPatient) {
 
         this.listScenarioGioco = listScenarioGioco;
         this.navigation = navigation;
-        this.modificaDataScenariController = modificaDataScenariController;
+        this.editDataSceneryController = editDataSceneryController;
         this.therapy = therapy;
         this.idNavigationToEsercizioCoppiaImmagini = idNavigationToEsercizioCoppiaImmagini;
         this.idNavigationToEsercizioDenominazioneImmagine = idNavigationToEsercizioDenominazioneImmagine;
         this.idNavigationToEsercizioSequenzaParole = idNavigationToEsercizioSequenzaParole;
-        this.idPaziente = idPaziente;
-        this.indicePaziente = indicePaziente;
+        this.idPatient = idPatient;
+        this.indexPatient = indexPatient;
     }
 
 
@@ -112,12 +112,13 @@ public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.Scenar
                     holder.dayScenario.setText(DateTimeFormatter.ofPattern("dd").format(scenarioGioco.getDataInizioScenarioGioco()));
                     holder.monthYearScenario.setText(DateTimeFormatter.ofPattern("MMMM yyyy").format(scenarioGioco.getDataInizioScenarioGioco()));
 
-                    Log.d("ScenarioAdapter",""+scenarioGioco.toString());
+                    Log.d("ScenarioAdapter","" + scenarioGioco.toString());
 
-                    modificaDataScenariController.modificaDataScenari(localDate,therapy,position,idPaziente,indicePaziente);
+                    editDataSceneryController.editDataScenery(localDate, therapy, position, idPatient, indexPatient);
                     scenarioGioco.setDataInizioScenarioGioco(localDate);
                     notifyDataSetChanged();
                 }, actualDate.getYear(), actualDate.getMonthValue()-1, actualDate.getDayOfMonth());
+
                 datePickerDialog.show();
             });
         }
@@ -129,7 +130,7 @@ public class ScenarioAdapter extends RecyclerView.Adapter<ScenarioAdapter.Scenar
                                                                 navigation, idNavigationToEsercizioDenominazioneImmagine,
                                                                 idNavigationToEsercizioCoppiaImmagini,
                                                                 idNavigationToEsercizioSequenzaParole, therapy,
-                                                                position, idPaziente);
+                                                                position, idPatient);
         recyclerView.setAdapter(esercizioAdapter);
 
     }

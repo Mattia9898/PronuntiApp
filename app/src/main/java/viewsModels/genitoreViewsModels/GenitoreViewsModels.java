@@ -14,8 +14,6 @@ import java.util.Comparator;
 
 import java.util.List;
 
-import java.util.stream.Collectors;
-
 import models.database.profili.GenitoreDAO;
 
 import models.database.profili.PazienteDAO;
@@ -28,7 +26,7 @@ import models.domain.profili.Paziente;
 
 import models.domain.terapie.Terapia;
 
-import viewsModels.genitoreViewsModels.controller.ModificaDataScenariGenitoreController;
+import viewsModels.genitoreViewsModels.controller.EditDataSceneryGenitoreController;
 
 public class GenitoreViewsModels extends ViewModel {
 
@@ -36,7 +34,7 @@ public class GenitoreViewsModels extends ViewModel {
     private MutableLiveData<Paziente> mPaziente = new MutableLiveData<>();
     private MutableLiveData<List<Appuntamento>> mListaAppuntamenti = new MutableLiveData<>();
 
-    private ModificaDataScenariGenitoreController modificaDataScenariGenitoreController;
+    private EditDataSceneryGenitoreController modificaDataScenariGenitoreController;
 
     public LiveData<Genitore> getGenitoreLiveData() {
         return mGenitore;
@@ -104,10 +102,10 @@ public class GenitoreViewsModels extends ViewModel {
     }
 
 
-    public ModificaDataScenariGenitoreController getModificaDataScenariController(){
+    public EditDataSceneryGenitoreController getModificaDataScenariController(){
 
         if(this.modificaDataScenariGenitoreController == null){
-            this.modificaDataScenariGenitoreController = new ModificaDataScenariGenitoreController(this);
+            this.modificaDataScenariGenitoreController = new EditDataSceneryGenitoreController(this);
         }
 
         return this.modificaDataScenariGenitoreController;

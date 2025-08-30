@@ -26,7 +26,7 @@ import models.domain.terapie.Terapia;
 
 import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiController;
 
-import viewsModels.logopedistaViewsModels.controller.ModificaDataScenariLogopedistaController;
+import viewsModels.logopedistaViewsModels.controller.EditDataSceneryLogopedistaController;
 
 import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;
 
@@ -41,7 +41,7 @@ public class LogopedistaViewsModels extends ViewModel {
     private RegistrazionePazienteGenitoreController mRegistrazionePazienteGenitoreController;
     private ModificaAppuntamentiController mModificaAppuntamentiController;
     private VerificaTerapieController mVerificaTerapieController;
-    private ModificaDataScenariLogopedistaController mModificaDataScenariLogopedistaController;
+    private EditDataSceneryLogopedistaController mModificaDataScenariLogopedistaController;
 
     public LiveData<Logopedista> getLogopedistaLiveData() {
         return mLogopedista;
@@ -152,10 +152,10 @@ public class LogopedistaViewsModels extends ViewModel {
         return this.mVerificaTerapieController;
     }
 
-    public ModificaDataScenariLogopedistaController getModificaDataScenariLogopedistaController(){
+    public EditDataSceneryLogopedistaController getModificaDataScenariLogopedistaController(){
 
         if(this.mModificaDataScenariLogopedistaController == null){
-            this.mModificaDataScenariLogopedistaController = new ModificaDataScenariLogopedistaController(this);
+            this.mModificaDataScenariLogopedistaController = new EditDataSceneryLogopedistaController(this);
         }
 
         return this.mModificaDataScenariLogopedistaController;
