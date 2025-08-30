@@ -67,7 +67,7 @@ public class NavigationTerapieGenitoreFragment extends AbstractNavigationBetween
 
         genitoreViewsModels.getPazienteLiveData().observe(getViewLifecycleOwner(), paziente -> {
             if(genitoreViewsModels.getPazienteLiveData().getValue().getTerapie()!=null) {
-                this.therapy = genitoreViewsModels.getIndiceUltimaTerapia();
+                this.therapy = genitoreViewsModels.getIndexLastTherapy();
             }else {
                 this.therapy = -1;
             }
@@ -83,11 +83,11 @@ public class NavigationTerapieGenitoreFragment extends AbstractNavigationBetween
         Bundle bundle = new Bundle();
 
         buttonNextTherapy.setOnClickListener(v -> {
-            if (therapy != genitoreViewsModels.getIndiceUltimaTerapia() && therapy != -1) {
+            if (therapy != genitoreViewsModels.getIndexLastTherapy() && therapy != -1) {
 
                 therapy++;
-                Log.d("NavTerapieGenitore",""+therapy);
-                bundle.putInt("indiceTerapiaScelta",therapy);
+                Log.d("NavigationTherapyGenitore","" + therapy);
+                bundle.putInt("indexTherapySelected", therapy);
 
                 MonitoraggioGenitoreFragment newMonitoraggioGenitoreFragment = new MonitoraggioGenitoreFragment();
                 newMonitoraggioGenitoreFragment.setArguments(bundle);

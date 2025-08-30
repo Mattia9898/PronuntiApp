@@ -85,7 +85,7 @@ public class MonitoraggioGenitoreFragment extends AbstractNavigationBetweenFragm
                                         R.id.action_terapieFragment_to_risultatoEsercizioDenominazioneImmagineFragment,
                                         R.id.action_terapieFragment_to_risultatoEsercizioCoppiaImmaginiFragment,
                                         R.id.action_terapieFragment_to_risultatoEsercizioSequenzaParoleFragment,
-                                        genitoreViewsModels.getModificaDataScenariController(),
+                                        genitoreViewsModels.getEditDataSceneryController(),
                                         therapy,"",0);
 
         scenery.setAdapter(scenarioAdapter);

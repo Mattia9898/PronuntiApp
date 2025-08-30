@@ -86,7 +86,7 @@ public class ProfiloGenitoreFragment extends ProfiloImageFragment {
     void confirmEditProfile() {
 
         super.confirmEditProfile();
-        genitoreViewsModels.aggiornaGenitoreRemoto();
+        genitoreViewsModels.updateParent();
         setData();
     }
 

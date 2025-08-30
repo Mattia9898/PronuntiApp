@@ -1,115 +1,114 @@
 package viewsModels.genitoreViewsModels;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
-
-import androidx.lifecycle.MutableLiveData;
-
-import androidx.lifecycle.ViewModel;
 
 import java.time.LocalDate;
-
 import java.util.Comparator;
-
 import java.util.List;
 
+import models.domain.profili.Appuntamento;
+import models.domain.profili.Genitore;
+import models.domain.profili.Paziente;
+import models.domain.terapie.Terapia;
 import models.database.profili.GenitoreDAO;
-
 import models.database.profili.PazienteDAO;
 
-import models.domain.profili.Appuntamento;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import models.domain.profili.Genitore;
+import android.util.Log;
 
-import models.domain.profili.Paziente;
-
-import models.domain.terapie.Terapia;
 
 import viewsModels.genitoreViewsModels.controller.EditDataSceneryGenitoreController;
 
+
+// classe ViewModel che utilizza i MutableLiveData per aggiornare e gestire i dati
 public class GenitoreViewsModels extends ViewModel {
 
-    private MutableLiveData<Genitore> mGenitore = new MutableLiveData<>();
-    private MutableLiveData<Paziente> mPaziente = new MutableLiveData<>();
-    private MutableLiveData<List<Appuntamento>> mListaAppuntamenti = new MutableLiveData<>();
 
-    private EditDataSceneryGenitoreController modificaDataScenariGenitoreController;
+    private MutableLiveData<List<Appuntamento>> mutableLiveDataListAppuntamenti = new MutableLiveData<>();
 
-    public LiveData<Genitore> getGenitoreLiveData() {
-        return mGenitore;
-    }
+    private MutableLiveData<Paziente> mutableLiveDataPaziente = new MutableLiveData<>();
 
-    public void setGenitore(Genitore genitore) {
-        mGenitore.setValue(genitore);
-    }
+    private MutableLiveData<Genitore> mutableLiveDataGenitore = new MutableLiveData<>();
+
+    private EditDataSceneryGenitoreController editDataSceneryGenitoreController;
+
 
     public LiveData<Paziente> getPazienteLiveData() {
-        return mPaziente;
+        return mutableLiveDataPaziente;
     }
 
     public void setPaziente(Paziente paziente) {
-        mPaziente.setValue(paziente);
+        mutableLiveDataPaziente.setValue(paziente);
     }
 
+
+    public LiveData<Genitore> getGenitoreLiveData() {
+        return mutableLiveDataGenitore;
+    }
+
+    public void setGenitore(Genitore genitore) {
+        mutableLiveDataGenitore.setValue(genitore);
+    }
+
+
     public LiveData<List<Appuntamento>> getAppuntamentiLiveData() {
-        return mListaAppuntamenti;
+        return mutableLiveDataListAppuntamenti;
     }
 
     public void setAppuntamenti(List<Appuntamento> appuntamenti) {
-        this.mListaAppuntamenti.setValue(appuntamenti);
+        this.mutableLiveDataListAppuntamenti.setValue(appuntamenti);
     }
 
-    public void aggiornaGenitoreRemoto() {
 
-        Genitore genitore = mGenitore.getValue();
+    public void updatePatient() {
 
-        GenitoreDAO genitoreDAO = new GenitoreDAO();
-        genitoreDAO.update(genitore);
-
-        Log.d("GenitoreViewsModels.aggiornaGenitoreRemoto()", "Genitore aggiornato con successo: " + genitore.toString());
-    }
-
-    public void aggiornaPazienteRemoto() {
-
-        Paziente paziente = mPaziente.getValue();
+        Paziente paziente = mutableLiveDataPaziente.getValue();
 
         PazienteDAO pazienteDAO = new PazienteDAO();
         pazienteDAO.update(paziente);
 
-        Log.d("GenitoreViewsModels.aggiornaPazienteRemoto()", "Paziente aggiornato con successo: " + paziente.toString());
+        Log.d("GenitoreViewsModels.updatePaziente()", "Patient updated: " + paziente.toString());
     }
 
-    public Terapia getTerapiaByIndiceFromPaziente(int indiceTerapia){
-        return mPaziente.getValue().getTerapie().get(indiceTerapia);
+    public void updateParent() {
+
+        Genitore genitore = mutableLiveDataGenitore.getValue();
+
+        GenitoreDAO genitoreDAO = new GenitoreDAO();
+        genitoreDAO.update(genitore);
+
+        Log.d("GenitoreViewsModels.updateGenitore()", "Parent updated: " + genitore.toString());
     }
 
-	/* metodo per il count delle terapie con data successiva a quella attuale. In seguito sottraggo -1 quel numero
-	   al numero di elementi nella lista di terapie totali.
-	   In questo modo ottengo l'indice dell'ultima terapia che, però, non ha data successiva a quella attuale.
-	   Ho utilizzato "isAfter()" in quanto con "isBefore()" non contava la terapia con data inizio oggi */
-    public int getIndiceUltimaTerapia() {
 
-        if (mPaziente.getValue() != null) {
-            if (mPaziente.getValue().getTerapie() != null) {
-                mPaziente.getValue().getTerapie().sort(Comparator.comparing(Terapia::getDataInizioTerapia));
-                return mPaziente.getValue().getTerapie().size()
-                        - ((int) mPaziente.getValue().getTerapie().stream().filter(terapia -> terapia.getDataInizioTerapia().isAfter(LocalDate.now())).count()) -1;
+    public EditDataSceneryGenitoreController getEditDataSceneryController(){
+
+        if(this.editDataSceneryGenitoreController == null){
+            this.editDataSceneryGenitoreController = new EditDataSceneryGenitoreController(this);
+        }
+
+        return this.editDataSceneryGenitoreController;
+    }
+
+
+	/* metodo di count terapie con data successiva a quella corrente. Tolgo 1 al numero di elementi della lista di terapie totali.
+	   Così ho l'indice dell'ultima terapia (ma non ha data successiva a quella corrente)
+	   Con "isBefore()" non contava la terapia con data inizio attuale, così ho preferito "isAfter()" */
+    public int getIndexLastTherapy() {
+        if (mutableLiveDataPaziente.getValue() != null) {
+            if (mutableLiveDataPaziente.getValue().getTerapie() != null) { // sono presenti terapie
+                mutableLiveDataPaziente.getValue().getTerapie().sort(Comparator.comparing(Terapia::getDataInizioTerapia));
+                return mutableLiveDataPaziente.getValue().getTerapie().size() -
+                        ((int) mutableLiveDataPaziente.getValue().getTerapie().stream().filter(terapia ->
+                        terapia.getDataInizioTerapia().isAfter(LocalDate.now())).count()) -1;
             }
         }
 
-        return -1;
+        return -1; // nessuna terapia trovata
     }
 
-
-    public EditDataSceneryGenitoreController getModificaDataScenariController(){
-
-        if(this.modificaDataScenariGenitoreController == null){
-            this.modificaDataScenariGenitoreController = new EditDataSceneryGenitoreController(this);
-        }
-
-        return this.modificaDataScenariGenitoreController;
-    }
 
 }
 

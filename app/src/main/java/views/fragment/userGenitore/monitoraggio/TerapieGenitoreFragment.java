@@ -66,12 +66,12 @@ public class TerapieGenitoreFragment extends AbstractNavigationBetweenFragment {
                         getTerapie().sort(Comparator.comparing(Terapia::getDataInizioTerapia));
             }
 
-            int result = genitoreViewsModels.getIndiceUltimaTerapia();
+            int result = genitoreViewsModels.getIndexLastTherapy();
 
             if(result != -1) {
 
                 Bundle bundle = new Bundle();
-                bundle.putInt("terapiaScelta", result);
+                bundle.putInt("therapySelected", result);
 
                 MonitoraggioGenitoreFragment monitoraggioGenitoreFragment = new MonitoraggioGenitoreFragment();
                 monitoraggioGenitoreFragment.setArguments(bundle);

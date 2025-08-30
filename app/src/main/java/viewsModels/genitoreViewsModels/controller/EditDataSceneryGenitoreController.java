@@ -6,25 +6,26 @@ import java.time.LocalDate;
 
 import viewsModels.genitoreViewsModels.GenitoreViewsModels;
 
+
 public class EditDataSceneryGenitoreController implements EditDataSceneryController {
 
-    private GenitoreViewsModels mGenitoreViewsModels;
+    private GenitoreViewsModels genitoreViewsModels;
 
-    public EditDataSceneryGenitoreController(GenitoreViewsModels mGenitoreViewsModels) {
-        this.mGenitoreViewsModels = mGenitoreViewsModels;
+    public EditDataSceneryGenitoreController(GenitoreViewsModels genitoreViewsModels) {
+        this.genitoreViewsModels = genitoreViewsModels;
     }
 
     public void editDataScenery(LocalDate localDate, int therapy, int position, String idPatient, int indexPatient){
 
-        mGenitoreViewsModels.getPazienteLiveData().getValue().getTerapie().
+        genitoreViewsModels.getPazienteLiveData().getValue().getTerapie().
                 get(therapy).getListScenariGioco().
                 get(position).setDataInizioScenarioGioco(localDate);
 
-        Log.d("ScenarioAdapter",""+ mGenitoreViewsModels.getPazienteLiveData().
+        Log.d("ScenarioAdapter",""+ genitoreViewsModels.getPazienteLiveData().
                 getValue().getTerapie().get(therapy).
                 getListScenariGioco().get(position).toString());
 
-        mGenitoreViewsModels.aggiornaPazienteRemoto();
+        genitoreViewsModels.updatePatient();
     }
 
 }
