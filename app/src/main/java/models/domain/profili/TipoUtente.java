@@ -16,24 +16,24 @@ public enum TipoUtente {
     PAZIENTE(2, "Paziente");
 
 
-    private final int codiceTipologiaUtente;
+    private final int userTypeCode;
 
-    private final String nomeTipologiaUtente;
+    private final String userTypeName;
 
 
-    TipoUtente(int codiceTipologiaUtente, String nomeTipologiaUtente) {
-        this.codiceTipologiaUtente = codiceTipologiaUtente;
-        this.nomeTipologiaUtente = nomeTipologiaUtente;
+    TipoUtente(int userTypeCode, String userTypeName) {
+        this.userTypeCode = userTypeCode;
+        this.userTypeName = userTypeName;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return this.nomeTipologiaUtente;
+        return this.userTypeName;
     }
 
-    public static TipoUtente fromString(String tipologiaUtente) {
-        switch (tipologiaUtente) {
+    public static TipoUtente fromString(String userType) {
+        switch (userType) {
             case "Logopedista":
                 return LOGOPEDISTA;
             case "Genitore":
@@ -41,7 +41,7 @@ public enum TipoUtente {
             case "Paziente":
                 return PAZIENTE;
             default:
-                Log.e("TipoUtente.fromString()", "TipoUtente non riconosciuto: " + tipologiaUtente);
+                Log.e("TipoUtente.fromString()", "UserType non riconosciuto: " + userType);
                 return null;
         }
     }

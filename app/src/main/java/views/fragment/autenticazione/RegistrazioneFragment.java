@@ -110,33 +110,33 @@ public class RegistrazioneFragment extends AbstractNavigationBetweenFragment {
         String username = usernameRegistration.getText().toString();
         String password = passwordRegistration.getText().toString();
         String confirmPassword = confirmPasswordRegistration.getText().toString();
-        String phone = phoneRegistration.getText().toString();
+        String phoneNumber = phoneRegistration.getText().toString();
         String address = addressRegistration.getText().toString();
 
-        int statusRightFields = registrazioneViewsModels.checkRightFieldsLogopedista
-                (name, surname, username, email, password, confirmPassword, phone, address);
+        int statusRightFields = registrazioneViewsModels.logopedistaStatusRightFields
+                (name, surname, username, email, password, confirmPassword, phoneNumber, address);
 
         if (statusRightFields != 0) {
             dialogErrorFields(statusRightFields);
         }
         else {
-            CompletableFuture<String> correctRegistrationCompletableFuture = RegistrazioneViewsModels.verificaRegistrazione(email, password);
+            CompletableFuture<String> correctRegistrationCompletableFuture = RegistrazioneViewsModels.checkUserRegistration(email, password);
             correctRegistrationCompletableFuture.thenAccept(userId -> {
                 if (userId == null) {
                     dialogErrorFields(3);
                 }
                 else {
-                    Logopedista logopedista = registrazioneViewsModels.registrazioneLogopedista
-                            (userId, name, surname, username, email, password, phone, address);
+                    Logopedista logopedista = registrazioneViewsModels.logopedistaRegistration
+                            (userId, name, surname, username, email, password, phoneNumber, address);
 
-                    Log.d("RegistrazioneFragment.eseguiRegistrazione()", "Logopedista: " + logopedista.toString());
+                    Log.d("RegistrazioneFragment.executeRegistration()", "Logopedista: " + logopedista.toString());
 
                     AutenticazioneSharedPreferences autenticazioneSharedPreferences = new AutenticazioneSharedPreferences(requireActivity());
                     autenticazioneSharedPreferences.saveCredentials(email, password);
 
                     getActivity().runOnUiThread(() -> {
                         Intent intent = new Intent(getActivity(), LogopedistaActivity.class);
-                        intent.putExtra("profilo", logopedista);
+                        intent.putExtra("profile", logopedista);
                         startActivity(intent);
                     });
                 }

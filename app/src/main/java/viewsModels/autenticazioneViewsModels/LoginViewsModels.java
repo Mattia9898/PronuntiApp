@@ -67,26 +67,26 @@ public class LoginViewsModels extends ViewModel {
 
     public CompletableFuture<Boolean> checkUserLogin(String email, String password) {
 
-        CompletableFuture<Boolean> completableFuture = new CompletableFuture<>();
+        CompletableFuture<Boolean> completableFutureBoolean = new CompletableFuture<>();
 
         if (email == null || password == null ||
                 email.isEmpty() || password.isEmpty()) {
-            completableFuture.complete(false);
+            completableFutureBoolean.complete(false);
         } else {
             Autenticazione autenticazione = new Autenticazione();
             autenticazione.login(email, password).handle((userId, exception) -> {
                 if (exception != null) {
                     Log.e("LoginViewsModels.checkUserLogin()", "Errore login: " + exception.getMessage());
-                    completableFuture.complete(false);
+                    completableFutureBoolean.complete(false);
                 }
                 else {
-                    completableFuture.complete(true);
+                    completableFutureBoolean.complete(true);
                 }
                 return null;
             });
         }
 
-        return completableFuture;
+        return completableFutureBoolean;
     }
 
 

@@ -1,6 +1,6 @@
 package viewsModels.logopedistaViewsModels.controller;
 
-import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.helperRegistrazione;
+import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.assistantRegistration;
 
 import androidx.lifecycle.ViewModel;
 
@@ -65,7 +65,7 @@ public class RegistrazionePazienteGenitoreController {
         GenitoreDAO genitoreDAO = new GenitoreDAO();
         genitoreDAO.save(genitore, idLogopedista, idPaziente);
 
-        helperRegistrazione(userId, tipoUtente);
+        assistantRegistration(userId, tipoUtente);
 
         return genitore;
     }
@@ -77,7 +77,7 @@ public class RegistrazionePazienteGenitoreController {
         PazienteDAO pazienteDAO = new PazienteDAO();
         pazienteDAO.save(paziente, idLogopedista);
 
-        helperRegistrazione(userId, tipoUtente);
+        assistantRegistration(userId, tipoUtente);
 
         return paziente;
     }

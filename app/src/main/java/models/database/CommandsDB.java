@@ -38,9 +38,9 @@ public class CommandsDB {
         return completableFuture;
     }
 
-    public void saveUserType(String userId, TipoUtente tipoUtente) {
+    public void saveUserType(String userId, TipoUtente userType) {
         DatabaseReference databaseReference = firebaseDatabase.getReference(CostantiDBNodi.MAPPA_UTENTI);
-        databaseReference.child(userId).setValue(tipoUtente.toString());
+        databaseReference.child(userId).setValue(userType.toString());
     }
 
 

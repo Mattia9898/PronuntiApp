@@ -17,7 +17,7 @@ import views.dialog.InfoDialog;
 import views.fragment.AbstractNavigationBetweenFragment;
 import views.fragment.CustomDate;
 
-import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.verificaRegistrazione;
+import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.checkUserRegistration;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;
 
@@ -200,7 +200,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBet
         }
         else {
 
-            CompletableFuture<String> completableFutureRegistrationCorrect = verificaRegistrazione(email, password);
+            CompletableFuture<String> completableFutureRegistrationCorrect = checkUserRegistration(email, password);
 
             completableFutureRegistrationCorrect.thenAccept(userId -> {
                 if (userId == null) {
@@ -244,7 +244,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBet
             LocalDate birthdate = LocalDate.parse(birthdatePatient.getText().toString());
 
             int age = Integer.parseInt(agePatient.getText().toString());
-            CompletableFuture<String> completableFutureRegistrationCorrect = verificaRegistrazione(email, password);
+            CompletableFuture<String> completableFutureRegistrationCorrect = checkUserRegistration(email, password);
 
             completableFutureRegistrationCorrect.thenAccept(userId -> {
                 if (userId == null) {
