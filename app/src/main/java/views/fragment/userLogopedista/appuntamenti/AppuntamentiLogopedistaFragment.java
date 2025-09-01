@@ -20,7 +20,7 @@ import models.domain.profili.Paziente;
 import models.domain.profili.Appuntamento;
 
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
-import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiController;
+import viewsModels.logopedistaViewsModels.controller.EditAppuntamentiController;
 
 import views.fragment.userLogopedista.elencoPazienti.PazienteAdapter;
 import views.fragment.AbstractNavigationBetweenFragment;
@@ -91,7 +91,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigationBetweenFr
 
     private String idPatientSelected;
 
-    private ModificaAppuntamentiController modificaAppuntamentiController;
+    private EditAppuntamentiController editAppuntamentiController;
 
 
 
@@ -102,7 +102,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigationBetweenFr
         setToolBar(view, getString(R.string.i_tuoi_appuntamenti));
 
         this.logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
-        this.modificaAppuntamentiController = logopedistaViewsModels.getModificaAppuntamentiController();
+        this.editAppuntamentiController = logopedistaViewsModels.getModificaAppuntamentiController();
 
         arrowCloseCardView = view.findViewById(R.id.arrowCloseCardView);
         nestedScrollViewAppuntamento = view.findViewById(R.id.nestedScrollViewAppuntamento);
@@ -337,7 +337,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigationBetweenFr
         LocalTime effectiveTimeAppuntamento = LocalTime.parse(timeAppuntamento);
         String idPatient = this.idPatientSelected;
 
-        modificaAppuntamentiController.creazioneAppuntamento(idLogopedist, idPatient, date,
+        editAppuntamentiController.createAppuntamento(idLogopedist, idPatient, date,
                 effectiveTimeAppuntamento, place).thenAccept(appuntamento -> {
 
                     logopedistaViewsModels.getAppuntamentiLiveData().getValue().add(appuntamento);

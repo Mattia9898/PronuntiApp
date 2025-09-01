@@ -137,9 +137,7 @@ public class AppuntamentoDAO implements DAO<Appuntamento> {
             DatabaseReference databaseReference = firebaseDatabase.getReference(CostantiDBNodi.APPUNTAMENTI).child(idObj);
             Task<DataSnapshot> taskDataSnapshot = databaseReference.get();
 
-            Appuntamento resultAppuntamento = null;
-
-            while (!taskDataSnapshot.isComplete()) {}
+            Appuntamento resultAppuntamento;
 
             DataSnapshot snapshot = taskDataSnapshot.getResult();
             Map<String, Object> fromDatabaseMap = (Map<String, Object>) snapshot.getValue();

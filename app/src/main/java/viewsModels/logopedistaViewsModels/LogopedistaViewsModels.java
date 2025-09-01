@@ -24,13 +24,12 @@ import models.domain.scenariGioco.TemplateScenarioGioco;
 
 import models.domain.terapie.Terapia;
 
-import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiController;
+import viewsModels.logopedistaViewsModels.controller.EditAppuntamentiController;
 
 import viewsModels.logopedistaViewsModels.controller.EditDataSceneryLogopedistaController;
 
 import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;
 
-import viewsModels.logopedistaViewsModels.controller.VerificaTerapieController;
 
 public class LogopedistaViewsModels extends ViewModel {
 
@@ -39,8 +38,7 @@ public class LogopedistaViewsModels extends ViewModel {
     private MutableLiveData<List<TemplateScenarioGioco>> mListaTemplateScenarioGioco = new MutableLiveData<>();
     private MutableLiveData<List<Esercizio>> mListaTemplateEsercizi = new MutableLiveData<>();
     private RegistrazionePazienteGenitoreController mRegistrazionePazienteGenitoreController;
-    private ModificaAppuntamentiController mModificaAppuntamentiController;
-    private VerificaTerapieController mVerificaTerapieController;
+    private EditAppuntamentiController mEditAppuntamentiController;
     private EditDataSceneryLogopedistaController mModificaDataScenariLogopedistaController;
 
     public LiveData<Logopedista> getLogopedistaLiveData() {
@@ -59,17 +57,11 @@ public class LogopedistaViewsModels extends ViewModel {
         this.mListaAppuntamenti.setValue(appuntamenti);
     }
 
-    public LiveData<List<TemplateScenarioGioco>> getTemplateScenariGiocoLiveData() {
-        return mListaTemplateScenarioGioco;
-    }
 
     public void setTemplateScenariGioco(List<TemplateScenarioGioco> templateScenariGioco) {
         this.mListaTemplateScenarioGioco.setValue(templateScenariGioco);
     }
 
-    public LiveData<List<Esercizio>> getTemplateEserciziLiveData() {
-        return mListaTemplateEsercizi;
-    }
 
     public void setTemplateEsercizi(List<Esercizio> templateEsercizi) {
         this.mListaTemplateEsercizi.setValue(templateEsercizi);
@@ -134,23 +126,15 @@ public class LogopedistaViewsModels extends ViewModel {
         return this.mRegistrazionePazienteGenitoreController;
     }
 
-    public ModificaAppuntamentiController getModificaAppuntamentiController(){
+    public EditAppuntamentiController getModificaAppuntamentiController(){
 
-        if (this.mModificaAppuntamentiController == null) {
-            this.mModificaAppuntamentiController = new ModificaAppuntamentiController();
+        if (this.mEditAppuntamentiController == null) {
+            this.mEditAppuntamentiController = new EditAppuntamentiController();
         }
 
-        return this.mModificaAppuntamentiController;
+        return this.mEditAppuntamentiController;
     }
 
-    public VerificaTerapieController getTerapieController(){
-
-        if(this.mVerificaTerapieController == null){
-            this.mVerificaTerapieController = new VerificaTerapieController();
-        }
-
-        return this.mVerificaTerapieController;
-    }
 
     public EditDataSceneryLogopedistaController getModificaDataScenariLogopedistaController(){
 

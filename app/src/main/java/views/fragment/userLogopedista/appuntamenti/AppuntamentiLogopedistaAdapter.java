@@ -3,15 +3,10 @@ package views.fragment.userLogopedista.appuntamenti;
 
 import it.uniba.dib.pronuntiapp.R;
 
-import android.annotation.SuppressLint;
-
-import viewsModels.logopedistaViewsModels.controller.ModificaAppuntamentiController;
+import viewsModels.logopedistaViewsModels.controller.EditAppuntamentiController;
 import viewsModels.logopedistaViewsModels.LogopedistaViewsModels;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Collections;
-import java.util.Collection;
 import java.util.ArrayList;
 
 import java.time.format.DateTimeFormatter;
@@ -19,7 +14,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import android.util.Log;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -96,7 +90,7 @@ public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<Appunta
 
         holder.buttonRemoveAppuntamento.setOnClickListener(v -> {
             String deleteIdAppuntamento = appuntamenti.getIdAppuntamentoCustom();
-            ModificaAppuntamentiController.eliminazioneAppuntamento(deleteIdAppuntamento);
+            EditAppuntamentiController.deleteAppuntamento(deleteIdAppuntamento);
             logopedistaViewsModels.rimuoviAppuntamentoFromListaAppuntamentiLiveData(deleteIdAppuntamento);
             appuntamentiCustom.remove(position);
             notifyDataSetChanged();

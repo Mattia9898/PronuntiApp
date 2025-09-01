@@ -18,11 +18,11 @@ import java.util.concurrent.CompletableFuture;
 
 public class RegistrazioneViewsModels extends ViewModel {
 
-    static final int COMPLETE_FIELDS = 0;
+    private static final int COMPLETE_FIELDS = 0;
 
-    static final int INCOMPLETE_FIELDS = 1;
+    private static final int INCOMPLETE_FIELDS = 1;
 
-    static final int MISMATCHED_PASSWORD = 2;
+    private static final int MISMATCHED_PASSWORD = 2;
 
 
     public static CompletableFuture<String> checkUserRegistration(String email, String password) {
