@@ -1,46 +1,40 @@
 package viewsModels.logopedistaViewsModels.controller;
 
+
 import static viewsModels.autenticazioneViewsModels.RegistrazioneViewsModels.assistantRegistration;
+
+import models.database.profili.GenitoreDAO;
+import models.database.profili.PazienteDAO;
+import models.autenticazione.Autenticazione;
+import models.domain.profili.Genitore;
+import models.domain.profili.Paziente;
+import models.domain.profili.TipoUtente;
+import models.domain.profili.personaggio.Personaggio;
 
 import androidx.lifecycle.ViewModel;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.time.LocalDate;
 
-import java.util.HashMap;
-
-import java.util.Map;
-
-import java.util.concurrent.CompletableFuture;
-
-import models.autenticazione.Autenticazione;
-
-import models.database.profili.GenitoreDAO;
-
-import models.database.profili.PazienteDAO;
-
-import models.domain.profili.Genitore;
-
-import models.domain.profili.Paziente;
-
-import models.domain.profili.TipoUtente;
-
-import models.domain.profili.personaggio.Personaggio;
 
 public class RegistrazionePazienteGenitoreController {
 
-    //mappa utilizzata per assegnare automaticamente a ogni nuovo paziente lo stesso set iniziale di personaggi
+    /*
+    // map usata per assegnare in automatico lo stesso set iniziale di personaggi a ogni nuovo utente
     private static final Map<String, Integer> PERSONAGGI_INIZIALI = new HashMap<String, Integer>() {{
         put("-NqIFkPpkXllw9SXtFY2", 0);     //Pecora
         put("-NqIFkOqJ7eznb2BIubm", 2);     //Cane
         put("-NqIFkPgCrXO8lqN56jo", 0);     //Gatto
         put("-NqIFkP7u9RENb6CfQlG", 0);     //Re
-        put("-NqIFkPTTupPgYkYc74E", 1);     //Drago
+        put("-NqIFkPTTupPgYkYc74E", 1);     //Draghetto
         put("-NqIFkPYD_JMBxlV-dIx", 0);     //Elefante
         put("-NqIFkPlPjvZDY2TskvO", 2);     //Mucca
         put("-NqIFkPchAFVCOm0Uffi", 0);     //Topo
         put("-NqIFkPCmPM-2sOY6O0e", 1);     //Coniglio
     }};
-
+*/  // commento provvisorio, da togliere il prima possibile
     private static final int VALUTA_INIZIALE_PAZIENTE = 100;
 
     private static final int CAMPO_CORRETTO = 0;
@@ -70,6 +64,7 @@ public class RegistrazionePazienteGenitoreController {
         return genitore;
     }
 
+    /*
     public Paziente registrazionePaziente(String userId, String nome, String cognome, String username, String email, String password, int eta, LocalDate dataNascita, char sesso, String idLogopedista) {
         TipoUtente tipoUtente = TipoUtente.PAZIENTE;
 
@@ -81,7 +76,7 @@ public class RegistrazionePazienteGenitoreController {
 
         return paziente;
     }
-
+*/
     public CompletableFuture<String> reLogLogopedista(String email, String password) {
 
         //verrà completato in seguito
