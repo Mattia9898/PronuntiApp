@@ -192,7 +192,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBet
         CompletableFuture<Genitore> completableFutureParent = new CompletableFuture<>();
 
         int statusFields = registrazionePazienteGenitoreController.
-                verificaCorrettezzaCampiGenitore(name, surname, email, username,
+                genitoreStatusRightFields(name, surname, email, username,
                         password, confirmPassword, phoneNumber);
 
         if (statusFields != 0) {
@@ -232,7 +232,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBet
         CompletableFuture<Paziente> completableFuturePatient = new CompletableFuture<>();
 
         int statusFields = registrazionePazienteGenitoreController.
-                verificaCorrettezzaCampiPaziente(name, surname, email, username,
+                pazienteStatusRightFields(name, surname, email, username,
                         password, confirmPassword, agePatient.getText().toString(),
                         birthdatePatient.getText().toString(), spinnerSexPatient.getSelectedItem().toString());
 
