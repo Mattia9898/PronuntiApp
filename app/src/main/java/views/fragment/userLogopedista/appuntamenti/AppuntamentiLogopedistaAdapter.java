@@ -91,7 +91,7 @@ public class AppuntamentiLogopedistaAdapter extends RecyclerView.Adapter<Appunta
         holder.buttonRemoveAppuntamento.setOnClickListener(v -> {
             String deleteIdAppuntamento = appuntamenti.getIdAppuntamentoCustom();
             EditAppuntamentiController.deleteAppuntamento(deleteIdAppuntamento);
-            logopedistaViewsModels.rimuoviAppuntamentoFromListaAppuntamentiLiveData(deleteIdAppuntamento);
+            logopedistaViewsModels.removeAppuntamentoFromListAppuntamentiLiveData(deleteIdAppuntamento);
             appuntamentiCustom.remove(position);
             notifyDataSetChanged();
         });

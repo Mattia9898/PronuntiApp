@@ -102,7 +102,7 @@ public class AppuntamentiLogopedistaFragment extends AbstractNavigationBetweenFr
         setToolBar(view, getString(R.string.i_tuoi_appuntamenti));
 
         this.logopedistaViewsModels = new ViewModelProvider(requireActivity()).get(LogopedistaViewsModels.class);
-        this.editAppuntamentiController = logopedistaViewsModels.getModificaAppuntamentiController();
+        this.editAppuntamentiController = logopedistaViewsModels.getEditAppuntamentiController();
 
         arrowCloseCardView = view.findViewById(R.id.arrowCloseCardView);
         nestedScrollViewAppuntamento = view.findViewById(R.id.nestedScrollViewAppuntamento);

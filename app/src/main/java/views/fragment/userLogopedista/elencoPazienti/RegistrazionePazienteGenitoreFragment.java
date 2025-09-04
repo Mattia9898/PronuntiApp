@@ -130,7 +130,7 @@ public class RegistrazionePazienteGenitoreFragment extends AbstractNavigationBet
                             reLogLogopedista(logopedista.getEmail(), logopedista.getPassword()).thenAccept(userId -> {
                                 logopedista.addPaziente(patient);
                                 logopedista.aggiornaClassificaPazienti();
-                        logopedistaViewsModels.aggiornaLogopedistaRemoto();
+                        logopedistaViewsModels.updateLogopedistaRemoto();
                         getActivity().runOnUiThread(() -> navigationTo(R.id.action_registrazionePazienteGenitoreFragment_to_pazientiFragment));
                     });
 

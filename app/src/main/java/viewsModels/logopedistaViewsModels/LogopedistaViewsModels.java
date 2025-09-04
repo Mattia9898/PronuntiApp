@@ -1,115 +1,120 @@
 package viewsModels.logopedistaViewsModels;
 
+
+import models.domain.scenariGioco.TemplateScenarioGioco;
+import models.domain.terapie.Terapia;
+import models.domain.esercizi.Esercizio;
+import models.domain.profili.Appuntamento;
+import models.domain.profili.Logopedista;
+import models.domain.profili.Paziente;
+import models.database.profili.LogopedistaDAO;
+
+import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;
+import viewsModels.logopedistaViewsModels.controller.EditAppuntamentiController;
+import viewsModels.logopedistaViewsModels.controller.EditDataSceneryLogopedistaController;
+
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-
 import androidx.lifecycle.MutableLiveData;
-
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
-import models.database.profili.LogopedistaDAO;
 
-import models.domain.esercizi.Esercizio;
-
-import models.domain.profili.Appuntamento;
-
-import models.domain.profili.Logopedista;
-
-import models.domain.profili.Paziente;
-
-import models.domain.scenariGioco.TemplateScenarioGioco;
-
-import models.domain.terapie.Terapia;
-
-import viewsModels.logopedistaViewsModels.controller.EditAppuntamentiController;
-
-import viewsModels.logopedistaViewsModels.controller.EditDataSceneryLogopedistaController;
-
-import viewsModels.logopedistaViewsModels.controller.RegistrazionePazienteGenitoreController;
-
-
+// classe ViewModel che utilizza i MutableLiveData per aggiornare e gestire i dati Logopedista
 public class LogopedistaViewsModels extends ViewModel {
 
-    private MutableLiveData<Logopedista> mLogopedista = new MutableLiveData<>();
-    private MutableLiveData<List<Appuntamento>> mListaAppuntamenti = new MutableLiveData<>();
-    private MutableLiveData<List<TemplateScenarioGioco>> mListaTemplateScenarioGioco = new MutableLiveData<>();
-    private MutableLiveData<List<Esercizio>> mListaTemplateEsercizi = new MutableLiveData<>();
-    private RegistrazionePazienteGenitoreController mRegistrazionePazienteGenitoreController;
-    private EditAppuntamentiController mEditAppuntamentiController;
-    private EditDataSceneryLogopedistaController mModificaDataScenariLogopedistaController;
+    private MutableLiveData<Logopedista> mutableLiveDataLogopedista = new MutableLiveData<>();
+
+    private MutableLiveData<List<Esercizio>> mutableLiveDataListEsercizi = new MutableLiveData<>();
+
+    private MutableLiveData<List<TemplateScenarioGioco>> mutableLiveDataListTemplateScenarioGioco = new MutableLiveData<>();
+
+    private MutableLiveData<List<Appuntamento>> mutableLiveDataListAppuntamenti = new MutableLiveData<>();
+
+    private RegistrazionePazienteGenitoreController registrazionePazienteGenitoreController;
+
+    private EditDataSceneryLogopedistaController editDataSceneryLogopedistaController;
+
+    private EditAppuntamentiController editAppuntamentiController;
+
 
     public LiveData<Logopedista> getLogopedistaLiveData() {
-        return mLogopedista;
+        return mutableLiveDataLogopedista;
     }
 
     public void setLogopedista(Logopedista logopedista) {
-        mLogopedista.setValue(logopedista);
+        mutableLiveDataLogopedista.setValue(logopedista);
     }
+
 
     public LiveData<List<Appuntamento>> getAppuntamentiLiveData() {
-        return mListaAppuntamenti;
+        return mutableLiveDataListAppuntamenti;
     }
 
-    public void setAppuntamenti(List<Appuntamento> appuntamenti) {
-        this.mListaAppuntamenti.setValue(appuntamenti);
-    }
-
-
-    public void setTemplateScenariGioco(List<TemplateScenarioGioco> templateScenariGioco) {
-        this.mListaTemplateScenarioGioco.setValue(templateScenariGioco);
+    public void setAppuntamenti(List<Appuntamento> listAppuntamenti) {
+        this.mutableLiveDataListAppuntamenti.setValue(listAppuntamenti);
     }
 
 
-    public void setTemplateEsercizi(List<Esercizio> templateEsercizi) {
-        this.mListaTemplateEsercizi.setValue(templateEsercizi);
+    public void setTemplateScenariGioco(List<TemplateScenarioGioco> listTemplateScenariGioco) {
+        this.mutableLiveDataListTemplateScenarioGioco.setValue(listTemplateScenariGioco);
     }
 
 
-    public void aggiornaLogopedistaRemoto() {
-
-        Logopedista logopedista = mLogopedista.getValue();
-
-        LogopedistaDAO logopedistaDAO = new LogopedistaDAO();
-        logopedistaDAO.update(logopedista);
-
-        Log.d("LogopedistaViewModel.aggiornaLogopedistaRemoto()", "Logopedista aggiornato: " + logopedista.toString());
-    }
-
-    public void rimuoviAppuntamentoFromListaAppuntamentiLiveData(String idAppuntamento) {
-        List<Appuntamento> appuntamenti = mListaAppuntamenti.getValue();
-        for (Appuntamento appuntamento : appuntamenti) {
-            if (appuntamento.getIdAppuntamento().equals(idAppuntamento)) {
-                appuntamenti.remove(appuntamento);
-                break;
-            }
-        }
-        mListaAppuntamenti.setValue(appuntamenti);
-
-        Log.d("LogopedistaViewModel.rimuoviAppuntamentoFromListaAppuntamentiLiveData()", "Appuntamento rimosso: " + idAppuntamento);
+    public void setTemplateEsercizi(List<Esercizio> listEsercizi) {
+        this.mutableLiveDataListEsercizi.setValue(listEsercizi);
     }
 
     public Paziente getPazienteById(String id){
 
-        List<Paziente> pazienti = mLogopedista.getValue().getListaPazienti();
-        Paziente pazienteTrovato = null;
+        List<Paziente> listPazienti = mutableLiveDataLogopedista.getValue().getListaPazienti();
+        Paziente patientFound = null;
 
-        for (Paziente paziente: pazienti){
+        for (Paziente paziente: listPazienti){
             if(paziente.getIdProfilo().equals(id)){
-                pazienteTrovato = paziente;
+                patientFound = paziente;
             }
         }
 
-        return pazienteTrovato;
+        return patientFound;
     }
 
-    public void addTerapiaInPaziente(Terapia terapia, String idPaziente){
+    public EditAppuntamentiController getEditAppuntamentiController(){
 
-        List<Paziente> pazienti = mLogopedista.getValue().getListaPazienti();
+        if (this.editAppuntamentiController == null) {
+            this.editAppuntamentiController = new EditAppuntamentiController();
+        }
 
-        for (Paziente paziente: pazienti){
+        return this.editAppuntamentiController;
+    }
+
+
+    public EditDataSceneryLogopedistaController getEditDataSceneryLogopedistaController(){
+
+        if(this.editDataSceneryLogopedistaController == null){
+            this.editDataSceneryLogopedistaController = new EditDataSceneryLogopedistaController(this);
+        }
+
+        return this.editDataSceneryLogopedistaController;
+    }
+
+    public RegistrazionePazienteGenitoreController getRegistrazionePazienteGenitoreController() {
+
+        if (this.registrazionePazienteGenitoreController == null) {
+            this.registrazionePazienteGenitoreController = new RegistrazionePazienteGenitoreController();
+        }
+
+        return this.registrazionePazienteGenitoreController;
+    }
+
+
+    public void addTerapiaPaziente(Terapia terapia, String idPaziente){
+
+        List<Paziente> listPazienti = mutableLiveDataLogopedista.getValue().getListaPazienti();
+
+        for (Paziente paziente: listPazienti){
             if(paziente.getIdProfilo().equals(idPaziente)){
                 paziente.addTerapia(terapia);
             }
@@ -117,32 +122,29 @@ public class LogopedistaViewsModels extends ViewModel {
 
     }
 
-    public RegistrazionePazienteGenitoreController getRegistrazionePazienteGenitoreController() {
+    public void updateLogopedistaRemoto() {
 
-        if (this.mRegistrazionePazienteGenitoreController == null) {
-            this.mRegistrazionePazienteGenitoreController = new RegistrazionePazienteGenitoreController();
-        }
+        Logopedista logopedista = mutableLiveDataLogopedista.getValue();
+        LogopedistaDAO logopedistaDAO = new LogopedistaDAO();
 
-        return this.mRegistrazionePazienteGenitoreController;
+        logopedistaDAO.update(logopedista);
+
+        Log.d("LogopedistaViewModel.updateLogopedistaRemoto()", "Logopedista aggiornato: " + logopedista.toString());
     }
 
-    public EditAppuntamentiController getModificaAppuntamentiController(){
-
-        if (this.mEditAppuntamentiController == null) {
-            this.mEditAppuntamentiController = new EditAppuntamentiController();
+    public void removeAppuntamentoFromListAppuntamentiLiveData(String idAppuntamento) {
+        List<Appuntamento> listAppuntamenti = mutableLiveDataListAppuntamenti.getValue();
+        for (Appuntamento appuntamento : listAppuntamenti) {
+            if (appuntamento.getIdAppuntamento().equals(idAppuntamento)) {
+                listAppuntamenti.remove(appuntamento);
+                break;
+            }
         }
+        mutableLiveDataListAppuntamenti.setValue(listAppuntamenti);
 
-        return this.mEditAppuntamentiController;
+        Log.d("LogopedistaViewModel.removeAppuntamentoFromListAppuntamentiLiveData()",
+                "Deleted appuntamento: " + idAppuntamento);
     }
 
-
-    public EditDataSceneryLogopedistaController getModificaDataScenariLogopedistaController(){
-
-        if(this.mModificaDataScenariLogopedistaController == null){
-            this.mModificaDataScenariLogopedistaController = new EditDataSceneryLogopedistaController(this);
-        }
-
-        return this.mModificaDataScenariLogopedistaController;
-    }
 
 }

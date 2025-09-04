@@ -29,7 +29,7 @@ public class EditDataSceneryLogopedistaController implements EditDataSceneryCont
                         get(therapy).getListScenariGioco().
                         get(position).setDataInizioScenarioGioco(localDate);
 
-                logopedistaViewsModels.aggiornaLogopedistaRemoto();
+                logopedistaViewsModels.updateLogopedistaRemoto();
 
                 break;
             }

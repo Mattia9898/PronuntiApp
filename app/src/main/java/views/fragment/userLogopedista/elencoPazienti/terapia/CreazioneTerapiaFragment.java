@@ -109,8 +109,8 @@ public class CreazioneTerapiaFragment extends AbstractNavigationBetweenFragment 
 
     private void saveTherapy(String idPaziente, String name, String surname){
 
-        logopedistaViewsModels.addTerapiaInPaziente(therapy, idPaziente);
-        logopedistaViewsModels.aggiornaLogopedistaRemoto();
+        logopedistaViewsModels.addTerapiaPaziente(therapy, idPaziente);
+        logopedistaViewsModels.updateLogopedistaRemoto();
         Bundle bundle = new Bundle();
 
         bundle.putString("idPaziente", idPaziente);

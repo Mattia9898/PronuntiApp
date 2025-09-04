@@ -95,7 +95,7 @@ public class ProfiloLogopedistaFragment extends ProfiloImageFragment {
     void confirmEditProfile() {
 
         super.confirmEditProfile();
-        logopedistaViewsModels.aggiornaLogopedistaRemoto();
+        logopedistaViewsModels.updateLogopedistaRemoto();
         setData();
     }
 

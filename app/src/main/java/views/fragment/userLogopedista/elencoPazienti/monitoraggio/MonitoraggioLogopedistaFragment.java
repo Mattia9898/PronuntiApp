@@ -95,7 +95,7 @@ public class MonitoraggioLogopedistaFragment extends AbstractNavigationBetweenFr
                 R.id.action_schedaPazienteFragment_to_risultatoEsercizioDenominazioneImmagineLogopedistaFragment,
                 R.id.action_schedaPazienteFragment_to_risultatoEsercizioCoppiaImmaginiLogopedistaFragment,
                 R.id.action_schedaPazienteFragment_to_risultatoEsercizioSequenzaParoleLogopedistaFragment,
-                logopedistaViewsModels.getModificaDataScenariLogopedistaController(), therapy, idPaziente, indexPatient);
+                logopedistaViewsModels.getEditDataSceneryLogopedistaController(), therapy, idPaziente, indexPatient);
 
         scenery.setAdapter(scenarioAdapter);
     }

@@ -22,7 +22,7 @@ import android.util.Log;
 import viewsModels.genitoreViewsModels.controller.EditDataSceneryGenitoreController;
 
 
-// classe ViewModel che utilizza i MutableLiveData per aggiornare e gestire i dati
+// classe ViewModel che utilizza i MutableLiveData per aggiornare e gestire i dati Genitore
 public class GenitoreViewsModels extends ViewModel {
 
 

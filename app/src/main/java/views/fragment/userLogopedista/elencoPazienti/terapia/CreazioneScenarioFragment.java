@@ -326,7 +326,7 @@ public class CreazioneScenarioFragment extends AbstractNavigationBetweenFragment
             if(salvataggioScenario == null){
                 Paziente paziente = logopedistaViewsModels.getPazienteById(idPaziente);
                 paziente.getTerapie().get(indexTherapy).addListScenarioGioco(scenarioGioco);
-                logopedistaViewsModels.aggiornaLogopedistaRemoto();
+                logopedistaViewsModels.updateLogopedistaRemoto();
                 navigationTo(R.id.action_creazioneScenarioFragment_to_schedaPazienteFragment, bundle);
             }
             else {
