@@ -25,7 +25,7 @@ import android.util.Log;
 import android.os.Bundle;
 import android.os.Handler;
 
-import viewsModels.pazienteViewsModels.controller.CoppiaImmaginiController;
+import viewsModels.pazienteViewsModels.controller.EsercizioCoppiaImmaginiController;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
 import views.fragment.userPaziente.giochi.FineScenario;
@@ -76,7 +76,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
 
     private PazienteViewsModels pazienteViewModel;
 
-    private CoppiaImmaginiController coppiaImmaginiController;
+    private EsercizioCoppiaImmaginiController esercizioCoppiaImmaginiController;
 
     private EsercizioCoppiaImmagini esercizioCoppiaImmagini;
 
@@ -91,7 +91,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
         View view = inflater.inflate(R.layout.fragment_esercizi_coppia_immagini, container, false);
 
         this.pazienteViewModel = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
-        this.coppiaImmaginiController = pazienteViewModel.getCoppiaImmaginiController();
+        this.esercizioCoppiaImmaginiController = pazienteViewModel.getCoppiaImmaginiController();
 
         fineScenario = view.findViewById(R.id.fineScenario);
         mainConstraintLayout = view.findViewById(R.id.mainConstraintLayout);
@@ -108,7 +108,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
         buttonFirstImage = view.findViewById(R.id.buttonFirstImage);
         buttonSecondImage = view.findViewById(R.id.buttonSecondImage);
 
-        this.correctImage = coppiaImmaginiController.generaPosizioneImmagineCorretta();
+        this.correctImage = esercizioCoppiaImmaginiController.createPositionCorrectImage();
 
         return view;
     }
@@ -128,7 +128,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
             scenarioGioco = listTherapies.get(indexTherapy).getListScenariGioco().get(bundle.getInt("actualIndexTherapy"));
             esercizioCoppiaImmagini = (EsercizioCoppiaImmagini) scenarioGioco.getlistEsercizioRealizzabile().get(bundle.getInt("indiceEsercizio"));
 
-            this.coppiaImmaginiController.setEsercizioCoppiaImmagini(esercizioCoppiaImmagini);
+            this.esercizioCoppiaImmaginiController.setEsercizioCoppiaImmagini(esercizioCoppiaImmagini);
             this.audioPlayerLink = new AudioPlayerLink(esercizioCoppiaImmagini.getAudioEsercizioCoppiaImmagini());
             this.mediaPlayer = audioPlayerLink.getMediaPlayer();
 
@@ -286,17 +286,17 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
 
     public void completeExercise(int pickedImage) {
 
-        boolean esito;
+        boolean result;
         Bundle bundle = new Bundle();
-        bundle.putInt("indexSceneryGame",indexScenery);
+        bundle.putInt("indexSceneryGame", indexScenery);
 
-        if (coppiaImmaginiController.verificaSceltaImmagine(pickedImage, correctImage)) {
-            esito = true;
+        if (esercizioCoppiaImmaginiController.checkSelectionImage(pickedImage, correctImage)) {
+            result = true;
             pazienteViewModel.getPazienteLiveData().getValue().
                     incrementaValuta(esercizioCoppiaImmagini.getRicompensaCorretto());
             pazienteViewModel.getPazienteLiveData().getValue().
                     incrementaPunteggioTotale(esercizioCoppiaImmagini.getRicompensaCorretto());
-            setResultExercise(esito);
+            setResultExercise(result);
 
             if(checkEndScenery(scenarioGioco)){
                 bundle.putBoolean("checkFineScenario", true);
@@ -310,12 +310,12 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
             }
 
         } else {
-            esito = false;
+            result = false;
             pazienteViewModel.getPazienteLiveData().getValue().
                     incrementaValuta(esercizioCoppiaImmagini.getRicompensaErrato());
             pazienteViewModel.getPazienteLiveData().getValue().
                     incrementaPunteggioTotale(esercizioCoppiaImmagini.getRicompensaErrato());
-            setResultExercise(esito);
+            setResultExercise(result);
 
             if(checkEndScenery(scenarioGioco)){
                 bundle.putBoolean("checkFineScenario", true);

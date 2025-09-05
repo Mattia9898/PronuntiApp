@@ -6,7 +6,7 @@ import it.uniba.dib.pronuntiapp.R;
 import java.util.List;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import viewsModels.pazienteViewsModels.controller.PersonaggiController;
+import viewsModels.pazienteViewsModels.controller.CharactersController;
 
 import models.domain.profili.Paziente;
 import models.domain.profili.personaggio.Personaggio;
@@ -86,7 +86,7 @@ public class PazienteActivity extends AbstractAppActivity {
         this.pazienteViewsModels.setPaziente((Paziente) getIntent().getSerializableExtra("mPaziente"));
         this.pazienteViewsModels.setPersonaggi((List<Personaggio>) getIntent().getSerializableExtra("mPersonaggi"));
         this.pazienteViewsModels.setClassifica((List<Ranking>) getIntent().getSerializableExtra("mClassifica"));
-        this.pazienteViewsModels.setTexturePersonaggioSelezionato(PersonaggiController.getTexturePersonaggioSelezionato(pazienteViewsModels.getListaPersonaggiLiveData().getValue(), pazienteViewsModels.getPazienteLiveData().getValue().getPersonaggiSbloccati()));
+        this.pazienteViewsModels.setTexturePersonaggioSelezionato(CharactersController.getTexturePersonaggioSelezionato(pazienteViewsModels.getListaPersonaggiLiveData().getValue(), pazienteViewsModels.getPazienteLiveData().getValue().getPersonaggiSbloccati()));
     }
 
 

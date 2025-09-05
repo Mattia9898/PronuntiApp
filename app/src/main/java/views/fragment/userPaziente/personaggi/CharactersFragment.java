@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import viewsModels.pazienteViewsModels.controller.PersonaggiController;
+import viewsModels.pazienteViewsModels.controller.CharactersController;
 
 import models.domain.profili.personaggio.Personaggio;
 
@@ -30,7 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class PersonaggiFragment extends AbstractNavigationBetweenFragment {
+public class CharactersFragment extends AbstractNavigationBetweenFragment {
 
     private RecyclerView RecyclerViewCharactersUnlocked;
 
@@ -40,7 +40,7 @@ public class PersonaggiFragment extends AbstractNavigationBetweenFragment {
 
     private PazienteViewsModels pazienteViewsModels;
 
-    private PersonaggiController personaggiController;
+    private CharactersController charactersController;
 
     private List<String> listStringCharactersUnlocked;
 
@@ -55,10 +55,10 @@ public class PersonaggiFragment extends AbstractNavigationBetweenFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_personaggi, container, false);
+        View view = inflater.inflate(R.layout.fragment_characters, container, false);
 
         this.pazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
-        this.personaggiController = pazienteViewsModels.getPersonaggiController();
+        this.charactersController = pazienteViewsModels.getPersonaggiController();
 
         setToolBarNoTitle(view);
         nestedScrollView = view.findViewById(R.id.nestedScrollView);
@@ -95,16 +95,16 @@ public class PersonaggiFragment extends AbstractNavigationBetweenFragment {
         List<Personaggio> listCharacters = pazienteViewsModels.getListaPersonaggiLiveData().getValue();
 
         setIdLists(mapCharactersPatient);
-        listCharactersUnlocked = personaggiController.getSortedListPersonaggi(listCharacters, listStringCharactersToBuy);
-        listCharactersToBuy = personaggiController.getSortedListPersonaggi(listCharacters, listStringCharactersUnlocked);
+        listCharactersUnlocked = charactersController.getSortedListPersonaggi(listCharacters, listStringCharactersToBuy);
+        listCharactersToBuy = charactersController.getSortedListPersonaggi(listCharacters, listStringCharactersUnlocked);
 
-        PersonaggiSbloccatiAdapter personaggiSbloccatiAdapter = new PersonaggiSbloccatiAdapter
-                (getContext(), listCharactersUnlocked, personaggiController);
-        PersonaggiOttenibiliAdapter personaggiOttenibiliAdapter = new PersonaggiOttenibiliAdapter
-                (getContext(), listCharactersToBuy, personaggiSbloccatiAdapter, nestedScrollView, personaggiController);
+        CharactersSbloccatiAdapter charactersSbloccatiAdapter = new CharactersSbloccatiAdapter
+                (getContext(), listCharactersUnlocked, charactersController);
+        CharactersOttenibiliAdapter charactersOttenibiliAdapter = new CharactersOttenibiliAdapter
+                (getContext(), listCharactersToBuy, charactersSbloccatiAdapter, nestedScrollView, charactersController);
 
-        RecyclerViewCharactersToBuy.setAdapter(personaggiOttenibiliAdapter);
-        RecyclerViewCharactersUnlocked.setAdapter(personaggiSbloccatiAdapter);
+        RecyclerViewCharactersToBuy.setAdapter(charactersOttenibiliAdapter);
+        RecyclerViewCharactersUnlocked.setAdapter(charactersSbloccatiAdapter);
     }
 
     private void setFirstId(Map<String, Integer> mapCharactersPatient){

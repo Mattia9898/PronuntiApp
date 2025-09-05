@@ -13,7 +13,7 @@ import java.util.List;
 
 import models.domain.profili.personaggio.Personaggio;
 
-import viewsModels.pazienteViewsModels.controller.PersonaggiController;
+import viewsModels.pazienteViewsModels.controller.CharactersController;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
@@ -26,21 +26,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class PersonaggiSbloccatiAdapter extends RecyclerView.Adapter<PersonaggiSbloccatiAdapter.ViewHolder> {
+public class CharactersSbloccatiAdapter extends RecyclerView.Adapter<CharactersSbloccatiAdapter.ViewHolder> {
 
     private Context context;
 
     private List<Personaggio> listUnlockedCharacters;
 
-    private PersonaggiController personaggiController;
+    private CharactersController charactersController;
 
 
-    public PersonaggiSbloccatiAdapter(Context context,
+    public CharactersSbloccatiAdapter(Context context,
                                       List<Personaggio> listUnlockedCharacters,
-                                      PersonaggiController personaggiController) {
+                                      CharactersController charactersController) {
         this.context = context;
         this.listUnlockedCharacters = listUnlockedCharacters;
-        this.personaggiController = personaggiController;
+        this.charactersController = charactersController;
     }
 
     @NonNull
@@ -72,7 +72,7 @@ public class PersonaggiSbloccatiAdapter extends RecyclerView.Adapter<PersonaggiS
 
         holder.buttonObtainCharacter.setOnClickListener(v -> {
             refreshSelectedCharacter(position);
-            personaggiController.updateSelezionePersonaggio(idCharacter);
+            charactersController.updateSelezionePersonaggio(idCharacter);
         });
     }
 

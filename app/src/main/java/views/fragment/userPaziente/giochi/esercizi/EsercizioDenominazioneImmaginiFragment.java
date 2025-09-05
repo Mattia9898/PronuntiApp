@@ -49,7 +49,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 
 import views.fragment.userPaziente.giochi.FineScenario;
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import viewsModels.pazienteViewsModels.controller.SceltaImmaginiController;
+import viewsModels.pazienteViewsModels.controller.EsercizioDenominazioneImmaginiController;
 
 
 public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenarioFragment {
@@ -85,7 +85,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
 
     private PazienteViewsModels pazienteViewsModels;
 
-    private SceltaImmaginiController sceltaImmaginiController;
+    private EsercizioDenominazioneImmaginiController esercizioDenominazioneImmaginiController;
 
     private EsercizioDenominazioneImmagini esercizioDenominazioneImmagini;
 
@@ -103,7 +103,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
         View view = inflater.inflate(R.layout.fragment_esercizio_denominazione_immagini, container, false);
 
         this.pazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
-        this.sceltaImmaginiController = pazienteViewsModels.getSceltaImmaginiController();
+        this.esercizioDenominazioneImmaginiController = pazienteViewsModels.getSceltaImmaginiController();
 
         mainConstraintLayout = view.findViewById(R.id.mainConstraintLayout);
         mainConstraintLayout.setVisibility(View.VISIBLE);
@@ -145,7 +145,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
             esercizioDenominazioneImmagini = (EsercizioDenominazioneImmagini) scenarioGioco.
                     getlistEsercizioRealizzabile().get(bundle.getInt("indexExercise"));
 
-            this.sceltaImmaginiController.setEsercizioDenominazioneImmagini(esercizioDenominazioneImmagini);
+            this.esercizioDenominazioneImmaginiController.setEsercizioDenominazioneImmagini(esercizioDenominazioneImmagini);
 
             this.audioRecorder = audioRecorder();
             Picasso.get().load(esercizioDenominazioneImmagini.getImmagineEsercizioDenominazioneImmagini()).into(mainImage);
@@ -235,7 +235,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
             boolean result;
             Bundle bundle = new Bundle();
             bundle.putInt("indexGameScenery", indexScenery);
-            if (sceltaImmaginiController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
+            if (esercizioDenominazioneImmaginiController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
                 result = true;
                 pazienteViewsModels.getPazienteLiveData().getValue().
                         incrementaValuta(esercizioDenominazioneImmagini.getRicompensaCorretto());

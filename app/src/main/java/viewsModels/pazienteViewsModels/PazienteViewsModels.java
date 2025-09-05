@@ -30,13 +30,13 @@ import models.domain.terapie.Terapia;
 
 import viewsModels.pazienteViewsModels.controller.RankingController;
 
-import viewsModels.pazienteViewsModels.controller.CoppiaImmaginiController;
+import viewsModels.pazienteViewsModels.controller.EsercizioCoppiaImmaginiController;
 
-import viewsModels.pazienteViewsModels.controller.SceltaImmaginiController;
+import viewsModels.pazienteViewsModels.controller.EsercizioDenominazioneImmaginiController;
 
-import viewsModels.pazienteViewsModels.controller.SequenzaParoleController;
+import viewsModels.pazienteViewsModels.controller.EsercizioSequenzaParoleController;
 
-import viewsModels.pazienteViewsModels.controller.PersonaggiController;
+import viewsModels.pazienteViewsModels.controller.CharactersController;
 
 import views.fragment.userPaziente.ranking.Ranking;
 
@@ -58,10 +58,10 @@ public class PazienteViewsModels extends ViewModel {
     private MutableLiveData<List<Personaggio>> mListaPersonaggi = new MutableLiveData<>();
     private MutableLiveData<List<Ranking>> mClassifica = new MutableLiveData<>();
     private MutableLiveData<String> mTexturePersonaggioSelezionato = new MutableLiveData<>();
-    private SceltaImmaginiController mSceltaImmaginiController;
-    private SequenzaParoleController mSequenzaParoleController;
-    private CoppiaImmaginiController mCoppiaImmaginiController;
-    private PersonaggiController mPersonaggiController;
+    private EsercizioDenominazioneImmaginiController mEsercizioDenominazioneImmaginiController;
+    private EsercizioSequenzaParoleController mEsercizioSequenzaParoleController;
+    private EsercizioCoppiaImmaginiController mEsercizioCoppiaImmaginiController;
+    private CharactersController mCharactersController;
     private RankingController mRankingController;
 
 
@@ -184,7 +184,7 @@ public class PazienteViewsModels extends ViewModel {
     }
 
     public void aggiornaTexturePersonaggioSelezionatoLiveData() {
-        String newTexture = PersonaggiController.getTexturePersonaggioSelezionato(mListaPersonaggi.getValue(), mPaziente.getValue().getPersonaggiSbloccati());
+        String newTexture = CharactersController.getTexturePersonaggioSelezionato(mListaPersonaggi.getValue(), mPaziente.getValue().getPersonaggiSbloccati());
         setTexturePersonaggioSelezionato(newTexture);
     }
 
@@ -201,32 +201,32 @@ public class PazienteViewsModels extends ViewModel {
         esercizio.setRisultatoEsercizio(risultato);
     }
 
-    public SceltaImmaginiController getSceltaImmaginiController() {
-        if (this.mSceltaImmaginiController == null) {
-            this.mSceltaImmaginiController = new SceltaImmaginiController();
+    public EsercizioDenominazioneImmaginiController getSceltaImmaginiController() {
+        if (this.mEsercizioDenominazioneImmaginiController == null) {
+            this.mEsercizioDenominazioneImmaginiController = new EsercizioDenominazioneImmaginiController();
         }
-        return this.mSceltaImmaginiController;
+        return this.mEsercizioDenominazioneImmaginiController;
     }
 
-    public SequenzaParoleController getSequenzaParoleController() {
-        if (this.mSequenzaParoleController == null) {
-            this.mSequenzaParoleController = new SequenzaParoleController();
+    public EsercizioSequenzaParoleController getSequenzaParoleController() {
+        if (this.mEsercizioSequenzaParoleController == null) {
+            this.mEsercizioSequenzaParoleController = new EsercizioSequenzaParoleController();
         }
-        return this.mSequenzaParoleController;
+        return this.mEsercizioSequenzaParoleController;
     }
 
-    public CoppiaImmaginiController getCoppiaImmaginiController() {
-        if (this.mCoppiaImmaginiController == null) {
-            this.mCoppiaImmaginiController = new CoppiaImmaginiController();
+    public EsercizioCoppiaImmaginiController getCoppiaImmaginiController() {
+        if (this.mEsercizioCoppiaImmaginiController == null) {
+            this.mEsercizioCoppiaImmaginiController = new EsercizioCoppiaImmaginiController();
         }
-        return this.mCoppiaImmaginiController;
+        return this.mEsercizioCoppiaImmaginiController;
     }
 
-    public PersonaggiController getPersonaggiController() {
-        if(this.mPersonaggiController == null){
-            this.mPersonaggiController = new PersonaggiController(this);
+    public CharactersController getPersonaggiController() {
+        if(this.mCharactersController == null){
+            this.mCharactersController = new CharactersController(this);
         }
-        return this.mPersonaggiController;
+        return this.mCharactersController;
     }
 
     public RankingController getClassificaController() {

@@ -10,7 +10,7 @@ import models.domain.esercizi.EsercizioDenominazioneImmagini;
 
 import models.API.SpeechToText;
 
-public class SceltaImmaginiController{
+public class EsercizioDenominazioneImmaginiController {
 
     private EsercizioDenominazioneImmagini mEsercizioDenominazioneImmagini;
 

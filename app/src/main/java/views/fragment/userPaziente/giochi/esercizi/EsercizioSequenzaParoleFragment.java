@@ -50,7 +50,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
-import viewsModels.pazienteViewsModels.controller.SequenzaParoleController;
+import viewsModels.pazienteViewsModels.controller.EsercizioSequenzaParoleController;
 
 
 public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragment {
@@ -86,7 +86,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
 
     private AudioPlayerLink audioPlayerLink;
 
-    private SequenzaParoleController sequenzaParoleController;
+    private EsercizioSequenzaParoleController esercizioSequenzaParoleController;
 
     private EsercizioSequenzaParole esercizioSequenzaParole;
 
@@ -104,7 +104,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
         View view = inflater.inflate(R.layout.fragment_esercizio_sequenza_parole, container, false);
 
         this.pazienteViewsModels = new ViewModelProvider(requireActivity()).get(PazienteViewsModels.class);
-        this.sequenzaParoleController = pazienteViewsModels.getSequenzaParoleController();
+        this.esercizioSequenzaParoleController = pazienteViewsModels.getSequenzaParoleController();
 
         fineScenario = view.findViewById(R.id.fineScenarioView);
 
@@ -145,7 +145,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
             esercizioSequenzaParole = (EsercizioSequenzaParole) scenarioGioco.
                     getlistEsercizioRealizzabile().get(bundle.getInt("indexExercise"));
 
-            this.sequenzaParoleController.setEsercizioSequenzaParole(esercizioSequenzaParole);
+            this.esercizioSequenzaParoleController.setEsercizioSequenzaParole(esercizioSequenzaParole);
             this.audioRecorder = audioRecorder();
             this.audioPlayerLink = new AudioPlayerLink(esercizioSequenzaParole.getAudioEsercizioSequenzaParole());
             this.mediaPlayer = audioPlayerLink.getMediaPlayer();
@@ -220,7 +220,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
             boolean result;
             Bundle bundle = new Bundle();
             bundle.putInt("indexSceneryGame", indexScenery);
-            if (sequenzaParoleController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
+            if (esercizioSequenzaParoleController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
                 result = true;
                 pazienteViewsModels.getPazienteLiveData().getValue().
                         incrementaValuta(esercizioSequenzaParole.getRicompensaCorretto());

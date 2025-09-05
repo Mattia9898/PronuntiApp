@@ -16,11 +16,11 @@ import models.domain.profili.personaggio.Personaggio;
 
 import viewsModels.pazienteViewsModels.PazienteViewsModels;
 
-public class PersonaggiController {
+public class CharactersController {
 
     private PazienteViewsModels mPazienteViewsModels;
 
-    public PersonaggiController(PazienteViewsModels mPazienteViewsModels) {
+    public CharactersController(PazienteViewsModels mPazienteViewsModels) {
         this.mPazienteViewsModels = mPazienteViewsModels;
     }
 

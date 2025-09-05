@@ -26,31 +26,31 @@ import java.util.List;
 import views.dialog.InfoDialog;
 import views.dialog.RequestConfirmDialog;
 import models.domain.profili.personaggio.Personaggio;
-import viewsModels.pazienteViewsModels.controller.PersonaggiController;
+import viewsModels.pazienteViewsModels.controller.CharactersController;
 
 
-public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<PersonaggiOttenibiliAdapter.ViewHolder> {
+public class CharactersOttenibiliAdapter extends RecyclerView.Adapter<CharactersOttenibiliAdapter.ViewHolder> {
 
     private Context context;
     
     private List<Personaggio> listCharactersToBuy;
     
-    private PersonaggiSbloccatiAdapter charactersUnlockedAdapter;
+    private CharactersSbloccatiAdapter charactersUnlockedAdapter;
     
     private NestedScrollView mainNestedScrollView;
     
-    private PersonaggiController personaggiController;
+    private CharactersController charactersController;
 
     
-    public PersonaggiOttenibiliAdapter(Context context, List<Personaggio> listCharactersToBuy, 
-                                       PersonaggiSbloccatiAdapter charactersUnlockedAdapter, 
-                                       NestedScrollView mainNestedScrollView, 
-                                       PersonaggiController personaggiController) {
+    public CharactersOttenibiliAdapter(Context context, List<Personaggio> listCharactersToBuy,
+                                       CharactersSbloccatiAdapter charactersUnlockedAdapter,
+                                       NestedScrollView mainNestedScrollView,
+                                       CharactersController charactersController) {
         this.context = context;
         this.listCharactersToBuy = listCharactersToBuy;
         this.charactersUnlockedAdapter = charactersUnlockedAdapter;
         this.mainNestedScrollView = mainNestedScrollView;
-        this.personaggiController = personaggiController;
+        this.charactersController = charactersController;
     }
 
     @NonNull
@@ -108,11 +108,11 @@ public class PersonaggiOttenibiliAdapter extends RecyclerView.Adapter<Personaggi
     private void purchaseCharacter(int unlockingCostCharacter, Personaggio character, String idCharacter) {
 
         // controlla se il paziente ha monete suffiicenti per l'acquisto
-        if (personaggiController.isValutaSufficiente(unlockingCostCharacter)) {
+        if (charactersController.isValutaSufficiente(unlockingCostCharacter)) {
 
             setRequestPurchase().setOnConfirmButtonClickListener(() -> {
-                personaggiController.updateSelezionePersonaggio(idCharacter);
-                personaggiController.updateValutaPaziente(unlockingCostCharacter);
+                charactersController.updateSelezionePersonaggio(idCharacter);
+                charactersController.updateValutaPaziente(unlockingCostCharacter);
 
                 refreshCharacters(character);
                 getAnimator().start();

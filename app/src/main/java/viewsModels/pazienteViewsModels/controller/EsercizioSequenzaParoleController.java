@@ -14,7 +14,7 @@ import models.API.AudioConverter;
 
 import models.API.SpeechToText;
 
-public class SequenzaParoleController {
+public class EsercizioSequenzaParoleController {
 
     private EsercizioSequenzaParole mEsercizioSequenzaParole;
 

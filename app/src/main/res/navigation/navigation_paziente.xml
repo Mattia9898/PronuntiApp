@@ -57,9 +57,9 @@
 
     <fragment
         android:id="@+id/personaggiFragment"
-        android:name="views.fragment.userPaziente.personaggi.PersonaggiFragment"
+        android:name="views.fragment.userPaziente.personaggi.CharactersFragment"
         android:label="@string/personaggi"
-        tools:layout="@layout/fragment_personaggi" />
+        tools:layout="@layout/fragment_characters" />
 
     <fragment
         android:id="@+id/classificaFragment"
