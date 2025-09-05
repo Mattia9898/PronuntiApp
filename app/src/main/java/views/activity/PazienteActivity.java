@@ -64,15 +64,16 @@ public class PazienteActivity extends AbstractAppActivity {
         //first fragment
         highlightsNavigationBarButton(R.id.fragmentScenarioGenerico);
 
-        //on-click custom navigation bar
         navigationBarGames.setOnClickListener(v -> {
             Navigation.findNavController(this, R.id.fragmentContainerPaziente).navigate(R.id.fragmentScenarioGenerico);
             resetNavigationBarButton(R.id.fragmentScenarioGenerico);
         });
+
         navigationBarCharacters.setOnClickListener(v -> {
             Navigation.findNavController(this, R.id.fragmentContainerPaziente).navigate(R.id.personaggiFragment);
             resetNavigationBarButton(R.id.personaggiFragment);
         });
+
         navigationBarRanking.setOnClickListener(v -> {
             Navigation.findNavController(this, R.id.fragmentContainerPaziente).navigate(R.id.classificaFragment);
             resetNavigationBarButton(R.id.classificaFragment);
@@ -83,10 +84,13 @@ public class PazienteActivity extends AbstractAppActivity {
         //setup dei dati
         this.pazienteViewsModels = new ViewModelProvider(this).get(PazienteViewsModels.class);
 
-        this.pazienteViewsModels.setPaziente((Paziente) getIntent().getSerializableExtra("mPaziente"));
-        this.pazienteViewsModels.setPersonaggi((List<Personaggio>) getIntent().getSerializableExtra("mPersonaggi"));
-        this.pazienteViewsModels.setClassifica((List<Ranking>) getIntent().getSerializableExtra("mClassifica"));
-        this.pazienteViewsModels.setTexturePersonaggioSelezionato(CharactersController.getTexturePersonaggioSelezionato(pazienteViewsModels.getListaPersonaggiLiveData().getValue(), pazienteViewsModels.getPazienteLiveData().getValue().getPersonaggiSbloccati()));
+        this.pazienteViewsModels.setPaziente((Paziente) getIntent().getSerializableExtra("patient"));
+        this.pazienteViewsModels.setPersonaggi((List<Personaggio>) getIntent().getSerializableExtra("characters"));
+        this.pazienteViewsModels.setClassifica((List<Ranking>) getIntent().getSerializableExtra("ranking"));
+
+        this.pazienteViewsModels.setTexturePersonaggioSelezionato(CharactersController.getTextureSelectedCharacter(
+                                pazienteViewsModels.getListaPersonaggiLiveData().getValue(),
+                                pazienteViewsModels.getPazienteLiveData().getValue().getPersonaggiSbloccati()));
     }
 
 

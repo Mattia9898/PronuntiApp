@@ -95,8 +95,8 @@ public class CharactersFragment extends AbstractNavigationBetweenFragment {
         List<Personaggio> listCharacters = pazienteViewsModels.getListaPersonaggiLiveData().getValue();
 
         setIdLists(mapCharactersPatient);
-        listCharactersUnlocked = charactersController.getSortedListPersonaggi(listCharacters, listStringCharactersToBuy);
-        listCharactersToBuy = charactersController.getSortedListPersonaggi(listCharacters, listStringCharactersUnlocked);
+        listCharactersUnlocked = charactersController.getSortedListCharacters(listCharacters, listStringCharactersToBuy);
+        listCharactersToBuy = charactersController.getSortedListCharacters(listCharacters, listStringCharactersUnlocked);
 
         CharactersSbloccatiAdapter charactersSbloccatiAdapter = new CharactersSbloccatiAdapter
                 (getContext(), listCharactersUnlocked, charactersController);

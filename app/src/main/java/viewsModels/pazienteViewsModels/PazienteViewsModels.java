@@ -184,7 +184,7 @@ public class PazienteViewsModels extends ViewModel {
     }
 
     public void aggiornaTexturePersonaggioSelezionatoLiveData() {
-        String newTexture = CharactersController.getTexturePersonaggioSelezionato(mListaPersonaggi.getValue(), mPaziente.getValue().getPersonaggiSbloccati());
+        String newTexture = CharactersController.getTextureSelectedCharacter(mListaPersonaggi.getValue(), mPaziente.getValue().getPersonaggiSbloccati());
         setTexturePersonaggioSelezionato(newTexture);
     }
 

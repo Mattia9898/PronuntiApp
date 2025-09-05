@@ -238,7 +238,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
             if (esercizioDenominazioneImmaginiController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
                 result = true;
                 pazienteViewsModels.getPazienteLiveData().getValue().
-                        incrementaValuta(esercizioDenominazioneImmagini.getRicompensaCorretto());
+                        increaseCoins(esercizioDenominazioneImmagini.getRicompensaCorretto());
                 pazienteViewsModels.getPazienteLiveData().getValue().
                         incrementaPunteggioTotale(esercizioDenominazioneImmagini.getRicompensaCorretto());
                 setResultExercise(result, link);
@@ -254,7 +254,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
             } else {
                 result = false;
                 pazienteViewsModels.getPazienteLiveData().getValue().
-                        incrementaValuta(esercizioDenominazioneImmagini.getRicompensaErrato());
+                        increaseCoins(esercizioDenominazioneImmagini.getRicompensaErrato());
                 pazienteViewsModels.getPazienteLiveData().getValue().
                         incrementaPunteggioTotale(esercizioDenominazioneImmagini.getRicompensaErrato());
                 setResultExercise(result, link);
@@ -298,7 +298,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
 
     private void  addSceneryReward(){
         int reward = scenarioGioco.getRicompensaFinale();
-        pazienteViewsModels.getPazienteLiveData().getValue().incrementaValuta(reward);
+        pazienteViewsModels.getPazienteLiveData().getValue().increaseCoins(reward);
         pazienteViewsModels.getPazienteLiveData().getValue().incrementaPunteggioTotale(reward);
         pazienteViewsModels.aggiornaPazienteRemoto();
     }

@@ -108,11 +108,11 @@ public class CharactersOttenibiliAdapter extends RecyclerView.Adapter<Characters
     private void purchaseCharacter(int unlockingCostCharacter, Personaggio character, String idCharacter) {
 
         // controlla se il paziente ha monete suffiicenti per l'acquisto
-        if (charactersController.isValutaSufficiente(unlockingCostCharacter)) {
+        if (charactersController.isSufficientCoins(unlockingCostCharacter)) {
 
             setRequestPurchase().setOnConfirmButtonClickListener(() -> {
-                charactersController.updateSelezionePersonaggio(idCharacter);
-                charactersController.updateValutaPaziente(unlockingCostCharacter);
+                charactersController.updateSelectedCharacter(idCharacter);
+                charactersController.updateCoinsPaziente(unlockingCostCharacter);
 
                 refreshCharacters(character);
                 getAnimator().start();

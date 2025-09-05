@@ -160,7 +160,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
 
     private void addSceneryReward(){
         int reward = scenarioGioco.getRicompensaFinale();
-        pazienteViewModel.getPazienteLiveData().getValue().incrementaValuta(reward);
+        pazienteViewModel.getPazienteLiveData().getValue().increaseCoins(reward);
         pazienteViewModel.getPazienteLiveData().getValue().incrementaPunteggioTotale(reward);
         pazienteViewModel.aggiornaPazienteRemoto();
     }
@@ -293,7 +293,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
         if (esercizioCoppiaImmaginiController.checkSelectionImage(pickedImage, correctImage)) {
             result = true;
             pazienteViewModel.getPazienteLiveData().getValue().
-                    incrementaValuta(esercizioCoppiaImmagini.getRicompensaCorretto());
+                    increaseCoins(esercizioCoppiaImmagini.getRicompensaCorretto());
             pazienteViewModel.getPazienteLiveData().getValue().
                     incrementaPunteggioTotale(esercizioCoppiaImmagini.getRicompensaCorretto());
             setResultExercise(result);
@@ -312,7 +312,7 @@ public class EsercizioCoppiaImmaginiFragment extends AbstractFineScenarioFragmen
         } else {
             result = false;
             pazienteViewModel.getPazienteLiveData().getValue().
-                    incrementaValuta(esercizioCoppiaImmagini.getRicompensaErrato());
+                    increaseCoins(esercizioCoppiaImmagini.getRicompensaErrato());
             pazienteViewModel.getPazienteLiveData().getValue().
                     incrementaPunteggioTotale(esercizioCoppiaImmagini.getRicompensaErrato());
             setResultExercise(result);

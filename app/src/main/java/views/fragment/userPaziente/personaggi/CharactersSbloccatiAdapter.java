@@ -72,7 +72,7 @@ public class CharactersSbloccatiAdapter extends RecyclerView.Adapter<CharactersS
 
         holder.buttonObtainCharacter.setOnClickListener(v -> {
             refreshSelectedCharacter(position);
-            charactersController.updateSelezionePersonaggio(idCharacter);
+            charactersController.updateSelectedCharacter(idCharacter);
         });
     }
 

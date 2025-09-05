@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.ArrayList;
 import android.util.Log;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 
 public class Paziente extends AbstractProfilo {
 
@@ -254,12 +250,12 @@ public class Paziente extends AbstractProfilo {
         this.listaTerapie.add(terapia);
     }
 
-    public void incrementaValuta(int valutaOttenuta) {
-        this.valuta += valutaOttenuta;
+    public void increaseCoins(int coinsToIncrease) {
+        this.valuta += coinsToIncrease;
     }
 
-    public void decrementaValuta(int valutaSpesa) {
-        this.valuta -= valutaSpesa;
+    public void decreaseCoins(int coinsToDecrease) {
+        this.valuta -= coinsToDecrease;
     }
 
 
