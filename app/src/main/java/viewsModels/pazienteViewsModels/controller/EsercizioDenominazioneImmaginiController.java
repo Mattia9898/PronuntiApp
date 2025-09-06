@@ -1,39 +1,41 @@
 package viewsModels.pazienteViewsModels.controller;
 
-import android.content.Context;
-
-import java.io.File;
-
-import java.util.List;
-
-import models.domain.esercizi.EsercizioDenominazioneImmagini;
 
 import models.API.SpeechToText;
 
+import java.io.File;
+import java.util.List;
+
+import android.content.Context;
+
+import models.domain.esercizi.EsercizioDenominazioneImmagini;
+
+
 public class EsercizioDenominazioneImmaginiController {
 
-    private EsercizioDenominazioneImmagini mEsercizioDenominazioneImmagini;
+    private EsercizioDenominazioneImmagini esercizioDenominazioneImmagini;
 
-    public void setEsercizioDenominazioneImmagini(EsercizioDenominazioneImmagini esercizioDenominazioneImmagine) {
-        this.mEsercizioDenominazioneImmagini = esercizioDenominazioneImmagine;
+    public void setEsercizioDenominazioneImmagini(EsercizioDenominazioneImmagini esercizioDenominazioneImmagini) {
+        this.esercizioDenominazioneImmagini = esercizioDenominazioneImmagini;
     }
 
 
-    public boolean verificaAudio(File audioRegistrato, Context context) {
-        List<String> paroleRegistrate = SpeechToText.callAPI(context, audioRegistrato);
+    // metodo per controllare parola per parola l'audio registrato nell'esercizio dall'utente
+    public boolean checkAudio(File audioRecorded, Context context) {
 
-        if (paroleRegistrate == null || paroleRegistrate.isEmpty()) {
+        List<String> wordsRecorded = SpeechToText.callAPI(context, audioRecorded);
+
+        if (wordsRecorded == null || wordsRecorded.isEmpty()) {
             return false;
-        }
-        else {
-            boolean check = true;
-            for (String parola : paroleRegistrate) {
-                if (!(parola.toLowerCase().equals(mEsercizioDenominazioneImmagini.getParolaEsercizioDenominazioneImmagini().toLowerCase()))) {
-                    check = false;
+        } else {
+            boolean methodCheck = true;
+            for (String word : wordsRecorded) {
+                if (!(word.toLowerCase().equals(esercizioDenominazioneImmagini.getParolaEsercizioDenominazioneImmagini().toLowerCase()))) {
+                    methodCheck = false;
                 }
 
             }
-            return check;
+            return methodCheck;
         }
     }
 

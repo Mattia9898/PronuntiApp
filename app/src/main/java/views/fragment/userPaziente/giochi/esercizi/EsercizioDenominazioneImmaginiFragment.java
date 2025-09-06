@@ -235,7 +235,7 @@ public class EsercizioDenominazioneImmaginiFragment extends AbstractFineScenario
             boolean result;
             Bundle bundle = new Bundle();
             bundle.putInt("indexGameScenery", indexScenery);
-            if (esercizioDenominazioneImmaginiController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
+            if (esercizioDenominazioneImmaginiController.checkAudio(audioRecorder.getAudioRecorder(), getContext())) {
                 result = true;
                 pazienteViewsModels.getPazienteLiveData().getValue().
                         increaseCoins(esercizioDenominazioneImmagini.getRicompensaCorretto());
