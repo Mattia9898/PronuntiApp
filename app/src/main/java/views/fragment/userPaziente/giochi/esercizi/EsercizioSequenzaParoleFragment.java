@@ -220,7 +220,7 @@ public class EsercizioSequenzaParoleFragment extends AbstractFineScenarioFragmen
             boolean result;
             Bundle bundle = new Bundle();
             bundle.putInt("indexSceneryGame", indexScenery);
-            if (esercizioSequenzaParoleController.verificaAudio(audioRecorder.getAudioRecorder(), getContext())) {
+            if (esercizioSequenzaParoleController.checkAudio(audioRecorder.getAudioRecorder(), getContext())) {
                 result = true;
                 pazienteViewsModels.getPazienteLiveData().getValue().
                         increaseCoins(esercizioSequenzaParole.getRicompensaCorretto());

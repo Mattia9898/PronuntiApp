@@ -1,42 +1,43 @@
 package viewsModels.pazienteViewsModels.controller;
 
-import android.content.Context;
-
-import java.io.File;
-
-import java.util.Arrays;
-
-import java.util.List;
 
 import models.domain.esercizi.EsercizioSequenzaParole;
-
 import models.API.AudioConverter;
-
 import models.API.SpeechToText;
+
+import android.content.Context;
+
+import java.util.Arrays;
+import java.util.List;
+import java.io.File;
+
 
 public class EsercizioSequenzaParoleController {
 
-    private EsercizioSequenzaParole mEsercizioSequenzaParole;
+    private EsercizioSequenzaParole esercizioSequenzaParole;
 
-    public void setEsercizioSequenzaParole(EsercizioSequenzaParole mEsercizioSequenzaParole) {
-        this.mEsercizioSequenzaParole = mEsercizioSequenzaParole;
+
+    public void setEsercizioSequenzaParole(EsercizioSequenzaParole esercizioSequenzaParole) {
+        this.esercizioSequenzaParole = esercizioSequenzaParole;
     }
 
-    public boolean verificaAudio(File audioRegistrato, Context context) {
 
-        List<String> paroleCorrette = Arrays.asList(
-                mEsercizioSequenzaParole.getParolaDaIndovinare1().toLowerCase(),
-                mEsercizioSequenzaParole.getParolaDaIndovinare2().toLowerCase(),
-                mEsercizioSequenzaParole.getParolaDaIndovinare3().toLowerCase());
+    // metodo per controllare l'audio registrato nell'esercizio dall'utente
+    public boolean checkAudio(File audioRecorded, Context context) {
 
-        List<String> paroleRegistrate = SpeechToText.callAPI(context, audioRegistrato);
+        List<String> listOfCorrectWords = Arrays.asList(
+                esercizioSequenzaParole.getParolaDaIndovinare1().toLowerCase(),
+                esercizioSequenzaParole.getParolaDaIndovinare2().toLowerCase(),
+                esercizioSequenzaParole.getParolaDaIndovinare3().toLowerCase());
 
-        if (paroleRegistrate == null || paroleCorrette.size() != paroleRegistrate.size()) {
+        List<String> wordsRecorded = SpeechToText.callAPI(context, audioRecorded);
+
+        if (wordsRecorded == null || listOfCorrectWords.size() != wordsRecorded.size()) {
             return false;
         }
 
-        for (int i = 0; i < paroleCorrette.size(); i++) {
-            if (!paroleCorrette.get(i).equals(paroleRegistrate.get(i).toLowerCase())) {
+        for (int i = 0; i < listOfCorrectWords.size(); i++) {
+            if (!listOfCorrectWords.get(i).equals(wordsRecorded.get(i).toLowerCase())) {
                 return false;
             }
         }
@@ -44,9 +45,6 @@ public class EsercizioSequenzaParoleController {
         return true;
     }
 
-    public File convertiAudio(File audioRegistrato, File outputFile) {
-        return AudioConverter.convertAudio(audioRegistrato, outputFile);
-    }
 
 }
 
