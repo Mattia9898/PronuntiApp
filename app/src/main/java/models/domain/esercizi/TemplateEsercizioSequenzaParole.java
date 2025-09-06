@@ -71,9 +71,9 @@ public class TemplateEsercizioSequenzaParole extends AbstractEsercizio implement
     public Map<String, Object> toMap() {
         Map<String, Object> map = super.toMap();
         map.put(CostantiDBTemplateEsercizioSequenzaParole.AUDIO_ESERCIZIO_SEQUENZA_PAROLE, this.audioEsercizioSequenzaParole);
-        map.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1, this.parolaDaIndovinare1);
-        map.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_2, this.parolaDaIndovinare2);
-        map.put(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_3, this.parolaDaIndovinare3);
+        map.put(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_1, this.parolaDaIndovinare1);
+        map.put(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_2, this.parolaDaIndovinare2);
+        map.put(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_3, this.parolaDaIndovinare3);
         return map;
     }
 
@@ -81,12 +81,12 @@ public class TemplateEsercizioSequenzaParole extends AbstractEsercizio implement
     public TemplateEsercizioSequenzaParole fromMap(Map<String, Object> fromDatabaseMap) {
         Log.d("TemplateEsercizioSequenzaParole.fromMap()", fromDatabaseMap.toString());
         return new TemplateEsercizioSequenzaParole(
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.RICOMPENSA_RISPOSTA_CORRETTA)),
-                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.RICOMPENSA_RISPOSTA_ERRATA)),
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.REWARD_CORRECT_ANSWER)),
+                Math.toIntExact((long) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.REWARD_WRONG_ANSWER)),
                 (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.AUDIO_ESERCIZIO_SEQUENZA_PAROLE),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_2),
-                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_3)
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_1),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_2),
+                (String) fromDatabaseMap.get(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_3)
         );
     }
 

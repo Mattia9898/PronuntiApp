@@ -18,7 +18,6 @@ import com.google.android.gms.tasks.Task;
 
 import models.database.costantiDB.CostantiDBNodi;
 import models.domain.esercizi.Esercizio;
-import models.database.DAO;
 
 import models.database.costantiDB.CostantiDBTemplateEsercizioSequenzaParole;
 import models.domain.esercizi.TemplateEsercizioSequenzaParole;
@@ -77,7 +76,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
                         TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, snapshot.getKey());
                         resultList.add(templateEsercizioDenominazioneImmagini);
                     }
-                    else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1)) {
+                    else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_1)) {
                         TemplateEsercizioSequenzaParole templateEsercizioSequenzaParole = new TemplateEsercizioSequenzaParole(fromDatabaseMap, snapshot.getKey());
                         resultList.add(templateEsercizioSequenzaParole);
                     }
@@ -121,7 +120,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
                     TemplateEsercizioDenominazioneImmagini templateEsercizioDenominazioneImmagini = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, snapshot.getKey());
                     resultList.add(templateEsercizioDenominazioneImmagini);
                 }
-                else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1)) {
+                else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_1)) {
                     TemplateEsercizioSequenzaParole templateEsercizioSequenzaParole = new TemplateEsercizioSequenzaParole(fromDatabaseMap, snapshot.getKey());
                     resultList.add(templateEsercizioSequenzaParole);
                 }
@@ -156,7 +155,7 @@ public class TemplateEsercizioDAO implements DAO<Esercizio> {
             if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioDenominazioneImmagini.IMMAGINE_ESERCIZIO_DENOMINAZIONE_IMMAGINI)) {
                 resultEsercizio = new TemplateEsercizioDenominazioneImmagini(fromDatabaseMap, dataSnapshot.getKey());
             }
-            else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.PAROLA_DA_INDOVINARE_1)) {
+            else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioSequenzaParole.WORD_TO_GUESS_1)) {
                 resultEsercizio = new TemplateEsercizioSequenzaParole(fromDatabaseMap, dataSnapshot.getKey());
             }
             else if (fromDatabaseMap.containsKey(CostantiDBTemplateEsercizioCoppiaImmagini.IMMAGINE_ESERCIZIO_CORRETTA)) {
